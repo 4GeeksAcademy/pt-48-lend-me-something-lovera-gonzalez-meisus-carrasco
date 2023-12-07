@@ -1,4 +1,11 @@
-@use '../styles/shared'
+@use "./shared"
 
 .navbar-background
     background-color: shared.$black-base-color
+
+.navbar-link
+    text-decoration: none
+    color: white
+    &:hover
+        text-decoration: none
+        color: shared.$green-base-color
