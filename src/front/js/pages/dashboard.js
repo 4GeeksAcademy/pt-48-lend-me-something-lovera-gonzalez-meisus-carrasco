@@ -5,10 +5,11 @@ import { PinkContainer } from "../component/color_containers/pink_container";
 import { YellowContainer } from "../component/color_containers/yellow_container";
 import { TestComponent } from "../component/test";
 import "../../styles/dashboard.sass"
+import '../../styles/shared.sass'
 
 export const Dashboard = () => {
     return (<>
-        <div className="d-flex flex-row gap-5 body p-5 flex-wrap">
+        <div className="d-flex flex-row gap-5 body p-5 flex-wrap navbar-margin">
             {/* <h1>Dashboard</h1> */}
             <PinkContainer >
                 <TestComponent />
