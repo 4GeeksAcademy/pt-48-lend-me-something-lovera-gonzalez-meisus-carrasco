@@ -10,16 +10,18 @@ export const Dashboard = () => {
         <div className="d-flex flex-row gap-5 m-5 flex-wrap">
             {/* <h1>Dashboard</h1> */}
             <PinkContainer >
-                <h1>Hello my friend</h1>
-                <p>Sed posuere ultricies vulputate. Duis suscipit fermentum mi quis malesuada.
-                </p> </PinkContainer>
+                <TestComponent />
+            </PinkContainer>
             <BlueContainer>
                 <TestComponent />
             </BlueContainer>
             <GreenContainer>
                 <p>Hola, soy Adrian</p>
+                <TestComponent />
             </GreenContainer>
-            <YellowContainer />
+            <YellowContainer>
+                <TestComponent />
+            </YellowContainer>
         </div>
     </>)
 }

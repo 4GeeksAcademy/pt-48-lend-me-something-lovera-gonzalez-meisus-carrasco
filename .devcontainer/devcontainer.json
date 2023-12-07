@@ -29,7 +29,13 @@
 	"customizations": {
 		"vscode": {
 			"extensions": [
-				"mrmlnc.vscode-scss"
+				"mrmlnc.vscode-scss",
+				"eamodio.gitlens",
+				"syler.sass-indented",
+				"ms-python.vscode-pylance",
+				"ms-python.python",
+				"dbaeumer.vscode-eslint",
+				"ms-python.black-formatter"
 			]
 		}
 	},
