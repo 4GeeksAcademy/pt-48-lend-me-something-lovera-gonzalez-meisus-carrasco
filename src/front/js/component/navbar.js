@@ -7,7 +7,7 @@ export const Navbar = () => {
 		<div className="d-flex flex-column align-items-center bg-dark vh-100  fixed-top rounded-2" style={{ "width": "6em" }}>
 
 
-			<button className=" btn btn-success" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasDarkNavbar" aria-controls="offcanvasDarkNavbar" aria-label="Toggle navigation">
+			<button className=" btn " type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasDarkNavbar" aria-controls="offcanvasDarkNavbar" aria-label="Toggle navigation">
 				<i className="fa-solid fa-bars" style={{ "color": "#f0f2f4" }}></i>
 			</button>
 			<Link to={"/dashboard"}><i className="fa-solid fa-swatchbook" style={{ "color": "#f0f2f4" }}></i></Link>
