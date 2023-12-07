@@ -1,10 +1,10 @@
 import React from "react";
-import "../../../styles/color_containers/blue_container.sass"
+import "../../../styles/color_containers/pink_container.sass"
 
-export const BlueContainer = () => {
+export const PinkContainer = () => {
 
     return (<>
-        <div className="blue__container">
+        <div className="pink__container">
             <p>Blue Container</p>
         </div>
     </>)
