@@ -1,9 +1,10 @@
 import React, { useContext } from "react";
 import { YellowContainer } from "../component/color_containers/yellow_container";
+import '../../styles/shared.sass'
 
 export const Login = () => {
     return (<>
-    <div style={{marginLeft:"8.5em"}}>
+    <div className="navbar-margin">
 
 
         <YellowContainer>

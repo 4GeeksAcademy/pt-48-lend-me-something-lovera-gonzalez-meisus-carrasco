@@ -1,9 +1,10 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import '../../styles/shared.sass'
 
 export const Navbar = () => {
 	return (<>
-		<div className="d-flex flex-column align-items-center bg-dark vh-100  fixed-top rounded-2" style={{ "width": "8.5em" }}>
+		<div className="d-flex flex-column align-items-center bg-dark vh-100  fixed-top rounded-2" style={{ "width": "6em" }}>
 
 
 			<button className=" btn btn-success" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasDarkNavbar" aria-controls="offcanvasDarkNavbar" aria-label="Toggle navigation">
