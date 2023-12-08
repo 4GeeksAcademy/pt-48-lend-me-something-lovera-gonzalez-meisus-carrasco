@@ -4,29 +4,45 @@ import { GreenContainer } from "../component/color_containers/green_container";
 import { PinkContainer } from "../component/color_containers/pink_container";
 import { YellowContainer } from "../component/color_containers/yellow_container";
 import { TestComponent } from "../component/test";
+import { TopBar } from "../component/top_searchbar";
 import "../../styles/dashboard.sass"
-import '../../styles/shared.sass'
 
 export const Dashboard = () => {
     return (<>
-        <div className="d-flex flex-row gap-5 body p-5 flex-wrap navbar-margin">
-            {/* <h1>Dashboard</h1> */}
-            <PinkContainer >
-                <TestComponent />
-            </PinkContainer>
-            <BlueContainer>
-                <TestComponent />
-            </BlueContainer>
-            <GreenContainer>
-                <p>Hola, soy Adrian</p>
-                <TestComponent />
-            </GreenContainer>
-            <YellowContainer>
-                <h1>hola soy juan</h1>
-            </YellowContainer>
-            <YellowContainer>
-                <h1>hola soy augusto</h1>
-            </YellowContainer>
+        <div className="d-flex flex-column gap-5 navbar-margin">
+            <TopBar />
+            <div className="d-flex flex-row justify-content-between flex-wrap gap-5 p-4 pt-0" style={{ width: '100%' }}>
+                <PinkContainer >
+                    <TestComponent />
+                </PinkContainer>
+                <BlueContainer>
+                    <TestComponent />
+                </BlueContainer>
+                <GreenContainer>
+                    <TestComponent />
+                </GreenContainer>
+                <YellowContainer>
+                    <TestComponent />
+                </YellowContainer>
+            </div>
+            <div>
+                <BlueContainer>
+                    <div style={{ width: '50%' }}>
+                        <h4>Prueba de texto componente largo</h4>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur nunc lectus, elementum sed magna et, malesuada condimentum quam. Nam posuere dolor et enim blandit lobortis. Donec cursus felis ac lectus hendrerit malesuada et imperdiet mi. Aenean fringilla suscipit nisl et ultricies. Nam quis nisi sollicitudin, imperdiet ante vel, elementum elit. Donec aliquam quam nec aliquam pellentesque. Nunc ac ligula semper felis mollis vestibulum et at sapien.
+
+                        </p>
+                    </div>
+                </BlueContainer>
+                <YellowContainer>
+                    <div style={{ width: '50%' }}>
+                        <h4>Prueba de texto componente largo</h4>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur nunc lectus, elementum sed magna et, malesuada condimentum quam. Nam posuere dolor et enim blandit lobortis. Donec cursus felis ac lectus hendrerit malesuada et imperdiet mi. Aenean fringilla suscipit nisl et ultricies. Nam quis nisi sollicitudin, imperdiet ante vel, elementum elit. Donec aliquam quam nec aliquam pellentesque. Nunc ac ligula semper felis mollis vestibulum et at sapien.
+
+                        </p>
+                    </div>
+                </YellowContainer>
+            </div>
         </div>
     </>)
 }
