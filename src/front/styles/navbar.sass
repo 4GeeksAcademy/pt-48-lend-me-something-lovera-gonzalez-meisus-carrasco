@@ -3,6 +3,9 @@
     &-link
         text-decoration: none
         color: white
+        display: flex
+        flex-direction: row
+        gap: 1em
         &:hover
             text-decoration: none
             color: shared.$green-base-color
@@ -15,6 +18,13 @@
         display: flex
         flex-direction: column
         justify-content: space-between
+        i
+            font-size: 1.5em
+            &:hover
+                color: shared.$blue-base-color !important
+                scale: 1.4
+                transition: 200ms
+
 
     &-profilepicture
         height: 3em
@@ -26,8 +36,17 @@
         &:hover
             scale: 1.2
             transform: rotate(360deg)
+
+    &-offcanvas-icons
+        height: 14em
+        display: flex
+        flex-direction: column
+        justify-content: space-between
+        text-decoration: none
 i
-    &:hover
-        color: shared.$blue-base-color !important
-        scale: 1.4
-        transition: 200ms
+    color: white
+
+.offcanvas-body
+    display: flex
+    flex-direction: column
+    justify-content: space-between
