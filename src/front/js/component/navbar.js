@@ -44,8 +44,10 @@ export const Navbar = () => {
 				</div>
 
 				<form className="d-flex mt-3" role="search">
-					<input className="form-control me-2" type="search" placeholder="Search" aria-label="Search" />
-					<button className="btn btn-success" type="submit">Search</button>
+					<input className=" me-2 offcanvas-input" type="search" placeholder="Search " aria-label="Search" />
+					<button className="offcanvas-button" type="submit">
+						<i className="fa-solid fa-magnifying-glass " style={{ "color": "#ffffff" }}></i>
+					</button>
 				</form>
 			</div>
 		</div>
