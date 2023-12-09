@@ -1,6 +1,8 @@
 @use '../styles/shared'
 
-    
+$layer1: linear-gradient(45deg, shared.$dark-gray-base-color 80%, shared.$blue-base-color 130%) padding-box
+$layer2: linear-gradient(60deg, shared.$dark-gray-base-color 0%, shared.$dark-gray-base-color 30%, shared.$blue-base-color 120%) border-box
+
 .dashboard-bar
     width: 100%
     display: flex
@@ -10,12 +12,18 @@
 
 .search-input
     background-color: shared.$black-base-color
-    border: none
+    border: 1px solid transparent
     border-radius: 1em
     padding: 0.5em 3em 0.5em 3em
     color: white
     &:focus
-        outline: 1px solid shared.$blue-base-color
+        background: $layer1, $layer2
+        outline: 1px solid transparent
+        caret-color: shared.$blue-base-color
+    &::placeholder
+        color: shared.$blue-base-color
+    &:focus::placeholder
+        color: #555
 
 .magnifying
     position: relative
