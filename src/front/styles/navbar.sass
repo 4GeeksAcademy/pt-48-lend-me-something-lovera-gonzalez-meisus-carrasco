@@ -1,7 +1,33 @@
 @use "./shared"
-.navbar-link
-    text-decoration: none
-    color: white
-    &:hover
+.navbar
+    &-link
         text-decoration: none
-        color: shared.$green-base-color
+        color: white
+        &:hover
+            text-decoration: none
+            color: shared.$green-base-color
+
+    &custom
+        width: 16em
+
+    &-icons
+        height: 14em
+        display: flex
+        flex-direction: column
+        justify-content: space-between
+
+    &-profilepicture
+        height: 3em
+        width: 3em
+        border-radius: 50%
+        object-fit: contain
+        cursor: pointer
+        transition: 750ms
+        &:hover
+            scale: 1.2
+            transform: rotate(360deg)
+i
+    &:hover
+        color: shared.$blue-base-color !important
+        scale: 1.4
+        transition: 200ms
