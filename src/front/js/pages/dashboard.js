@@ -25,11 +25,16 @@ export const Dashboard = () => {
                     <TestComponent />
                 </YellowContainer>
             </div>
-            <div className="d-flex flex-row justify-content-between align-items-center">
+            <div className="d-flex flex-row justify-content-between align-items-center p-4">
                 <BlueContainer>
                     <div style={{ width: '90%' }}>
                         <h4>Prueba de texto componente largo</h4>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur nunc lectus, elementum sed magna et, malesuada condimentum quam. Nam posuere dolor et enim blandit lobortis. Donec cursus felis ac lectus hendrerit malesuada et imperdiet mi. Aenean fringilla suscipit nisl et ultricies. Nam quis nisi sollicitudin, imperdiet ante vel, elementum elit. Donec aliquam quam nec aliquam pellentesque. Nunc ac ligula semper felis mollis vestibulum et at sapien.
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur nunc lectus,
+                             elementum sed magna et, malesuada condimentum quam. Nam posuere dolor et enim
+                              blandit lobortis. Donec cursus felis ac lectus hendrerit malesuada et imperdiet
+                               mi. Aenean fringilla suscipit nisl et ultricies. Nam quis nisi sollicitudin,
+                                imperdiet ante vel, elementum elit. Donec aliquam quam nec aliquam pellentesque.
+                                 Nunc ac ligula semper felis mollis vestibulum et at sapien.
 
                         </p>
                     </div>
