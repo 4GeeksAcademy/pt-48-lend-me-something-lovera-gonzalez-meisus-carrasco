@@ -26,6 +26,7 @@ export const Navbar = () => {
 
 		</div>
 
+
 		<div className="offcanvas offcanvas-start text-bg-dark bg-dark navbarcustom d-flex flex-column justify-content-between vh-100" tabindex="-1" id="offcanvasDarkNavbar" aria-labelledby="offcanvasDarkNavbarLabel">
 			<div className="offcanvas-header">
 				<h5 className="offcanvas-title text-light" id="offcanvasDarkNavbarLabel">Options</h5>
