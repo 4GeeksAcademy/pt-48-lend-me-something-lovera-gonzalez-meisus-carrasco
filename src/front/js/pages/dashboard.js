@@ -11,17 +11,17 @@ export const Dashboard = () => {
     return (<>
         <div className="d-flex flex-column gap-5 navbar-margin">
             <TopBar />
-            <div className="d-flex flex-row justify-content-between flex-wrap gap-5 p-4 pt-0" style={{ width: '100%' }}>
-                <PinkContainer >
+            <div className="d-flex flex-row justify-content-between flex-wrap gap-2 p-4 pt-0" style={{ width: '100%' }}>
+                <PinkContainer style={{ width: '25%', flex: '0.25 0 21%' }} >
                     <TestComponent />
                 </PinkContainer>
-                <BlueContainer>
+                <BlueContainer style={{ width: '25%', flex: '0.25 0 21%' }}>
                     <TestComponent />
                 </BlueContainer>
-                <GreenContainer>
+                <GreenContainer style={{ width: '25%', flex: '0.25 0 21%' }}>
                     <TestComponent />
                 </GreenContainer>
-                <YellowContainer>
+                <YellowContainer style={{ width: '25%', flex: '0.25 0 21%' }}>
                     <TestComponent />
                 </YellowContainer>
             </div>
@@ -30,11 +30,11 @@ export const Dashboard = () => {
                     <div style={{ width: '90%' }}>
                         <h4>Prueba de texto componente largo</h4>
                         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur nunc lectus,
-                             elementum sed magna et, malesuada condimentum quam. Nam posuere dolor et enim
-                              blandit lobortis. Donec cursus felis ac lectus hendrerit malesuada et imperdiet
-                               mi. Aenean fringilla suscipit nisl et ultricies. Nam quis nisi sollicitudin,
-                                imperdiet ante vel, elementum elit. Donec aliquam quam nec aliquam pellentesque.
-                                 Nunc ac ligula semper felis mollis vestibulum et at sapien.
+                            elementum sed magna et, malesuada condimentum quam. Nam posuere dolor et enim
+                            blandit lobortis. Donec cursus felis ac lectus hendrerit malesuada et imperdiet
+                            mi. Aenean fringilla suscipit nisl et ultricies. Nam quis nisi sollicitudin,
+                            imperdiet ante vel, elementum elit. Donec aliquam quam nec aliquam pellentesque.
+                            Nunc ac ligula semper felis mollis vestibulum et at sapien.
 
                         </p>
                     </div>
