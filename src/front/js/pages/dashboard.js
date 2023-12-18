@@ -3,6 +3,7 @@ import { BlueContainer } from "../component/color_containers/blue_container";
 import { GreenContainer } from "../component/color_containers/green_container";
 import { PinkContainer } from "../component/color_containers/pink_container";
 import { YellowContainer } from "../component/color_containers/yellow_container";
+import { PurpleContainer } from "../component/color_containers/purple_container";
 import { TestComponent } from "../component/test";
 import { TopBar } from "../component/top_searchbar";
 import "../../styles/dashboard.sass"
@@ -12,7 +13,7 @@ export const Dashboard = () => {
         <div className="d-flex flex-column gap-5 navbar-margin">
             <TopBar />
             <div className="d-flex flex-row justify-content-between flex-wrap gap-2 p-4 pt-0" style={{ width: '100%' }}>
-                <YellowContainer style={{ width: '25%', flex: '0.25 0 21%' }}>
+                <PurpleContainer style={{ width: '25%', flex: '0.25 0 21%' }}>
                     <div className="text-light d-flex flex-row gap-2 justify-content-center align-items-center">
                         <img src='https://restyler.s3.ap-southeast-2.amazonaws.com/user-data/user-46/artworks/product-79/preview/thumbnails/5MPgTBYjDfQKQP7gMsmbzC8lmELrSQWwHILNnnfr-watermarked-lg-resized.gif' alt="" style={{ height: '150px', filter: 'hue-rotate(100deg)' }} />
                         <div>
@@ -22,7 +23,7 @@ export const Dashboard = () => {
                             <h5>And come back as NEW man</h5>
                         </div>
                     </div>
-                </YellowContainer>
+                </PurpleContainer>
                 <BlueContainer style={{ width: '25%', flex: '0.25 0 21%' }}>
                     <TestComponent />
                 </BlueContainer>
@@ -34,7 +35,7 @@ export const Dashboard = () => {
                 </GreenContainer>
             </div>
             <div className="d-flex flex-row justify-content-between align-items-center p-4">
-                <BlueContainer>
+                <PurpleContainer>
                     <div style={{ width: '90%' }}>
                         <h4>Prueba de texto componente largo</h4>
                         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur nunc lectus,
@@ -46,7 +47,7 @@ export const Dashboard = () => {
 
                         </p>
                     </div>
-                </BlueContainer>
+                </PurpleContainer>
                 <YellowContainer>
                     <div style={{ width: '90%' }}>
                         <h4>Prueba de texto componente largo</h4>
