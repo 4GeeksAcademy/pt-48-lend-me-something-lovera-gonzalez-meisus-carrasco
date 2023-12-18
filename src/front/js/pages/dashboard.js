@@ -12,18 +12,26 @@ export const Dashboard = () => {
         <div className="d-flex flex-column gap-5 navbar-margin">
             <TopBar />
             <div className="d-flex flex-row justify-content-between flex-wrap gap-2 p-4 pt-0" style={{ width: '100%' }}>
-                <PinkContainer style={{ width: '25%', flex: '0.25 0 21%' }} >
-                    <TestComponent />
-                </PinkContainer>
+                <YellowContainer style={{ width: '25%', flex: '0.25 0 21%' }}>
+                    <div className="text-light d-flex flex-row gap-2 justify-content-center align-items-center">
+                        <img src='https://restyler.s3.ap-southeast-2.amazonaws.com/user-data/user-46/artworks/product-79/preview/thumbnails/5MPgTBYjDfQKQP7gMsmbzC8lmELrSQWwHILNnnfr-watermarked-lg-resized.gif' alt="" style={{ height: '150px', filter: 'hue-rotate(100deg)' }} />
+                        <div>
+                            <h1>FF. Never Forfait.</h1>
+                            <h5>Go to the Moon</h5>
+                            <h2>Let your Finance Flow</h2>
+                            <h5>And come back as NEW man</h5>
+                        </div>
+                    </div>
+                </YellowContainer>
                 <BlueContainer style={{ width: '25%', flex: '0.25 0 21%' }}>
                     <TestComponent />
                 </BlueContainer>
+                <PinkContainer style={{ width: '25%', flex: '0.25 0 21%' }} >
+                    <TestComponent />
+                </PinkContainer>
                 <GreenContainer style={{ width: '25%', flex: '0.25 0 21%' }}>
                     <TestComponent />
                 </GreenContainer>
-                <YellowContainer style={{ width: '25%', flex: '0.25 0 21%' }}>
-                    <TestComponent />
-                </YellowContainer>
             </div>
             <div className="d-flex flex-row justify-content-between align-items-center p-4">
                 <BlueContainer>

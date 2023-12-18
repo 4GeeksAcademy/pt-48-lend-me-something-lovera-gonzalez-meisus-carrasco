@@ -9,5 +9,8 @@
     },
     "[sass]": {
         "editor.defaultFormatter": "syler.sass-indented"
+    },
+    "[html]": {
+        "editor.defaultFormatter": "vscode.html-language-features"
     }
 }
