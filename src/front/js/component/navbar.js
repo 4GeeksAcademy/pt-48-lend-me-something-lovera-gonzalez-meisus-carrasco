@@ -9,7 +9,13 @@ export const Navbar = () => {
 
 			<div className=" d-flex flex-column align-items-center justify-content-between gap-5">
 
-				<button className=" btn " type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasDarkNavbar" aria-controls="offcanvasDarkNavbar" aria-label="Toggle navigation">
+				<button 
+					className=" btn " 
+					type="button" 
+					data-bs-toggle="offcanvas" 
+					data-bs-target="#offcanvasDarkNavbar" 
+					aria-controls="offcanvasDarkNavbar" 
+					aria-label="Toggle navigation">
 					<i className="fa-solid fa-bars" ></i>
 				</button>
 				<div className="navbar-icons">
