@@ -1,7 +1,7 @@
 from api.models import db
 
 
-class Symbol(db.Model):
+class Value(db.Model):
     __tablename_ = "symbols"
     id = db.Column(db.Integer, primary_key=True)
     symbol = db.Column(db.String, nullable=False, unique=True)

@@ -41,10 +41,10 @@ class UserRepository:
         )
         session.commit()
         return True
-    
+
     @staticmethod
     def delete_user(user_data):
-        user_to_be_deleted = session.query(User).filter(User.id == user_data['id'])
+        user_to_be_deleted = session.query(User).filter(User.id == user_data["id"])
         session.delete(user_to_be_deleted)
         session.commit()
         return True
