@@ -1,4 +1,4 @@
-from Models.user_model import User
+from api.Models.user_model import User
 from engine import session
 
 
