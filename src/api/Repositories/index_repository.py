@@ -34,8 +34,27 @@ def delete_index(index_data):
     session.commit()
     return True
 
+
 @staticmethod
 def update_index(index_data):
-    index_to_be_updated = session.query(Index).filter(Index.name ==index_data['name']).update({Index:index_data['name']})
-   
-    
+    index_to_be_updated = session.query(Index).filter(Index.name == index_data["name"])
+
+    if index_data["name"]:
+        index_to_be_updated.update(
+            {Index.name: index_data["name"]}, synchronize_session=False
+        )
+    if index_data["icon"]:
+        index_to_be_updated.update(
+            {Index.icon: index_data["icon"]}, synchronize_session=False
+        )
+    if index_data["currency"]:
+        index_to_be_updated.update(
+            {Index.currency: index_data["currency"]}, synchronize_session=False
+        )
+    if index_data["create_at"]:
+        index_to_be_updated.update(
+            {Index.create_at: index_data["create_at"]}, synchronize_session=False
+        )
+
+    session.commit()
+    return True
