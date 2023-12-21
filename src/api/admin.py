@@ -1,8 +1,10 @@
   
 import os
 from flask_admin import Admin
-from .models import db, User
+from .models import db
+from api.Models.user_model import User
 from flask_admin.contrib.sqla import ModelView
+from user_model import User
 
 def setup_admin(app):
     app.secret_key = os.environ.get('FLASK_APP_KEY', 'sample key')
