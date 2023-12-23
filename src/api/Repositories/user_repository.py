@@ -1,5 +1,5 @@
 from api.Models.user_model import User
-from engine import session
+from api.engine import session
 
 
 class UserRepository:
