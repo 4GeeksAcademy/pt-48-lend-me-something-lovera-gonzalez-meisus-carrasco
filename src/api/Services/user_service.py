@@ -1,12 +1,5 @@
 from api.Repositories.user_repository import UserRepository
-from enum import Enum
-
-
-class HTTP_Status(Enum):
-    OK = 200
-    FORBIDDEN = 403
-    NOT_FOUND = 404
-
+from api.Services.HTTP_Status import HTTP_Status
 
 class UserService:
     @staticmethod
