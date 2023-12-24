@@ -1,20 +1,20 @@
 from api.Models.value_model import Value
-from engine import session
+from api.engine import session
 
 
 class ValueRepository:
     @staticmethod
-    def get_value_list():
+    def get_list():
         query = session.query(Value).all()
         return query
 
     @staticmethod
-    def get_value_by_id(id):
+    def get_by_id(id):
         query = session.query(Value).filter(Value.id == id)
         return query
 
     @staticmethod
-    def add_value(value_data):
+    def add(value_data):
         value_to_be_added = Value(
             symbol=value_data["symbol"],
             name=value_data["name"],
@@ -25,7 +25,7 @@ class ValueRepository:
         return True
 
     @staticmethod
-    def update_value_email(value_data):
+    def update(value_data):
         value_to_be_updated = session.query(Value).filter(Value.id == value_data["id"])
         if value_data["name"]:
             value_to_be_updated.update(
@@ -43,7 +43,7 @@ class ValueRepository:
         return True
 
     @staticmethod
-    def delete_value(value_data):
+    def delete(value_data):
         value_to_be_deleted = session.query(Value).filter(Value.id == value_data["id"])
         session.delete(value_to_be_deleted)
         session.commit()
