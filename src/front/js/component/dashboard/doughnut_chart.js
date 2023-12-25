@@ -73,6 +73,10 @@ export const Doughnut = () => {
 
     }, [data])
     return (<>
+        <div>
+            <h4>This week revenue:</h4>
+            <p>{data.reduce((a, e) => a + e.price, 0)}€</p>
+        </div>
         <div ref={svgDiv}>
         </div>
     </>)
