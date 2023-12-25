@@ -9,12 +9,12 @@ export const Navbar = () => {
 
 			<div className=" d-flex flex-column align-items-center justify-content-between gap-5">
 
-				<button 
-					className=" btn " 
-					type="button" 
-					data-bs-toggle="offcanvas" 
-					data-bs-target="#offcanvasDarkNavbar" 
-					aria-controls="offcanvasDarkNavbar" 
+				<button
+					className=" btn "
+					type="button"
+					data-bs-toggle="offcanvas"
+					data-bs-target="#offcanvasDarkNavbar"
+					aria-controls="offcanvasDarkNavbar"
 					aria-label="Toggle navigation">
 					<i className="fa-solid fa-bars" ></i>
 				</button>
@@ -33,7 +33,7 @@ export const Navbar = () => {
 		</div>
 
 
-		<div className="offcanvas offcanvas-start text-bg-dark bg-dark navbarcustom d-flex flex-column justify-content-between vh-100" tabindex="-1" id="offcanvasDarkNavbar" aria-labelledby="offcanvasDarkNavbarLabel">
+		<div className="offcanvas offcanvas-start text-bg-dark bg-dark navbarcustom d-flex flex-column justify-content-between vh-100" tabIndex="-1" id="offcanvasDarkNavbar" aria-labelledby="offcanvasDarkNavbarLabel">
 			<div className="offcanvas-header">
 				<h5 className="offcanvas-title text-light" id="offcanvasDarkNavbarLabel">Options</h5>
 				<button type="button" className="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>

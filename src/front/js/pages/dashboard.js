@@ -7,6 +7,7 @@ import { PurpleContainer } from "../component/color_containers/purple_container"
 import { TestComponent } from "../component/test";
 import { TopBar } from "../component/top_searchbar";
 import "../../styles/dashboard.sass"
+import { Doughnut } from "../component/dashboard/doughnut_chart";
 
 export const Dashboard = () => {
     return (<>
@@ -25,7 +26,7 @@ export const Dashboard = () => {
                     </div>
                 </PurpleContainer>
                 <BlueContainer style={{ width: '25%', flex: '0.25 0 21%' }}>
-                    <TestComponent />
+                    <Doughnut />
                 </BlueContainer>
                 <PinkContainer style={{ width: '25%', flex: '0.25 0 21%' }} >
                     <TestComponent />
