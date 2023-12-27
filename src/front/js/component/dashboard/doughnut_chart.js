@@ -30,11 +30,13 @@ export const Doughnut = () => {
     useEffect(() => {
 
         const margin = { top: 20, right: 20, bottom: 50, left: 40 };
-        const width = 300 - margin.right - margin.left;
+        const width = 450 - margin.right - margin.left;
         const height = 250 - margin.top - margin.bottom;
-        const innerRadius = width / 2;
+        const innerRadius = 120;
         const outterRadius = d3.min([width, height]) / 2;
         // console.log(outterRadius)
+
+        const yScale = d3.scaleLinear([0, data.length], [height + margin.top, 0])
 
         const div = d3.select(svgDiv.current)
             .append('svg')
@@ -61,7 +63,7 @@ export const Doughnut = () => {
             .attr('d', d3.arc()
                 .innerRadius(innerRadius)
                 .outerRadius(outterRadius)
-                .padAngle(0.01))
+                .padAngle(0.02))
             .attr('stroke', 'black')
             .attr('stroke-width', '1px')
             .style('opacity', 0.7)
@@ -71,11 +73,47 @@ export const Doughnut = () => {
             .data(data)
             .attr('fill', data => `${data.color}`)
 
+        div
+            .append('text')
+            // .attr('transform', `translate(${300 / 4},${250 / 4})` )
+            .text(`${data.reduce((a, e) => a + e.price, 0)}€`)
+            .attr('stroke', 'white')
+            .attr("dx", "-1.8em")
+            .attr("dy", "0.2em")
+            .attr('fill', 'white')
+            .attr('style', 'font-size: 2em')
+
+        const labels = div
+            .append('g')
+            .attr("transform", `translate(${300 / 2},-${250 / 2})`);
+        labels
+            .selectAll('text')
+            .data(d3.sort(data, (a, b) => d3.ascending(a.price, b.price)).map(d => d.label))
+            .enter()
+            .append('text')
+            .text(d => d)
+            .attr('stroke', 'white')
+            .attr('y', d => yScale(d3.sort(data, (a, b) => d3.ascending(a.price, b.price)).map(d => d.label).indexOf(d)))
+            .attr('x', '2em')
+        labels
+            .selectAll('circle')
+            .data(d3.sort(data, (a, b) => d3.ascending(a.price, b.price)).map(d => d.label))
+            .enter()
+            .append('circle')
+            .attr('cx', '10px')
+            .attr('cy', d => yScale(d3.sort(data, (a, b) => d3.ascending(a.price, b.price)).map(d => d.label).indexOf(d)) - 4)
+            .attr('r', '8px')
+
+        labels
+            .selectAll('circle')
+            .data(d3.sort(data, (a, b) => d3.ascending(a.price, b.price)))
+            .attr('fill', data => `${data.color}`)
+
     }, [data])
     return (<>
         <div>
             <h4>This week revenue:</h4>
-            <p>{data.reduce((a, e) => a + e.price, 0)}€</p>
+            {/* <p>{data.reduce((a, e) => a + e.price, 0)}€</p> */}
         </div>
         <div ref={svgDiv}>
         </div>
