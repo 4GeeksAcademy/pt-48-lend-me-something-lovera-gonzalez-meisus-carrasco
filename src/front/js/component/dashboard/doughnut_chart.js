@@ -118,6 +118,9 @@ export const Doughnut = () => {
             .attr('fill', 'white')
             .attr('y', d => yScale(d3.sort(data, (a, b) => d3.ascending(a.price, b.price)).map(d => d.label).indexOf(d)))
             .attr('x', '2em')
+            .append('tspan')
+            .text(d => `${data.filter(element => element.label == d)[0].price}€`)
+            .attr('dx', '0.5em')
         labels
             .selectAll('circle')
             .data(d3.sort(data, (a, b) => d3.ascending(a.price, b.price)).map(d => d.label))
