@@ -90,11 +90,9 @@ export const Doughnut = () => {
             .attr('stroke', 'black')
             .attr('stroke-width', '1px')
             .style('opacity', 0.7)
-
-        const fill = d3.select('svg')
-            .selectAll('path')
             .data(data.map(d => d.price))
             .attr('fill', data => `${colorScale(data)}`)
+
 
         div
             .append('text')
@@ -129,11 +127,9 @@ export const Doughnut = () => {
             .attr('cx', '10px')
             .attr('cy', d => yScale(d3.sort(data, (a, b) => d3.ascending(a.price, b.price)).map(d => d.label).indexOf(d)) - 4)
             .attr('r', '8px')
-
-        labels
-            .selectAll('circle')
             .data(d3.sort(data, (a, b) => d3.ascending(a.price, b.price)))
             .attr('fill', data => `${colorScale(data.price)}`)
+
 
     }, [data])
     return (<>
