@@ -4,22 +4,22 @@ import * as d3 from "d3";
 const data = [
     {
         label: 'Ocio',
-        price: 35,
+        price: 5,
         color: '#4fa2ff'
     },
     {
         label: 'Trabajo',
-        price: 40,
+        price: 15,
         color: '#0d715d'
     },
     {
         label: 'Familia',
-        price: 20,
+        price: 30,
         color: '#ffd155'
     },
     {
         label: 'Gimnasio',
-        price: 40,
+        price: 70,
         color: '#A200EA'
     },
     // {
@@ -57,7 +57,7 @@ export const Doughnut = () => {
         // console.log(outterRadius)
 
         const yScale = d3.scaleLinear([0, data.length], [(height + margin.top)/2, 0]);
-        const colorScale = d3.scaleLinear().domain([d3.max(data.map(d => d.price)), d3.max(data.map(d => d.price)) / 2, d3.min(data.map(d => d.price))]).range(["#ff0000", "#ffa500", "#ffff00", "#008000", "#4fa2ff", "#4b0082", "#ee82ee"]);
+        const colorScale = d3.scaleLinear().domain([d3.max(data.map(d => d.price)), d3.max(data.map(d => d.price)) / 2, d3.min(data.map(d => d.price))]).range(["#ff0000", "#ffa500", "#ffff00", "#008000"]);
         console.log(d3.extent(data.map(d => d.price)))
         console.log(colorScale(25))
 
