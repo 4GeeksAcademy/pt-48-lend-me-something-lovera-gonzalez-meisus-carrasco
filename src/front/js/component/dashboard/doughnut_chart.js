@@ -4,24 +4,24 @@ import * as d3 from "d3";
 const data = [
     {
         label: 'Ocio',
-        price: 40,
+        price: 35,
         color: '#4fa2ff'
     },
     {
         label: 'Trabajo',
-        price: 80,
+        price: 40,
         color: '#0d715d'
     },
     {
         label: 'Familia',
-        price: 50,
+        price: 20,
         color: '#ffd155'
     },
-    // {
-    //     label: 'Inditex',
-    //     price: 35,
-    //     color: '#A200EA'
-    // },
+    {
+        label: 'Gimnasio',
+        price: 40,
+        color: '#A200EA'
+    },
     // {
     //     label: 'Aena',
     //     price: 42,
@@ -52,7 +52,7 @@ export const Doughnut = () => {
         const margin = { top: 20, right: 20, bottom: 50, left: 40 };
         const width = 450 - margin.right - margin.left;
         const height = 250 - margin.top - margin.bottom;
-        const innerRadius = 120;
+        const innerRadius = 110;
         const outterRadius = d3.min([width, height]) / 2;
         // console.log(outterRadius)
 
@@ -86,27 +86,35 @@ export const Doughnut = () => {
             .data(data_ready)
             .enter()
             .append('path')
+            
             .attr('d', d3.arc()
                 .innerRadius(innerRadius)
                 .outerRadius(outterRadius)
-                .padAngle(0.02))
+                .padAngle(0.04))
+            .style('display', 'unset')
             .attr('stroke', 'black')
             .attr('stroke-width', '1px')
             .style('opacity', 0.7)
 
-        const fill = d3.select('svg')
+       
+            
+            const fill = d3.select('svg')
             .selectAll('path')
             .data(data.map(d => d.price))
+            .transition()
+            .delay(250)
+            .duration(750)
+            .ease(d3.easeCubic)
             .attr('fill', data => `${colorScale(data)}`)
 
-        // div
-        //     .append('text')
-        //     .text(`${data.reduce((a, e) => a + e.price, 0)}€`)
-        //     .attr('stroke', 'white')
-        //     .attr("dx", "-1.8em")
-        //     .attr("dy", "0.2em")
-        //     .attr('fill', 'white')
-        //     .attr('style', 'font-size: 2em')
+        div
+            .append('text')
+            .text(`${data.reduce((a, e) => a + e.price, 0)} hs`)
+            .attr('stroke', 'white')
+            .attr("dx", "-1.4em")
+            .attr("dy", "-0.5em")
+            .attr('fill', 'white')
+            .attr('style', 'font-size: 2em')
 
         const labels = div
             .append('g')
@@ -121,7 +129,7 @@ export const Doughnut = () => {
             .attr('y', d => yScale(d3.sort(data, (a, b) => d3.ascending(a.price, b.price)).map(d => d.label).indexOf(d)))
             .attr('x', '2em')
             .append('tspan')
-            .text(d => `${data.filter(element => element.label == d)[0].price}%`)
+            .text(d => `${data.filter(element => element.label == d)[0].price} hs`)
             .attr('dx', '1em')
         labels
             .selectAll('circle')

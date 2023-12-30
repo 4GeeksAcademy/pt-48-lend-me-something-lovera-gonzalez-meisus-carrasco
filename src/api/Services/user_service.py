@@ -1,6 +1,7 @@
 from api.Repositories.user_repository import UserRepository
 from api.Services.HTTP_Status import HTTP_Status
 
+
 class UserService:
     @staticmethod
     def get_user_list():
