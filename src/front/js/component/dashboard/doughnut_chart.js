@@ -22,26 +22,26 @@ const data = [
         price: 35,
         color: '#A200EA'
     },
-    {
-        label: 'Aena',
-        price: 42,
-        color: '#e216EA'
-    },
-    {
-        label: 'BVA',
-        price: 25,
-        color: '#e216EA'
-    },
-    {
-        label: 'Unicaja',
-        price: 18,
-        color: '#e216EA'
-    },
-    {
-        label: 'Google',
-        price: 125,
-        color: '#e216EA'
-    },
+    // {
+    //     label: 'Aena',
+    //     price: 42,
+    //     color: '#e216EA'
+    // },
+    // {
+    //     label: 'BVA',
+    //     price: 25,
+    //     color: '#e216EA'
+    // },
+    // {
+    //     label: 'Unicaja',
+    //     price: 18,
+    //     color: '#e216EA'
+    // },
+    // {
+    //     label: 'Google',
+    //     price: 125,
+    //     color: '#e216EA'
+    // },
 ]
 
 export const Doughnut = () => {
