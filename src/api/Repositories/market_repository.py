@@ -29,13 +29,42 @@ class MarketRepository:
         return True
     
     @staticmethod
-    def update_market():
-        return
+    def update_market(market_data):
+        market_to_be_updated = session.query(Market).filter(Market.id == market_data["id"])
+
+        if market_data["name"]:
+            market_to_be_updated.update(
+                {Market.name: market_data["name"]}, synchronize_session=False
+            )
+        if market_data["region"]:
+            market_to_be_updated.update(
+                {Market.region: market_data["region"]}, synchronize_session=False
+            )
+        if market_data["headquarters"]:
+            market_to_be_updated.update(
+                {Market.headquarters: market_data["headquarters"]}, synchronize_session=False
+            )
+        if market_data["currency"]:
+            market_to_be_updated.update(
+                {Market.currency: market_data["currency"]}, synchronize_session=False
+            )
+        if market_data["opentime"]:
+            market_to_be_updated.update(
+                {Market.opentime: market_data["opentime"]}, synchronize_session=False
+            )
+        if market_data["closetime"]:
+            market_to_be_updated.update(
+                {Market.closetime: market_data["closetime"]}, synchronize_session=False
+            )
+
+        session.commit()
+        return True
+
     
     @staticmethod
-    def delete_market():
-        user_to_be_deleted = session.query(User).filter(User.id == user_data['id'])
-        session.delete(user_to_be_deleted)
+    def delete_market(market_data):
+        market_to_be_deleted = session.query(Market).filter(Market.id == market_data['id'])
+        session.delete(market_to_be_deleted)
         session.commit()
         return True
         
