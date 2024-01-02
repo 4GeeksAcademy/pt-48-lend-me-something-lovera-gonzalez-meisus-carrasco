@@ -13,10 +13,12 @@ import { useSpring, animated } from '@react-spring/web'
 export const Dashboard = () => {
 
     const springs = useSpring({
-        from: { opacity: 0 },
-        to: [{ opacity: 1 }],
+        from: { opacity: 0, y: -5 },
+        to: [{ opacity: 1, y: 0 }],
         config: {
-            duration: 1500
+            mass: 5,
+            friction: 35,
+            tension: 120,
         },
     })
 

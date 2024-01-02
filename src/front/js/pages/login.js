@@ -10,9 +10,9 @@ export const Login = () => {
     const springs = useSpring({
         from: 
             { x: 0, opacity: 0 },
-        to: { x: 50, opacity: 1 },
+        to: { x: 10, opacity: 1 },
         config: {
-            duration: 1500
+            duration: 750
         },
     })
     return (<>
