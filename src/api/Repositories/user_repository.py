@@ -1,4 +1,4 @@
-from Models.user_model import User
+from api.Models.user_model import User
 from api.engine import session
 
 
@@ -43,8 +43,9 @@ class UserRepository:
         return True
 
     @staticmethod
+
     def delete(user_data):
-        user_to_be_deleted = session.query(User).filter(User.id == user_data["id"])
+        user_to_be_deleted = session.query(User).filter(User.id == user_data['id'])
         session.delete(user_to_be_deleted)
         session.commit()
         return True
