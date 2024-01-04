@@ -19,7 +19,7 @@ class Market(db.Model):
             "name": self.name,
             "region": self.region,
             "headquarters": self.headquarters,
-            "currency": self.curency,
+            "currency": self.currency,
             "opentime": self.opentime,
             "closetime": self.closetime,
         }
