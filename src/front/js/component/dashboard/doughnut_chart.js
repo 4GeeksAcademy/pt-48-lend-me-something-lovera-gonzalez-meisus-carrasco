@@ -23,26 +23,26 @@ const data = [
         price: 35,
         color: '#A200EA'
     },
-    // {
-    //     label: 'Aena',
-    //     price: 42,
-    //     color: '#e216EA'
-    // },
-    // {
-    //     label: 'BVA',
-    //     price: 25,
-    //     color: '#e216EA'
-    // },
-    // {
-    //     label: 'Unicaja',
-    //     price: 18,
-    //     color: '#e216EA'
-    // },
-    // {
-    //     label: 'Google',
-    //     price: 125,
-    //     color: '#e216EA'
-    // },
+    {
+        label: 'Aena',
+        price: 42,
+        color: '#e216EA'
+    },
+    {
+        label: 'BVA',
+        price: 25,
+        color: '#e216EA'
+    },
+    {
+        label: 'Unicaja',
+        price: 18,
+        color: '#e216EA'
+    },
+    {
+        label: 'Google',
+        price: 125,
+        color: '#e216EA'
+    },
 ]
 
 export const Doughnut = () => {
@@ -55,7 +55,7 @@ export const Doughnut = () => {
             friction: 120,
             tension: 100,
         },
-        delay: 250,
+        delay: 0,
     })
     const svgDiv = useRef();
 
@@ -98,10 +98,10 @@ export const Doughnut = () => {
             .attr('d', d3.arc()
                 .innerRadius(innerRadius)
                 .outerRadius(outterRadius)
-                .padAngle(0.02))
+                .padAngle(0.01))
             .attr('stroke', 'black')
             .attr('stroke-width', '1px')
-            .style('opacity', 0.7)
+            .style('opacity', 1)
             .data(data.map(d => d.price))
             .attr('fill', data => `${colorScale(data)}`)
 
