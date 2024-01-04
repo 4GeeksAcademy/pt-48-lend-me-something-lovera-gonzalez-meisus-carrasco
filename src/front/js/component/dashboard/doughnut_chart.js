@@ -1,5 +1,6 @@
 import React, { useRef, useEffect } from "react";
 import * as d3 from "d3";
+import { useSpring, animated } from '@react-spring/web'
 
 const data = [
     {
@@ -45,6 +46,17 @@ const data = [
 ]
 
 export const Doughnut = () => {
+
+    const springs = useSpring({
+        from: { opacity: 0, y: -5, scale: 0.9 },
+        to: [{ opacity: 1, y: 0, scale: 1 }],
+        config: {
+            mass: 25,
+            friction: 120,
+            tension: 100,
+        },
+        delay: 250,
+    })
     const svgDiv = useRef();
 
     useEffect(() => {
@@ -137,8 +149,14 @@ export const Doughnut = () => {
             <h4>This week revenue:</h4>
             {/* <p>{data.reduce((a, e) => a + e.price, 0)}€</p> */}
         </div>
-        <div ref={svgDiv}>
-        </div>
+        <animated.div
+            style={{
+                ...springs,
+            }}
+        >
+            <div ref={svgDiv}>
+            </div >
+        </animated.div>
     </>)
 }
 
