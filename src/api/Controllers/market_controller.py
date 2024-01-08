@@ -1,7 +1,6 @@
 from flask import Flask, request, jsonify, url_for, Blueprint
 from api.Services.market_service import MarketService
 
-
 market_api = Blueprint("market", __name__)
 
 

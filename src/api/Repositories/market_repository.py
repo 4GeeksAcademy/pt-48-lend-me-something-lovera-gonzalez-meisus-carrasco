@@ -1,5 +1,5 @@
 from api.Models.market_model import Market
-from api.engine import session
+from engine import session
 
 
 class MarketRepository:

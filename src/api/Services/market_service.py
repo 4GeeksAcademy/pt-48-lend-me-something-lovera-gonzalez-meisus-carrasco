@@ -1,8 +1,6 @@
 from api.Repositories.market_repository import MarketRepository
 from api.Services.HTTP_Status import HTTP_Status
 
-
-
 class MarketService:
 
     @staticmethod
