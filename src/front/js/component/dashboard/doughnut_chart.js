@@ -10,7 +10,7 @@ const data = [
     },
     {
         label: 'Apple',
-        price: 80,
+        price: 185,
         color: '#0d715d'
     },
     {
@@ -40,7 +40,7 @@ const data = [
     },
     {
         label: 'Google',
-        price: 125,
+        price: 137,
         color: '#e216EA'
     },
 ]

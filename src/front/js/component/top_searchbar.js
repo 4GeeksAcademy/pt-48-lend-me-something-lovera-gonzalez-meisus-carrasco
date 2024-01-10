@@ -1,12 +1,15 @@
-import React from 'react'
+import React, {useContext} from 'react'
 import '../../styles/top_searchbar.sass'
 import '../../styles/shared.sass'
+import {Context} from '../store/appContext.js'
 
 export const TopBar = () => {
 
+const {store} = useContext(Context)
+
     return (<>
         <div className="dashboard-bar p-3 navbar-margin">
-            <h3>Dashboard</h3>
+            <h3>{store.title}</h3>
             <div className="d-flex flex-row gap-3 align-items-center">
                 <i className="fa-solid fa-magnifying-glass magnifying" style={{ "color": "#ffffff" }}></i>
                 <input className='search-input' type="text" name="search" id="search" placeholder="Search" />

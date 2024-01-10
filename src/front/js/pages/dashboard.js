@@ -1,4 +1,5 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
+import {Context} from '../store/appContext.js'
 import { BlueContainer } from "../component/color_containers/blue_container";
 import { GreenContainer } from "../component/color_containers/green_container";
 import { PinkContainer } from "../component/color_containers/pink_container";
@@ -10,9 +11,15 @@ import "../../styles/dashboard.sass"
 import { Doughnut } from "../component/dashboard/doughnut_chart";
 import { useSpring, animated } from '@react-spring/web'
 import { Spinner} from "../component/spinner"
+import { TopBarTitle } from "../component/topBarTitle.js";
 
 export const Dashboard = () => {
 
+const {store, actions} = useContext(Context)   
+
+//useEffect(() => {
+ //   actions.setTitle('Dashboard')
+//}, [])
     const springs = useSpring({
         from: { opacity: 0, y: -5 },
         to: [{ opacity: 1, y: 0 }],
@@ -25,6 +32,7 @@ export const Dashboard = () => {
 
 
     return (<>
+    <TopBarTitle topTitle = 'Dashboard' /> 
         <div className="d-flex flex-column gap-5 navbar-margin">
             <animated.div
                 style={{

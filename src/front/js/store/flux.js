@@ -2,6 +2,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
 			message: null,
+			title: null,
 			demo: [
 				{
 					title: "FIRST",
@@ -46,6 +47,10 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 				//reset the global store
 				setStore({ demo: demo });
+			},
+			setTitle: (title) => {
+				const store = getStore();
+				setStore({...store, title: title})
 			}
 		}
 	};
