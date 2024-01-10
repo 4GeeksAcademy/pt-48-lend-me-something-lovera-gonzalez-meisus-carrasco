@@ -21,6 +21,7 @@ export const AboutUs = () => {
                 style={{
                     ...springs,
                 }}
+                className="d-flex flex-column justify-content-center align-items-center vh-100"
             >
                 <h1 className="text-center">About Us</h1>
                 <PinkContainer>
