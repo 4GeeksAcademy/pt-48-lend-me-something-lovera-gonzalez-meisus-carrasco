@@ -48,6 +48,8 @@ export const Navbar = () => {
 					<Link className="navbar-link" to={"/login"}><i className="fa-solid fa-user" ></i>Login</Link>
 					<Link className="navbar-link" to={"/"}><i className="fa-solid fa-gear" ></i>Settings</Link>
 					<Link className="navbar-link" to={"/"}><i className="fa-solid fa-bell" ></i>Notifications</Link>
+					<Link className="navbar-link" to={"/aboutus"}><i className="fa-solid fa-users" ></i>About Us</Link>
+					
 				</div>
 
 				<form className="d-flex mt-3" role="search">
