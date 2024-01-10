@@ -26,7 +26,6 @@ export const Dashboard = () => {
 
     return (<>
         <div className="d-flex flex-column gap-5 navbar-margin">
-            <TopBar />
             <animated.div
                 style={{
                     ...springs,

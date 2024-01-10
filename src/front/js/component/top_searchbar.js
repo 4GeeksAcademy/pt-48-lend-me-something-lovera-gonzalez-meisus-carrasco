@@ -1,10 +1,11 @@
 import React from 'react'
 import '../../styles/top_searchbar.sass'
+import '../../styles/shared.sass'
 
 export const TopBar = () => {
 
     return (<>
-        <div className="dashboard-bar p-3">
+        <div className="dashboard-bar p-3 navbar-margin">
             <h3>Dashboard</h3>
             <div className="d-flex flex-row gap-3 align-items-center">
                 <i className="fa-solid fa-magnifying-glass magnifying" style={{ "color": "#ffffff" }}></i>

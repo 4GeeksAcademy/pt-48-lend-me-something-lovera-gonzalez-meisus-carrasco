@@ -13,6 +13,7 @@ import { Dashboard } from "./pages/dashboard";
 import { Navbar } from "./component/navbar";
 import { Footer } from "./component/footer";
 import '../styles/layout.sass'
+import { TopBar } from "./component/top_searchbar";
 
 //create your first component
 const Layout = () => {
@@ -26,6 +27,7 @@ const Layout = () => {
         <div className="body">
             <BrowserRouter basename={basename}>
                 <ScrollToTop>
+                    <TopBar />
                     <Navbar />
                     <Routes>
                         <Route element={<Home />} path="/" />
