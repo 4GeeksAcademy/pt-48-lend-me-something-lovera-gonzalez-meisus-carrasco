@@ -1,8 +1,9 @@
 import React from 'react';
+import "../../styles/spinner.sass"
 
-const Spinner = () => {
+export const Spinner = () => {
   return (<>
-    <i className="fa-solid fa-spinner"></i>
+    <i className="fa-solid fa-spinner spinner-icon"></i>
   </>)
 }
 

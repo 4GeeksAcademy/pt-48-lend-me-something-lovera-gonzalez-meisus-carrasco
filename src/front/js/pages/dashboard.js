@@ -9,6 +9,7 @@ import { TopBar } from "../component/top_searchbar";
 import "../../styles/dashboard.sass"
 import { Doughnut } from "../component/dashboard/doughnut_chart";
 import { useSpring, animated } from '@react-spring/web'
+import { Spinner} from "../component/spinner"
 
 export const Dashboard = () => {
 
@@ -49,7 +50,7 @@ export const Dashboard = () => {
                         <Doughnut />
                     </BlueContainer>
                     <PinkContainer style={{ width: '25%', flex: '1 0 auto' }} >
-                        <TestComponent />
+                        <Spinner />
                     </PinkContainer>
                 </div>
                 <div className="d-flex flex-row justify-content-between align-items-center p-4">
