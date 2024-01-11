@@ -4,6 +4,8 @@ import rigoImageUrl from "../../img/rigo-baby.jpg";
 import "../../styles/home.css";
 import '../../styles/shared.sass'
 import { useSpring, animated } from '@react-spring/web'
+import { TopBarTitle } from "../component/topBarTitle.js";
+
 
 export const Home = () => {
 	const { store, actions } = useContext(Context);
@@ -16,7 +18,8 @@ export const Home = () => {
 		},
 	})
 
-	return (
+	return (<>
+		<TopBarTitle topTitle='Home' />
 		<div className="text-center navbar-margin">
 			<animated.div
 				style={{
@@ -24,7 +27,7 @@ export const Home = () => {
 				}}
 			>
 				<h1>Hello Rigo!!</h1>
-				
+
 				<div className="alert alert-info">
 					{store.message || "Loading message from the backend (make sure your python backend is running)..."}
 				</div>
@@ -36,5 +39,6 @@ export const Home = () => {
 				</p>
 			</animated.div>
 		</div>
+	</>
 	);
 };

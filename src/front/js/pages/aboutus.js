@@ -1,9 +1,8 @@
 import React, { useContext } from "react";
 import { PinkContainer } from "../component/color_containers/pink_container"
 import '../../styles/aboutus.sass'
-
-
 import { useSpring, animated } from '@react-spring/web'
+import { TopBarTitle } from "../component/topBarTitle.js";
 
 export const AboutUs = () => {
 
@@ -16,6 +15,8 @@ export const AboutUs = () => {
         },
     })
     return (<>
+        <TopBarTitle topTitle='About Us' />
+
         <div className="navbar-margin">
             <animated.div
                 style={{
