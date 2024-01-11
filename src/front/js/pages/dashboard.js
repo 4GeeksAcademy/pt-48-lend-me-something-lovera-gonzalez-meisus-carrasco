@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect , useState} from "react";
 import {Context} from '../store/appContext.js'
 import { BlueContainer } from "../component/color_containers/blue_container";
 import { GreenContainer } from "../component/color_containers/green_container";
@@ -15,7 +15,14 @@ import { TopBarTitle } from "../component/topBarTitle.js";
 
 export const Dashboard = () => {
 
+const [searchState, setSearchState]= useState(false)
 const {store, actions} = useContext(Context)   
+
+const handleClick = () => {
+   
+    setSearchState(!searchState);
+    console.log(searchState) 
+}
 
 //useEffect(() => {
  //   actions.setTitle('Dashboard')
@@ -49,8 +56,13 @@ const {store, actions} = useContext(Context)
                                 <h2>Let your Finance Flow</h2>
                                 <h5>And come back as NEW man</h5>
                             </div>
+                            
                         </div>
+                        
                     </PurpleContainer>
+
+                    
+                    
                     <BlueContainer style={{ width: '25%', flex: '1 0 auto' }}>
 
 
