@@ -5,12 +5,12 @@ import { useAuth0 } from "@auth0/auth0-react";
 export const LogoffButton = () => {
 
 
-	const { logout } = useAuth0();
+    const { logout } = useAuth0();
 
     const logoffClick = () => {
         logout({
-            logoutparams: {
-                returnTo: window.location.origin,
+            logoutParams: {
+                returnTo: process.env.REACT_APP_LOGOFF_URL,
             },
         })
         console.log('logoff clicked')
