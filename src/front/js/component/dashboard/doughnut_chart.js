@@ -73,7 +73,11 @@ export const Doughnut = () => {
         // console.log(d3.extent(data.map(d => d.price)))
         // console.log(colorScale(25))
 
-        const radiusScale = d3.scaleLinear([0, d3.max(data.map(d => d.price))], [100, 70])
+        const radiusScale = d3.scaleLinear([0, d3.max(data.map(d => d.price))], [100, 60])
+
+        const arc = (d) => d3.arc()
+            .innerRadius(d => radiusScale(d.value))
+            .outerRadius(outterRadius + 30);
 
         const div = d3.select(svgDiv.current)
             .append('svg')
@@ -82,30 +86,38 @@ export const Doughnut = () => {
             .attr('fill', 'black')
             .append('g')
             .attr("transform", `translate(${300 / 2},${250 / 2})`);
-        // .append('rect')
-        // .attr('width', width)
-        // .attr('height', height)
-        // .attr('fill', 'green');
 
         const pie = d3.pie().value((d) => d.price)
 
         const data_ready = pie(data)
-        // console.table(data_ready)
+        console.table(data_ready)
 
         div
-            .selectAll('path')
+            .selectAll()
             .data(data_ready)
-            .enter()
-            .append('path')
-            .attr('d', d3.arc()
-                .innerRadius(d => radiusScale(d.value))
-                .outerRadius(outterRadius + 30)
-                .padAngle(0.01))
-            .attr('stroke', 'black')
-            .attr('stroke-width', '1px')
-            .style('opacity', 1)
-            .data(data.map(d => d.price))
-            .attr('fill', data => `${colorScale(data)}`)
+            .join('path')
+                .attr('fill', d => `${colorScale(d.value)}`)
+            .transition()
+            .duration(3000)
+            .attrTween('d', function (d, i) {
+                var interpolateStart = d3.interpolate(0, d.startAngle);
+                var interpolateEnd = d3.interpolate(0, d.endAngle);
+                var interpolateRadius = d3.interpolate(outterRadius, radiusScale(d.value) )
+                var arc = d3
+                    .arc()
+                    .innerRadius(radiusScale(d.value))
+                    .outerRadius(outterRadius+30)
+                    .startAngle(d.startAngle)
+                    .endAngle(d.startAngle)
+                    .padAngle(0.01)
+                    .padRadius(300);
+                return function (t) {
+                    arc.startAngle(interpolateStart(t));
+                    arc.endAngle(interpolateEnd(t));
+                    arc.innerRadius(interpolateRadius(t))
+                    return arc();
+                };
+            })
 
 
         div
