@@ -70,10 +70,10 @@ export const Doughnut = () => {
 
         const yScale = d3.scaleLinear([0, data.length], [height + margin.top, 0]);
         const colorScale = d3.scaleLinear().domain([d3.max(data.map(d => d.price)), d3.max(data.map(d => d.price)) / 2, d3.min(data.map(d => d.price))]).range(["#ff0000", "#ffa500", "#ffff00", "#008000", "#4fa2ff", "#4b0082", "#ee82ee"]);
-        console.log(d3.extent(data.map(d => d.price)))
-        console.log(colorScale(25))
+        // console.log(d3.extent(data.map(d => d.price)))
+        // console.log(colorScale(25))
 
-        const radiusScale = d3.scaleLinear([0, d3.max(data.map(d => d.price))], [100, 70]) 
+        const radiusScale = d3.scaleLinear([0, d3.max(data.map(d => d.price))], [100, 70])
 
         const div = d3.select(svgDiv.current)
             .append('svg')
@@ -90,7 +90,7 @@ export const Doughnut = () => {
         const pie = d3.pie().value((d) => d.price)
 
         const data_ready = pie(data)
-        console.table(data_ready)
+        // console.table(data_ready)
 
         div
             .selectAll('path')
@@ -99,7 +99,7 @@ export const Doughnut = () => {
             .append('path')
             .attr('d', d3.arc()
                 .innerRadius(d => radiusScale(d.value))
-                .outerRadius(outterRadius + 30) 
+                .outerRadius(outterRadius + 30)
                 .padAngle(0.01))
             .attr('stroke', 'black')
             .attr('stroke-width', '1px')
