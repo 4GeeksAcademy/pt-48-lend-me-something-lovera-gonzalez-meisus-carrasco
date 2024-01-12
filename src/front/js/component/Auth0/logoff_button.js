@@ -9,8 +9,8 @@ export const LogoffButton = () => {
 
     const logoffClick = () => {
         logout({
-            logoutparams: {
-                returnTo: window.location.origin,
+            logoutParams: {
+                returnTo: process.env.REACT_APP_LOGOFF_URL,
             },
         })
         console.log('logoff clicked')
