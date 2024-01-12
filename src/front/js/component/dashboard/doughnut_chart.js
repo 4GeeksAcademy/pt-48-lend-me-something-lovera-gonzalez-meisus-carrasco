@@ -73,6 +73,7 @@ export const Doughnut = () => {
         // console.log(d3.extent(data.map(d => d.price)))
         // console.log(colorScale(25))
 
+
         const radiusScale = d3.scaleLinear([0, d3.max(data.map(d => d.price))], [100, 60])
 
         const arc = (d) => d3.arc()
@@ -95,6 +96,7 @@ export const Doughnut = () => {
         div
             .selectAll()
             .data(data_ready)
+
             .join('path')
                 .attr('fill', d => `${colorScale(d.value)}`)
             .transition()
