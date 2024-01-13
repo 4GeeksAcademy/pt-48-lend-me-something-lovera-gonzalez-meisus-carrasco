@@ -22,3 +22,9 @@ def update():
     request_data = request.json
     [response, HTTPStatus] = UserService.update(request_data)
     return jsonify(response), HTTPStatus.value
+
+@user_api.route("/", methods=["DELETE"])  # requieres a body with user_data dictionary
+def delete():
+    request_data = request.json
+    [response, HTTPStatus] = UserService.delete(request_data)
+    return jsonify(response), HTTPStatus.value

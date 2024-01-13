@@ -16,3 +16,8 @@ class UserService:
     def update(user_data):
         result = UserRepository.update(user_data)
         return result, HTTP_Status.OK
+    
+    @staticmethod
+    def delete(user_data):
+        result = UserRepository.delete(user_data)
+        return result, HTTP_Status.OK
