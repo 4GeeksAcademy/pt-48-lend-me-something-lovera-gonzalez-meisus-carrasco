@@ -20,30 +20,33 @@ export const GlobalSearchBar = ({ style, handleClick }) => {
     const inputRef = useRef()
 
     const handleChange = (e) => {
-        setQuery(e.target.value)
-        setListaFiltrada(listas.filter((lista) => lista.toLowerCase().includes(e.target.value.toLowerCase())))
-        const [firstelement] = listas.filter((lista) => lista.toLowerCase().includes(e.target.value.toLowerCase()))
-        console.log(firstelement)
-        setAutoCompletado(firstelement);
-        if (query != firstelement) {
-            const queryLength = e.target.value.length
-            inputRef.current.value = firstelement;
-            inputRef.current.setSelectionRange(queryLength, firstelement?.length)
+        if (e.keyCode === 8) {
+            setQuery(e.target.value);
+        }
+        else {
+            setQuery(e.target.value);
+            setListaFiltrada(listas.filter((lista) => lista.toLowerCase().startsWith(e.target.value.toLowerCase())))
+            const [firstelement] = listas.filter((lista) => lista.toLowerCase().startsWith(e.target.value.toLowerCase()))
+
+            setAutoCompletado(firstelement);
         }
 
     }
 
+    const handleButtonClick = (e) => {
+        setQuery(e.target.innerHTML);
+    }
+
     // useEffect(() => {
 
-
-    // }, [query]) 
+    //}, [inputRef]) 
     return (<>
         <animated.div className="navbar-margin globalsearch flex-column justify-content-start" style={{ ...style, ...springs }}>
 
             <div className="d-flex flex-row justify-content-center align-items-center" style={{ marginTop: "10em" }}>
 
                 <i className="fa-solid fa-magnifying-glass magnifying" style={{ "color": "#ffffff" }}></i>
-                <input className='search-input' autoComplete="off" type="text" name="search" id="search" placeholder="Search" value={query} onChange={(e) => handleChange(e)} ref={inputRef} />
+                <input className='search-input' autoComplete="off" type="text" name="search" id="search" placeholder="Search" onChange={(e) => handleChange(e)} value={query} />
                 <button className=" button-close-search" onClick={handleClick}><i className="fa-solid fa-xmark"></i></button>
 
             </div>
@@ -51,7 +54,7 @@ export const GlobalSearchBar = ({ style, handleClick }) => {
 
                 {listaFiltrada.length > 0 && <ul style={query != "" ? { display: "unset" } : { display: "none" }} >
                     {listaFiltrada.map((element, index) => (
-                        <li key={index}>{element}</li>
+                        <li key={index}><button onClick={(e) => handleButtonClick(e)}>{element}</button></li>
                     ))}
                 </ul>}
             </div>
