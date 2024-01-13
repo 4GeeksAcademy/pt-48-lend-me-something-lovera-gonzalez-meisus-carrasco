@@ -13,7 +13,6 @@ class IndexRepository:
         query = session.query(Index).filter(Index.id == id).first()
         return query
 
-
     @staticmethod
     def add(index_data):
         index_to_be_added = Index(
@@ -21,6 +20,7 @@ class IndexRepository:
             icon=index_data["icon"],
             currency=index_data["currency"],
             create_at=index_data["create_at"],
+
         )
         session.add(index_to_be_added)
         session.commit()

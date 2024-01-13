@@ -27,15 +27,15 @@ class ValueRepository:
     @staticmethod
     def update(value_data):
         value_to_be_updated = session.query(Value).filter(Value.id == value_data["id"])
-        if value_data["name"]:
+        if "name" in value_data:
             value_to_be_updated.update(
                 {Value.name: value_data["name"]}, synchronize_session=False
             )
-        if value_data["symbol"]:
+        if "symbol" in value_data:
             value_to_be_updated.update(
                 {Value.symbol: value_data["symbol"]}, synchronize_session=False
             )
-        if value_data["company"]:
+        if "company" in value_data:
             value_to_be_updated.update(
                 {Value.company: value_data["company"]}, synchronize_session=False
             )

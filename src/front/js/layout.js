@@ -8,10 +8,12 @@ import { Demo } from "./pages/demo";
 import { Single } from "./pages/single";
 import injectContext from "./store/appContext";
 import { Login } from "./pages/login";
+import { AboutUs } from "./pages/aboutus";
 import { Dashboard } from "./pages/dashboard";
 import { Navbar } from "./component/navbar";
 import { Footer } from "./component/footer";
 import '../styles/layout.sass'
+import { TopBar } from "./component/top_searchbar";
 
 //create your first component
 const Layout = () => {
@@ -25,10 +27,12 @@ const Layout = () => {
         <div className="body">
             <BrowserRouter basename={basename}>
                 <ScrollToTop>
+                    <TopBar />
                     <Navbar />
                     <Routes>
                         <Route element={<Home />} path="/" />
                         <Route element={<Login />} path="/login" />
+                        <Route element={<AboutUs />} path="/aboutus" />
                         <Route element={<Dashboard />} path="/dashboard" />
                         <Route element={<Demo />} path="/demo" />
                         <Route element={<Single />} path="/single/:theid" />
