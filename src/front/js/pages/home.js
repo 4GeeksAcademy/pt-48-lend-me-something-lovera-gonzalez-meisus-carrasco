@@ -5,6 +5,7 @@ import "../../styles/home.css";
 import '../../styles/shared.sass'
 import { useSpring, animated } from '@react-spring/web'
 import { TopBarTitle } from "../component/topBarTitle.js";
+import { PurpleContainer } from '../component/color_containers/purple_container.js'
 
 
 export const Home = () => {
@@ -26,17 +27,19 @@ export const Home = () => {
 					...springs,
 				}}
 			>
-				<h1>Hello Rigo!!</h1>
+				<PurpleContainer style={{ width: '25%', flex: '1 0 auto' }}>
+					<div className="text-light d-flex flex-row gap-2 justify-content-center align-items-center" style={{width: '85vw'}}>
+						<img src='https://restyler.s3.ap-southeast-2.amazonaws.com/user-data/user-46/artworks/product-79/preview/thumbnails/5MPgTBYjDfQKQP7gMsmbzC8lmELrSQWwHILNnnfr-watermarked-lg-resized.gif' alt="" style={{ height: '150px', filter: 'hue-rotate(100deg)' }} />
+						<div>
+							<h1>FF. Never Forfait.</h1>
+							<h5>Go to the Moon</h5>
+							<h2>Let your Finance Flow</h2>
+							<h5>And come back as NEW man</h5>
+						</div>
 
-				<div className="alert alert-info">
-					{store.message || "Loading message from the backend (make sure your python backend is running)..."}
-				</div>
-				<p>
-					This boilerplate comes with lots of documentation:{" "}
-					<a href="https://start.4geeksacademy.com/starters/react-flask">
-						Read documentation
-					</a>
-				</p>
+					</div>
+
+				</PurpleContainer>
 			</animated.div>
 		</div>
 	</>
