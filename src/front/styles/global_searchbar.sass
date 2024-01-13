@@ -5,7 +5,7 @@
     height: 100%
     background-color: rgb(0,0,0,0.8)
     backdrop-filter: blur(10%)
-    position: absolute
+    position: fixed
     top: 0
     left: 0
     z-index: 100
@@ -16,3 +16,27 @@
 .magnifying
     position: relative
     left: 3em
+
+.button-close-search
+    background-color: transparent
+    border: 1px solid transparent
+    border-radius: 1em
+    font-size: 2em
+    i
+        color: gray
+        &:hover
+            animation: spin 0.75s linear 1
+            scale: 1.1
+ul 
+    position: relative
+    top: 0%
+    margin-top: -1px
+    width: 100%
+    z-index: 1
+    background: transparent
+    margin: 0
+    list-style: none
+    transition: none
+    padding: 0
+    display: none
+   
