@@ -9,6 +9,11 @@ def get_list():
     [data, HTTPStatus] = UserService.get_list()
     return jsonify(data), HTTPStatus.value
 
+@user_api.route("/single", methods=["GET"]) #requiere a body with user_data dictionary
+def get_single():
+    request_data = request.json
+    [data, HTTPStatus] = UserService.get(request_data)
+    return jsonify(data), HTTPStatus.value
 
 @user_api.route("/", methods=["POST"])  # requieres a body with user_data dictionary
 def add():

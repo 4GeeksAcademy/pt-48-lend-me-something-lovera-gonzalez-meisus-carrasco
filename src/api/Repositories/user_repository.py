@@ -12,7 +12,12 @@ class UserRepository:
     def get_by_id(id):
         query = session.query(User).filter(User.id == id)
         return query
-
+    
+    @staticmethod
+    def get_by_email(email):
+        query = session.query(User).filter(User.email == email)
+        return query
+    
     @staticmethod
     def add(user_data):
         user_to_be_added = User(
