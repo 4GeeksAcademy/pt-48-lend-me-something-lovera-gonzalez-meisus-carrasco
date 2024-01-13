@@ -8,8 +8,6 @@ import { useAuth0 } from "@auth0/auth0-react";
 import { TopBarTitle } from "../component/topBarTitle.js";
 import { useSpring, animated } from '@react-spring/web'
 
-import { useAuth0 } from "@auth0/auth0-react";
-
 export const Login = () => {
 
     const { isAuthenticated, user } = useAuth0()
