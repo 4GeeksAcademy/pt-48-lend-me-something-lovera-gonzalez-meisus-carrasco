@@ -6,3 +6,13 @@ class UserService:
         raw_data = UserRepository.get_list()
         serialized_data = list(map(lambda element: element.serialize(), raw_data))
         return serialized_data, HTTP_Status.OK
+
+    @staticmethod
+    def add(user_data):
+        result = UserRepository.add(user_data)
+        return result, HTTP_Status.OK
+    
+    @staticmethod
+    def update(user_data):
+        result = UserRepository.update(user_data)
+        return result, HTTP_Status.OK

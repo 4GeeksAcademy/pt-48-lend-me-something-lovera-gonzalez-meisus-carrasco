@@ -32,27 +32,27 @@ class MarketRepository:
     def update_market(market_data):
         market_to_be_updated = session.query(Market).filter(Market.id == market_data["id"])
 
-        if market_data["name"]:
+        if "name" in market_data:
             market_to_be_updated.update(
                 {Market.name: market_data["name"]}, synchronize_session=False
             )
-        if market_data["region"]:
+        if "region" in market_data:
             market_to_be_updated.update(
                 {Market.region: market_data["region"]}, synchronize_session=False
             )
-        if market_data["headquarters"]:
+        if "headquarters" in market_data:
             market_to_be_updated.update(
                 {Market.headquarters: market_data["headquarters"]}, synchronize_session=False
             )
-        if market_data["currency"]:
+        if "currency" in market_data:
             market_to_be_updated.update(
                 {Market.currency: market_data["currency"]}, synchronize_session=False
             )
-        if market_data["opentime"]:
+        if "opentime" in market_data:
             market_to_be_updated.update(
                 {Market.opentime: market_data["opentime"]}, synchronize_session=False
             )
-        if market_data["closetime"]:
+        if "closetime" in market_data:
             market_to_be_updated.update(
                 {Market.closetime: market_data["closetime"]}, synchronize_session=False
             )
