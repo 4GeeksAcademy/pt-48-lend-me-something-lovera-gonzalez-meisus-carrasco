@@ -5,10 +5,15 @@ import '../../styles/login.sass';
 import foto from "../../img/foto.jpg"
 import { useAuth0 } from "@auth0/auth0-react";
 
+import { TopBarTitle } from "../component/topBarTitle.js";
 import { useSpring, animated } from '@react-spring/web'
 
+import { useAuth0 } from "@auth0/auth0-react";
+
 export const Login = () => {
-    const {user}=useAuth0()
+
+    const { isAuthenticated, user } = useAuth0()
+
     const springs = useSpring({
         from:
             { x: -10, opacity: 0 },
@@ -18,11 +23,13 @@ export const Login = () => {
         },
     })
     return (<>
-        <div className="  navbar-margin " style={{ 'gap': '6em' }}>
+        <TopBarTitle topTitle='My profile' />
+
+        <div className="navbar-margin">
             <animated.div
                 style={{
                     ...springs,
-                }}
+                }} className='d-flex flex-column justify-content-center align-items-center gap-5'
             >
                 <div className="d-flex flex-row aling-items-center justify-content-around">
 
@@ -72,6 +79,7 @@ export const Login = () => {
 
                     </PurpleContainer>
                 </div>
+                
             </animated.div>
         </div>
         
