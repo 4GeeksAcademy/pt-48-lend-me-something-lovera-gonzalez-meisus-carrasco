@@ -11,6 +11,7 @@ from api.routes import api
 from api.Controllers.user_controller import user_api
 from api.Controllers.value_controller import value_api
 from api.Controllers.market_controller import market_api
+from api.Controllers.index_controller import index_api
 from api.admin import setup_admin
 from api.commands import setup_commands
 
@@ -45,6 +46,7 @@ app.register_blueprint(api, name='api', url_prefix='/api')
 app.register_blueprint(user_api, name='user_api', url_prefix='/user')
 app.register_blueprint(value_api, name='value_api', url_prefix='/value')
 app.register_blueprint(market_api, name='market_api', url_prefix='/market')
+app.register_blueprint(index_api, name= 'index_api', url_prefix='/index')
 # Handle/serialize errors like a JSON object
 
 
