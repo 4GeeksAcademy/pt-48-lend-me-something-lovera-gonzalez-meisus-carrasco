@@ -3,12 +3,12 @@ import { YellowContainer } from "../component/color_containers/yellow_container"
 import { PurpleContainer } from "../component/color_containers/purple_container";
 import '../../styles/login.sass';
 import foto from "../../img/foto.jpg"
-
+import { useAuth0 } from "@auth0/auth0-react";
 
 import { useSpring, animated } from '@react-spring/web'
 
 export const Login = () => {
-
+    const {user}=useAuth0()
     const springs = useSpring({
         from:
             { x: -10, opacity: 0 },
@@ -55,19 +55,17 @@ export const Login = () => {
                     <PurpleContainer>
                         <h3>Detalles de la cuenta</h3>
                         <div><p>Name:</p>
-                            <span>{ }</span>
+                            <span>{user.given_name}</span>
                         </div>
                         <div><p>Lastname:</p>
-                            <span>{ }</span>
+                            <span>{user.family_name }</span>
                         </div>
 
                         <div><p>Nickname:</p>
-                            <span>{ }</span>
+                            <span>{user.nickname }</span>
                         </div>
 
-                        <div><p>Created add:</p>
-                            <span>{ }</span>
-                        </div>
+                        
 
 
 
