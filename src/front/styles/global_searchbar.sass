@@ -27,16 +27,47 @@
         &:hover
             animation: spin 0.75s linear 1
             scale: 1.1
-ul 
-    position: relative
-    top: 0%
-    margin-top: -1px
-    width: 100%
-    z-index: 1
-    background: transparent
-    margin: 0
+// ul 
+//     position: relative
+//     top: 0%
+//     margin-top: -1px
+//     width: 100%
+//     z-index: 1
+//     background: transparent
+//     margin: 0
+//     list-style: none
+//     transition: none
+//     padding: 0
+//     display: none
+a
+    text-decoration: none
+    color: white
     list-style: none
-    transition: none
-    padding: 0
-    display: none
    
+.search-result
+    background: transparent
+    width: 400px
+    margin-top: 10px
+    position: relative
+    top: 70px
+    &::-webkit-scrollbar 
+        display: none
+
+.search-suggestion-line
+    padding: 10px 20px
+    cursor: pointer
+    font-size: 18px
+    display: block
+    &:hover
+        background: gray
+        text-decoration: none
+        color: white
+        list-style: none
+    &.active
+        background: gray
+
+
+    
+
+    
+
