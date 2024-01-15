@@ -1,6 +1,6 @@
-import { AgGridReact } from 'ag-grid-react'; // React Grid Logic
-// import "ag-grid-community/styles/ag-grid.css"; // Core CSS
-// import "ag-grid-community/styles/ag-theme-quartz.css"; // theme
+import { AgGridReact } from 'ag-grid-react'; 
+import "ag-grid-community/dist/styles/ag-grid.css"; 
+import "ag-grid-community/dist/styles/ag-theme-quartz.css";
 import React, { useState } from 'react';
 
 export const Table = () => {
@@ -379,7 +379,7 @@ export const Table = () => {
 
 
     return (<>
-        <div className="" style={{ height: 500 }}>
+        <div className="ag-theme-quartz" style={{ height: 500 }}>
         <AgGridReact rowData={rowData} columnDefs={colDefs} />
         </div>
     </>)
