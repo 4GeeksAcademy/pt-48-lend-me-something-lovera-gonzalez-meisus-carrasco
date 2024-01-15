@@ -16,6 +16,10 @@ const listas = [
     {
         "title": "About Us",
         "link": "https://humble-meme-wr7gjjg5p9vgc5pg5-3000.app.github.dev/aboutus",
+    },
+    {
+        "title": "Profile",
+        "link": "https://humble-meme-wr7gjjg5p9vgc5pg5-3000.app.github.dev/login",
     }
 ]
 export const GlobalSearchBar = ({ style, handleClick }) => {
