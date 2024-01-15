@@ -12,6 +12,7 @@ import { Doughnut } from "../component/dashboard/doughnut_chart";
 import { useSpring, animated } from '@react-spring/web'
 import { Spinner} from "../component/spinner"
 import { TopBarTitle } from "../component/topBarTitle.js";
+import { Table } from "../component/dashboard/table.js";
 
 export const Dashboard = () => {
 
@@ -71,6 +72,9 @@ const handleClick = () => {
                     <PinkContainer style={{ width: '25%', flex: '1 0 auto' }} >
                         <Spinner />
                     </PinkContainer>
+                    <PurpleContainer>
+                        <Table />
+                    </PurpleContainer>
                 </div>
                 <div className="d-flex flex-row justify-content-between align-items-center p-4">
                     <PurpleContainer>
