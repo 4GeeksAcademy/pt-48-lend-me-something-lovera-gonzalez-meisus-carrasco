@@ -35,7 +35,7 @@ export const AboutUs = () => {
                 <PurpleContainer style={{ display: 'flex', flexDirection: 'column', margin: '2em', gap: '2em', height: '450px', justifyContent:'space-between' }}>
                     <div className="aboutus-dev-container">
 
-                        <img src={gloss} alt="Adrian" style={{ width: 150, height: 150, objectFit: 'cover', borderRadius: '50%' }} className="aboutus--picture"/>
+                        <img src={gloss} alt="Adrian" style={{ width: 150, height: 150, objectFit: 'cover', borderRadius: '50%', border: '2px solid #A200EA' }} className="aboutus--picture"/>
 
                         <div className="aboutus-dev-description">
                             <div>
@@ -50,7 +50,7 @@ export const AboutUs = () => {
                     </div>
                     <div className="aboutus-dev-container">
 
-                        <img src={scarface} alt="Adrian" style={{ width: 150, height: 150, objectFit: 'cover', borderRadius: '50%' }} />
+                        <img src={scarface} alt="Adrian" style={{ width: 150, height: 150, objectFit: 'cover', borderRadius: '50%', border: '2px solid #0d715d' }} />
 
                         <div className="aboutus-dev-description">
                             <div>
@@ -68,7 +68,7 @@ export const AboutUs = () => {
                 </PurpleContainer>
                 <BlueContainer style={{ display: 'flex', flexDirection: 'column', margin: '2em', gap: '2em', height: '450px', justifyContent:'space-between' }}>
                     <div className="aboutus-dev-container">
-                        <img src={atlas} alt="Adrian" style={{ width: 150, height: 150, objectFit: 'cover', borderRadius: '50%' }} />
+                        <img src={atlas} alt="Adrian" style={{ width: 150, height: 150, objectFit: 'cover', borderRadius: '50%', border: '3px solid #4fa2ff' }} />
                         <div className="aboutus-dev-description">
                             <div>
                                 <h4>&lt;Atlas /&gt;</h4>
@@ -77,10 +77,18 @@ export const AboutUs = () => {
                                 <i className="fa-brands fa-linkedin"></i>
                                 <a href="www.linkedin.com/in/augusto-santiago-carrasco-toro">Check me on LinkedIn</a>
                             </div>
+                            <div>
+                                <i className="fa-brands fa-github"></i>
+                                <a href="https://github.com/AugustoCarrasco">Check me on GitHub</a>
+                            </div>
+                            <div>
+                                <i className="fa-solid fa-envelope"></i>
+                                <a href="mailto:augustocarrascotoro@gmail.com">Contact me via e-mail</a>
+                            </div>
                         </div>
                     </div>
                     <div className="aboutus-dev-container">
-                        <img src={meisusito} alt="Adrian" style={{ width: 150, height: 150, objectFit: 'cover', borderRadius: '50%' }} />
+                        <img src={meisusito} alt="Adrian" style={{ width: 150, height: 150, objectFit: 'cover', borderRadius: '50%', border: '2px solid #ffd155' }} />
                         <div className="aboutus-dev-description">
                             <div>
                                 <h4>&lt;Meisusito /&gt;</h4>
