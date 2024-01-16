@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 
 export const Footer = () => (
-	<footer className="footer mt-auto py-3 text-center">
+	<footer className="py-3 text-center">
 		<div className="row">
 			<div className="col-12 d-flex flex-row justify-content-center align-items-center gap-5">
 				<Link to={"/aboutus"} className="text-decoration-none text-light ">

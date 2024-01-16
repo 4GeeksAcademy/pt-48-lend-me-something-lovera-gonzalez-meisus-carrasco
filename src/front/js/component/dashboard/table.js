@@ -1761,8 +1761,8 @@ export const Table = () => {
 
 
     return (<>
-        <div className="ag-theme-quartz-dark" style={{ width: 1000, height: 500 }}>
-            <AgGridReact
+        <div className="ag-theme-quartz-dark" style={{ width: 1000, height: 500}}>
+            {/* <AgGridReact
                 rowData={rowData}
                 columnDefs={colDefs}
                 defaultColDef={defaultColDef}
@@ -1770,7 +1770,8 @@ export const Table = () => {
                 animateRows={true}
                 pagination={true}
                 sideBar={'columns'}
-            />
+                style={{ width: 1000, height: 500 }}
+            /> */}
             <br />
             <br />
             <AgGridReact
