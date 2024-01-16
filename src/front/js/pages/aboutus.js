@@ -35,11 +35,11 @@ export const AboutUs = () => {
                 <PurpleContainer style={{ display: 'flex', flexDirection: 'column', margin: '2em', gap: '2em', height: '450px', justifyContent:'space-between' }}>
                     <div className="aboutus-dev-container">
 
-                        <img src={gloss} alt="Adrian" style={{ width: 150, height: 150, objectFit: 'cover', borderRadius: '50%' }} />
+                        <img src={gloss} alt="Adrian" style={{ width: 150, height: 150, objectFit: 'cover', borderRadius: '50%' }} className="aboutus--picture"/>
 
                         <div className="aboutus-dev-description">
                             <div>
-                                <h4>Gloss</h4>
+                                <h4>&lt;Gloss /&gt;</h4>
                                 <p>Designed and grown to shine in the dark!</p>
                             </div>
                             <div>
@@ -54,7 +54,7 @@ export const AboutUs = () => {
 
                         <div className="aboutus-dev-description">
                             <div>
-                                <h4>Scarface</h4>
+                                <h4>&lt;Scarface /&gt;</h4>
                                 <p>Intended to leave a mark on your soul! </p>
                             </div>
                             <div>
@@ -71,7 +71,7 @@ export const AboutUs = () => {
                         <img src={atlas} alt="Adrian" style={{ width: 150, height: 150, objectFit: 'cover', borderRadius: '50%' }} />
                         <div className="aboutus-dev-description">
                             <div>
-                                <h4>Atlas</h4>
+                                <h4>&lt;Atlas /&gt;</h4>
                                 <p>There's no ilusion you can't see.</p></div>
                             <div>
                                 <i className="fa-brands fa-linkedin"></i>
@@ -83,7 +83,7 @@ export const AboutUs = () => {
                         <img src={meisusito} alt="Adrian" style={{ width: 150, height: 150, objectFit: 'cover', borderRadius: '50%' }} />
                         <div className="aboutus-dev-description">
                             <div>
-                                <h4>Meisusito</h4>
+                                <h4>&lt;Meisusito /&gt;</h4>
                                 <p>Instálate algo, marico!</p>
                             </div>
                             <div>
