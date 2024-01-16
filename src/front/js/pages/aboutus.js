@@ -46,6 +46,14 @@ export const AboutUs = () => {
                                 <i className="fa-brands fa-linkedin"></i>
                                 <a href="https://www.linkedin.com/in/loveradrian28/">Check me on LinkedIn</a>
                             </div>
+                            <div>
+                                <i className="fa-brands fa-github"></i>
+                                <a href="https://github.com/loveradrian28">Check me on GitHub</a>
+                            </div>
+                            <div>
+                                <i className="fa-solid fa-envelope"></i>
+                                <a href="mailto:adrianelovera@gmail.com">Contact me via e-mail</a>
+                            </div>
                         </div>
                     </div>
                     <div className="aboutus-dev-container">
@@ -54,12 +62,20 @@ export const AboutUs = () => {
 
                         <div className="aboutus-dev-description">
                             <div>
-                                <h4>&lt;Scarface /&gt;</h4>
+                                <h4>&lt;Sc@rface /&gt;</h4>
                                 <p>Intended to leave a mark on your soul! </p>
                             </div>
                             <div>
                                 <i className="fa-brands fa-linkedin"></i>
                                 <a href="https://www.linkedin.com/in/anderson-gonzalez-1ba484277/">Check me on LinkedIn</a>
+                            </div>
+                            <div>
+                                <i className="fa-brands fa-github"></i>
+                                <a href="https://github.com/AndyGH86">Check me on GitHub</a>
+                            </div>
+                            <div>
+                                <i className="fa-solid fa-envelope"></i>
+                                <a href="mailto:andersongh1986@gmail.com">Contact me via e-mail</a>
                             </div>
                         </div>
                     </div>
@@ -97,6 +113,14 @@ export const AboutUs = () => {
                             <div>
                                 <i className="fa-brands fa-linkedin"></i>
                                 <a href="https://www.linkedin.com/in/juan-manuel-meisus-alvarez-b7b293280/">Check me on LinkedIn</a>
+                            </div>
+                            <div>
+                                <i className="fa-brands fa-github"></i>
+                                <a href="https://github.com/juanmeisus">Check me on GitHub</a>
+                            </div>
+                            <div>
+                                <i className="fa-solid fa-envelope"></i>
+                                <a href="mailto:jv-0903@hotmail.com">Contact me via e-mail</a>
                             </div>
                         </div>
                     </div>
