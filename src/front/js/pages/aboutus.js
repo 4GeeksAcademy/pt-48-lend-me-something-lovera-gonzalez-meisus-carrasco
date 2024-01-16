@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import { PinkContainer } from "../component/color_containers/pink_container"
 import { PurpleContainer } from "../component/color_containers/purple_container"
 import { GreenContainer } from "../component/color_containers/green_container"
+import { BlueContainer } from "../component/color_containers/blue_container"
 import '../../styles/aboutus.sass'
 import { useSpring, animated } from '@react-spring/web'
 import { TopBarTitle } from "../component/topBarTitle.js";
@@ -31,7 +32,7 @@ export const AboutUs = () => {
                 className="d-flex flex-row justify-content-center align-items-center"
             >
                 {/* <h1 className="text-center">About Us</h1> */}
-                <PurpleContainer style={{ display: 'flex', flexDirection: 'column', margin: '2em', gap: '2em' }}>
+                <PurpleContainer style={{ display: 'flex', flexDirection: 'column', margin: '2em', gap: '2em', height: '450px', justifyContent:'space-between' }}>
                     <div className="aboutus-dev-container">
 
                         <img src={gloss} alt="Adrian" style={{ width: 150, height: 150, objectFit: 'cover', borderRadius: '50%' }} />
@@ -65,7 +66,7 @@ export const AboutUs = () => {
 
 
                 </PurpleContainer>
-                <GreenContainer style={{ display: 'flex', flexDirection: 'column', margin: '2em', gap: '2em' }}>
+                <BlueContainer style={{ display: 'flex', flexDirection: 'column', margin: '2em', gap: '2em', height: '450px', justifyContent:'space-between' }}>
                     <div className="aboutus-dev-container">
                         <img src={atlas} alt="Adrian" style={{ width: 150, height: 150, objectFit: 'cover', borderRadius: '50%' }} />
                         <div className="aboutus-dev-description">
@@ -91,7 +92,7 @@ export const AboutUs = () => {
                             </div>
                         </div>
                     </div>
-                </GreenContainer>
+                </BlueContainer>
 
             </animated.div>
         </div>
