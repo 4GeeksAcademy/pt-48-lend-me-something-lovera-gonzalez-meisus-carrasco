@@ -1,5 +1,5 @@
-import React, { useContext, useEffect , useState} from "react";
-import {Context} from '../store/appContext.js'
+import React, { useContext, useEffect, useState } from "react";
+import { Context } from '../store/appContext.js'
 import { BlueContainer } from "../component/color_containers/blue_container";
 import { GreenContainer } from "../component/color_containers/green_container";
 import { PinkContainer } from "../component/color_containers/pink_container";
@@ -10,24 +10,24 @@ import { TopBar } from "../component/top_searchbar";
 import "../../styles/dashboard.sass"
 import { Doughnut } from "../component/dashboard/doughnut_chart";
 import { useSpring, animated } from '@react-spring/web'
-import { Spinner} from "../component/spinner"
+import { Spinner } from "../component/spinner"
 import { TopBarTitle } from "../component/topBarTitle.js";
 import { Table } from "../component/dashboard/table.js";
 
 export const Dashboard = () => {
 
-const [searchState, setSearchState]= useState(false)
-const {store, actions} = useContext(Context)   
+    const [searchState, setSearchState] = useState(false)
+    const { store, actions } = useContext(Context)
 
-const handleClick = () => {
-   
-    setSearchState(!searchState);
-    console.log(searchState) 
-}
+    const handleClick = () => {
 
-//useEffect(() => {
- //   actions.setTitle('Dashboard')
-//}, [])
+        setSearchState(!searchState);
+        console.log(searchState)
+    }
+
+    //useEffect(() => {
+    //   actions.setTitle('Dashboard')
+    //}, [])
     const springs = useSpring({
         from: { opacity: 0, y: -5 },
         to: [{ opacity: 1, y: 0 }],
@@ -40,7 +40,7 @@ const handleClick = () => {
 
 
     return (<>
-    <TopBarTitle topTitle = 'Dashboard' /> 
+        <TopBarTitle topTitle='Dashboard' />
         <div className="d-flex flex-column gap-5 navbar-margin">
             <animated.div
                 style={{
@@ -57,13 +57,13 @@ const handleClick = () => {
                                 <h2>Let your Finance Flow</h2>
                                 <h5>And come back as NEW man</h5>
                             </div>
-                            
+
                         </div>
-                        
+
                     </PurpleContainer>
 
-                    
-                    
+
+
                     <BlueContainer style={{ width: '25%', flex: '1 0 auto' }}>
 
 
@@ -72,10 +72,12 @@ const handleClick = () => {
                     <PinkContainer style={{ width: '25%', flex: '1 0 auto' }} >
                         <Spinner />
                     </PinkContainer>
-                    <PurpleContainer>
-                        <Table />
-                    </PurpleContainer>
+
                 </div>
+                <div className="d-flex justify-content-between align-items-center p-4 " style={{marginLeft: 200}}>
+                    <Table />
+                </div>
+                
                 <div className="d-flex flex-row justify-content-between align-items-center p-4">
                     <PurpleContainer>
                         <div style={{ width: '90%' }}>

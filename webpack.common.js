@@ -20,7 +20,7 @@ module.exports = {
         use: ['babel-loader']
       },
       {
-        test: /\.s[ac]ss$/i,
+        test: /\.(sc|sa|c)ss$/,
         use: [
           // Creates `style` nodes from JS strings
           "style-loader",
