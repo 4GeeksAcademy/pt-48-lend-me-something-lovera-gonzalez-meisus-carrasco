@@ -11,26 +11,31 @@ from api.routes import api
 from api.Controllers.user_controller import user_api
 from api.Controllers.value_controller import value_api
 from api.Controllers.market_controller import market_api
+from api.Controllers.api_proxy import api_proxy
 from api.admin import setup_admin
 from api.commands import setup_commands
+from flask_cors import CORS
 
 # from models import Person
 
 ENV = "development" if os.getenv("FLASK_DEBUG") == "1" else "production"
-static_file_dir = os.path.join(os.path.dirname(
-    os.path.realpath(__file__)), '../public/')
+static_file_dir = os.path.join(
+    os.path.dirname(os.path.realpath(__file__)), "../public/"
+)
 app = Flask(__name__)
 app.url_map.strict_slashes = False
+CORS(app)
 
 # database condiguration
 db_url = os.getenv("DATABASE_URL")
 if db_url is not None:
-    app.config['SQLALCHEMY_DATABASE_URI'] = db_url.replace(
-        "postgres://", "postgresql://")
+    app.config["SQLALCHEMY_DATABASE_URI"] = db_url.replace(
+        "postgres://", "postgresql://"
+    )
 else:
-    app.config['SQLALCHEMY_DATABASE_URI'] = "sqlite:////tmp/test.db"
+    app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:////tmp/test.db"
 
-app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 MIGRATE = Migrate(app, db, compare_type=True)
 db.init_app(app)
 
@@ -41,10 +46,11 @@ setup_admin(app)
 setup_commands(app)
 
 # Add all endpoints form the API with a "api" prefix
-app.register_blueprint(api, name='api', url_prefix='/api')
-app.register_blueprint(user_api, name='user_api', url_prefix='/user')
-app.register_blueprint(value_api, name='value_api', url_prefix='/value')
-app.register_blueprint(market_api, name='market_api', url_prefix='/market')
+# app.register_blueprint(api, name='api', url_prefix='/api')
+app.register_blueprint(api_proxy, name="api_proxy", url_prefix="/api_proxy")
+app.register_blueprint(user_api, name="user_api", url_prefix="/user")
+app.register_blueprint(value_api, name="value_api", url_prefix="/value")
+app.register_blueprint(market_api, name="market_api", url_prefix="/market")
 # Handle/serialize errors like a JSON object
 
 
@@ -52,28 +58,30 @@ app.register_blueprint(market_api, name='market_api', url_prefix='/market')
 def handle_invalid_usage(error):
     return jsonify(error.to_dict()), error.status_code
 
+
 # generate sitemap with all your endpoints
 
 
-@app.route('/')
+@app.route("/")
 def sitemap():
     if ENV == "development":
         return generate_sitemap(app)
-    return send_from_directory(static_file_dir, 'index.html')
+    return send_from_directory(static_file_dir, "index.html")
+
 
 # any other endpoint will try to serve it like a static file
 
 
-@app.route('/<path:path>', methods=['GET'])
-def serve_any_other_file(path):
-    if not os.path.isfile(os.path.join(static_file_dir, path)):
-        path = 'index.html'
-    response = send_from_directory(static_file_dir, path)
-    response.cache_control.max_age = 0  # avoid cache memory
-    return response
+# @app.route('/<path:path>', methods=['GET'])
+# def serve_any_other_file(path):
+#     if not os.path.isfile(os.path.join(static_file_dir, path)):
+#         path = 'index.html'
+#     response = send_from_directory(static_file_dir, path)
+#     response.cache_control.max_age = 0  # avoid cache memory
+#     return response
 
 
 # this only runs if `$ python src/main.py` is executed
-if __name__ == '__main__':
-    PORT = int(os.environ.get('PORT', 3001))
-    app.run(host='0.0.0.0', port=PORT, debug=True)
+if __name__ == "__main__":
+    PORT = int(os.environ.get("PORT", 3001))
+    app.run(host="0.0.0.0", port=PORT, debug=True)
