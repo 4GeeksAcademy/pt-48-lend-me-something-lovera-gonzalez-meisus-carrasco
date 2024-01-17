@@ -1,9 +1,11 @@
 import os
 from flask_admin import Admin
 
+
 from .models import db
 from api.Models.user_model import User
 
+from api.Models.subscription_model import Subscription
 from api.Models.value_model import Value
 from api.Models.index_model import Index
 
@@ -25,6 +27,7 @@ def setup_admin(app):
     admin.add_view(ModelView(Index, db.session))
 
     admin.add_view(ModelView(Market, db.session))
+    admin.add_view(ModelView(Subscription, db.session))
 
 
     # You can duplicate that line to add mew models

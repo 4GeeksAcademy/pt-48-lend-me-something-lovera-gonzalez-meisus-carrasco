@@ -1,4 +1,5 @@
 from api.models import db
+from api.Models.subscription_model import Subscription
 
 
 class User(db.Model):
@@ -9,7 +10,9 @@ class User(db.Model):
     country = db.Column(db.String, nullable = True)
     city = db.Column(db.String, nullable = True)
     street = db.Column(db.String, nullable = True)
+    subscription_id = db.Column(db.Integer, db.ForeignKey('subscriptions.id'), unique=True, nullable=False)
 
+    subscription = db.relationship('Subscription', back_populates='user')
 
     def __repr__ (self):
         return f'<User: {self.email}>' 
