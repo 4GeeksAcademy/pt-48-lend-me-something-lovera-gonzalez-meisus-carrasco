@@ -24,8 +24,9 @@ export const Login = () => {
     })
 
     const [estadoEdicion, setEstadoEdicion] = useState(false);
-    const [ubicacion, setUbicacion] = useState('vigo');
+    const [ubicacion, setUbicacion] = useState('Vigo');
     const [direccion, setDireccion] = useState('Calle Anduriña');
+
 
 
 
@@ -38,65 +39,62 @@ export const Login = () => {
                     ...springs,
                 }} className='d-flex flex-column justify-content-center align-items-center gap-5'
             >
-                <div className="d-flex flex-row align-items-center justify-content-around">
-                    <GreenContainer style={{ position: 'relative', width: '500px' }}>
+                <div className="d-flex flex-row align-items-center justify-content-around gap-5">
+                    <GreenContainer style={{ position: 'relative', width: '500px', height: '500px' }}>
                         <div className="profile-picture-container">
-                            <YellowContainer style={{ transform: 'rotate(180deg)' }}>
-                                <div className="">
-                                    <img style={{ width: '150px', height: '150px', objectFit: 'cover', borderRadius: '25%', transform: 'rotate(-180deg)' }} src={user.picture} />
-                                </div>
-                            </YellowContainer>
+                            <div className="">
+                                <img style={{ width: '80px', height: '80px', objectFit: 'cover', borderRadius: '50%' }} src={user.picture} />
+                            </div>
+
                         </div>
                         <div className="profile-info ">
                             <h3>Info de contacto</h3>
-                            <p  >Direccion :
-                                {!estadoEdicion && <span>{direccion}</span>}
-                                {estadoEdicion && (
-                                    <input className="profile-input" onChange={(e) => setDireccion(e.target.value)} value={direccion} type="text"></input>
-                                )}
-                            </p>
-                            <p>Ubicacion :
-                                {!estadoEdicion && <span>{ubicacion}</span>}
-                                {estadoEdicion && (
-                                    <input className="profile-input" onChange={(e) => setUbicacion(e.target.value)} value={ubicacion} type="text"></input>
-                                )}
-                            </p>
-                            <p>Creacion de la cuenta :
-                                <span>2024</span>
-                            </p>
-                            <p>Zona horaria :
+                            <span >Direccion :
+                            </span >
+                            {!estadoEdicion && <p> {direccion}</p>}
+                            {estadoEdicion && (
+                                <input className="profile-input" onChange={(e) => setDireccion(e.target.value)} value={direccion} type="text"></input>
+                            )}
+                            <span>Ubicacion :
+                            </span>
+                            {!estadoEdicion && <p> {ubicacion}</p>}
+                            {estadoEdicion && (
+                                <input className="profile-input" onChange={(e) => setUbicacion(e.target.value)} value={ubicacion} type="text"></input>
+                            )}
+                            <span >Creacion de la cuenta :
+                            </span>
+                            <p> 2024</p>
+                            <span >Zona horaria :
 
-                                <span>europa</span>
-                            </p>
-                            <p>Pais de residencia :
-                                <span>españa</span></p>
-                                <BlueContainer>
-                            <button className="profile-button "onClick={() => setEstadoEdicion(!estadoEdicion)}>
-                                {estadoEdicion ? 'guardar' : 'editar'}</button>
-                                </BlueContainer>
+                            </span >
+                            <p> GMT+1</p>
+                            <span >Pais de residencia :
+                            </span >
+                            <p> España</p>
+                            <button className="green--button " onClick={() => setEstadoEdicion(!estadoEdicion)}>
+                                {estadoEdicion ? 'Guardar' : 'Editar'}</button>
+
                         </div>
                     </GreenContainer>
-                    <PurpleContainer>
+                    <PurpleContainer style={{ height: '500px', width:'300px'}}>
                         <h3>Detalles de la cuenta</h3>
-                        <div><p>Name:
-
-                            <span>{user.given_name} </span>
-                        </p>
+                        <div><span>Name :
+                        </span>
+                            <p> {user.given_name} </p>
                         </div>
-                        <div><p>Lastname:
-
-                            <span>{user.family_name} </span>
-                        </p>
+                        <div><span>Lastname :
+                        </span>
+                            <p> {user.family_name} </p>
                         </div>
-                        <div><p>Nickname:
-
-                            <span>{user.nickname} </span>
-                        </p>
+                        <div><span>Nickname :
+                        </span>
+                            <p> {user.nickname} </p>
                         </div>
+
                     </PurpleContainer>
                 </div>
-                <BlueContainer>
-                    <span>Recuerda nunca compartas tus claves, ni informacion acerca de tu cuenta</span>
+                <BlueContainer style={{width:'800px', alignItems: 'center'}}>
+                    <p>Recuerda nunca compartas tus claves, ni informacion acerca de tu cuenta</p>
                     <p>El equipo de FlowFinance nunca solicitara tus password por sms o email</p>
                 </BlueContainer>
             </animated.div >
