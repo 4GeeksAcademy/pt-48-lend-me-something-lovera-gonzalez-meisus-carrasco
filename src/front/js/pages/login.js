@@ -5,10 +5,14 @@ import '../../styles/login.sass'
 import { TopBarTitle } from "../component/topBarTitle.js";
 import { useSpring, animated } from '@react-spring/web'
 
+import { useAuth0 } from "@auth0/auth0-react";
+
 export const Login = () => {
 
+    const { isAuthenticated, user } = useAuth0()
+
     const springs = useSpring({
-        from: 
+        from:
             { x: -10, opacity: 0 },
         to: { x: 0, opacity: 1 },
         config: {
@@ -16,24 +20,15 @@ export const Login = () => {
         },
     })
     return (<>
-        <TopBarTitle topTitle='Login' />
+        <TopBarTitle topTitle='My profile' />
 
         <div className="navbar-margin">
             <animated.div
                 style={{
                     ...springs,
-                }}
+                }} className='d-flex flex-column justify-content-center align-items-center gap-5'
             >
-                <h1>Login Page</h1>
-                <YellowContainer>
-                    <h1>este sera el componente de login</h1>
-                </YellowContainer>
-                <PurpleContainer>
-                    <input type="text" placeholder="email" />
-                    <input type="password" name="password" id="password" placeholder="Password" />
-                    <button>Login</button>
-                    <p>Register</p>
-                </PurpleContainer>
+                
             </animated.div>
         </div>
     </>)

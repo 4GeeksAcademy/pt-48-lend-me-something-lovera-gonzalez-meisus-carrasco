@@ -2,7 +2,13 @@ import React from "react";
 import { Link } from "react-router-dom";
 import '../../styles/navbar.sass'
 
+import { useAuth0 } from "@auth0/auth0-react";
+
 export const Navbar = () => {
+
+	const { isAuthenticated } = useAuth0();
+	const { user } = useAuth0();
+
 	return (<>
 		<div className="d-flex flex-column align-items-center justify-content-between pb-5  bg-dark vh-100  fixed-top rounded-2" style={{ "width": "6em" }}>
 
@@ -21,14 +27,16 @@ export const Navbar = () => {
 				<div className="navbar-icons">
 
 					<Link to={"/"}><i className="fa-solid fa-house-laptop" ></i></Link>
-					<Link to={"/dashboard"}><i className="fa-solid fa-swatchbook" ></i></Link>
-					<Link to={"/login"}><i className="fa-solid fa-user" ></i></Link>
-					<Link to={"/"}><i className="fa-solid fa-gear" ></i></Link>
-					<Link to={"/"}><i className="fa-solid fa-bell" ></i></Link>
+					{isAuthenticated && <>
+						<Link to={"/dashboard"}><i className="fa-solid fa-swatchbook" ></i></Link>
+						<Link to={"/login"}><i className="fa-solid fa-user" ></i></Link>
+						<Link to={"/"}><i className="fa-solid fa-gear" ></i></Link>
+						<Link to={"/"}><i className="fa-solid fa-bell" ></i></Link>
+					</>}
 					<Link to={"/aboutus"}><i className="fa-solid fa-users" ></i></Link>
 				</div>
 			</div>
-			<img className="navbar-profilepicture" src="https://picsum.photos/id/64/200/200" />
+			{user && <img className="navbar-profilepicture" src={user.picture} />}
 
 
 		</div>
@@ -44,12 +52,14 @@ export const Navbar = () => {
 				<div className="navbar-offcanvas-icons">
 
 					<Link className="navbar-link" to={"/"}><i className="fa-solid fa-house-laptop" ></i>Home</Link>
-					<Link className="navbar-link" to={"/dashboard"}><i className="fa-solid fa-swatchbook" ></i>Dashboard</Link>
-					<Link className="navbar-link" to={"/login"}><i className="fa-solid fa-user" ></i>Login</Link>
-					<Link className="navbar-link" to={"/"}><i className="fa-solid fa-gear" ></i>Settings</Link>
-					<Link className="navbar-link" to={"/"}><i className="fa-solid fa-bell" ></i>Notifications</Link>
+					{isAuthenticated && <>
+						<Link className="navbar-link" to={"/dashboard"}><i className="fa-solid fa-swatchbook" ></i>Dashboard</Link>
+						<Link className="navbar-link" to={"/login"}><i className="fa-solid fa-user" ></i>Login</Link>
+						<Link className="navbar-link" to={"/"}><i className="fa-solid fa-gear" ></i>Settings</Link>
+						<Link className="navbar-link" to={"/"}><i className="fa-solid fa-bell" ></i>Notifications</Link>
+					</>}
 					<Link className="navbar-link" to={"/aboutus"}><i className="fa-solid fa-users" ></i>About Us</Link>
-					
+
 				</div>
 
 				<form className="d-flex mt-3" role="search">

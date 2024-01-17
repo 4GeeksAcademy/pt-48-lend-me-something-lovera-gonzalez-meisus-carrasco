@@ -17,10 +17,13 @@ import { MyDocument } from "../component/dashboard/pdf.js";
 import { PDFViewer } from '@react-pdf/renderer';
 
 
+import { useAuth0 } from "@auth0/auth0-react";
+
 export const Dashboard = () => {
 
     const [searchState, setSearchState] = useState(false)
     const { store, actions } = useContext(Context)
+    const { user } = useAuth0();
 
     const handleClick = () => {
 
@@ -28,9 +31,10 @@ export const Dashboard = () => {
         console.log(searchState)
     }
 
-    //useEffect(() => {
-    //   actions.setTitle('Dashboard')
-    //}, [])
+    // useEffect(() => {
+    //     actions.setUser(user)
+    // }, [])
+
     const springs = useSpring({
         from: { opacity: 0, y: -5 },
         to: [{ opacity: 1, y: 0 }],

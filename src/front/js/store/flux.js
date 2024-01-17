@@ -6,6 +6,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			message: null,
 			title: null,
 			stocks: null,
+			user: null,
 			demo: [
 				{
 					title: "FIRST",
@@ -61,6 +62,12 @@ const getState = ({ getStore, getActions, setStore }) => {
 				const store = getStore();
 				const data = await get_data(symbol);
 				setStore({ ...store, stocks: data });
+			},
+			setUser: (user) => {
+				console.log(user);
+				const store = getStore();
+				setStore({ ...store, user: user })
+				
 			}
 		}
 	};
