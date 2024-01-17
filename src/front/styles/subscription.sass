@@ -1,0 +1,52 @@
+@use './shared'
+
+.subscription
+    &--container
+        margin-top: 1em
+        margin-bottom: 2em
+        display: flex
+        flex-direction: column
+        justify-content: space-between
+        align-items: center
+        gap: 3em
+    &-plan--container
+        position: relative
+        display: flex
+        flex-direction: row
+        justify-content: space-between
+        align-items: center
+    &-button
+        position: absolute
+        bottom: -1em
+        right: -1em
+        &-free
+            border: none
+            border-radius: 1em
+            font-weight: 600
+            color: white
+            padding: 0.2em 1em 0.2em 1em
+            background-color: #ffd25597
+        &-essential
+            border: none
+            border-radius: 1em
+            font-size: 1.1em
+            font-weight: 600
+            color: white
+            padding: 0.4em 1.2em 0.4em 1.2em
+            background-color: shared.$blue-base-color
+            cursor: pointer
+            &:hover
+                scale: 1.1
+                transition: 200ms
+        &-business
+            border: none
+            border-radius: 1em
+            font-size: 1.1em
+            color: white
+            font-weight: 600
+            padding: 0.4em 1.2em 0.4em 1.2em
+            background-color: shared.$purple-base-color
+            cursor: pointer
+            &:hover
+                scale: 1.1
+                transition: 400ms

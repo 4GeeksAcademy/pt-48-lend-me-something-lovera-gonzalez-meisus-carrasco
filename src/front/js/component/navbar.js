@@ -30,7 +30,7 @@ export const Navbar = () => {
 					{isAuthenticated && <>
 						<Link to={"/dashboard"}><i className="fa-solid fa-swatchbook" ></i></Link>
 						<Link to={"/login"}><i className="fa-solid fa-user" ></i></Link>
-						<Link to={"/"}><i className="fa-solid fa-gear" ></i></Link>
+						<Link to={"/subscription"}><i className="fa-solid fa-gear" ></i></Link>
 						<Link to={"/"}><i className="fa-solid fa-bell" ></i></Link>
 					</>}
 					<Link to={"/aboutus"}><i className="fa-solid fa-users" ></i></Link>
@@ -55,7 +55,7 @@ export const Navbar = () => {
 					{isAuthenticated && <>
 						<Link className="navbar-link" to={"/dashboard"}><i className="fa-solid fa-swatchbook" ></i>Dashboard</Link>
 						<Link className="navbar-link" to={"/login"}><i className="fa-solid fa-user" ></i>Login</Link>
-						<Link className="navbar-link" to={"/"}><i className="fa-solid fa-gear" ></i>Settings</Link>
+						<Link className="navbar-link" to={"/subscription"}><i className="fa-solid fa-gear" ></i>Settings</Link>
 						<Link className="navbar-link" to={"/"}><i className="fa-solid fa-bell" ></i>Notifications</Link>
 					</>}
 					<Link className="navbar-link" to={"/aboutus"}><i className="fa-solid fa-users" ></i>About Us</Link>
