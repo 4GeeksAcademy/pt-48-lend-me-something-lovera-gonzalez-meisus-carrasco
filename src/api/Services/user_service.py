@@ -6,3 +6,32 @@ class UserService:
         raw_data = UserRepository.get_list()
         serialized_data = list(map(lambda element: element.serialize(), raw_data))
         return serialized_data, HTTP_Status.OK
+
+    @staticmethod
+    def get_by_id(id):
+        raw_data = UserRepository.get_by_id(id)
+        serialized_data = list(map(lambda element: element.serialize(), raw_data))
+        if serialized_data == [] : return [{'message': 'No user found'}], HTTP_Status.OK
+        return serialized_data, HTTP_Status.OK
+    
+    @staticmethod
+    def get_by_email(email):
+        raw_data = UserRepository.get_by_email(email)
+        serialized_data = list(map(lambda element: element.serialize(), raw_data))
+        if serialized_data == [] : return [{'message': 'No user found'}], HTTP_Status.OK
+        return serialized_data, HTTP_Status.OK
+    
+    @staticmethod
+    def add(user_data):
+        result = UserRepository.add(user_data)
+        return result, HTTP_Status.OK
+    
+    @staticmethod
+    def update(user_data):
+        result = UserRepository.update(user_data)
+        return result, HTTP_Status.OK
+    
+    @staticmethod
+    def delete(user_data):
+        result = UserRepository.delete(user_data)
+        return result, HTTP_Status.OK

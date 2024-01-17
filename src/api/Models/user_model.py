@@ -5,8 +5,10 @@ class User(db.Model):
     __tablename__ = 'users'
     id = db.Column(db.Integer, primary_key = True)
     email = db.Column(db.String, nullable = False, unique = True)
-    password = db.Column(db.String, nullable= False)
     created_at = db.Column(db.String, nullable = False)
+    country = db.Column(db.String, nullable = True)
+    city = db.Column(db.String, nullable = True)
+    street = db.Column(db.String, nullable = True)
 
 
     def __repr__ (self):
@@ -14,7 +16,10 @@ class User(db.Model):
     
     def serialize(self):
         return {
+            'id' : self.id,
             'email' : self.email,
-            'password' : self.password,
-            'created_at' : self.created_at
+            'created_at' : self.created_at,
+            'country' : self.country,
+            'city' : self.city,
+            'street' : self.street
         }
