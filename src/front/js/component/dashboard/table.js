@@ -1758,9 +1758,7 @@ export const Table = () => {
             .then(result => result.json()) // 
             .then(rowData => setRowData(rowData));
 
-        // fetch('https://studious-space-sniffle-jjpp6wvv5wfj7q6-3001.app.github.dev/api_proxy?url=http://api.marketstack.com/v1/eod?access_key=9883c939aa815f94accdfa4b810eac97&symbols=AAPL')
-        // .then(result => result.json())
-        // .then(data => setStockData(data.data))
+       
 
         // loadData();
 
@@ -1792,7 +1790,7 @@ export const Table = () => {
                 pagination={true}
                 sideBar={'columns'}
             />
-            <button onClick={exportFile}>Generate xlsx</button>
+            <button className="btn btn-outline-success mt-1" onClick={exportFile}>Generate xlsx</button>
         </div>
     </>)
 
