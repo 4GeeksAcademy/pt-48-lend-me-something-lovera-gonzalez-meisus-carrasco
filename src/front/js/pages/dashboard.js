@@ -76,11 +76,11 @@ export const Dashboard = () => {
 
                     <Doughnut />
                 </BlueContainer>
-                <PinkContainer  >
+                {/* <PinkContainer  >
                     <Spinner />
-                </PinkContainer>
+                </PinkContainer> */}
 
-                <div className="d-flex flex-column gap-5 justify-content-between align-items-center p-4 " style={{ marginLeft: 200, height: 700 }}>
+                <div className="d-flex flex-column gap-5 justify-content-between align-items-center p-4 " style={{ height: 700, width: '100%' }}>
                     <Table />
                 <PDFViewer>
                     <MyDocument />

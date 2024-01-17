@@ -32,20 +32,15 @@ export const TopBar = () => {
             <div className="d-flex flex-row gap-3 align-items-center">
                 {/*<i className="fa-solid fa-magnifying-glass magnifying" style={{ "color": "#ffffff" }}></i>
                 <input className='search-input' type="text" name="search" id="search" placeholder="Search" />*/}
-<<<<<<< HEAD
                 <div className="d-flex flex-row gap-3 align-items-center justify-content-center" style={{ width: '2em', height: '2em', borderRadius: '50%', backgroundColor: '#444', cursor: 'pointer' }}>
                     <button className='button-bar' onClick={handleClick} style={{ "color": "#ffffff" }}><i className="fa-solid fa-magnifying-glass"></i></button>
                 </div>
-                <div className="d-flex flex-row gap-3 align-items-center justify-content-center" style={{ width: '2em', height: '2em', borderRadius: '50%', backgroundColor: '#444', cursor: 'pointer' }}>
-=======
                 {!isAuthenticated && <LogginButton />}
-                {isAuthenticated && <LogoffButton />}
-                <button onClick={handleClick}>ver barra</button>
                 {isAuthenticated && <div className="d-flex flex-row gap-3 align-items-center justify-content-center" style={{ width: '2em', height: '2em', borderRadius: '50%', backgroundColor: '#444', cursor: 'pointer' }}>
->>>>>>> auth0
                     <i className="fa-regular fa-bell" style={{ "color": "#ffffff" }}></i>
                 </div>}
                 {user && <UserWidget />}
+                {isAuthenticated && <LogoffButton />}
             </div>
         </div>
     </>)

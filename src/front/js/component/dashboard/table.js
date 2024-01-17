@@ -1768,7 +1768,7 @@ export const Table = () => {
 
 
     return (<>
-        <div className="ag-theme-quartz-dark" style={{ width: 1000, height: 500}}>
+        <div className="ag-theme-quartz-dark" style={{ width: '80%', height: 500}}>
             {/* <AgGridReact
                 rowData={rowData}
                 columnDefs={colDefs}
@@ -1788,7 +1788,6 @@ export const Table = () => {
                 rowSelection='multiple'
                 animateRows={true}
                 pagination={true}
-                sideBar={'columns'}
             />
             <button className="btn btn-outline-success mt-1" onClick={exportFile}>Generate xlsx</button>
         </div>
