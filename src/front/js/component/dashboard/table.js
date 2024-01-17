@@ -1,9 +1,9 @@
 import { AgGridReact } from 'ag-grid-react';
 import "ag-grid-community/styles/ag-grid.css";
 import "ag-grid-community/styles/ag-theme-quartz.css";
-import React, { useEffect, useMemo, useState, useContext } from 'react';
+import React, { useEffect, useMemo, useState, useContext, useCallback } from 'react';
 import { Context } from '../../store/appContext'
-
+import { read, utils, writeFile } from "xlsx";
 
 export const Table = () => {
 
@@ -1743,6 +1743,15 @@ export const Table = () => {
         console.log(last)
         setStockData(last)
     }
+    const exportFile = () => {
+        /* generate worksheet from state */
+        const ws = utils.json_to_sheet(stockData);
+        /* create workbook and append worksheet */
+        const wb = utils.book_new();
+        utils.book_append_sheet(wb, ws, "Data");
+        /* export to XLSX */
+        writeFile(wb, "prueba1.xlsx");
+      };
 
     useEffect(() => {
         fetch('https://www.ag-grid.com/example-assets/space-mission-data.json')
@@ -1783,6 +1792,7 @@ export const Table = () => {
                 pagination={true}
                 sideBar={'columns'}
             />
+            <button onClick={exportFile}>Generate xlsx</button>
         </div>
     </>)
 
