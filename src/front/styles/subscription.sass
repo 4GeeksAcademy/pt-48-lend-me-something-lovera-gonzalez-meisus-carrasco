@@ -26,6 +26,10 @@
             color: white
             padding: 0.2em 1em 0.2em 1em
             background-color: #ffd25597
+            transition: 200ms
+            &:hover
+                box-shadow: 0 0 50px 15px shared.$yellow-base-color
+                transition: 200ms
         &-essential
             border: none
             border-radius: 1em
@@ -38,6 +42,8 @@
             &:hover
                 scale: 1.1
                 transition: 200ms
+            &:active
+                box-shadow: 0 0 50px 15px shared.$blue-base-color
         &-business
             border: none
             border-radius: 1em
@@ -50,3 +56,9 @@
             &:hover
                 scale: 1.1
                 transition: 400ms
+            &:active
+                box-shadow: 0 0 50px 15px shared.$purple-base-color
+    &-price
+        display: flex
+        flex-direction: column
+        align-items: flex-end

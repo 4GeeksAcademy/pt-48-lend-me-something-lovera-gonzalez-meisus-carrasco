@@ -24,7 +24,10 @@ export const Subscription = () => {
 
                         </ul>
                     </div>
-                    <h2>$ Free</h2>
+                    <div className='subscription-price'>
+                        <span>We got you covered!</span>
+                        <h2>Free</h2>
+                    </div>
                     <button disabled className="subscription-button-free subscription-button">Included</button>
                 </div>
             </YellowContainer>
@@ -39,7 +42,10 @@ export const Subscription = () => {
                             <li>Download PDF Reports (up to 10/Week)</li>
                         </ul>
                     </div>
-                    <h2>$ 4.99</h2>
+                    <div className='subscription-price'>
+                        <span>Start your journey for...</span>
+                        <h2>$ 5.99 / month</h2>
+                    </div>
                     <button className="subscription-button-essential subscription-button">Upgrade</button>
                 </div>
             </BlueContainer>
@@ -58,7 +64,10 @@ export const Subscription = () => {
                             </li>
                         </ul>
                     </div>
-                    <h2>$ 9.99</h2>
+                    <div className='subscription-price'>
+                        <span>Be your better version for...</span>
+                        <h2>$ 9.99 / month</h2>
+                    </div>
                     <button className="subscription-button-business subscription-button">Upgrade</button>
                 </div>
             </PurpleContainer>
