@@ -31,7 +31,7 @@ export const Dashboard = () => {
             </div>
         </>
         )
-    } else
+    } else {
         const [searchState, setSearchState] = useState(false)
         // const { store, actions } = useContext(Context)
 
