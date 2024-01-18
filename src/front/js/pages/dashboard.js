@@ -11,8 +11,6 @@ import { useSpring, animated } from '@react-spring/web'
 import { Spinner } from "../component/spinner"
 import { TopBarTitle } from "../component/topBarTitle.js";
 import { Table } from "../component/dashboard/table.js";
-import { MyDocument } from "../component/dashboard/pdf.js";
-import { PDFViewer } from '@react-pdf/renderer';
 import { useAuth0 } from "@auth0/auth0-react";
 import { Stockdash } from "../component/dashboard/stockdash.js";
 
