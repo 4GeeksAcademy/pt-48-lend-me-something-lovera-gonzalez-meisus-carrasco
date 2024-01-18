@@ -39,19 +39,19 @@ def delete(index_data):
 def update(index_data):
     index_to_be_updated = session.query(Index).filter(Index.name == index_data["name"])
 
-    if index_data["name"]:
+    if "name" in index_data:
         index_to_be_updated.update(
             {Index.name: index_data["name"]}, synchronize_session=False
         )
-    if index_data["icon"]:
+    if "icon" in index_data:
         index_to_be_updated.update(
             {Index.icon: index_data["icon"]}, synchronize_session=False
         )
-    if index_data["currency"]:
+    if "currency" in index_data:
         index_to_be_updated.update(
             {Index.currency: index_data["currency"]}, synchronize_session=False
         )
-    if index_data["create_at"]:
+    if "create_at" in index_data:
         index_to_be_updated.update(
             {Index.create_at: index_data["create_at"]}, synchronize_session=False
         )

@@ -17,7 +17,11 @@ class UserRepository:
     def get_by_email(email):
         query = session.query(User).filter(User.email == email)
         return query
+<<<<<<< HEAD
 
+=======
+    
+>>>>>>> chart-refactor
     @staticmethod
     def add(user_data):
         user_to_be_added = User(

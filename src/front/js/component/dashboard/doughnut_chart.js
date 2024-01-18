@@ -79,26 +79,20 @@ export const Doughnut = () => {
         const arc = (d) => d3.arc()
             .innerRadius(d => radiusScale(d.value))
             .outerRadius(outterRadius + 30);
-
-        const div = d3.select(svgDiv.current)
-            .append('svg')
-            .attr('width', width + margin.right + margin.left)
-            .attr('height', height + margin.top + margin.bottom)
-            .attr('fill', 'black')
-            .append('g')
-            .attr("transform", `translate(${300 / 2},${250 / 2})`);
-
         const pie = d3.pie().value((d) => d.price)
 
+        const svg = d3.select(svgDiv.current)
+            .attr('width', width + margin.right + margin.left)
+            .attr('height', height + margin.top + margin.bottom)
+            .attr('fill', 'black');
+        const g = svg.select('g');
         const data_ready = pie(data)
         console.table(data_ready)
 
-        div
-            .selectAll()
+        g.selectAll('path')
             .data(data_ready)
-
             .join('path')
-                .attr('fill', d => `${colorScale(d.value)}`)
+            .attr('fill', d => `${colorScale(d.value)}`)
             .transition()
             .duration(3000)
             .attrTween('d', function (d, i) {
@@ -122,41 +116,45 @@ export const Doughnut = () => {
             })
 
 
-        div
-            .append('text')
-            // .attr('transform', `translate(${300 / 4},${250 / 4})` )
-            .text(`${data.reduce((a, e) => a + e.price, 0)}€`)
-            .attr('stroke', 'white')
-            .attr("dx", "-1.8em")
-            .attr("dy", "0.2em")
-            .attr('fill', 'white')
-            .attr('style', 'font-size: 2em')
+        // div
+        //     .append('text')
+        //     // .attr('transform', `translate(${300 / 4},${250 / 4})` )
+        //     .text(`${data.reduce((a, e) => a + e.price, 0)}€`)
+        //     .attr('stroke', 'white')
+        //     .attr("dx", "-1.8em")
+        //     .attr("dy", "0.2em")
+        //     .attr('fill', 'white')
+        //     .attr('style', 'font-size: 2em')
 
-        const labels = div
-            .append('g')
-            .attr("transform", `translate(${300 / 2},-${250 / 2})`);
-        labels
-            .selectAll('text')
-            .data(d3.sort(data, (a, b) => d3.ascending(a.price, b.price)).map(d => d.label))
-            .enter()
-            .append('text')
-            .text(d => d)
-            .attr('fill', 'white')
-            .attr('y', d => yScale(d3.sort(data, (a, b) => d3.ascending(a.price, b.price)).map(d => d.label).indexOf(d)))
-            .attr('x', '2em')
-            .append('tspan')
-            .text(d => `${data.filter(element => element.label == d)[0].price}€`)
-            .attr('dx', '0.5em')
-        labels
-            .selectAll('circle')
-            .data(d3.sort(data, (a, b) => d3.ascending(a.price, b.price)).map(d => d.label))
-            .enter()
-            .append('circle')
-            .attr('cx', '10px')
-            .attr('cy', d => yScale(d3.sort(data, (a, b) => d3.ascending(a.price, b.price)).map(d => d.label).indexOf(d)) - 4)
-            .attr('r', '8px')
-            .data(d3.sort(data, (a, b) => d3.ascending(a.price, b.price)))
-            .attr('fill', data => `${colorScale(data.price)}`)
+        // const labels = div
+        //     .append('g')
+        //     .attr("transform", `translate(${300 / 2},-${250 / 2})`);
+        // labels
+        //     .selectAll('text')
+        //     .data(d3.sort(data, (a, b) => d3.ascending(a.price, b.price)).map(d => d.label))
+        //     .enter()
+        //     .append('text')
+        //     .text(d => d)
+        //     .attr('fill', 'white')
+        //     .attr('y', d => yScale(d3.sort(data, (a, b) => d3.ascending(a.price, b.price)).map(d => d.label).indexOf(d)))
+        //     .attr('x', '2em')
+        //     .append('tspan')
+        //     .text(d => `${data.filter(element => element.label == d)[0].price}€`)
+        //     .attr('dx', '0.5em')
+        // labels
+        //     .selectAll('circle')
+        //     .data(d3.sort(data, (a, b) => d3.ascending(a.price, b.price)).map(d => d.label))
+        //     .enter()
+        //     .append('circle')
+        //     .attr('cx', '10px')
+        //     .attr('cy', d => yScale(d3.sort(data, (a, b) => d3.ascending(a.price, b.price)).map(d => d.label).indexOf(d)) - 4)
+        //     .attr('r', '8px')
+        //     .data(d3.sort(data, (a, b) => d3.ascending(a.price, b.price)))
+        //     .attr('fill', data => `${colorScale(data.price)}`)
+        g.select('#total-value').text(`${data.reduce((a, e) => a + e.price, 0)}€`);
+        g.selectAll('#value-indexes text').data(d3.sort(data, (a, b) => d3.ascending(a.price, b.price)).map(d => d.label)).join('text').text(d => d)
+        .append('tspan').text(d => `${data.filter(element => element.label == d)[0].price}€`).attr('dx', '0.5em')
+    
 
 
     }, [data])
@@ -170,8 +168,38 @@ export const Doughnut = () => {
                 ...springs,
             }}
         >
-            <div ref={svgDiv}>
-            </div >
+            <svg ref={svgDiv}>
+                <g transform="translate(150,125)">
+                    <path></path>
+                    <path></path>
+                    <path></path>
+                    <path></path>
+                    <path></path>
+                    <path></path>
+                    <path></path>
+                    <path></path>
+                    <text id="total-value" stroke="white" dx="-1.8em" dy="0.2em" fill="white" style={{fontSize: '2em'}}></text>
+                    <g id="value-indexes" transform="translate(150,-125)">
+                        <text fill="white" y="200" x="2em"></text>
+                        <text fill="white" y="175" x="2em"></text>
+                        <text fill="white" y="150" x="2em"></text>
+                        <text fill="white" y="125" x="2em"></text>
+                        <text fill="white" y="100" x="2em"></text>
+                        <text fill="white" y="75" x="2em"></text>
+                        <text fill="white" y="50" x="2em"></text>
+                        <text fill="white" y="25" x="2em"></text>
+                        <circle cx="10px" cy="196" r="8px" fill="rgb(238, 130, 238)"></circle>
+                        <circle cx="10px" cy="171" r="8px" fill="rgb(223, 118, 228)"></circle>
+                        <circle cx="10px" cy="146" r="8px" fill="rgb(212, 109, 221)"></circle>
+                        <circle cx="10px" cy="121" r="8px" fill="rgb(199, 99, 212)"></circle>
+                        <circle cx="10px" cy="96" r="8px" fill="rgb(181, 84, 200)"></circle>
+                        <circle cx="10px" cy="71" r="8px" fill="rgb(168, 74, 191)"></circle>
+                        <circle cx="10px" cy="46" r="8px" fill="rgb(77, 78, 190)"></circle>
+                        <circle cx="10px" cy="21" r="8px" fill="rgb(79, 162, 255)"></circle>
+                    </g>
+                </g>
+            </svg>
+    
         </animated.div>
     </>)
 }
