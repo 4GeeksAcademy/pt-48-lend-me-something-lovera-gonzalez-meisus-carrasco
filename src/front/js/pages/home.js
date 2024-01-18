@@ -27,7 +27,7 @@ export const Home = () => {
 					...springs,
 				}}
 			>
-				<PurpleContainer style={{ width: '25%', flex: '1 0 auto' }}>
+				<PurpleContainer className="d-flex flex-row justify-content-around flex-wrap gap-5 p-4 pt-0" style={{ width: '100%' }}>
 					<div className="text-light d-flex flex-row gap-2 justify-content-center align-items-center" style={{width: '85vw'}}>
 						<img src='https://restyler.s3.ap-southeast-2.amazonaws.com/user-data/user-46/artworks/product-79/preview/thumbnails/5MPgTBYjDfQKQP7gMsmbzC8lmELrSQWwHILNnnfr-watermarked-lg-resized.gif' alt="" style={{ height: '150px', filter: 'hue-rotate(100deg)' }} />
 						<div>

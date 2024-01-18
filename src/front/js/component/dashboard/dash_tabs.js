@@ -5,7 +5,10 @@ export const DashTabs = ({activeTab, setActiveTab}) => {
 
     const [active, setActive] = useState(activeTab);
 
-
+    const changeTab = (i) => { 
+        setActive(i)
+        setActiveTab(i)
+    }   
     return (<>
 
         <div className="navbar-margin dashboard-tabs--container">
@@ -13,12 +16,12 @@ export const DashTabs = ({activeTab, setActiveTab}) => {
                 
                 <div
                     className={`${active == 1 ? 'dashboard-tabs--tab--active' : '' } dashboard-tabs--tab`}
-                    onClick={() => setActiveTab(1)}>
+                    onClick={() => changeTab(1)}>
                     Stocks
                 </div>
                 <div
                     className={`${active == 2 ? 'dashboard-tabs--tab--active' : '' } dashboard-tabs--tab`}
-                    onClick={() => setActiveTab(2)}>
+                    onClick={() => changeTab(2)}>
                     Cryptocurrencies
                 </div>
             </div>

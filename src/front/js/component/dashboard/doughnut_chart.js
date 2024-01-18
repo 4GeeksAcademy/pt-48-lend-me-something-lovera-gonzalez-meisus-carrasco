@@ -1,52 +1,54 @@
-import React, { useRef, useEffect } from "react";
+import React, { useRef, useEffect, useState } from "react";
 import * as d3 from "d3";
 import { useSpring, animated } from '@react-spring/web'
 
-const data = [
-    {
-        label: 'Santander',
-        price: 3.80,
-        color: '#4fa2ff'
-    },
-    {
-        label: 'Apple',
-        price: 185,
-        color: '#0d715d'
-    },
-    {
-        label: 'Iberdrola',
-        price: 11.95,
-        color: '#ffd155'
-    },
-    {
-        label: 'Inditex',
-        price: 35,
-        color: '#A200EA'
-    },
-    {
-        label: 'Aena',
-        price: 42,
-        color: '#e216EA'
-    },
-    {
-        label: 'BVA',
-        price: 25,
-        color: '#e216EA'
-    },
-    {
-        label: 'Unicaja',
-        price: 18,
-        color: '#e216EA'
-    },
-    {
-        label: 'Google',
-        price: 137,
-        color: '#e216EA'
-    },
-]
 
-export const Doughnut = () => {
+export const Doughnut = (props) => {
 
+    const [data, setData] = useState(
+        (props.data) ? props.data :
+            [
+                {
+                    name: 'Santander',
+                    price_usd: 3.80,
+                    color: '#4fa2ff'
+                },
+                {
+                    name: 'Apple',
+                    price_usd: 185,
+                    color: '#0d715d'
+                },
+                {
+                    name: 'Iberdrola',
+                    price_usd: 11.95,
+                    color: '#ffd155'
+                },
+                {
+                    name: 'Inditex',
+                    price_usd: 35,
+                    color: '#A200EA'
+                },
+                {
+                    name: 'Aena',
+                    price_usd: 42,
+                    color: '#e216EA'
+                },
+                {
+                    name: 'BVA',
+                    price_usd: 25,
+                    color: '#e216EA'
+                },
+                {
+                    name: 'Unicaja',
+                    price_usd: 18,
+                    color: '#e216EA'
+                },
+                {
+                    name: 'Google',
+                    price_usd: 137,
+                    color: '#e216EA'
+                },
+            ])
     const springs = useSpring({
         from: { opacity: 0, y: -5, scale: 0.9 },
         to: [{ opacity: 1, y: 0, scale: 1 }],
@@ -69,17 +71,17 @@ export const Doughnut = () => {
         // console.log(outterRadius)
 
         const yScale = d3.scaleLinear([0, data.length], [height + margin.top, 0]);
-        const colorScale = d3.scaleLinear().domain([d3.max(data.map(d => d.price)), d3.max(data.map(d => d.price)) / 2, d3.min(data.map(d => d.price))]).range(["#ff0000", "#ffa500", "#ffff00", "#008000", "#4fa2ff", "#4b0082", "#ee82ee"]);
-        // console.log(d3.extent(data.map(d => d.price)))
+        const colorScale = d3.scaleLinear().domain([d3.max(data.map(d => d.price_usd)), d3.max(data.map(d => d.price_usd)) / 2, d3.min(data.map(d => d.price_usd))]).range(["#ff0000", "#ffa500", "#ffff00", "#008000", "#4fa2ff", "#4b0082", "#ee82ee"]);
+        // console.log(d3.extent(data.map(d => d.price_usd)))
         // console.log(colorScale(25))
 
 
-        const radiusScale = d3.scaleLinear([0, d3.max(data.map(d => d.price))], [100, 60])
+        const radiusScale = d3.scaleLinear([0, d3.max(data.map(d => d.price_usd))], [100, 60])
 
         const arc = (d) => d3.arc()
             .innerRadius(d => radiusScale(d.value))
             .outerRadius(outterRadius + 30);
-        const pie = d3.pie().value((d) => d.price)
+        const pie = d3.pie().value((d) => d.price_usd)
 
         const svg = d3.select(svgDiv.current)
             .attr('width', width + margin.right + margin.left)
@@ -98,11 +100,11 @@ export const Doughnut = () => {
             .attrTween('d', function (d, i) {
                 var interpolateStart = d3.interpolate(0, d.startAngle);
                 var interpolateEnd = d3.interpolate(0, d.endAngle);
-                var interpolateRadius = d3.interpolate(outterRadius, radiusScale(d.value) )
+                var interpolateRadius = d3.interpolate(outterRadius, radiusScale(d.value))
                 var arc = d3
                     .arc()
                     .innerRadius(radiusScale(d.value))
-                    .outerRadius(outterRadius+30)
+                    .outerRadius(outterRadius + 30)
                     .startAngle(d.startAngle)
                     .endAngle(d.startAngle)
                     .padAngle(0.01)
@@ -119,49 +121,49 @@ export const Doughnut = () => {
         // div
         //     .append('text')
         //     // .attr('transform', `translate(${300 / 4},${250 / 4})` )
-        //     .text(`${data.reduce((a, e) => a + e.price, 0)}€`)
+        //     .text(`${data.reduce((a, e) => a + e.price_usd, 0)}€`)
         //     .attr('stroke', 'white')
         //     .attr("dx", "-1.8em")
         //     .attr("dy", "0.2em")
         //     .attr('fill', 'white')
         //     .attr('style', 'font-size: 2em')
 
-        // const labels = div
+        // const names = div
         //     .append('g')
         //     .attr("transform", `translate(${300 / 2},-${250 / 2})`);
-        // labels
+        // names
         //     .selectAll('text')
-        //     .data(d3.sort(data, (a, b) => d3.ascending(a.price, b.price)).map(d => d.label))
+        //     .data(d3.sort(data, (a, b) => d3.ascending(a.price_usd, b.price_usd)).map(d => d.name))
         //     .enter()
         //     .append('text')
         //     .text(d => d)
         //     .attr('fill', 'white')
-        //     .attr('y', d => yScale(d3.sort(data, (a, b) => d3.ascending(a.price, b.price)).map(d => d.label).indexOf(d)))
+        //     .attr('y', d => yScale(d3.sort(data, (a, b) => d3.ascending(a.price_usd, b.price_usd)).map(d => d.name).indexOf(d)))
         //     .attr('x', '2em')
         //     .append('tspan')
-        //     .text(d => `${data.filter(element => element.label == d)[0].price}€`)
+        //     .text(d => `${data.filter(element => element.name == d)[0].price_usd}€`)
         //     .attr('dx', '0.5em')
-        // labels
+        // names
         //     .selectAll('circle')
-        //     .data(d3.sort(data, (a, b) => d3.ascending(a.price, b.price)).map(d => d.label))
+        //     .data(d3.sort(data, (a, b) => d3.ascending(a.price_usd, b.price_usd)).map(d => d.name))
         //     .enter()
         //     .append('circle')
         //     .attr('cx', '10px')
-        //     .attr('cy', d => yScale(d3.sort(data, (a, b) => d3.ascending(a.price, b.price)).map(d => d.label).indexOf(d)) - 4)
+        //     .attr('cy', d => yScale(d3.sort(data, (a, b) => d3.ascending(a.price_usd, b.price_usd)).map(d => d.name).indexOf(d)) - 4)
         //     .attr('r', '8px')
-        //     .data(d3.sort(data, (a, b) => d3.ascending(a.price, b.price)))
-        //     .attr('fill', data => `${colorScale(data.price)}`)
-        g.select('#total-value').text(`${data.reduce((a, e) => a + e.price, 0)}€`);
-        g.selectAll('#value-indexes text').data(d3.sort(data, (a, b) => d3.ascending(a.price, b.price)).map(d => d.label)).join('text').text(d => d)
-        .append('tspan').text(d => `${data.filter(element => element.label == d)[0].price}€`).attr('dx', '0.5em')
-    
+        //     .data(d3.sort(data, (a, b) => d3.ascending(a.price_usd, b.price_usd)))
+        //     .attr('fill', data => `${colorScale(data.price_usd)}`)
+        g.select('#total-value').text(`${data.reduce((a, e) => a + e.price_usd, 0)}€`);
+        g.selectAll('#value-indexes text').data(d3.sort(data, (a, b) => d3.ascending(a.price_usd, b.price_usd)).map(d => d.name)).join('text').text(d => d)
+            .append('tspan').text(d => `${data.filter(element => element.name == d)[0].price_usd}€`).attr('dx', '0.5em')
+
 
 
     }, [data])
     return (<>
         <div>
             <h4>This week revenue:</h4>
-            {/* <p>{data.reduce((a, e) => a + e.price, 0)}€</p> */}
+            {/* <p>{data.reduce((a, e) => a + e.price_usd, 0)}€</p> */}
         </div>
         <animated.div
             style={{
@@ -178,7 +180,7 @@ export const Doughnut = () => {
                     <path></path>
                     <path></path>
                     <path></path>
-                    <text id="total-value" stroke="white" dx="-1.8em" dy="0.2em" fill="white" style={{fontSize: '2em'}}></text>
+                    <text id="total-value" stroke="white" dx="-1.8em" dy="0.2em" fill="white" style={{ fontSize: '2em' }}></text>
                     <g id="value-indexes" transform="translate(150,-125)">
                         <text fill="white" y="200" x="2em"></text>
                         <text fill="white" y="175" x="2em"></text>
@@ -199,7 +201,7 @@ export const Doughnut = () => {
                     </g>
                 </g>
             </svg>
-    
+
         </animated.div>
     </>)
 }

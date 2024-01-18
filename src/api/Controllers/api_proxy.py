@@ -31,6 +31,9 @@ def proxy_search():
     symbols = request.args.get('symbols')
     exchange = request.args.get('exchange')
     offset = request.args.get('offset')
+
+    if (offset is None): offset = ''
+    if (exchange is None): exchange = ''
     print(symbols)
     print(f'{target_url}&search={symbols}')
     print((f'{target_url}?offset={offset}&exchange={exchange}&search={symbols}'))

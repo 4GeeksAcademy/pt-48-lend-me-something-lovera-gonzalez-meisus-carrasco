@@ -17,6 +17,24 @@ import { data as Data } from '../../store/coinAPIdata.js'
 import { useAuth0 } from "@auth0/auth0-react";
 
 export const CrryptoDash = () => {
+    const data_example = 	{
+		"asset_id": "USD",
+		"name": "US Dollar",
+		"type_is_crypto": 0,
+		"data_quote_start": "2014-02-24T00:00:00.0000000Z",
+		"data_quote_end": "2024-01-17T00:00:00.0000000Z",
+		"data_orderbook_start": "2014-02-24T17:43:05.0000000Z",
+		"data_orderbook_end": "2023-07-07T00:00:00.0000000Z",
+		"data_trade_start": "2010-07-17T00:00:00.0000000Z",
+		"data_trade_end": "2024-01-17T00:00:00.0000000Z",
+		"data_symbols_count": 231281,
+		"volume_1hrs_usd": 157643040537.56,
+		"volume_1day_usd": 14574712395640.85,
+		"volume_1mth_usd": 753537917787802.72,
+		"id_icon": "0a4185f2-1a03-4a7c-b866-ba7076d8c73b",
+		"data_start": "2010-07-17",
+		"data_end": "2024-01-17"
+	}
 
     const filtered_data = Data.filter(e => e.type_is_crypto === 1).map(element => ({ 'name': element.name, 'id': element.asset_id, 'price': element.price_usd, 'date': element.data_end })).sort((a, b) => a.price_usd - b.price_usd).splice(0, 30)
 
@@ -54,7 +72,7 @@ export const CrryptoDash = () => {
         >
             <div className="d-flex flex-row justify-content-around flex-wrap gap-5 p-4 pt-0" style={{ width: '100%' }}>
                 <BlueContainer style={{ flexBasis: '40%', alignItems: 'center', justifyItems: 'center' }}>
-                    <Doughnut />
+                    <Doughnut data={filtered_data}/>
                 </BlueContainer>
                 <div className="d-flex flex-column gap-5 justify-content-between align-items-center p-4 " style={{ height: 700, width: '100%' }}>
                     {data.length > 1 && <Table data={data} columns={tableColumns}/>}

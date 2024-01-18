@@ -9,7 +9,7 @@ import { BlueContainer } from "../component/color_containers/blue_container";
 import { PurpleContainer } from "../component/color_containers/purple_container";
 import { YellowContainer } from "../component/color_containers/yellow_container";
 import { PinkContainer } from "../component/color_containers/pink_container";
-import { get_eod_data, get_ticker_info } from '../store/API'
+import { get_eod_data, get_ticker_info, get_search_results } from '../store/API'
 import Spinner from "../component/spinner";
 import '../../styles/single.sass'
 
@@ -21,11 +21,12 @@ export const Single = props => {
 	const params = useParams();
 
 	const loadTableData = async (symbol) => {
-		const data = await get_eod_data(symbol)
-		const ticker_info = await get_ticker_info(symbol)
+		// const data = await get_eod_data(symbol)
+		const ticker_info = await get_search_results(symbol,'','')
 		console.log(await ticker_info)
-		setTableData(data);
-		setTicker(ticker_info);
+		console.log(ticker_info.data[0])
+		// setTableData(ticker_info.data[0]);
+		setTicker(ticker_info.data[0]);
 		setTimeout(() => {
 			setLoading(false)
 			console.log(ticker)
@@ -55,7 +56,7 @@ export const Single = props => {
 					<h5>{ticker.stock_exchange.country} market</h5>
 					<h6>{ticker.stock_exchange.name}</h6></>}
 				<div className="d-flex flex-column gap-5 justify-content-between align-items-center p-4 " style={{ height: 700, width: '100%' }}>
-					{tableData.length > 1 && <Table data={tableData} />}
+					{/* {tableData.length > 1 && <Table data={tableData} />} */}
 				</div>
 			</BlueContainer>
 
