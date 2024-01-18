@@ -1,7 +1,7 @@
 const FF_API = process.env.BACKEND_URL
 const API_KEY = "9883c939aa815f94accdfa4b810eac97";
 const API_URL = "http://api.marketstack.com/v1";
-const stock_url = 'https://marketstack.com/stock_api.php?offset=0';
+const stock_url = 'https://marketstack.com/stock_api.php';
 
 export const get_eod_data = async (symbol) => {
     // console.log(symbol)
@@ -14,14 +14,15 @@ export const get_eod_data = async (symbol) => {
     return EndOfDay_data
 };
 
-export const get_search_results = async (symbol) => {
+export const get_search_results = async (symbol,exchange,offset) => {
     // print(`${FF_API}/api_proxy?url=${stock_url}&symbols=${symbol}`)
-    const request = await fetch(`${FF_API}/api_proxy/searchbar?url=${stock_url}&symbols=${symbol}`);
+    const request = await fetch(`${FF_API}/api_proxy/searchbar?url=${stock_url}&symbols=${symbol}&exchange=${exchange}&offset=${offset}`);
     const data = await request.json();
-    // console.log(request)
-    const search_results = await data.data;
+    const search_results = await data;
+    console.log(await search_results)
     return search_results
 }
+
 
 export const get_ticker_info = async (symbol) => {
     // print(`${FF_API}/api_proxy?url=${stock_url}&symbols=${symbol}`)

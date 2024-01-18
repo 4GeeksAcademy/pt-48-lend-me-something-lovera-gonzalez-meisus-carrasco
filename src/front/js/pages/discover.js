@@ -1,14 +1,23 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import '../../styles/discover.sass';
 import { useSpring, animated } from '@react-spring/web';
 import { GreenContainer } from "../component/color_containers/green_container";
 import { TopBarTitle } from "../component/topBarTitle";
+import { get_search_results } from "../store/API";
+import { Spinner } from '../component/spinner'
 
 export const Discover = () => {
 
-    const [results, setResults] = useState([])
-    const [criteria, setCriteria] = useState('')
+    const [results, setResults] = useState([]);
+    const [criteria, setCriteria] = useState('');
+    const [loading, setLoading] = useState(null);
+    const [exchange, setExchange] = useState('');
+    const [offset, setOffset] = useState(0);
+    const [pagination, setPagination] = useState('');
+    const [pages, setPages] = useState();
+    const [page_numbers, setPage_numbers] = useState('');
+    const [lastPage, setLastPage] = useState('');
 
     const springs = useSpring({
         from: { opacity: 0, y: -5 },
@@ -18,25 +27,82 @@ export const Discover = () => {
             friction: 35,
             tension: 120,
         },
-    })
+    });
+
+    const search = async (offset = 0) => {
+        setLoading(true)
+        const data = await get_search_results(criteria, exchange, offset);
+        const data_with_links = data.data.map(element => ({ ...element, link: `/single/${element.symbol}` }));
+        // console.log(data_with_links);
+        if (offset === 0) setOffset(prev => prev + 100);
+        setResults(data_with_links);
+        setPagination(data.pagination);
+        setLoading(false);
+    }
 
     const getPrevious = () => {
+        // console.log('Previous clicked')
+
+        setOffset(prev => prev - 100);
+        setLoading(true);
+        setTimeout(() => {
+            search();
+        }, 500)
 
     }
 
     const getNext = () => {
 
+        (offset + 100) < pagination.total ? setOffset(prev => prev + 100) : setOffset(prev => prev - 100)
+        setLoading(true)
+        setTimeout(() => {
+            search();
+        }, 500)
     }
+    const resetValues = () => {
+        setLastPage('');
+        setPage_numbers('');
+        setOffset(0)
+    };
+
+    const clickedPage = (e) => {
+        const new_offset = (+e.target.innerHTML - 1) * 100
+        setOffset(new_offset)
+        search(new_offset)
+    }
+
+    useEffect(() => {
+        search();
+    }, []);
+
+
+    useEffect(() => {
+        if (results.length > 1) {
+            const raw_pages = new Array(Math.ceil(pagination.total / 100)).fill(1).map((e, i) => e * i + 1);
+            const spliced_pages = (Math.floor(pagination.offset / 100) >= (raw_pages.length  -3))  // 2882 --  288100 /100 -- 2881   --- 2877
+                ? raw_pages.splice(raw_pages.length -4, raw_pages.length -1)
+                : raw_pages.splice(Math.floor(pagination.offset / 100), 4);
+                // console.log(raw_pages.splice(raw_pages.length -4, raw_pages.length))
+                // console.log(spliced_pages)
+            const raw_lastPage = [raw_pages[raw_pages.length - 1]];
+            setLastPage(raw_lastPage);
+            setPage_numbers(spliced_pages);
+            // console.log(page_numbers)
+            setPages(page_numbers);
+        }
+    }, [pagination])
+
+
     return (<>
         <TopBarTitle topTitle='Discover ' />
         <animated.div style={{ ...springs }} className="navbar-margin d-flex flex-column justify-content-center align-items-center">
-            <GreenContainer style={{ width: '80%' }}>
+            <GreenContainer style={{ width: '80%', position: 'relative' }}>
                 <h4>Search new horizons:</h4>
                 <div className="discover-header--containers">
                     <div className="discover-input--container">
-                        <input type="text" placeholder="Search Terms..." value={criteria} onChange={(e) => setCriteria(e.target.value)} />
-                        <select name="Exchange" id="exchange">
-                            <option value="" selected>All Stock Exchanges</option>
+                        <input className="discover-input" type="text" placeholder="Search Terms..." value={criteria} onChange={(e) => { setCriteria(e.target.value), resetValues }} />
+                        <select className="discover-select" name="Exchange" id="exchange" defaultValue={""} onChange={(e) => { setExchange(e.target.value); resetValues }}>
+                            <option value="" >All Stock Exchanges</option>
                             <option value="XASE">American Stock Exchange (XASE)</option>
                             <option value="XASX">Australia Stock Exchange (XASX)</option>
                             <option value="XLIM">Bolsa de Valores de Lima (XLIM)</option>
@@ -108,18 +174,75 @@ export const Discover = () => {
                             <option value="NMFQS">US Mutual Funds (NMFQS)</option>
                             <option value="XWAR">Warsaw Stock Exchange (XWAR)</option>
                         </select>
-                        <button className="green--button">Search</button>
+                        <button className="green--button" onClick={search}>Search</button>
                     </div>
                     <h3>More than 280.000 stocks to track!</h3>
                 </div>
                 <hr />
+                <div className="discover-results--container">
+                    {loading && <Spinner />}
+                    {loading != null && loading != true &&
+                        <>
+                            <div className="discover-results--headers">
+                                <div className="discovery-result-p-1">Symbol</div>
+                                <div className="discovery-result-p-2">Name</div>
+                                <div className="discovery-result-p-3">Exchange</div>
+                                <div className="discovery-result-p-4">MIC</div>
+                                <div className="discovery-result-p-5">Country</div>
+                            </div>
+                            <div className="discover-results-list">
+                                {results.map((element, index) => (
+                                    <Link
+                                        to={element.link}
+                                        className="discover-result--entry"
+                                        // style={{textDecoration: 'none'}}
+                                        key={index}>
+                                        <div className="discovery-result-p-1">{element.symbol}</div>
+                                        <div className="discovery-result-p-2">{element.name}</div>
+                                        <div className="discovery-result-p-3">{element.stock_exchange.name}</div>
+                                        <div className="discovery-result-p-4">{element.stock_exchange.mic}</div>
+                                        <div className="discovery-result-p-5">{element.stock_exchange.country}</div>
+                                    </Link>
+                                ))}
+                            </div>
+                        </>
+                    }
+                </div>
                 <hr />
                 <div className="discover-footer--container">
                     <button className="green--button discover-footer-previous--button" onClick={getPrevious}>Previous</button>
                     <button className="green--button discover-footer-next--button" onClick={getNext}>Next</button>
                 </div>
+                {results.length >= 1 &&
+                    <div className="discover--pages">
+
+                        {page_numbers && page_numbers.map((element, index) => (
+
+                            <div
+                                key={index}
+                                className="discover--page"
+                                onClick={(e) => clickedPage(e)}
+                                style={Math.floor(pagination.offset / 100) + 1 === element ? { backgroundColor: 'gray' } : {}}>
+                                {element}
+                            </div>
+
+                        ))} <span>...</span>
+                        {page_numbers && lastPage.map((element, index) => (
+
+                            <div
+                                key={index}
+                                className="discover--page"
+                                onClick={(e) => clickedPage(e)}
+                                style={Math.floor(pagination.offset / 100) + 1 === element ? { backgroundColor: 'gray' } : {}}>
+                                {element}
+                            </div>
+                        ))}
+                    </div>}
+                {results.length >= 1 && <div className="discover--pagination">Showing {pagination.count} of {pagination.total}</div>}
             </GreenContainer>
         </animated.div>
     </>)
 }
+// 315/100 = 3.15 ^ 4 
+// new Array(Math.top(315/100)).fill(1)
 

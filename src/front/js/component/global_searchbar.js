@@ -55,8 +55,8 @@ export const GlobalSearchBar = ({ style, handleClick }) => {
 
     const getStockData = async (string) => {
         console.log(string)
-        const data = await get_search_results(string);
-        const data_with_links = data.map(element =>
+        const data = await get_search_results(string,'',0);
+        const data_with_links = data.data.map(element =>
             element.symbol ? ({ ...element, link: `/single/${element.symbol}` }) : { ...element, link: `/single/non-traceable` }
         )
         const newFilterData = listas.filter(element => {
@@ -94,51 +94,13 @@ export const GlobalSearchBar = ({ style, handleClick }) => {
             setSelectedItem(-1)
         }
     };
-    // const [query, setQuery] = useState('')
-    // const [autoCompletado, setAutoCompletado] = useState('')
-    // const [listaFiltrada, setListaFiltrada] = useState([])
-    // const inputRef = useRef()
-    // const navigate = useNavigate()
-
-    // const handleChange = (e) => {
-    //     if (e.keyCode === 8) {
-    //         setQuery(e.target.value);
-    //     }
-    //     else {
-    //         setQuery(e.target.value);
-    //         setListaFiltrada(listas.filter((lista) => lista.toLowerCase().startsWith(e.target.value.toLowerCase())))
-    //         const [firstelement] = listas.filter((lista) => lista.toLowerCase().startsWith(e.target.value.toLowerCase()))
-
-    //         setAutoCompletado(firstelement);
-    //     }
-
-    // }
-
-    // const handleButtonClick = (e) => {
-    //     // setQuery(e.target.innerHTML);
-    //     navigate.push("/dashboard");
-
-    // }
+    
     const cerrarBarra = () => {
         setSearch('');
         setSearchData([])
         handleClick();
     }
 
-    // useEffect(() => {
-    //     if (search !== "") {
-    //         // fetch(`https://api.tvmaze.com/search/shows?q=${search}`)
-    //         //     .then(res => res.json())
-    //         //     .then((data) => setSearchData(data))
-
-    //         const newFilterData = listas.filter(lista => {
-    //             return lista.title.toLowerCase().includes(search.toLowerCase())
-    //         })
-    //         setSearchData(newFilterData);
-    //     } else {
-    //         setSearchData([])
-    //     }
-    // }, [search])
 
 
     return (<>

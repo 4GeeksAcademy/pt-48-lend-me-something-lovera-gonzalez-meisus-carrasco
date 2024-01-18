@@ -1,5 +1,9 @@
 @use '../styles/shared'
 
+$layer1: linear-gradient(45deg, shared.$dark-gray-base-color 80%, shared.$green-base-color 130%) padding-box
+$layer2: linear-gradient(60deg, shared.$dark-gray-base-color 0%, shared.$dark-gray-base-color 30%, shared.$green-base-color 120%) border-box
+
+
 .discover-header--containers
     display: flex
     flex-direction: row
@@ -23,3 +27,158 @@
 .discover-footer-next--button
     border-radius: 0 1em 1em 0
     border-left: 1px solid gray
+
+.discover-results--headers
+    display: flex
+    flex-direction: row
+    justify-content: space-between
+    width: 100%
+    border-bottom: 1px solid gray
+    & div
+        font-weight: 600
+        font-size: 1.3em
+
+.discover-results--container
+    width: 100%
+
+.discover-results-list
+    display: flex
+    flex-direction: column
+    max-height: 40vh
+    width: 100%
+    overflow-y: auto
+    overflow-x: hidden
+    &::-webkit-scrollbar
+        width: 10px
+    &::-webkit-scrollbar-track
+        background-color: shared.$dark-gray-base-color
+        border-radius: 100px
+    &::-webkit-scrollbar-thumb
+        background-color: shared.$green-base-color
+        border-radius: 100px
+
+.discover-result--entry
+    height: 5em
+    display: flex
+    flex-direction: row
+    justify-content: space-between
+    border-bottom: 1px solid gray
+    text-decoration: none
+    color: white
+    transition: 300ms
+    &:hover
+        text-decoration: none
+        color: white
+        background-color: #365250
+        transition: 300ms
+        font-size: 1.05em
+
+.discovery-result-p-1
+    display: flex
+    align-items: center
+    height: 3em
+    text-align: center
+    width: 10%
+
+.discovery-result-p-2
+    display: flex
+    align-items: center
+    height: 3em
+    text-align: center
+    width: 40%
+
+.discovery-result-p-3
+    display: flex
+    align-items: center
+    height: 3em
+    text-align: center
+    width: 20%
+
+.discovery-result-p-4
+    display: flex
+    align-items: center
+    height: 3em
+    text-align: center
+    width: 10%
+
+.discovery-result-p-5
+    display: flex
+    align-items: center
+    height: 3em
+    text-align: center
+    width: 10%
+
+.discover-input
+    background-color: shared.$dark-gray-base-color
+    border: 1px solid shared.$green-base-color
+    border-radius: 1em
+    padding: 0.5em
+    width: 16em
+    color: white
+    &:focus
+        background: $layer1, $layer2
+        outline: 1px solid transparent
+        caret-color: shared.$green-base-color
+    &::placeholder
+        color: white
+    &:focus::placeholder
+        color: #555
+
+.discover-select
+    background-color: shared.$dark-gray-base-color
+    border: 1px solid shared.$green-base-color
+    border-radius: 1em
+    padding: 0.5em
+    width: 18em
+    color: white
+    &:focus
+        background: $layer1, $layer2
+        outline: 1px solid transparent
+        caret-color: shared.$green-base-color
+    &::placeholder
+        color: white
+    &:focus::placeholder
+        color: #555
+    &:active
+        color: shared.$dark-gray-base-color
+    & option
+        background-color: shared.$dark-gray-base-color
+    &::-webkit-scrollbar
+        background-color: shared.$dark-gray-base-color
+        width: 10px
+    &::-webkit-scrollbar-track
+        background-color: shared.$dark-gray-base-color
+        border-radius: 100px
+    &::-webkit-scrollbar-thumb
+        background-color: shared.$green-base-color
+        border-radius: 100px
+.discover--pagination
+    position: absolute
+    bottom: 1em
+    right: 2em
+.discover--pages
+    width: 10em
+    overflow: hidden
+    position: absolute
+    bottom: 3em
+    right: 2.2em
+    display: flex
+    flex-direction: row
+    align-items: center
+    gap: 0.2em
+.discover--page
+    height: 1.5em
+    width: fit-content
+    padding: 0 0.3em 0 0.3em
+    background-color: shared.$green-base-color
+    border-radius: 0.3em
+    display: flex
+    justify-content: center
+    align-items: center
+    cursor: pointer
+    &:hover
+        scale: 1.1 
+        transition: 200ms
+    &:active
+        box-shadow: 0 0 25px 10px shared.$green-base-color
+        transition: 200ms

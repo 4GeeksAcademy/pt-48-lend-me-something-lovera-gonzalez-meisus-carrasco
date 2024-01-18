@@ -17,7 +17,7 @@ def proxy():
     try:
         if request.method == 'GET':
             response = requests.get(f'{target_url}&symbols={symbols}')
-            print(response.json())
+            # print(response.json())
         else:
             return 'Error: Unsupported HTTP method.'
 
@@ -29,21 +29,26 @@ def proxy():
 def proxy_search():
     target_url = request.args.get('url')
     symbols = request.args.get('symbols')
+    exchange = request.args.get('exchange')
+    offset = request.args.get('offset')
     print(symbols)
     print(f'{target_url}&search={symbols}')
+    print((f'{target_url}?offset={offset}&exchange={exchange}&search={symbols}'))
     if not target_url:
         return 'Error: No target URL provided.'
 
     try:
         if request.method == 'GET':
-            response = requests.get(f'{target_url}&search={symbols}')
-            # print(response.json())
+            response = requests.get(f'{target_url}?offset={offset}&exchange={exchange}&search={symbols}')
+            print(response.json())
         else:
             return 'Error: Unsupported HTTP method.'
 
         return jsonify(response.json())
     except requests.exceptions.RequestException as e:
         return f'Error: {e}'
+    
+
     
 @api_proxy.route('/ticker/', methods=['GET'])
 def ticker():

@@ -12,8 +12,7 @@ import { useSpring, animated } from '@react-spring/web'
 import { Spinner } from "../spinner"
 import { TopBarTitle } from "../topBarTitle.js";
 import { Table } from "./table.js";
-import { MyDocument } from "./pdf.js";
-import { PDFViewer } from '@react-pdf/renderer';
+
 import { useAuth0 } from "@auth0/auth0-react";
 
 export const Stockdash = () => {
@@ -53,9 +52,7 @@ export const Stockdash = () => {
                     </BlueContainer>
                     <div className="d-flex flex-column gap-5 justify-content-between align-items-center p-4 " style={{ height: 700, width: '100%' }}>
                         <Table />
-                        <PDFViewer>
-                            <MyDocument />
-                        </PDFViewer>
+                     
                     </div>
                     <div className="d-flex flex-row justify-content-between align-items-center p-4">
                         <PurpleContainer>
