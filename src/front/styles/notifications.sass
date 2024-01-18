@@ -1,0 +1,39 @@
+@use '../styles/shared'
+
+$layer1: linear-gradient(45deg, shared.$dark-gray-base-color 80%, shared.$green-base-color 130%) padding-box
+$layer2: linear-gradient(60deg, shared.$dark-gray-base-color 0%, shared.$dark-gray-base-color 30%, shared.$green-base-color 120%) border-box
+
+
+.notifications-clear-button
+    position: absolute
+    top: 1em
+    right: 2em
+
+p i 
+    font-size: 1.5em
+    margin-right: 1em
+    &:hover
+        animation: 1s spinning linear
+        cursor: pointer
+
+.notification P
+        transition: 300ms
+        background: transparent
+        border-radius: 1em
+        padding: 0.5em
+        &:hover
+            transition: 300ms
+            background:  shared.$green-base-color
+            backdrop-filter: blur(50px)
+
+.alert P
+    transition: 300ms
+    background: transparent
+    border-radius: 1em
+    padding: 0.5em
+    &:hover
+        transition: 300ms
+        background:  shared.$purple-base-color
+        backdrop-filter: blur(50px)
+
+    

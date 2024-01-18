@@ -6,13 +6,14 @@ import { BlueContainer } from "../component/color_containers/blue_container";
 import '../../styles/login.sass';
 import foto from "../../img/foto.jpg"
 import { useAuth0 } from "@auth0/auth0-react";
+import { Spinner } from '../component/spinner.js'
 
 import { TopBarTitle } from "../component/topBarTitle.js";
 import { useSpring, animated } from '@react-spring/web'
 
 export const Login = () => {
 
-    const { isAuthenticated, user } = useAuth0()
+    const { isAuthenticated, user, isLoading } = useAuth0()
 
     const springs = useSpring({
         from:
@@ -23,13 +24,17 @@ export const Login = () => {
         },
     })
 
+
+
     const [estadoEdicion, setEstadoEdicion] = useState(false);
     const [ubicacion, setUbicacion] = useState('Vigo');
     const [direccion, setDireccion] = useState('Calle Anduriña');
 
 
 
-
+    if (isLoading) return (<>
+        <Spinner />
+    </>)
     return (<>
         <TopBarTitle topTitle='My profile' />
 
@@ -76,7 +81,7 @@ export const Login = () => {
 
                         </div>
                     </GreenContainer>
-                    <PurpleContainer style={{ height: '500px', width:'300px'}}>
+                    <PurpleContainer style={{ height: '500px', width: '300px' }}>
                         <h3>Detalles de la cuenta</h3>
                         <div><span>Name :
                         </span>
@@ -93,7 +98,7 @@ export const Login = () => {
 
                     </PurpleContainer>
                 </div>
-                <BlueContainer style={{width:'800px', alignItems: 'center'}}>
+                <BlueContainer style={{ width: '800px', alignItems: 'center' }}>
                     <p>Recuerda nunca compartas tus claves, ni informacion acerca de tu cuenta</p>
                     <p>El equipo de FlowFinance nunca solicitara tus password por sms o email</p>
                 </BlueContainer>

@@ -20,6 +20,6 @@ export const LogginButton = () => {
         console.log('loggin clicked');
     }
     return (<>
-        <button onClick={loginClick}>Log In</button>
+        <button onClick={loginClick} className='purple--button'>Log In</button>
     </>)
 } 

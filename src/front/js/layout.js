@@ -16,6 +16,7 @@ import { Footer } from "./component/footer";
 import '../styles/layout.sass'
 import { TopBar } from "./component/top_searchbar";
 import {Subscription } from '../js/pages/subscription-settings'
+import { Notifications } from '../js/pages/notifications'
 
 //create your first component
 const Layout = () => {
@@ -38,6 +39,7 @@ const Layout = () => {
                             <Route element={<AboutUs />} path="/aboutus" />
                             <Route element={<Dashboard />} path="/dashboard" />
                             <Route element={<Subscription />} path="/subscription" />
+                            <Route element={<Notifications />} path="/notifications" />
                             <Route element={<Demo />} path="/demo" />
                             <Route element={<Single />} path="/single/:theid" />
                             <Route element={<h1>Not found!</h1>} />

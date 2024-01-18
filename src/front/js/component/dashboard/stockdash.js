@@ -36,8 +36,8 @@ export const Stockdash = () => {
                 }}
                 className="d-flex flex-column gap-5 navbar-margin"
             >
-                <div className="d-flex flex-row justify-content-between flex-wrap gap-2 p-4 pt-0" style={{ width: '100%' }}>
-                    <PurpleContainer >
+                <div className="d-flex flex-row justify-content-around flex-wrap gap-5 p-4 pt-0" style={{ width: '100%' }}>
+                    <PurpleContainer style={{flexBasis: '40%'}}>
                         <div className="text-light d-flex flex-row gap-2 justify-content-center align-items-center">
                             <img src='https://restyler.s3.ap-southeast-2.amazonaws.com/user-data/user-46/artworks/product-79/preview/thumbnails/5MPgTBYjDfQKQP7gMsmbzC8lmELrSQWwHILNnnfr-watermarked-lg-resized.gif' alt="" style={{ height: '150px', filter: 'hue-rotate(100deg)' }} />
                             <div>
@@ -48,7 +48,7 @@ export const Stockdash = () => {
                             </div>
                         </div>
                     </PurpleContainer>
-                    <BlueContainer>
+                    <BlueContainer style={{flexBasis: '40%', alignItems: 'center', justifyItems: 'center'}}>
                         <Doughnut />
                     </BlueContainer>
                     <div className="d-flex flex-column gap-5 justify-content-between align-items-center p-4 " style={{ height: 700, width: '100%' }}>

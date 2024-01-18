@@ -16,6 +16,6 @@ export const LogoffButton = () => {
         console.log('logoff clicked')
     }
     return (<>
-        <button onClick={logoffClick}>Log Off</button>
+        <button onClick={logoffClick} className='green--button'>Log Off</button>
     </>)
 } 

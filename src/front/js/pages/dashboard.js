@@ -19,49 +19,43 @@ import { Stockdash } from "../component/dashboard/stockdash.js";
 export const Dashboard = () => {
     const { user, isLoading } = useAuth0();
 
-    if (isLoading) {
 
-        return (<>
-            <div style={{width: '100%', height: '100%'}}>
-            <Spinner/>
 
-            </div>
-        </>
-        )
-    } 
+    const [searchState, setSearchState] = useState(false)
+    const { store, actions } = useContext(Context)
 
-        const [searchState, setSearchState] = useState(false)
-        const { store, actions } = useContext(Context)
+    const handleClick = () => {
 
-        const handleClick = () => {
-
-            setSearchState(!searchState);
-            console.log(searchState)
-        }
-
-        const checkForUserInDB = () => {
-            actions.setUser(user)
-
-        }
-
-        useEffect(() => {
-            if (user) {
-                checkForUserInDB()
-            }
-        }, [])
-
-        const springs = useSpring({
-            from: { opacity: 0, y: -5 },
-            to: [{ opacity: 1, y: 0 }],
-            config: {
-                mass: 5,
-                friction: 35,
-                tension: 120,
-            },
-        })
-
-        return (<>
-            <TopBarTitle topTitle='Dashboard' />
-            <Stockdash /> 
-        </>)
+        setSearchState(!searchState);
+        console.log(searchState)
     }
+
+    const checkForUserInDB = () => {
+        actions.setUser(user)
+
+    }
+
+    useEffect(() => {
+        if (user) {
+            checkForUserInDB()
+        }
+    }, [])
+
+    const springs = useSpring({
+        from: { opacity: 0, y: -5 },
+        to: [{ opacity: 1, y: 0 }],
+        config: {
+            mass: 5,
+            friction: 35,
+            tension: 120,
+        },
+    })
+    if (isLoading) return (<>
+            <Spinner />
+        
+    </>)
+    return (<>
+        <TopBarTitle topTitle='Dashboard ' />
+        <Stockdash />
+    </>)
+}
