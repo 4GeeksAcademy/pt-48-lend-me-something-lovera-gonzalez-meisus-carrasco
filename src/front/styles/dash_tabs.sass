@@ -1,0 +1,50 @@
+@use '../styles/shared'
+
+$layer1: radial-gradient(circle, shared.$blue-base-color  0%, shared.$dark-gray-base-color  50%,shared.$dark-gray-base-color 100%)
+$layer2: linear-gradient(0deg, shared.$dark-gray-base-color 0%, shared.$blue-base-color 80%, shared.$blue-base-color 190%)
+.dashboard-tabs
+    &--container
+        position: sticky
+        top:0
+        background: shared.$dark-gray-base-color
+        display: flex
+        flex-direction: column
+        justify-content: flex-end
+        align-items: center
+        height: 3.5em
+        z-index: 2
+        margin-bottom: 2em
+    &--bar
+        display: flex
+        flex-direction: row
+        justify-content: center
+        gap: 2em
+        width: 100%
+    &--tab
+        color: white
+        font-size: 1.5em
+        display: flex
+        flex-direction: column
+        justify-content: center
+        align-items: center
+        padding: 0 1em 0 1em
+        border-radius: 0.5em 0.5em 0 0
+        border-top: 1px solid shared.$blue-base-color
+        border-left: 1px solid shared.$blue-base-color
+        border-bottom: 2px solid shared.$dark-gray-base-color
+        border-right: 1px solid shared.$blue-base-color
+        transition: 300ms linear
+        &--active 
+            z-index: 2
+        &:hover
+            background: $layer2
+            transition: 300ms linear
+            cursor: pointer
+
+    &--hr
+        position: relative
+        top: -1px
+        background: $layer1
+        width: 100%
+        height: 1px
+        z-index: 0

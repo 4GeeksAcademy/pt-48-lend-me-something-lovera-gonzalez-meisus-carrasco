@@ -494,6 +494,7 @@ export const Table = (props) => {
     useEffect(() => {
         // console.log(props.data)
         if (props.data) setStockData(props.data)
+        if (props.columns) setColStockDef(props.columns)
     }, [])
 
     return (<>

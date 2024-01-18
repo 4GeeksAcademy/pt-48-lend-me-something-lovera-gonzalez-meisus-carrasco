@@ -6,21 +6,19 @@ import { PinkContainer } from "../component/color_containers/pink_container";
 import { YellowContainer } from "../component/color_containers/yellow_container";
 import { PurpleContainer } from "../component/color_containers/purple_container";
 import "../../styles/dashboard.sass"
-import { Doughnut } from "../component/dashboard/doughnut_chart";
 import { useSpring, animated } from '@react-spring/web'
 import { Spinner } from "../component/spinner"
 import { TopBarTitle } from "../component/topBarTitle.js";
-import { Table } from "../component/dashboard/table.js";
 import { useAuth0 } from "@auth0/auth0-react";
 import { Stockdash } from "../component/dashboard/stockdash.js";
+import { DashTabs } from "../component/dashboard/dash_tabs.js";
+import { CrryptoDash } from "../component/dashboard/cryptodash.js";
 
 export const Dashboard = () => {
     const { user, isLoading } = useAuth0();
-
-
-
-    const [searchState, setSearchState] = useState(false)
-    const { store, actions } = useContext(Context)
+    const [searchState, setSearchState] = useState(false);
+    const { store, actions } = useContext(Context);
+    const [activeTab, setActiveTab] = useState(1)
 
     const handleClick = () => {
 
@@ -49,11 +47,13 @@ export const Dashboard = () => {
         },
     })
     if (isLoading) return (<>
-            <Spinner />
-        
+        <Spinner />
+
     </>)
     return (<>
         <TopBarTitle topTitle='Dashboard ' />
-        <Stockdash />
+        <DashTabs activeTab={activeTab} setActiveTab={setActiveTab} />
+        {activeTab === 1 && <Stockdash />}
+        {activeTab === 2 && <CrryptoDash/>}
     </>)
 }

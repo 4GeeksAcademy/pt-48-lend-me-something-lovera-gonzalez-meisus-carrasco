@@ -15,7 +15,6 @@ export const Discover = () => {
     const [exchange, setExchange] = useState('');
     const [offset, setOffset] = useState(0);
     const [pagination, setPagination] = useState('');
-    const [pages, setPages] = useState();
     const [page_numbers, setPage_numbers] = useState('');
     const [lastPage, setLastPage] = useState('');
 
@@ -33,30 +32,24 @@ export const Discover = () => {
         setLoading(true)
         const data = await get_search_results(criteria, exchange, offset);
         const data_with_links = data.data.map(element => ({ ...element, link: `/single/${element.symbol}` }));
-        // console.log(data_with_links);
+        console.log(offset);
         if (offset === 0) setOffset(prev => prev + 100);
         setResults(data_with_links);
         setPagination(data.pagination);
         setLoading(false);
+        console.log(pagination)
     }
 
     const getPrevious = () => {
-        // console.log('Previous clicked')
-
-        setOffset(prev => prev - 100);
         setLoading(true);
         setTimeout(() => {
-            search();
+            search(pagination.offset - 100);
         }, 500)
-
     }
-
     const getNext = () => {
-
-        (offset + 100) < pagination.total ? setOffset(prev => prev + 100) : setOffset(prev => prev - 100)
         setLoading(true)
         setTimeout(() => {
-            search();
+            search(pagination.offset + 100);
         }, 500)
     }
     const resetValues = () => {
@@ -79,16 +72,22 @@ export const Discover = () => {
     useEffect(() => {
         if (results.length > 1) {
             const raw_pages = new Array(Math.ceil(pagination.total / 100)).fill(1).map((e, i) => e * i + 1);
-            const spliced_pages = (Math.floor(pagination.offset / 100) >= (raw_pages.length  -3))  // 2882 --  288100 /100 -- 2881   --- 2877
-                ? raw_pages.splice(raw_pages.length -4, raw_pages.length -1)
-                : raw_pages.splice(Math.floor(pagination.offset / 100), 4);
-                // console.log(raw_pages.splice(raw_pages.length -4, raw_pages.length))
-                // console.log(spliced_pages)
-            const raw_lastPage = [raw_pages[raw_pages.length - 1]];
-            setLastPage(raw_lastPage);
-            setPage_numbers(spliced_pages);
-            // console.log(page_numbers)
-            setPages(page_numbers);
+            if (Math.floor(pagination.offset / 100) >= (raw_pages.length - 3)) {
+                const raw_lastPage = [raw_pages.splice(raw_pages.length - 1, raw_pages.length)];
+                const spliced_pages = raw_pages.splice(raw_pages.length - 4, raw_pages.length - 3);
+                setLastPage(raw_lastPage);
+                setPage_numbers(spliced_pages);
+            }
+            if (!(Math.floor(pagination.offset / 100) >= (raw_pages.length - 3))) {
+                const spliced_pages = raw_pages.splice(
+                    (Math.floor(pagination.offset / 100) <= 1)
+                    ? 0
+                    : Math.floor(pagination.offset / 100)-2
+                    , 5);
+                const raw_lastPage = [raw_pages[raw_pages.length - 1]];
+                setLastPage(raw_lastPage);
+                setPage_numbers(spliced_pages);
+            }
         }
     }, [pagination])
 
@@ -221,8 +220,8 @@ export const Discover = () => {
                             <div
                                 key={index}
                                 className="discover--page"
-                                onClick={(e) => clickedPage(e)}
-                                style={Math.floor(pagination.offset / 100) + 1 === element ? { backgroundColor: 'gray' } : {}}>
+                                onClick={(Math.floor(pagination.offset / 100) + 1) === +element ? undefined : (e) => clickedPage(e)}
+                                style={Math.floor(pagination.offset / 100) + 1 === +element ? { backgroundColor: 'gray' } : {}}>
                                 {element}
                             </div>
 
@@ -232,8 +231,8 @@ export const Discover = () => {
                             <div
                                 key={index}
                                 className="discover--page"
-                                onClick={(e) => clickedPage(e)}
-                                style={Math.floor(pagination.offset / 100) + 1 === element ? { backgroundColor: 'gray' } : {}}>
+                                onClick={(Math.floor(pagination.offset / 100) + 1) === +element ? undefined : (e) => clickedPage(e)}
+                                style={Math.floor(pagination.offset / 100) + 1 === +element ? { backgroundColor: 'gray' } : {}}>
                                 {element}
                             </div>
                         ))}
