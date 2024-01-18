@@ -5,12 +5,23 @@ $green-base-color: #0d715d
 $yellow-base-color: #ffd155
 $pink-base-color: #fdc799
 $purple-base-color: #A200EA
+$light-gray-base-color: #444
+$red-base-color: #b33d3d
+
+.search-result
+    &::-webkit-scrollbar 
+        width: 10px
+
+    &::-webkit-scrollbar-track 
+        background-color: $dark-gray-base-color
+        border-radius: 100px
+    &::-webkit-scrollbar-thumb 
+        background-color: $blue-base-color
+        border-radius: 100px
 
 .navbar-margin
     margin-left: 6em
-
-
-        
+    
 
 .green--button
     width: 8em
@@ -24,6 +35,8 @@ $purple-base-color: #A200EA
         transition: 200ms
     &:active
         box-shadow: 0 0 25px 10px $green-base-color
+        transition: 200ms
+
 .purple--button
     width: 8em
     border: none
@@ -36,4 +49,77 @@ $purple-base-color: #A200EA
         transition: 200ms
     &:active
         box-shadow: 0 0 25px 10px $purple-base-color
+        transition: 200ms
+
+.light-gray--button
+    width: 8em
+    border: none
+    border-radius: 1em
+    background-color: $light-gray-base-color
+    padding: 0.2em 1em 0.2em 1em
+    color: white
+    &:hover
+        scale: 1.1
+        box-shadow: 0 0 10px 2px $blue-base-color
+        transition: 200ms
+    &:active
+        box-shadow: 0 0 25px 10px $blue-base-color
+        transition: 200ms
+
+.blue--button
+    width: 8em
+    border: none
+    border-radius: 1em
+    background-color: $blue-base-color
+    padding: 0.2em 1em 0.2em 1em
+    color: white
+    &:hover
+        scale: 1.1 
+        transition: 200ms
+    &:active
+        box-shadow: 0 0 25px 10px $blue-base-color
+        transition: 200ms
+
+.pink--button
+    width: 8em
+    border: none
+    border-radius: 1em
+    background-color: $pink-base-color
+    padding: 0.2em 1em 0.2em 1em
+    color: white
+    &:hover
+        scale: 1.1 
+        transition: 200ms
+    &:active
+        box-shadow: 0 0 25px 10px $pink-base-color
+        transition: 200ms
+
+.yellow--button
+    width: 8em
+    border: none
+    border-radius: 1em
+    background-color: $yellow-base-color
+    padding: 0.2em 1em 0.2em 1em
+    color: white
+    &:hover
+        scale: 1.1 
+        transition: 200ms
+    &:active
+        box-shadow: 0 0 25px 10px $yellow-base-color
+        transition: 200ms
+
+    
+.red--button
+    width: 8em
+    border: none
+    border-radius: 1em
+    background-color: $red-base-color
+    padding: 0.2em 1em 0.2em 1em
+    color: white
+    &:hover
+        scale: 1.1 
+        transition: 200ms
+    &:active
+        box-shadow: 0 0 25px 10px $red-base-color
+        transition: 200ms
 

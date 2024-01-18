@@ -3,16 +3,32 @@ import { PurpleContainer } from '../component/color_containers/purple_container'
 import { BlueContainer } from '../component/color_containers/blue_container'
 import { YellowContainer } from '../component/color_containers/yellow_container'
 import { TopBarTitle } from '../component/topBarTitle'
+
+import { useSpring, animated } from '@react-spring/web'
 import '../../styles/subscription.sass'
 
 export const Subscription = () => {
+
+    const springs = useSpring({
+        from: { opacity: 0, y: -5 },
+        to: [{ opacity: 1, y: 0 }],
+        config: {
+            mass: 5,
+            friction: 35,
+            tension: 120,
+        },
+    })
 
 
     return (<>
 
         <TopBarTitle topTitle='Subscription Management' />
 
-        <div className="navbar-margin subscription--container" >
+        <animated.div
+            style={{
+                ...springs,
+            }}
+            className="navbar-margin subscription--container" >
             <YellowContainer style={{ width: '60%' }}>
                 <div className="subscription-plan--container">
                     <div>
@@ -71,7 +87,7 @@ export const Subscription = () => {
                     <button className="subscription-button-business subscription-button">Upgrade</button>
                 </div>
             </PurpleContainer>
-        </div>
+        </animated.div>
 
     </>)
 }

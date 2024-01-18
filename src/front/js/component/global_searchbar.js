@@ -3,6 +3,7 @@ import "../../styles/global_searchbar.sass"
 import { useSpring, animated } from '@react-spring/web'
 import { element } from "prop-types";
 import { Link, redirect, useNavigate } from "react-router-dom";
+import { get_search_results } from '../store/API'
 
 const listas = [
     {
@@ -20,7 +21,19 @@ const listas = [
     {
         "title": "Profile",
         "link": "/login",
-    }
+    },
+    {
+        "title": "Subscription",
+        "link": "/subscription",
+    },
+    {
+        "title": "Notifications",
+        "link": "/notifications",
+    },
+    {
+        "title": "Discover",
+        "link": "/discover",
+    },
 ]
 export const GlobalSearchBar = ({ style, handleClick }) => {
     const springs = useSpring({
@@ -36,9 +49,26 @@ export const GlobalSearchBar = ({ style, handleClick }) => {
     const [selectedItem, setSelectedItem] = useState(-1);
     const navigate = useNavigate();
     const inputElement = useRef(null);
+    const [valorStock, setValorStock] = useState('');
+    const [result, setResult] = useState([...listas]);
 
-    const handleChange = e => {
+
+    const getStockData = async (string) => {
+        console.log(string)
+        const data = await get_search_results(string);
+        const data_with_links = data.map(element =>
+            element.symbol ? ({ ...element, link: `/single/${element.symbol}` }) : { ...element, link: `/single/non-traceable` }
+        )
+        const newFilterData = listas.filter(element => {
+            return element.title.toLowerCase().includes(string.toLowerCase())
+        })
+        setSearchData([...newFilterData, ...data_with_links])
+    };
+
+    const handleChange = async (e) => {
         setSearch(e.target.value)
+        await getStockData(e.target.value)
+        console.log(search)
     }
     const handleClose = () => {
         setSearch("");
@@ -91,23 +121,24 @@ export const GlobalSearchBar = ({ style, handleClick }) => {
     // }
     const cerrarBarra = () => {
         setSearch('');
+        setSearchData([])
         handleClick();
     }
 
-    useEffect(() => {
-        if (search !== "") {
-            // fetch(`https://api.tvmaze.com/search/shows?q=${search}`)
-            //     .then(res => res.json())
-            //     .then((data) => setSearchData(data))
+    // useEffect(() => {
+    //     if (search !== "") {
+    //         // fetch(`https://api.tvmaze.com/search/shows?q=${search}`)
+    //         //     .then(res => res.json())
+    //         //     .then((data) => setSearchData(data))
 
-            const newFilterData = listas.filter(lista => {
-                return lista.title.toLowerCase().includes(search.toLowerCase())
-            })
-            setSearchData(newFilterData);
-        } else {
-            setSearchData([])
-        }
-    }, [search])
+    //         const newFilterData = listas.filter(lista => {
+    //             return lista.title.toLowerCase().includes(search.toLowerCase())
+    //         })
+    //         setSearchData(newFilterData);
+    //     } else {
+    //         setSearchData([])
+    //     }
+    // }, [search])
 
 
     return (<>
@@ -118,21 +149,21 @@ export const GlobalSearchBar = ({ style, handleClick }) => {
                 <i className="fa-solid fa-magnifying-glass magnifying" style={{ "color": "#ffffff" }}></i>
                 <input ref={inputElement => { if (inputElement) { inputElement.focus(); } }}
                     className='search-input'
-                    autoComplete="off" 
-                    type="text" 
-                    name="search" 
-                    id="search" 
-                    placeholder="Search" 
-                    onChange={handleChange} 
-                    value={search} 
+                    autoComplete="off"
+                    type="text"
+                    name="search"
+                    id="search"
+                    placeholder="Search"
+                    onChange={handleChange}
+                    value={search}
                     onKeyDown={handleKeyDown} />
                 <button className=" button-close-search" onClick={cerrarBarra}><i className="fa-solid fa-xmark"></i></button>
 
             </div>
             <div className="search-result">
-                {searchData.map((listas, index) => {
+                {searchData.map((element, index) => {
                     return (
-                        <Link to={`${listas.link}`}
+                        <Link to={`${element.link}`}
                             key={index}
                             onClick={cerrarBarra}
                             className={
@@ -140,18 +171,21 @@ export const GlobalSearchBar = ({ style, handleClick }) => {
                                     ? "search-suggestion-line active"
                                     : "search-suggestion-line"
                             }>
-                            {listas.title}
+                            {element.title ? element.title : (
+							<div className="d-flex justify-content-between" style={{ width: '20em' }}>
+								<span>
+									{element.name}
+								</span>
+								<span>
+									{element.symbol}
+								</span>
+							</div>
+						)}
                         </Link>
                     );
                 })
                 }
-                {/* {listaFiltrada.length > 0 && <ul style={query != "" ? { display: "unset" } : { display: "none" }} >
-                    {listaFiltrada.map((element, index) => (
-                        <li key={index}><button onClick={(e) => handleButtonClick(e)}>{element}</button></li>
-                    ))}
-                </ul>} */}
             </div>
-
         </animated.div>
     </>)
 }

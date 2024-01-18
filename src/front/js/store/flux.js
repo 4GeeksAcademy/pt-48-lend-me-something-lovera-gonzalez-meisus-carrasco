@@ -1,4 +1,4 @@
-import get_data from './API'
+import{get_eod_data} from './API'
 
 const getState = ({ getStore, getActions, setStore }) => {
 	return {
@@ -26,18 +26,18 @@ const getState = ({ getStore, getActions, setStore }) => {
 				getActions().changeColor(0, "green");
 			},
 
-			getMessage: async () => {
-				try {
-					// fetching data from the backend
-					const resp = await fetch(process.env.BACKEND_URL + "/api/hello")
-					const data = await resp.json()
-					setStore({ message: data.message })
-					// don't forget to return something, that is how the async resolves
-					return data;
-				} catch (error) {
-					console.log("Error loading message from backend", error)
-				}
-			},
+			// getMessage: async () => {
+			// 	try {
+			// 		// fetching data from the backend
+			// 		const resp = await fetch(process.env.BACKEND_URL + "/api/hello")
+			// 		const data = await resp.json()
+			// 		setStore({ message: data.message })
+			// 		// don't forget to return something, that is how the async resolves
+			// 		return data;
+			// 	} catch (error) {
+			// 		console.log("Error loading message from backend", error)
+			// 	}
+			// },
 			changeColor: (index, color) => {
 				//get the store
 				const store = getStore();
@@ -56,13 +56,13 @@ const getState = ({ getStore, getActions, setStore }) => {
 				const store = getStore();
 				setStore({ ...store, title: title })
 			},
-			loadSomeData: async (symbol) => {
-				if (symbol === undefined) symbol = 'AAPL';
-				console.log(symbol);
-				const store = getStore();
-				const data = await get_data(symbol);
-				setStore({ ...store, stocks: data });
-			},
+			// loadSomeData: async (symbol) => {
+			// 	if (symbol === undefined) symbol = 'AAPL';
+			// 	console.log(symbol);
+			// 	const store = getStore();
+			// 	const data = await get_eod_data(symbol);
+			// 	setStore({ ...store, stocks: data });
+			// },
 			setUser: (user) => {
 				console.log(user);
 				const store = getStore();
