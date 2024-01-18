@@ -13,8 +13,6 @@ import { useSpring, animated } from '@react-spring/web'
 import { Spinner } from "../component/spinner"
 import { TopBarTitle } from "../component/topBarTitle.js";
 import { Table } from "../component/dashboard/table.js";
-import { MyDocument } from "../component/dashboard/pdf.js";
-import { PDFViewer } from '@react-pdf/renderer';
 
 
 export const Dashboard = () => {
@@ -78,9 +76,9 @@ export const Dashboard = () => {
 
                 <div className="d-flex flex-column gap-5 justify-content-between align-items-center p-4 " style={{ marginLeft: 200, height: 700 }}>
                     <Table />
-                <PDFViewer>
+                {/* <PDFViewer>
                     <MyDocument />
-                </PDFViewer>
+                </PDFViewer> */}
                 </div>
 
                 <div className="d-flex flex-row justify-content-between align-items-center p-4">
