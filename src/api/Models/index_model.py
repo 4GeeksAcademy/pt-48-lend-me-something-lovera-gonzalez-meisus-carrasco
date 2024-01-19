@@ -7,6 +7,7 @@ class Index(db.Model):
     icon = db.Column(db.String, nullable =False)
     currency= db.Column(db.String, nullable=False)
     create_at =db.Column(db.String(50), nullable=False)
+    symbol = db.Column(db.String, nullable =False)
 
     def __repr__(self):
         return f'<index:{self.name}>'
@@ -16,7 +17,8 @@ class Index(db.Model):
            'name': self.name,
            'icon':self.icon,
            'currency':self.currency,
-           'create_at':self.create_at
+           'create_at':self.create_at,
+           'symbol': self.symbol
         }
 
     
