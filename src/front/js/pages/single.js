@@ -13,8 +13,12 @@ import { get_eod_data, get_ticker_info, get_search_results } from '../store/API'
 import Spinner from "../component/spinner";
 import '../../styles/single.sass'
 import { TopBarTitle } from "../component/topBarTitle.js";
+import { useAuth0 } from "@auth0/auth0-react";
+import { LogginButton } from "../component/Auth0/loggin_button.js";
+
 
 export const Single = props => {
+	const { isAuthenticated, user, isLoading } = useAuth0()
 	const [loading, setLoading] = useState(true)
 	const { store, actions } = useContext(Context);
 	const [tableData, setTableData] = useState([]);
@@ -23,7 +27,7 @@ export const Single = props => {
 
 	const loadTableData = async (symbol) => {
 		const data = await get_eod_data(symbol)
-		const ticker_info = await get_search_results(symbol,'','')
+		const ticker_info = await get_search_results(symbol, '', '')
 		console.log(await ticker_info)
 		console.log(ticker_info.data[0])
 		setTableData(data);
@@ -47,13 +51,14 @@ export const Single = props => {
 
 	return (<>
 		{loading && <Spinner />}
-		{!loading && <TopBarTitle topTitle={ticker.symbol}/>}
+		{!loading && <TopBarTitle topTitle={ticker.symbol} />}
 		{!loading && <div className="d-flex flex-column gap-5 align-items-center justify-content-center navbar-margin">
 
 			<BlueContainer style={{ position: 'relative', width: '60%' }}>
 				{ticker.name && <>
 					<div className='d-flex flex-row gap-2'>
-						<button className="blue--button single-portfolio--button" >Add to Portfolio</button>
+						{isAuthenticated && <button className="blue--button single-portfolio--button" >Add to Portfolio</button>}
+						{!isAuthenticated && <LogginButton style={{ height: '3rem', width: '15rem !important', position: 'absolute', bottom: '2rem', right: '2rem', backgroundColor: '#0d715d' }} />}
 						<h1 className="display-4">{ticker.name}</h1>
 					</div>
 					<h3>Symbol/Ticker: {ticker.symbol} </h3>

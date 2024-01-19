@@ -29,7 +29,7 @@ def add(index_data):
 
 @staticmethod
 def delete(index_data):
-    index_to_be_deleted = session.query(Index).filter(Index.name == index_data["name"])
+    index_to_be_deleted = session.query(Index).filter(Index.name == index_data["name"]).first()
     session.delete(index_to_be_deleted)
     session.commit()
     return True

@@ -44,7 +44,7 @@ class ValueRepository:
 
     @staticmethod
     def delete(value_data):
-        value_to_be_deleted = session.query(Value).filter(Value.id == value_data["id"])
+        value_to_be_deleted = session.query(Value).filter(Value.id == value_data["id"]).first()
         session.delete(value_to_be_deleted)
         session.commit()
         return True

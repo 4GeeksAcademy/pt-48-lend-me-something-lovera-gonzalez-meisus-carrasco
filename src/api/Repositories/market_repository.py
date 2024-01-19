@@ -63,7 +63,7 @@ class MarketRepository:
     
     @staticmethod
     def delete_market(market_data):
-        market_to_be_deleted = session.query(Market).filter(Market.id == market_data['id'])
+        market_to_be_deleted = session.query(Market).filter(Market.id == market_data['id']).first()
         session.delete(market_to_be_deleted)
         session.commit()
         return True

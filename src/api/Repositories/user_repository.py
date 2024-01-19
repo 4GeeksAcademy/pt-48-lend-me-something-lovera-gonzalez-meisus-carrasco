@@ -34,7 +34,7 @@ class UserRepository:
     @staticmethod
     def update(user_data):
         user_to_be_updated = session.query(User).filter(User.id == user_data["id"])
-        if "email" in user_data:
+        if "email" in user_data: 
             user_to_be_updated.update(
                 {User.email: user_data["email"]}, synchronize_session=False
             )

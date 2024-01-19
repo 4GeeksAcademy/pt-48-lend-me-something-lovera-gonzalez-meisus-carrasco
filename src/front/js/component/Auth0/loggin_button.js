@@ -4,7 +4,7 @@ import { Context } from '../../store/appContext'
 
 
 
-export const LogginButton = () => {
+export const LogginButton = (props) => {
 
     const { store, actions } = useContext(Context)
 
@@ -19,7 +19,11 @@ export const LogginButton = () => {
         });
         console.log('loggin clicked');
     }
-    return (<>
-        <button onClick={loginClick} className='purple--button'>Log In</button>
-    </>)
+    return (
+        <button 
+        onClick={loginClick} 
+        className='purple--button'
+        style={{...props.style}}
+        >Log In</button>
+    )
 } 

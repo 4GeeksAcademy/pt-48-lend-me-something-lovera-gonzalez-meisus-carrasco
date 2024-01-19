@@ -24,5 +24,7 @@ class User(db.Model):
             'created_at' : self.created_at,
             'country' : self.country,
             'city' : self.city,
-            'street' : self.street
+            'street' : self.street,
+            'subscription_id': self.subscription_id,
+            'subscription_level': self.subscription.level.value
         }
