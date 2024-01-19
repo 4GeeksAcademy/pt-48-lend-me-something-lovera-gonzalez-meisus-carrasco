@@ -470,10 +470,11 @@ export const Table = (props) => {
     const generatePdf = () => {
         const doc = new jsPDF('l');
         doc.text('Flow Finance Report', 125, 20)
-        const columns = ['Symbol', 'Open', 'Close', 'Date', 'Exchange'];
+        const columns = props.columns ? props.columns.map(element => element.field):['Symbol', 'Open', 'Close', 'Date', 'Exchange'];
         // const columns = Object.keys(stockData[0]);
         // const data = stockData.map(element => ([element.symbol, element.open, element.close, element.date, element.exchange, element.adj_volume]));
-        const data = stockData.map((value, index) => (Object.keys(stockData.map(element => ({ 'symbol': element.symbol, 'open': element.open, 'close': element.close, 'date': element.date, 'exchange': element.exchange }))[index]).map(element => stockData[index][`${element}`])));
+        const data = props.data ? props.data.map((value, index)=> (Object.keys(props.data[index]).map(element => props.data[index][`${element}`]) )) 
+        : stockData.map((value, index) => (Object.keys(stockData.map(element => ({ 'symbol': element.symbol, 'open': element.open, 'close': element.close, 'date': element.date, 'exchange': element.exchange }))[index]).map(element => stockData[index][`${element}`])));
         // console.log(stockData.map(element => ({'symbol':element.symbol,'open':element.open,'close':element.close,'date':element.date,'exchange':element.exchange})))
         doc.autoTable({
             startY: 25,

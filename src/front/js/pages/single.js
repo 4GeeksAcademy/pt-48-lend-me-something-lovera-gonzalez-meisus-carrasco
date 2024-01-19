@@ -45,7 +45,7 @@ export const Single = props => {
 
 	return (<>
 		{loading && <Spinner />}
-		<TopBarTitle topTitle='Single'/>
+		{!loading && <TopBarTitle topTitle={ticker.symbol}/>}
 		{!loading && <div className="d-flex flex-column gap-5 align-items-center justify-content-center navbar-margin">
 
 			<BlueContainer style={{ position: 'relative', width: '60%' }}>

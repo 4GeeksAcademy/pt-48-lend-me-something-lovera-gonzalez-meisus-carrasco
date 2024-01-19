@@ -12,7 +12,7 @@ import { useSpring, animated } from '@react-spring/web'
 import { Spinner } from "../spinner"
 import { TopBarTitle } from "../topBarTitle.js";
 import { Table } from "./table.js";
-import { data as Data } from '../../store/coinAPIdata.js'
+import { forexData as Data } from '../../store/forexTop.js'
 
 import { useAuth0 } from "@auth0/auth0-react";
 
@@ -36,7 +36,7 @@ export const ForexDash = () => {
 		"data_end": "2024-01-17"
 	}
 
-    const filtered_data = Data.filter(e => e.type_is_crypto === 1).map(element => ({ 'name': element.name, 'id': element.asset_id, 'price': element.price_usd, 'date': element.data_end })).sort((a, b) => a.price_usd - b.price_usd).splice(0, 30)
+    const filtered_data = Data.map(element => ({ 'name': element.ticker.toUpperCase(), 'price': element.midPrice, 'bidPrice': element.bidPrice, 'askPrice': element.askPrice})).sort((a, b) => a.price_usd - b.price_usd).splice(0, 30)
 
 
     const preColumns = Object.keys(filtered_data[0]).map(e => ({'field': e}))
