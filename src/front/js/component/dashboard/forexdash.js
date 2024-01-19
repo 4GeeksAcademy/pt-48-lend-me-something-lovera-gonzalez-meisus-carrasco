@@ -36,7 +36,7 @@ export const ForexDash = () => {
 		"data_end": "2024-01-17"
 	}
 
-    const filtered_data = Data.filter(e => e.type_is_crypto === 1).map(element => ({ 'name': element.name, 'id': element.asset_id, 'price': element.price_usd, 'date': element.data_end })).sort((a, b) => a.price_usd - b.price_usd).splice(0, 30)
+    const filtered_data = Data.filter(e => e.type_is_crypto === 1).map(element => ({ 'name': element.name, 'id': element.asset_id, 'price': element.price_usd, 'date': element.data_end })).sort((a, b) => b.price- a.price).splice(4, 30)
 
 
     const preColumns = Object.keys(filtered_data[0]).map(e => ({'field': e}))
@@ -72,7 +72,7 @@ export const ForexDash = () => {
         >
             <div className="d-flex flex-row justify-content-around flex-wrap gap-5 p-4 pt-0" style={{ width: '100%' }}>
                 <BlueContainer style={{ flexBasis: '40%', alignItems: 'center', justifyItems: 'center' }}>
-                    <Doughnut data={filtered_data}/>
+                    <Doughnut data={filtered_data.splice(0,10)} colors={['#DCF2F1','#7FC7D9','#365486']}/>
                 </BlueContainer>
                 <div className="d-flex flex-column gap-5 justify-content-between align-items-center p-4 " style={{ height: 700, width: '100%' }}>
                     {data.length > 1 && <Table data={data} columns={tableColumns}/>}

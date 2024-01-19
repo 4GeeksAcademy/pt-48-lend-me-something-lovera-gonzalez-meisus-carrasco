@@ -32,11 +32,11 @@ export const AboutUs = () => {
                 className="d-flex flex-row justify-content-center align-items-center"
             >
                 {/* <h1 className="text-center">About Us</h1> */}
-                <PurpleContainer style={{ display: 'flex', flexDirection: 'column', margin: '2em', gap: '2em', height: '450px', justifyContent:'space-between' }}>
+                <PurpleContainer style={{ display: 'flex', flexDirection: 'column', margin: '2em', gap: '2em', height: '450px', justifyContent: 'space-between' }}>
                     <div className="aboutus-dev-container">
-
-                        <img src={gloss} alt="Adrian" style={{ width: 150, height: 150, objectFit: 'cover', borderRadius: '50%', border: '2px solid #A200EA' }} className="aboutus--picture"/>
-
+                        <div className="aboutus-image" style={{ '--i': 0 }} >
+                            <img src={gloss} alt="Adrian" style={{ width: 150, height: 150, objectFit: 'cover', borderRadius: '50%', border: '2px solid #A200EA' }} className="aboutus--picture" />
+                        </div>
                         <div className="aboutus-dev-description">
                             <div>
                                 <h4>&lt;Gloss /&gt;</h4>
@@ -57,9 +57,9 @@ export const AboutUs = () => {
                         </div>
                     </div>
                     <div className="aboutus-dev-container">
-
-                        <img src={scarface} alt="Adrian" style={{ width: 150, height: 150, objectFit: 'cover', borderRadius: '50%', border: '2px solid #0d715d' }} />
-
+                        <div className="aboutus-image " style={{ '--i': 0 }} >
+                            <img src={scarface} alt="Anderson" style={{ width: 150, height: 150, objectFit: 'cover', borderRadius: '50%', border: '2px solid #0d715d' }} />
+                        </div>
                         <div className="aboutus-dev-description">
                             <div>
                                 <h4>&lt;Sc@rface /&gt;</h4>
@@ -82,12 +82,14 @@ export const AboutUs = () => {
 
 
                 </PurpleContainer>
-                <BlueContainer style={{ display: 'flex', flexDirection: 'column', margin: '2em', gap: '2em', height: '450px', justifyContent:'space-between' }}>
+                <BlueContainer style={{ display: 'flex', flexDirection: 'column', margin: '2em', gap: '2em', height: '450px', justifyContent: 'space-between' }}>
                     <div className="aboutus-dev-container">
-                        <img src={atlas} alt="Adrian" style={{ width: 150, height: 150, objectFit: 'cover', borderRadius: '50%', border: '3px solid #4fa2ff' }} />
+                        <div className="aboutus-image" style={{ '--i': 0.5 }}  >
+                            <img src={atlas} alt="Augusto" style={{ width: 150, height: 150, objectFit: 'cover', borderRadius: '50%', border: '3px solid #4fa2ff' }} />
+                        </div>
                         <div className="aboutus-dev-description">
                             <div>
-                                <h4>&lt;Atlas /&gt;</h4>
+                                <h4>&lt;At1as /&gt;</h4>
                                 <p>There's no ilusion you can't see.</p></div>
                             <div>
                                 <i className="fa-brands fa-linkedin"></i>
@@ -104,11 +106,13 @@ export const AboutUs = () => {
                         </div>
                     </div>
                     <div className="aboutus-dev-container">
-                        <img src={meisusito} alt="Adrian" style={{ width: 150, height: 150, objectFit: 'cover', borderRadius: '50%', border: '2px solid #ffd155' }} />
+                        <div className="aboutus-image" style={{ '--i': 0.5 }} >
+                            <img src={meisusito} alt="juan" style={{ width: 150, height: 150, objectFit: 'cover', borderRadius: '50%', border: '2px solid #ffd155' }} />
+                        </div>
                         <div className="aboutus-dev-description">
                             <div>
                                 <h4>&lt;Meisusito /&gt;</h4>
-                                <p>Instálate algo, marico!</p>
+                                <p>Tus actos te definen. No se tú, yo me instalé algo.</p>
                             </div>
                             <div>
                                 <i className="fa-brands fa-linkedin"></i>

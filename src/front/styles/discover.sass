@@ -116,6 +116,7 @@ $layer2: linear-gradient(60deg, shared.$dark-gray-base-color 0%, shared.$dark-gr
     border-radius: 1em
     padding: 0.5em
     width: 16em
+    max-height: 2.7em
     color: white
     &:focus
         background: $layer1, $layer2
@@ -130,9 +131,10 @@ $layer2: linear-gradient(60deg, shared.$dark-gray-base-color 0%, shared.$dark-gr
     background-color: shared.$dark-gray-base-color
     border: 1px solid shared.$green-base-color
     border-radius: 1em
-    padding: 0.5em
+    padding: 0 5em 0 0.5em
     width: 18em
     color: white
+    max-height: 2.7em
     &:focus
         background: $layer1, $layer2
         outline: 1px solid transparent
@@ -184,3 +186,6 @@ $layer2: linear-gradient(60deg, shared.$dark-gray-base-color 0%, shared.$dark-gr
     &:active
         box-shadow: 0 0 25px 10px shared.$green-base-color
         transition: 200ms
+
+.discover-button
+    max-height: 2.7em

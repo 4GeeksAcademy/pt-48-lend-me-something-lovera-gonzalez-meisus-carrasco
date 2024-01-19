@@ -22,11 +22,11 @@ export const Single = props => {
 	const params = useParams();
 
 	const loadTableData = async (symbol) => {
-		// const data = await get_eod_data(symbol)
+		const data = await get_eod_data(symbol)
 		const ticker_info = await get_search_results(symbol,'','')
 		console.log(await ticker_info)
 		console.log(ticker_info.data[0])
-		// setTableData(ticker_info.data[0]);
+		setTableData(data);
 		setTicker(ticker_info.data[0]);
 		setTimeout(() => {
 			setLoading(false)
@@ -40,8 +40,10 @@ export const Single = props => {
 		if (params.symbol) {
 			loadTableData(params.symbol);
 		}
-
-	}, [])
+		return () => {
+			setTableData([])
+		}
+	}, [params.symbol])
 
 	return (<>
 		{loading && <Spinner />}
@@ -58,7 +60,7 @@ export const Single = props => {
 					<h5>{ticker.stock_exchange.country} market</h5>
 					<h6>{ticker.stock_exchange.name}</h6></>}
 				<div className="d-flex flex-column gap-5 justify-content-between align-items-center p-4 " style={{ height: 700, width: '100%' }}>
-					{/* {tableData.length > 1 && <Table data={tableData} />} */}
+					{tableData.length > 1 && <Table data={tableData} />}
 				</div>
 			</BlueContainer>
 

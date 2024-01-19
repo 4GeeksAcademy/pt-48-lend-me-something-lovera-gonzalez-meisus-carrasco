@@ -22,7 +22,7 @@ export const TopBar = () => {
     const handleClick = () => {
 
         setSearchState(!searchState);
-        console.log(searchState)
+        // console.log(searchState)
     }
 
     return (<>

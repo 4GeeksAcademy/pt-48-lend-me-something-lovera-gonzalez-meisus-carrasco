@@ -54,7 +54,7 @@ export const GlobalSearchBar = ({ style, handleClick }) => {
 
 
     const getStockData = async (string) => {
-        console.log(string)
+        // console.log(string)
         const data = await get_search_results(string,'',0);
         const data_with_links = data.data.map(element =>
             element.symbol ? ({ ...element, link: `/single/${element.symbol}` }) : { ...element, link: `/single/non-traceable` }
@@ -68,7 +68,7 @@ export const GlobalSearchBar = ({ style, handleClick }) => {
     const handleChange = async (e) => {
         setSearch(e.target.value)
         await getStockData(e.target.value)
-        console.log(search)
+        // console.log(search)
     }
     const handleClose = () => {
         setSearch("");

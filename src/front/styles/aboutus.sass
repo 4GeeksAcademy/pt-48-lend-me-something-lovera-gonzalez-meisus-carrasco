@@ -15,3 +15,59 @@
         display: flex
         flex-direction: column
         justify-content: space-around
+
+.aboutus-dev-description div a
+    text-decoration: none
+    color: white
+    &:hover
+        text-decoration: underline
+
+.aboutus-image
+    position: relative
+    overflow: hidden
+    border-radius: 50%
+    height: 150px
+    &::after
+        content: ""
+        display: block
+        width: 30px
+        height: 100%
+        position: absolute
+        top: -180px
+        left: 0
+        background-color: #FFF
+        opacity: 0
+        transform: rotate(45deg)
+        animation: reflect 0.1s ease-in-out 1
+        animation-delay: var(--i)s
+        -webkit-animation-delay: calc(1s * var(--i))
+        -webkit-transform: rotate(45deg)
+        -webkit-animation:   3s ease-in-out calc(1s * var(--i)) 1 reflect
+        
+@keyframes reflect 
+    0% 
+        transform: scale(0) rotate(45deg)
+        opacity: 0 
+    80% 
+        transform: scale(0) rotate(45deg)
+        opacity: 0.3 
+    81% 
+        transform: scale(4) rotate(45deg)
+        opacity: 0.5 
+    100% 
+        transform: scale(50) rotate(45deg)
+        opacity: 0 
+
+@-webkit-keyframes reflect 
+    0% 
+        transform: scale(0) rotate(45deg)
+        opacity: 0 
+    80% 
+        transform: scale(0) rotate(45deg)
+        opacity: 0.5 
+    81% 
+        transform: scale(4) rotate(45deg)
+        opacity: 1 
+    100% 
+        transform: scale(50) rotate(45deg)
+        opacity: 0 

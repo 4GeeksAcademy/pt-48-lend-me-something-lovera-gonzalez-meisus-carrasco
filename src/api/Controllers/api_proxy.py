@@ -9,7 +9,7 @@ api_proxy = Blueprint("api_proxy", __name__)
 def proxy():
     target_url = request.args.get('url')
     symbols = request.args.get('symbols')
-    # print(symbols)
+    print(f'Llamada de end of day al symbolo: {symbols}')
     # print(target_url)
     if not target_url:
         return 'Error: No target URL provided.'
@@ -31,19 +31,19 @@ def proxy_search():
     symbols = request.args.get('symbols')
     exchange = request.args.get('exchange')
     offset = request.args.get('offset')
-
+    print(f'Llamada de search al symbolo: {symbols}')
     if (offset is None): offset = ''
     if (exchange is None): exchange = ''
-    print(symbols)
-    print(f'{target_url}&search={symbols}')
-    print((f'{target_url}?offset={offset}&exchange={exchange}&search={symbols}'))
+    # print(symbols)
+    # print(f'{target_url}&search={symbols}')
+    # print((f'{target_url}?offset={offset}&exchange={exchange}&search={symbols}'))
     if not target_url:
         return 'Error: No target URL provided.'
 
     try:
         if request.method == 'GET':
             response = requests.get(f'{target_url}?offset={offset}&exchange={exchange}&search={symbols}')
-            print(response.json())
+            # print(response.json())
         else:
             return 'Error: Unsupported HTTP method.'
 
@@ -57,8 +57,9 @@ def proxy_search():
 def ticker():
     target_url = request.args.get('url')
     symbols = request.args.get('symbols')
-    print(symbols)
-    print(f'{target_url}&search={symbols}')
+    print(f'Llamada de ticker al symbolo: {symbols}')
+    # print(symbols)
+    # print(f'{target_url}&search={symbols}')
     if not target_url:
         return 'Error: No target URL provided.'
 

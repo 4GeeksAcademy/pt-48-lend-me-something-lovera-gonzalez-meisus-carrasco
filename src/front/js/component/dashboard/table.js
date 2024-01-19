@@ -5,6 +5,7 @@ import React, { useEffect, useMemo, useState, useContext, useCallback } from 're
 import { Context } from '../../store/appContext'
 import { read, utils, writeFile } from "xlsx";
 import { GreenContainer } from '../color_containers/green_container';
+import { BlueContainer } from '../color_containers/blue_container';
 import { jsPDF } from "jspdf";
 import autoTable from 'jspdf-autotable'
 import { element, object } from 'prop-types';
@@ -473,7 +474,10 @@ export const Table = (props) => {
         const columns = ['Symbol', 'Open', 'Close', 'Date', 'Exchange'];
         // const columns = Object.keys(stockData[0]);
         // const data = stockData.map(element => ([element.symbol, element.open, element.close, element.date, element.exchange, element.adj_volume]));
-        const data = stockData.map((value, index) => (Object.keys(stockData.map(element => ({ 'symbol': element.symbol, 'open': element.open, 'close': element.close, 'date': element.date, 'exchange': element.exchange }))[index]).map(element => stockData[index][`${element}`])));
+        const data = stockData
+            .map((value, index) => (Object.keys(stockData
+                .map(element => ({ 'symbol': element.symbol, 'open': element.open, 'close': element.close, 'date': element.date, 'exchange': element.exchange }))[index])
+                .map(element => stockData[index][`${element}`])));
         // console.log(stockData.map(element => ({'symbol':element.symbol,'open':element.open,'close':element.close,'date':element.date,'exchange':element.exchange})))
         doc.autoTable({
             startY: 25,
@@ -495,11 +499,11 @@ export const Table = (props) => {
         // console.log(props.data)
         if (props.data) setStockData(props.data)
         if (props.columns) setColStockDef(props.columns)
-    }, [])
+    }, [props.data, props.columns])
 
     return (<>
-        <GreenContainer style={{ width: '80%', display: 'flex', flexDirection: 'row', gap: '2em' }}>
-            <div className="ag-theme-quartz-dark" style={{ width: '80%', height: 500 }}>
+        <BlueContainer style={{ width: '80%', display: 'flex', flexDirection: 'column', gap: '1em' }}>
+            <div className="ag-theme-quartz-dark" style={{ width: '100%', height: 500 }}>
                 <AgGridReact
                     rowData={stockData}
                     columnDefs={colStockDef}
@@ -509,11 +513,11 @@ export const Table = (props) => {
                     pagination={true}
                 />
             </div>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '3em' }}>
-                <button className="green--button" onClick={exportFile} style={{ height: '2em' }}>Get xlsx</button>
-                <button className="red--button" onClick={generatePdf} style={{ height: '2em' }} >Get PDF</button>
+            <div style={{ display: 'flex', flexDirection: 'row', gap: '1em' }} className='justify-content-center'>
+                <button className="blue--button" onClick={exportFile} style={{ height: '2em' }}>Get xlsx</button>
+                <button className="blue--button" onClick={generatePdf} style={{ height: '2em' }} >Get PDF</button>
             </div>
-        </GreenContainer>
+        </BlueContainer>
 
     </>)
 

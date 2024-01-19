@@ -20,7 +20,7 @@ export const Dashboard = () => {
     const { user, isLoading } = useAuth0();
     const [searchState, setSearchState] = useState(false);
     const { store, actions } = useContext(Context);
-    const [activeTab, setActiveTab] = useState(1)
+    const [activeTab, setActiveTab] = useState(2)
 
     const handleClick = () => {
 

@@ -173,9 +173,9 @@ export const Discover = () => {
                             <option value="NMFQS">US Mutual Funds (NMFQS)</option>
                             <option value="XWAR">Warsaw Stock Exchange (XWAR)</option>
                         </select>
-                        <button className="green--button" onClick={search}>Search</button>
+                        <button className="green--button discover-button" onClick={search}>Search</button>
                     </div>
-                    <h3>More than 280.000 stocks to track!</h3>
+                    <p style={{width: '20%'}}>More than 280.000 stocks to track!</p>
                 </div>
                 <hr />
                 <div className="discover-results--container">
