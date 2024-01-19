@@ -103,7 +103,7 @@ export const Doughnut = (props) => {
             .attr('fill', 'black');
         const g = svg.select('g');
         const data_ready = pie(data)
-        console.table(data_ready)
+        // console.table(data_ready)
 
         g.selectAll('path')
             .data(data_ready)

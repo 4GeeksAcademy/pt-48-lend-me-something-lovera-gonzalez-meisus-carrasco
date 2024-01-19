@@ -32,12 +32,12 @@ export const Discover = () => {
         setLoading(true)
         const data = await get_search_results(criteria, exchange, offset);
         const data_with_links = data.data.map(element => ({ ...element, link: `/single/${element.symbol}` }));
-        console.log(offset);
+        // console.log(offset);
         if (offset === 0) setOffset(prev => prev + 100);
         setResults(data_with_links);
         setPagination(data.pagination);
         setLoading(false);
-        console.log(pagination)
+        // console.log(pagination)
     }
 
     const getPrevious = () => {

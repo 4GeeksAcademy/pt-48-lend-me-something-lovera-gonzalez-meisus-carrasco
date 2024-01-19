@@ -58,7 +58,7 @@ export const ForexDash = () => {
     useEffect(() => {
         setTimeout(() => {
             setLoading(false)
-            console.log(data);
+            // console.log(data);
         }, 1000)
     }, [])
 

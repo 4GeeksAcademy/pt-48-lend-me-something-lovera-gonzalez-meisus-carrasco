@@ -64,7 +64,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			// 	setStore({ ...store, stocks: data });
 			// },
 			setUser: (user) => {
-				console.log(user);
+				// console.log(user);
 				const store = getStore();
 				setStore({ ...store, user: user })
 				

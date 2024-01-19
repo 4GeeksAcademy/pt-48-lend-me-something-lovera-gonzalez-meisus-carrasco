@@ -58,7 +58,6 @@ export const CrryptoDash = () => {
     useEffect(() => {
         setTimeout(() => {
             setLoading(false)
-            console.log(data);
         }, 1000)
     }, [])
 

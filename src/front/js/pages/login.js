@@ -54,7 +54,7 @@ export const Login = () => {
                         </div>
                         <div className="profile-info ">
                             <h3>Contact information</h3>
-                            <span >Addres 
+                            <span >Addres
                             </span >
                             {!estadoEdicion && <p> {direccion}</p>}
                             {estadoEdicion && (
@@ -77,48 +77,36 @@ export const Login = () => {
                             </span >
                             <p> Spain</p>
                             <div className="profile-button">
-                            <button className="green--button " onClick={() => setEstadoEdicion(!estadoEdicion)}>
-                                {estadoEdicion ? 'Guardar' : 'Editar'}</button>
-                                </div>
+                                <button className="green--button " onClick={() => setEstadoEdicion(!estadoEdicion)}>
+                                    {estadoEdicion ? 'Guardar' : 'Editar'}</button>
+                            </div>
 
                         </div>
                     </GreenContainer>
-<<<<<<< HEAD
                     <PurpleContainer style={{ height: '500px', width: '300px' }}>
-                        <h3>Detalles de la cuenta</h3>
-                        <div><span>Name :
-=======
-                    <PurpleContainer style={{ height: '500px', width:'300px'}}>
                         <h3>Account details</h3>
                         <div className="profile-account-details"><span>Name :
->>>>>>> origin/auxiliarJuan
                         </span>
-                            <p style={{fontSize:' 1.1em', fontWeight: '600'}}> {user.given_name} </p>
+                            <p style={{ fontSize: ' 1.1em', fontWeight: '600' }}> {user.given_name} </p>
                         </div>
                         <div><span>Lastname :
                         </span>
-                            <p style={{fontSize:' 1.1em', fontWeight: '600'}}> {user.family_name} </p>
+                            <p style={{ fontSize: ' 1.1em', fontWeight: '600' }}> {user.family_name} </p>
                         </div>
                         <div><span>Nickname :
                         </span>
-                            <p style={{fontSize:' 1.1em', fontWeight: '600'}}> {user.nickname} </p>
+                            <p style={{ fontSize: ' 1.1em', fontWeight: '600' }}> {user.nickname} </p>
                         </div>
 
                     </PurpleContainer>
                 </div>
-<<<<<<< HEAD
-                <BlueContainer style={{ width: '800px', alignItems: 'center' }}>
-                    <p>Recuerda nunca compartas tus claves, ni informacion acerca de tu cuenta</p>
-                    <p>El equipo de FlowFinance nunca solicitara tus password por sms o email</p>
-=======
-                <BlueContainer style={{width:'750px' }}>
-                    <div className="profile-text" style={{width:'cover'}} >
+                <BlueContainer style={{ width: '750px' }}>
+                    <div className="profile-text" style={{ width: 'cover' }} >
 
-                    <p  style={{fontSize:' 1.1em', fontWeight: '600'}}>Recuerda nunca compartas tus claves, ni informacion acerca de tu cuenta</p>
-                    <p style={{fontSize:' 1.1em', fontWeight: '600'}}>El equipo de FlowFinance nunca solicitara tus password por sms o email</p>
+                        <p style={{ fontSize: ' 1.1em', fontWeight: '600' }}>Recuerda nunca compartas tus claves, ni informacion acerca de tu cuenta</p>
+                        <p style={{ fontSize: ' 1.1em', fontWeight: '600' }}>El equipo de FlowFinance nunca solicitara tus password por sms o email</p>
 
                     </div>
->>>>>>> origin/auxiliarJuan
                 </BlueContainer>
             </animated.div >
         </div >

@@ -25,7 +25,7 @@ export const Dashboard = () => {
     const handleClick = () => {
 
         setSearchState(!searchState);
-        console.log(searchState)
+        // console.log(searchState)
     }
 
     const checkForUserInDB = () => {

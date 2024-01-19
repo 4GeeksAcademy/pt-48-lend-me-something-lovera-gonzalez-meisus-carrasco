@@ -58,7 +58,6 @@ export const CommoditiesDash = () => {
     useEffect(() => {
         setTimeout(() => {
             setLoading(false)
-            console.log(data);
         }, 1000)
     }, [])
 
