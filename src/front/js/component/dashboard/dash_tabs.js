@@ -24,6 +24,16 @@ export const DashTabs = ({activeTab, setActiveTab}) => {
                     onClick={() => changeTab(2)}>
                     Cryptocurrencies
                 </div>
+                <div
+                    className={`${active == 3 ? 'dashboard-tabs--tab--active' : '' } dashboard-tabs--tab`}
+                    onClick={() => changeTab(3)}>
+                    Forex
+                </div>
+                <div
+                    className={`${active == 4 ? 'dashboard-tabs--tab--active' : '' } dashboard-tabs--tab`}
+                    onClick={() => changeTab(4)}>
+                    Commodities
+                </div>
             </div>
             <div className="dashboard-tabs--hr"></div>
         </div>

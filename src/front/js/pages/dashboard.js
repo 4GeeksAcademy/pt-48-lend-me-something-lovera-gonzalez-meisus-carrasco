@@ -13,6 +13,8 @@ import { useAuth0 } from "@auth0/auth0-react";
 import { Stockdash } from "../component/dashboard/stockdash.js";
 import { DashTabs } from "../component/dashboard/dash_tabs.js";
 import { CrryptoDash } from "../component/dashboard/cryptodash.js";
+import { ForexDash } from "../component/dashboard/forexdash.js";
+import { CommoditiesDash } from "../component/dashboard/commoditiesdash.js";
 
 export const Dashboard = () => {
     const { user, isLoading } = useAuth0();
@@ -55,5 +57,7 @@ export const Dashboard = () => {
         <DashTabs activeTab={activeTab} setActiveTab={setActiveTab} />
         {activeTab === 1 && <Stockdash />}
         {activeTab === 2 && <CrryptoDash/>}
+        {activeTab === 3 && <ForexDash/>}
+        {activeTab === 4 && <CommoditiesDash/>}
     </>)
 }
