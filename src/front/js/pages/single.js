@@ -12,6 +12,7 @@ import { PinkContainer } from "../component/color_containers/pink_container";
 import { get_eod_data, get_ticker_info, get_search_results } from '../store/API'
 import Spinner from "../component/spinner";
 import '../../styles/single.sass'
+import { TopBarTitle } from "../component/topBarTitle.js";
 
 export const Single = props => {
 	const [loading, setLoading] = useState(true)
@@ -44,6 +45,7 @@ export const Single = props => {
 
 	return (<>
 		{loading && <Spinner />}
+		<TopBarTitle topTitle='Single'/>
 		{!loading && <div className="d-flex flex-column gap-5 align-items-center justify-content-center navbar-margin">
 
 			<BlueContainer style={{ position: 'relative', width: '60%' }}>
