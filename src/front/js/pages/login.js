@@ -1,18 +1,17 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { YellowContainer } from "../component/color_containers/yellow_container";
 import { PurpleContainer } from "../component/color_containers/purple_container";
 import { GreenContainer } from "../component/color_containers/green_container";
 import { BlueContainer } from "../component/color_containers/blue_container";
 import '../../styles/login.sass';
-import foto from "../../img/foto.jpg"
 import { useAuth0 } from "@auth0/auth0-react";
-
 import { TopBarTitle } from "../component/topBarTitle.js";
 import { useSpring, animated } from '@react-spring/web'
+import {Spinner} from '../component/spinner.js'
 
 export const Login = () => {
 
-    const { isAuthenticated, user } = useAuth0()
+    const { user, isLoading } = useAuth0()
 
     const springs = useSpring({
         from:
@@ -29,7 +28,9 @@ export const Login = () => {
 
 
 
-
+    if (isLoading) return (<>
+    <Spinner/>
+    </>)
     return (<>
         <TopBarTitle topTitle='My profile' />
 
