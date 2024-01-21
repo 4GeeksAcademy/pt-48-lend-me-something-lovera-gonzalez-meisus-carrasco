@@ -47,8 +47,8 @@ export const Stockdash = () => {
                             </div>
                         </div>
                     </PurpleContainer>
-                    <BlueContainer style={{flexBasis: '40%', alignItems: 'center', justifyItems: 'center'}}>
-                        <Doughnut />
+                    <BlueContainer  style={{  alignItems: 'center', justifyItems: 'center', height: '25vh' }}>
+                        <Doughnut title='Top 10 Stocks'/>
                     </BlueContainer>
                     <div className="d-flex flex-column gap-5 justify-content-between align-items-center p-4 " style={{ height: 700, width: '100%' }}>
                         <Table />

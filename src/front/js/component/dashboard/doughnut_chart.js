@@ -5,6 +5,12 @@ import '../../../styles/shared.sass'
 
 export const Doughnut = (props) => {
 
+    const [innerWidth, setWith] = useState(window.innerWidth);
+
+    const [title, setTitle] = useState(
+        (props.title) ? props.title : "Generic title"
+    )
+
     const [data, setData] = useState(
         (props.data) ? props.data :
             [
@@ -76,32 +82,35 @@ export const Doughnut = (props) => {
     const svgDiv = useRef();
 
     useEffect(() => {
+        console.dir(svgDiv.current)
+        // console.log(svgDiv.current.height.baseVal.value)
 
-        const margin = { top: 20, right: 20, bottom: 50, left: 40 };
-        const width = 450 - margin.right - margin.left;
-        const height = 250 - margin.top - margin.bottom;
-        const innerRadius = 120;
-        const outterRadius = d3.min([width, height]) / 2;
+        const width = svgDiv.current.width.baseVal.value;
+        const height = svgDiv.current.height.baseVal.value;
+        const margin = { top: height / 50, right: width / 50, bottom: height / 50, left: width / 50 };
+        const outterRadius = 40;
         // console.log(outterRadius)
 
-        const yScale = d3.scaleLinear([0, data.length], [height + margin.top, 0]);
+        const yScale = d3.scaleLinear([0, data.length - 1], [35, -35]);
         const colorScale = d3.scaleLinear().domain([d3.max(data.map(d => d.price)), d3.max(data.map(d => d.price)) / 2, d3.min(data.map(d => d.price))]).range(colors);
         // console.log(d3.extent(data.map(d => d.price_usd)))
         // console.log(colorScale(25))
 
 
-        const radiusScale = d3.scaleLinear([0, d3.max(data.map(d => d.price))], [100, 60])
+        const radiusScale = d3.scaleLinear([0, d3.max(data.map(d => d.price))], [35, 15]);
 
         const arc = (d) => d3.arc()
             .innerRadius(d => radiusScale(d.value))
-            .outerRadius(outterRadius + 30);
+            .outerRadius(outterRadius);
         const pie = d3.pie().value((d) => d.price)
 
         const svg = d3.select(svgDiv.current)
             .attr('width', width + margin.right + margin.left)
             .attr('height', height + margin.top + margin.bottom)
-            .attr('fill', 'black');
-        const g = svg.select('g');
+        // .attr('fill', 'black');
+        const g = svg.select('g')
+            .attr("transform", `translate(${innerWidth > 900 ? 0: 50},${50})`);
+
         const data_ready = pie(data)
         // console.table(data_ready)
 
@@ -118,7 +127,7 @@ export const Doughnut = (props) => {
                 var arc = d3
                     .arc()
                     .innerRadius(radiusScale(d.value))
-                    .outerRadius(outterRadius + 30)
+                    .outerRadius(outterRadius)
                     .startAngle(d.startAngle)
                     .endAngle(d.startAngle)
                     .padAngle(0.01)
@@ -138,7 +147,7 @@ export const Doughnut = (props) => {
         //     .text(`${data.reduce((a, e) => a + e.price_usd, 0)}€`)
         //     .attr('stroke', 'white')
         //     .attr("dx", "-1.8em")
-        //     .attr("dy", "0.2em")
+        //     .attr("dy", "0.3em")
         //     .attr('fill', 'white')
         //     .attr('style', 'font-size: 2em')
 
@@ -164,28 +173,46 @@ export const Doughnut = (props) => {
         //     .append('circle')
         //     .attr('cx', '10px')
         //     .attr('cy', d => yScale(d3.sort(data, (a, b) => d3.ascending(a.price_usd, b.price_usd)).map(d => d.name).indexOf(d)) - 4)
-        //     .attr('r', '8px')
+        //     .attr('r', '2')
         //     .data(d3.sort(data, (a, b) => d3.ascending(a.price_usd, b.price_usd)))
         //     .attr('fill', data => `${colorScale(data.price_usd)}`)
         // g.select('#total-value').text(`${data.reduce((a, e) => a + e.price_usd, 0)}€`);
-        g.selectAll('#value-indexes text').data(d3.sort(data, (a, b) => d3.ascending(a.price, b.price)).map(d => d.name)).join('text').text(d => d)
-            .append('tspan').text(d => `${data.filter(element => element.name == d)[0].price.toFixed(2)}€`).attr('dx', '0.5em');
-        g.selectAll('circle').data(d3.sort(data, (a, b) => d3.ascending(a.price, b.price))).attr('fill', d => `${colorScale(d.price)}`)
+        // g.selectAll('#value-indexes text').attr("transform", `translate(${width *0.96 },${height *0.92})`)
+        if (innerWidth > 900) {
+            console.log('opearting on text and circles')
+            g.selectAll('#value-indexes text').data(d3.sort(data, (a, b) => d3.ascending(a.price, b.price)).map(d => d.name)).join('text')
+                .text(d => d)
+                .attr('y', d => yScale(d3.sort(data, (a, b) => d3.ascending(a.price, b.price)).map(d => d.name).indexOf(d)) + 1)
+                .append('tspan').text(d => `${data.filter(element => element.name == d)[0].price.toFixed(2)}€`).attr('dx', '0.5em')
+                .attr('y', d => yScale(d3.sort(data, (a, b) => d3.ascending(a.price, b.price)).map(d => d.name).indexOf(d)) + 1)
+                .attr('x', '40')
+                .attr('text-anchor', 'start');
+            // console.log(d3.sort(data, (a, b) => d3.ascending(a.price, b.price)).map(d => d.name.indexOf(d.name)))
+            g.selectAll('#value-indexes circle')
+                .data(d3.sort(data, (a, b) => d3.ascending(a.price, b.price)))
+                .attr('fill', d => `${colorScale(d.price)}`)
+                .attr('cx', 2)
+                .attr('cy', d => yScale(d3.sort(data, (a, b) => d3.ascending(a.price, b.price)).map(d => d.name).indexOf(d.name)))
+        }
 
 
-    }, [data])
+    }, [innerWidth])
     return (<>
-        <div>
+        {/* <div>
             <h4>This week revenue:</h4>
-            {/* <p>{data.reduce((a, e) => a + e.price_usd, 0)}€</p> */}
-        </div>
+            {/* <p>{data.reduce((a, e) => a + e.price_usd, 0)}€</p> 
+        </div> */}
         <animated.div
             style={{
                 ...springs,
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center'
             }}
         >
-            <svg ref={svgDiv}>
-                <g transform="translate(150,125)">
+            <svg ref={svgDiv} height="20vh" width="25vw" viewBox="0 0 100 100" preserveAspectRatio="xMaxYMax meet">
+                <text x={innerWidth > 900 ? -40 : 0} fill="white" fontSize="0.4em" y="5" strokeWidth="0.1px" stroke="white">{title}</text>
+                <g >
                     <path></path>
                     <path></path>
                     <path></path>
@@ -196,29 +223,29 @@ export const Doughnut = (props) => {
                     <path></path>
                     <path></path>
                     <path></path>
-                    <text id="total-value" stroke="white" dx="-1.8em" dy="0.2em" fill="white" style={{ fontSize: '2em' }}></text>
-                    <g id="value-indexes" transform="translate(150,-125)">
-                        <text className="graphic-text" fill="white" y="200" x="2em"></text>
-                        <text className="graphic-text" fill="white" y="180" x="2em"></text>
-                        <text className="graphic-text" fill="white" y="160" x="2em"></text>
-                        <text className="graphic-text" fill="white" y="140" x="2em"></text>
-                        <text className="graphic-text" fill="white" y="120" x="2em"></text>
-                        <text className="graphic-text" fill="white" y="100" x="2em"></text>
-                        <text className="graphic-text" fill="white" y="80" x="2em"></text>
-                        <text className="graphic-text" fill="white" y="60" x="2em"></text>
-                        <text className="graphic-text" fill="white" y="40" x="2em"></text>
-                        <text className="graphic-text" fill="white" y="20" x="2em"></text>
-                        <circle cx="10px" cy="195" r="8px" fill="rgb(238, 130, 238)"></circle>
-                        <circle cx="10px" cy="175" r="8px" fill="rgb(223, 118, 228)"></circle>
-                        <circle cx="10px" cy="155" r="8px" fill="rgb(212, 109, 221)"></circle>
-                        <circle cx="10px" cy="135" r="8px" fill="rgb(199, 99, 212)"></circle>
-                        <circle cx="10px" cy="115" r="8px" fill="rgb(181, 84, 200)"></circle>
-                        <circle cx="10px" cy="95" r="8px" fill="rgb(168, 74, 191)"></circle>
-                        <circle cx="10px" cy="75" r="8px" fill="rgb(77, 78, 190)"></circle>
-                        <circle cx="10px" cy="55" r="8px" fill="rgb(79, 162, 255)"></circle>
-                        <circle cx="10px" cy="35" r="8px" fill="rgb(79, 162, 255)"></circle>
-                        <circle cx="10px" cy="15" r="8px" fill="rgb(79, 162, 255)"></circle>
-                    </g>
+                    {/* <text id="total-value" stroke="white" dx="-1.8em" dy="0.3em" fill="white" style={{ fontSize: '2em' }}></text> */}
+                    {innerWidth > 900 && <g id="value-indexes" transform="translate(60,0)">
+                        <text className="graphic-text" fill="white" x="10" fontSize="0.3em"></text>
+                        <text className="graphic-text" fill="white" x="10" fontSize="0.3em"></text>
+                        <text className="graphic-text" fill="white" x="10" fontSize="0.3em"></text>
+                        <text className="graphic-text" fill="white" x="10" fontSize="0.3em"></text>
+                        <text className="graphic-text" fill="white" x="10" fontSize="0.3em"></text>
+                        <text className="graphic-text" fill="white" x="10" fontSize="0.3em"></text>
+                        <text className="graphic-text" fill="white" x="10" fontSize="0.3em"></text>
+                        <text className="graphic-text" fill="white" x="10" fontSize="0.3em"></text>
+                        <text className="graphic-text" fill="white" x="10" fontSize="0.3em"></text>
+                        <text className="graphic-text" fill="white" x="10" fontSize="0.3em"></text>
+                        <circle r="2" fill="rgb(238, 130, 238)"></circle>
+                        <circle r="2" fill="rgb(223, 118, 228)"></circle>
+                        <circle r="2" fill="rgb(212, 109, 221)"></circle>
+                        <circle r="2" fill="rgb(199, 99, 212)"></circle>
+                        <circle r="2" fill="rgb(181, 84, 200)"></circle>
+                        <circle r="2" fill="rgb(168, 74, 191)"></circle>
+                        <circle r="2" fill="rgb(77, 78, 190)"></circle>
+                        <circle r="2" fill="rgb(79, 162, 255)"></circle>
+                        <circle r="2" fill="rgb(79, 162, 255)"></circle>
+                        <circle r="2" fill="rgb(79, 162, 255)"></circle>
+                    </g>}
                 </g>
             </svg>
 
