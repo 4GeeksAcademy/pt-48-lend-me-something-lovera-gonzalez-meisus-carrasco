@@ -72,7 +72,7 @@ export const ForexDash = () => {
         >
             <div className="d-flex flex-column justify-content-center align-items-center flex-wrapp-4 pt-0 gap-5" style={{ width: '100%' }}>
                 <BlueContainer style={{  alignItems: 'center', justifyItems: 'center' }}>
-                    <Doughnut data={filtered_data.splice(0,10)} colors={['#DCF2F1','#7FC7D9','#365486']} title='Top 10 Currencies'/>
+                    <Doughnut data={filtered_data.sort((a,b) => b.price -a.price).splice(0,10)} colors={[ '#5BF428', '#328a32','#4e874e' ]} title='Top 10 Currencies'/>
                 </BlueContainer>
                     {data.length > 1 && <Table data={data} columns={tableColumns}/>}
             </div>

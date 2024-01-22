@@ -441,17 +441,25 @@ export const Table = (props) => {
             "volume": 47477700.0
         },
 
-    ]);
+    ].map(element => (
+        {
+            Date: new Date(element.date).toLocaleDateString(), 
+            Symbol: element.symbol, 
+            Open: `$ ${element.open}`, 
+            Close: `$ ${element.close}`, 
+            Exchange: element.exchange, 
+            Volume: new Intl.NumberFormat("en-EN", {style: 'currency', currency: 'USD'}).format(element.adj_volume)
+        })));
 
 
 
     const [colStockDef, setColStockDef] = useState([
-        { field: 'date' },
-        { field: 'symbol' },
-        { field: 'open' },
-        { field: 'close' },
-        { field: 'exchange' },
-        { field: 'adj_volume' },
+        { field: 'Date' },
+        { field: 'Symbol' },
+        { field: 'Open' },
+        { field: 'Close' },
+        { field: 'Exchange' },
+        { field: 'Volume' },
     ]);
 
     const defaultColDef = useMemo(() => ({

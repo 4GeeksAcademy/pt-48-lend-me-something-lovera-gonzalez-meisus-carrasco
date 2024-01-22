@@ -71,7 +71,7 @@ export const CommoditiesDash = () => {
         >
             <div className="d-flex flex-column justify-content-center align-items-center flex-wrapp-4 pt-0 gap-5" style={{ width: '100%' }}>
                 <BlueContainer style={{  alignItems: 'center', justifyItems: 'center'}}>
-                    <Doughnut data={filtered_data.splice(0,10)} colors={['#5F8670','#FF9800','#B80000','#820300']} title='Top 10 Comodities'/>
+                    <Doughnut data={filtered_data.splice(0,10)} colors={['#555', '#b4b4a6', '#c3c3b7']} title='Top 10 Comodities'/>
                 </BlueContainer>
                     {data.length > 1 && <Table data={data} columns={tableColumns}/>}
             </div>
