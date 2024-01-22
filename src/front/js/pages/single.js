@@ -29,7 +29,7 @@ export const Single = props => {
 	const [tableColor, setTableColor] = useState('green')
 
 	const loadTableData = async (symbol) => {
-		
+
 
 
 
@@ -53,7 +53,8 @@ export const Single = props => {
 			loadTableData(params.symbol);
 		}
 		return () => {
-			setTableData([])
+			setTableData([]);
+			setLoading(true)
 		}
 	}, [params.symbol])
 
@@ -62,30 +63,32 @@ export const Single = props => {
 		{!loading && <TopBarTitle topTitle={ticker.name} />}
 		{!loading && <div className="d-flex flex-column gap-5 align-items-center justify-content-center navbar-margin">
 
-			<BlueContainer style={{ position: 'relative', width: '60%' }}>
-				{ticker.name && <>
+			<BlueContainer style={{ position: 'relative', width: '70%' }}>
+				{ticker.name && tableData && <>
 					<div className='d-flex flex-row gap-2'>
 						{isAuthenticated && <button className="blue--button single-portfolio--button" >Add to Portfolio</button>}
 						{!isAuthenticated && <LogginButton style={{ height: '3rem', width: '15rem !important', position: 'absolute', bottom: '2rem', right: '2rem', backgroundColor: '#0d715d' }} />}
-						<h1 className="display-4">{ticker.name}</h1>
 					</div>
-					<div className="d-flex flex-row gap-2">
 					<h3>Symbol/Ticker: {ticker.symbol} </h3>
-					{tableColor === 'green' && <i className="fa-solid fa-angles-up" style={{color: '#0d715d'}}></i>}
-					{tableColor === 'red' && <i className="fa-solid fa-angles-down" style={{color: '#992828'}}></i>}
+					<div className="d-flex flex-row gap-2">
+						<div className="d-flex flex-row  justify-content-start align-items-center gap-2">
+							<span style={{ fontSize: '1.7em' }}>Last Value: </span><span style={tableColor === 'green' ? { fontSize: '1.7em', color: '#0d715d' } : { fontSize: '1.7em', color: '#992828' }}>{tableData[0].close}</span>
+							{tableColor === 'green' && <i className="fa-solid fa-angles-up" style={{ color: '#0d715d', fontSize: '1.5em', marginTop: '0.2em' }}></i>}
+							{tableColor === 'red' && <i className="fa-solid fa-angles-down" style={{ color: '#992828', fontSize: '1.5em', marginTop: '0.2em' }}></i>}
+						</div>
 					</div>
 					<h5>{ticker.stock_exchange.country} market</h5>
 					<h6>{ticker.stock_exchange.name}</h6>
-				<div className="d-flex flex-column gap-5 justify-content-between align-items-center p-4 " style={{ width: '100%' }}>
-					{tableColor === 'green' && <GreenContainer>
-						<Linear color={'#0d715d'} data={tableData} title={ticker.symbol} />
-					</GreenContainer>}
-					{tableColor === 'red' && <PinkContainer>
-						<Linear color={'#992828'} data={tableData}  title={ticker.symbol}/>
-					</PinkContainer>}
+					<div className="d-flex flex-column gap-5 justify-content-between align-items-center p-4 " style={{ width: '100%' }}>
+						{tableColor === 'green' && <GreenContainer>
+							<Linear color={'#0d715d'} data={tableData} title={ticker.symbol} />
+						</GreenContainer>}
+						{tableColor === 'red' && <PinkContainer>
+							<Linear color={'#992828'} data={tableData} title={ticker.symbol} />
+						</PinkContainer>}
 
-					{tableData.length > 1 && <Table data={tableData} />}
-				</div></>}
+						{tableData.length > 1 && <Table data={tableData} />}
+					</div></>}
 			</BlueContainer>
 
 		</div>}
