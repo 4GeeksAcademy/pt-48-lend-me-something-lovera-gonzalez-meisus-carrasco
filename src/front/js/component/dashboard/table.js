@@ -520,8 +520,8 @@ export const Table = (props) => {
                 />
             </div>
             <div style={{ display: 'flex', flexDirection: 'column', gap: '1em' }} className='justify-content-center'>
-                <button className="green--button" onClick={exportFile} style={{ height: '2em', width: '2em', borderRadius: '50%', padding: 0 }}><i class="fa-solid fa-file-excel" style={{color: 'white'}}></i></button>
-                <button className="red--button" onClick={generatePdf} style={{ height: '2em', width: '2em', borderRadius: '50%', padding: 0   }} ><i class="fa-solid fa-file-pdf" style={{color: 'white'}}></i></button>
+                <button className="green--button" onClick={exportFile} style={{ height: '2em', width: '2em', borderRadius: '50%', padding: 0 }}><i className="fa-solid fa-file-excel" style={{color: 'white'}}></i></button>
+                <button className="red--button" onClick={generatePdf} style={{ height: '2em', width: '2em', borderRadius: '50%', padding: 0   }} ><i className="fa-solid fa-file-pdf" style={{color: 'white'}}></i></button>
             </div>
         </BlueContainer>
 

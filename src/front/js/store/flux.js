@@ -7,6 +7,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			title: null,
 			stocks: null,
 			user: null,
+			searchState: false,
 			demo: [
 				{
 					title: "FIRST",
@@ -22,6 +23,10 @@ const getState = ({ getStore, getActions, setStore }) => {
 		},
 		actions: {
 			// Use getActions to call a function within a fuction
+			switchSearchState: () => {
+			const store = getStore();
+				setStore({...store, searchState: !store.searchState});
+			},
 			exampleFunction: () => {
 				getActions().changeColor(0, "green");
 			},

@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useEffect, useContext } from "react";
+import { Context } from "../js/store/appContext"
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import ScrollToTop from "./component/scrollToTop";
 import { BackendURL } from "./component/backendURL";
@@ -20,6 +21,7 @@ import { Notifications } from '../js/pages/notifications'
 import { Discover } from "./pages/discover";
 import Spinner from "./component/spinner";
 
+
 //create your first component
 const Layout = () => {
     //the basename is used when your project is published in a subdirectory and not in the root of the domain
@@ -29,8 +31,26 @@ const Layout = () => {
     if (!process.env.BACKEND_URL || process.env.BACKEND_URL == "") return <BackendURL />;
 
     const { isAuthenticated, isLoading } = useAuth0();
-    
+    const { store, actions } = useContext(Context);
+
     // if (isLoading) return (<><Spinner/></>)
+
+    useEffect(() => {
+
+        document.addEventListener('keydown', (event) => {
+            event.preventDefault();
+            if (event.ctrlKey && event.key === ' ') {
+
+                actions.switchSearchState();
+            };
+            if(event.key === 'Escape' && store.searchState) {
+                actions.switchSearchState();
+            }
+
+        });
+
+    }, [])
+
     return (
         <div className="body">
             <BrowserRouter basename={basename}>

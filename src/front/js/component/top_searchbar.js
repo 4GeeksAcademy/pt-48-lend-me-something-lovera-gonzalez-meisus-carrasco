@@ -14,19 +14,19 @@ export const TopBar = () => {
 
 
 
-    const { store } = useContext(Context)
+    const { store, actions } = useContext(Context)
     const [searchState, setSearchState] = useState(false)
     const { isAuthenticated } = useAuth0();
     const { user } = useAuth0();
 
     const handleClick = () => {
 
-        setSearchState(!searchState);
+        actions.switchSearchState(); 
         // console.log(searchState)
     }
 
     return (<>
-        <GlobalSearchBar style={searchState ? { display: "flex" } : { display: "none" }} handleClick={handleClick} />
+        <GlobalSearchBar style={store.searchState ? { display: "flex" } : { display: "none" }} handleClick={handleClick} />
 
         <div className={isAuthenticated ? "dashboard-bar p-3 navbar-margin" : "dashboard-bar p-3"}>
             <h3>{store.title}</h3>
