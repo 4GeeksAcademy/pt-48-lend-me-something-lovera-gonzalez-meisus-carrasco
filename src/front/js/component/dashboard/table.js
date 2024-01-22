@@ -500,7 +500,7 @@ export const Table = (props) => {
     }, [props.data, props.columns])
 
     return (<>
-        <BlueContainer style={{ width: '80%', display: 'flex', flexDirection: 'column', gap: '1em' }}>
+        <BlueContainer style={{ width: '80%', display: 'flex', flexDirection: 'row', alignItems: 'start', gap: '1em' }}>
             <div className="ag-theme-quartz-dark" style={{ width: '100%', height: 500 }}>
                 <AgGridReact
                     rowData={stockData}
@@ -511,9 +511,9 @@ export const Table = (props) => {
                     pagination={true}
                 />
             </div>
-            <div style={{ display: 'flex', flexDirection: 'row', gap: '1em' }} className='justify-content-center'>
-                <button className="blue--button" onClick={exportFile} style={{ height: '2em' }}>Get xlsx</button>
-                <button className="blue--button" onClick={generatePdf} style={{ height: '2em' }} >Get PDF</button>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '1em' }} className='justify-content-center'>
+                <button className="green--button" onClick={exportFile} style={{ height: '2em', width: '2em', borderRadius: '50%', padding: 0 }}><i class="fa-solid fa-file-excel" style={{color: 'white'}}></i></button>
+                <button className="red--button" onClick={generatePdf} style={{ height: '2em', width: '2em', borderRadius: '50%', padding: 0   }} ><i class="fa-solid fa-file-pdf" style={{color: 'white'}}></i></button>
             </div>
         </BlueContainer>
 

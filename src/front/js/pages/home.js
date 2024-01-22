@@ -70,7 +70,7 @@ export const Home = () => {
 			</div>
 
 			<div className="d-flex flex-row justify-content-between align-items-center p-4">
-				<PurpleContainer>
+				<PinkContainer>
 					<div style={{ width: '90%' }}>
 						<h4>Prueba de texto componente largo</h4>
 						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur nunc lectus,
@@ -81,7 +81,7 @@ export const Home = () => {
 							Nunc ac ligula semper felis mollis vestibulum et at sapien.
 						</p>
 					</div>
-				</PurpleContainer>
+				</PinkContainer>
 				<YellowContainer>
 					<div style={{ width: '90%' }}>
 						<h4>Prueba de texto componente largo</h4>
