@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import '../../styles/navbar.sass';
 import { useSpring, animated } from '@react-spring/web';
-
+import { LogoffButton } from '../component/Auth0/logoff_button.js'
 import { useAuth0 } from "@auth0/auth0-react";
 
 export const Navbar = () => {
@@ -48,11 +48,7 @@ export const Navbar = () => {
 					<Link to={"/aboutus"}><i className="fa-solid fa-users" ></i></Link>
 				</div>
 			</div>
-			{user &&
-				<Link to="login">
-					<img className="navbar-profilepicture" src={user.picture} />
-				</Link>
-			}
+			{isAuthenticated && <LogoffButton style={{height: '3em', width: '3em', borderRadius: '50%', padding: 0}} />}
 
 
 		</animated.div>

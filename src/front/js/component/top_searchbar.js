@@ -4,7 +4,6 @@ import '../../styles/shared.sass'
 import { Context } from '../store/appContext.js'
 import { GlobalSearchBar } from "../component/global_searchbar.js"
 import { LogginButton } from '../component/Auth0/loggin_button.js'
-import { LogoffButton } from '../component/Auth0/logoff_button.js'
 
 import { useAuth0 } from "@auth0/auth0-react";
 import { UserWidget } from './user_widget.js'
@@ -45,7 +44,12 @@ export const TopBar = () => {
                     </Link>
                 }
                 {user && <UserWidget />}
-                {isAuthenticated && <LogoffButton />}
+                {user &&
+				<Link to="login">
+					<img className="navbar-profilepicture" src={user.picture} />
+				</Link>
+			}
+                
             </div>
         </div>
     </>)
