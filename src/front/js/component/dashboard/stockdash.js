@@ -1,5 +1,5 @@
 import React from "react";
-import {useState, useEffect, useContext} from "react"; 
+import { useState, useEffect, useContext } from "react";
 import { Context } from '../../store/appContext.js'
 import { BlueContainer } from "../color_containers/blue_container";
 import { GreenContainer } from "../color_containers/green_container";
@@ -30,63 +30,52 @@ export const Stockdash = () => {
 
     return (<>
 
-<animated.div
-                style={{
-                    ...springs,
-                }}
-                className="d-flex flex-column gap-5 navbar-margin"
-            >
-                <div className="d-flex flex-row justify-content-around flex-wrap gap-5 p-4 pt-0" style={{ width: '100%' }}>
-                    <PurpleContainer style={{flexBasis: '40%'}}>
-                        <div className="text-light d-flex flex-row gap-2 justify-content-center align-items-center">
-                            <img src='https://restyler.s3.ap-southeast-2.amazonaws.com/user-data/user-46/artworks/product-79/preview/thumbnails/5MPgTBYjDfQKQP7gMsmbzC8lmELrSQWwHILNnnfr-watermarked-lg-resized.gif' alt="" style={{ height: '150px', filter: 'hue-rotate(100deg)' }} />
-                            <div>
-                                <h1>FF. Never Forfait.</h1>
-                                <h5>Go to the Moon</h5>
-                                <h2>Let your Finance Flow</h2>
-                                <h5>And come back as NEW man</h5>
-                            </div>
+        <animated.div
+            style={{
+                ...springs,
+            }}
+            className="d-flex flex-column gap-5 navbar-margin"
+        >
+            <div className="d-flex flex-row justify-content-around flex-wrap gap-5 p-4 pt-0" style={{ width: '100%' }}>
+                <BlueContainer style={{ alignItems: 'center', justifyItems: 'center', height: '25vh' }}>
+                    <Doughnut title='Top 10 Stocks' />
+                </BlueContainer>
+                {/* <YellowContainer>
+                        <Linear color={'#ffd155'}/>
+                    </YellowContainer> */}
+                <div className="d-flex flex-column gap-5 justify-content-between align-items-center p-4 " style={{ height: 700, width: '100%' }}>
+                    <Table />
+
+                </div>
+                <div className="d-flex flex-row justify-content-between align-items-center p-4">
+                    <PurpleContainer>
+                        <div style={{ width: '90%' }}>
+                            <h4>Prueba de texto componente largo</h4>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur nunc lectus,
+                                elementum sed magna et, malesuada condimentum quam. Nam posuere dolor et enim
+                                blandit lobortis. Donec cursus felis ac lectus hendrerit malesuada et imperdiet
+                                mi. Aenean fringilla suscipit nisl et ultricies. Nam quis nisi sollicitudin,
+                                imperdiet ante vel, elementum elit. Donec aliquam quam nec aliquam pellentesque.
+                                Nunc ac ligula semper felis mollis vestibulum et at sapien.
+                            </p>
                         </div>
                     </PurpleContainer>
-                    <BlueContainer  style={{  alignItems: 'center', justifyItems: 'center', height: '25vh' }}>
-                        <Doughnut title='Top 10 Stocks'/>
-                    </BlueContainer>
                     <YellowContainer>
-                        <Linear color={'#ffd155'}/>
+                        <div style={{ width: '90%' }}>
+                            <h4>Prueba de texto componente largo</h4>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur nunc lectus,
+                                elementum sed magna et, malesuada condimentum quam. Nam posuere dolor et enim
+                                blandit lobortis. Donec cursus felis ac lectus hendrerit malesuada et imperdiet
+                                mi. Aenean fringilla suscipit nisl et ultricies. Nam quis nisi sollicitudin,
+                                imperdiet ante vel, elementum elit. Donec aliquam quam nec aliquam
+                                pellentesque. Nunc ac ligula semper felis mollis vestibulum et at sapien.
+                            </p>
+                        </div>
                     </YellowContainer>
-                    <div className="d-flex flex-column gap-5 justify-content-between align-items-center p-4 " style={{ height: 700, width: '100%' }}>
-                        <Table />
-                     
-                    </div>
-                    <div className="d-flex flex-row justify-content-between align-items-center p-4">
-                        <PurpleContainer>
-                            <div style={{ width: '90%' }}>
-                                <h4>Prueba de texto componente largo</h4>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur nunc lectus,
-                                    elementum sed magna et, malesuada condimentum quam. Nam posuere dolor et enim
-                                    blandit lobortis. Donec cursus felis ac lectus hendrerit malesuada et imperdiet
-                                    mi. Aenean fringilla suscipit nisl et ultricies. Nam quis nisi sollicitudin,
-                                    imperdiet ante vel, elementum elit. Donec aliquam quam nec aliquam pellentesque.
-                                    Nunc ac ligula semper felis mollis vestibulum et at sapien.
-                                </p>
-                            </div>
-                        </PurpleContainer>
-                        <YellowContainer>
-                            <div style={{ width: '90%' }}>
-                                <h4>Prueba de texto componente largo</h4>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur nunc lectus, 
-                                    elementum sed magna et, malesuada condimentum quam. Nam posuere dolor et enim
-                                    blandit lobortis. Donec cursus felis ac lectus hendrerit malesuada et imperdiet
-                                    mi. Aenean fringilla suscipit nisl et ultricies. Nam quis nisi sollicitudin,
-                                    imperdiet ante vel, elementum elit. Donec aliquam quam nec aliquam
-                                    pellentesque. Nunc ac ligula semper felis mollis vestibulum et at sapien.
-                                </p>
-                            </div>
-                        </YellowContainer>
-                    </div>
                 </div>
-            </animated.div>
-    
+            </div>
+        </animated.div>
+
     </>)
 }
 
