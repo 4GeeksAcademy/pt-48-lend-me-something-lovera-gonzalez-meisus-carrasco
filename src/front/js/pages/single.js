@@ -15,6 +15,7 @@ import '../../styles/single.sass'
 import { TopBarTitle } from "../component/topBarTitle.js";
 import { useAuth0 } from "@auth0/auth0-react";
 import { LogginButton } from "../component/Auth0/loggin_button.js";
+import { Linear } from '../component/dashboard/linear_chart.js'
 
 
 export const Single = props => {
@@ -24,17 +25,24 @@ export const Single = props => {
 	const [tableData, setTableData] = useState([]);
 	const [ticker, setTicker] = useState({})
 	const params = useParams();
+	let last_value, yesterday_value;
+	const [tableColor, setTableColor] = useState('green')
 
 	const loadTableData = async (symbol) => {
+		
+
+
+
 		const data = await get_eod_data(symbol)
 		const ticker_info = await get_search_results(symbol, '', '')
 		console.log(await ticker_info)
-		console.log(ticker_info.data[0])
 		setTableData(data);
 		setTicker(ticker_info.data[0]);
+		[last_value, yesterday_value] = data.map(e => e.close);
+		console.log(last_value, yesterday_value);
+		if (yesterday_value > last_value) setTableColor('red');
 		setTimeout(() => {
 			setLoading(false)
-			console.log(ticker)
 		}, 1000)
 
 	}
@@ -61,12 +69,23 @@ export const Single = props => {
 						{!isAuthenticated && <LogginButton style={{ height: '3rem', width: '15rem !important', position: 'absolute', bottom: '2rem', right: '2rem', backgroundColor: '#0d715d' }} />}
 						<h1 className="display-4">{ticker.name}</h1>
 					</div>
+					<div className="d-flex flex-row gap-2">
 					<h3>Symbol/Ticker: {ticker.symbol} </h3>
+					{tableColor === 'green' && <i className="fa-solid fa-angles-up" style={{color: '#0d715d'}}></i>}
+					{tableColor === 'red' && <i className="fa-solid fa-angles-down" style={{color: '#992828'}}></i>}
+					</div>
 					<h5>{ticker.stock_exchange.country} market</h5>
-					<h6>{ticker.stock_exchange.name}</h6></>}
+					<h6>{ticker.stock_exchange.name}</h6>
 				<div className="d-flex flex-column gap-5 justify-content-between align-items-center p-4 " style={{ height: 700, width: '100%' }}>
+					{tableColor === 'green' && <GreenContainer>
+						<Linear color={'#0d715d'} data={tableData} title={ticker.symbol} />
+					</GreenContainer>}
+					{tableColor === 'red' && <PinkContainer>
+						<Linear color={'#992828'} data={tableData}  title={ticker.symbol}/>
+					</PinkContainer>}
+
 					{tableData.length > 1 && <Table data={tableData} />}
-				</div>
+				</div></>}
 			</BlueContainer>
 
 		</div>}

@@ -82,7 +82,7 @@ export const Doughnut = (props) => {
     const svgDiv = useRef();
 
     useEffect(() => {
-        console.dir(svgDiv.current)
+        // console.dir(svgDiv.current)
         // console.log(svgDiv.current.height.baseVal.value)
 
         const width = svgDiv.current.width.baseVal.value;
@@ -107,7 +107,6 @@ export const Doughnut = (props) => {
         const svg = d3.select(svgDiv.current)
             .attr('width', width + margin.right + margin.left)
             .attr('height', height + margin.top + margin.bottom)
-        // .attr('fill', 'black');
         const g = svg.select('g')
             .attr("transform", `translate(${innerWidth > 900 ? 0: 50},${50})`);
 
@@ -179,7 +178,7 @@ export const Doughnut = (props) => {
         // g.select('#total-value').text(`${data.reduce((a, e) => a + e.price_usd, 0)}€`);
         // g.selectAll('#value-indexes text').attr("transform", `translate(${width *0.96 },${height *0.92})`)
         if (innerWidth > 900) {
-            console.log('opearting on text and circles')
+            // console.log('opearting on text and circles')
             g.selectAll('#value-indexes text').data(d3.sort(data, (a, b) => d3.ascending(a.price, b.price)).map(d => d.name)).join('text')
                 .text(d => d)
                 .attr('y', d => yScale(d3.sort(data, (a, b) => d3.ascending(a.price, b.price)).map(d => d.name).indexOf(d)) + 1)

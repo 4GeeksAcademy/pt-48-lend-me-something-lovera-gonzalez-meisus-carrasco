@@ -14,6 +14,7 @@ import { TopBarTitle } from "../topBarTitle.js";
 import { Table } from "./table.js";
 
 import { useAuth0 } from "@auth0/auth0-react";
+import { Linear } from "./linear_chart.js";
 
 export const Stockdash = () => {
 
@@ -50,6 +51,9 @@ export const Stockdash = () => {
                     <BlueContainer  style={{  alignItems: 'center', justifyItems: 'center', height: '25vh' }}>
                         <Doughnut title='Top 10 Stocks'/>
                     </BlueContainer>
+                    <YellowContainer>
+                        <Linear color={'#ffd155'}/>
+                    </YellowContainer>
                     <div className="d-flex flex-column gap-5 justify-content-between align-items-center p-4 " style={{ height: 700, width: '100%' }}>
                         <Table />
                      
