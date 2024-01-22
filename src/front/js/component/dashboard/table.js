@@ -508,7 +508,7 @@ export const Table = (props) => {
     }, [props.data, props.columns])
 
     return (<>
-        <BlueContainer style={{ width: '80%', display: 'flex', flexDirection: 'row', alignItems: 'start', gap: '1em' }}>
+        <BlueContainer style={{ width: '90%', display: 'flex', flexDirection: 'row', alignItems: 'start', gap: '1em' }}>
             <div className="ag-theme-quartz-dark" style={{ width: '100%', height: 500 }}>
                 <AgGridReact
                     rowData={stockData}

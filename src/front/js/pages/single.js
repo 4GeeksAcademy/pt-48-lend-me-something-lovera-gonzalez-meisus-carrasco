@@ -20,38 +20,47 @@ import { Linear } from '../component/dashboard/linear_chart.js'
 
 export const Single = props => {
 	const { isAuthenticated, user, isLoading } = useAuth0()
-	const [loading, setLoading] = useState(true)
+	const [loading, setLoading] = useState(true);
+	const [graphData, setGraphData] = useState()
 	const { store, actions } = useContext(Context);
 	const [tableData, setTableData] = useState([]);
 	const [ticker, setTicker] = useState({})
 	const params = useParams();
 	let last_value, yesterday_value;
-	const [tableColor, setTableColor] = useState('green')
+	let columns;
+	const [tableColor, setTableColor] = useState('green');
 
 	const loadTableData = async (symbol) => {
-
-
-
-
 		const data = await get_eod_data(symbol)
 		const ticker_info = await get_search_results(symbol, '', '')
-		console.log(await ticker_info)
-		setTableData(data);
+		console.log(await data)
+		setGraphData(data)
+		setTableData(data.map(
+			element =>
+			({
+				Date: new Date(element.date).toLocaleDateString("es-es"),
+				Symbol: element.symbol,
+				Open: `$ ${element.open}`,
+				Close: `$ ${element.close}`,
+				Exchange: element.exchange,
+				Volume: new Intl.NumberFormat("en-EN", { style: 'currency', currency: 'USD' }).format(element.adj_volume)
+			})
+		));
 		setTicker(ticker_info.data[0]);
 		[last_value, yesterday_value] = data.map(e => e.close);
 		console.log(last_value, yesterday_value);
+		columns = (Object.keys(data[0]).map(e => ({ 'field': e, 'flex': 1 })))
 		if (yesterday_value > last_value) setTableColor('red');
 		setTimeout(() => {
 			setLoading(false)
 		}, 1000)
-
 	}
-
 
 	useEffect(() => {
 		if (params.symbol) {
 			loadTableData(params.symbol);
 		}
+
 		return () => {
 			setTableData([]);
 			setLoading(true)
@@ -81,13 +90,13 @@ export const Single = props => {
 					<h6>{ticker.stock_exchange.name}</h6>
 					<div className="d-flex flex-column gap-5 justify-content-between align-items-center p-4 " style={{ width: '100%' }}>
 						{tableColor === 'green' && <GreenContainer>
-							<Linear color={'#0d715d'} data={tableData} title={ticker.symbol} />
+							<Linear color={'#0d715d'} data={graphData} title={ticker.symbol} />
 						</GreenContainer>}
 						{tableColor === 'red' && <PinkContainer>
 							<Linear color={'#992828'} data={tableData} title={ticker.symbol} />
 						</PinkContainer>}
 
-						{tableData.length > 1 && <Table data={tableData} />}
+						{tableData.length > 1 && <Table data={tableData} columns={columns} />}
 					</div></>}
 			</BlueContainer>
 
