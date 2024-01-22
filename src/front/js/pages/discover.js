@@ -5,7 +5,8 @@ import { useSpring, animated } from '@react-spring/web';
 import { GreenContainer } from "../component/color_containers/green_container";
 import { TopBarTitle } from "../component/topBarTitle";
 import { get_search_results } from "../store/API";
-import { Spinner } from '../component/spinner'
+import { Spinner } from '../component/spinner';
+import { flags } from '../store/country_flags'
 
 export const Discover = () => {
 
@@ -81,8 +82,8 @@ export const Discover = () => {
             if (!(Math.floor(pagination.offset / 100) >= (raw_pages.length - 3))) {
                 const spliced_pages = raw_pages.splice(
                     (Math.floor(pagination.offset / 100) <= 1)
-                    ? 0
-                    : Math.floor(pagination.offset / 100)-2
+                        ? 0
+                        : Math.floor(pagination.offset / 100) - 2
                     , 5);
                 const raw_lastPage = [raw_pages[raw_pages.length - 1]];
                 setLastPage(raw_lastPage);
@@ -175,7 +176,7 @@ export const Discover = () => {
                         </select>
                         <button className="green--button discover-button" onClick={search}>Search</button>
                     </div>
-                    <p style={{width: '20%'}}>More than 280.000 stocks to track!</p>
+                    <p style={{ width: '20%' }}>More than 280.000 stocks to track!</p>
                 </div>
                 <hr />
                 <div className="discover-results--container">
@@ -200,7 +201,12 @@ export const Discover = () => {
                                         <div className="discovery-result-p-2">{element.name}</div>
                                         <div className="discovery-result-p-3">{element.stock_exchange.name}</div>
                                         <div className="discovery-result-p-4">{element.stock_exchange.mic}</div>
-                                        <div className="discovery-result-p-5">{element.stock_exchange.country}</div>
+                                        <div className="discovery-result-p-5">{
+                                             flags.filter(flag => flag.name.shortnamelowercase.includes(element.stock_exchange.country) || flag.code.alpha3code == element.stock_exchange.country)[0] != null | undefined
+                                                ? <img className="discover-result-image" src={flags.filter(flag => flag.name.shortnamelowercase.includes(element.stock_exchange.country) || flag.code.alpha3code == element.stock_exchange.country)[0].flag.officialflag.svg} alt={`${element.stock_exchange.country}-flag`} />
+                                                :  element.stock_exchange.country
+
+                                        }</div>
                                     </Link>
                                 ))}
                             </div>
