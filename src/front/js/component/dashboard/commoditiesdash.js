@@ -39,7 +39,7 @@ export const CommoditiesDash = () => {
     const filtered_data = Data.map(element => ({ 'name': element.dataId, 'date': element.date, 'price': element.value, 'updated': element.updated})).sort((a, b) => a.price_usd - b.price_usd).splice(0, 30)
 
 
-    const preColumns = Object.keys(filtered_data[0]).map(e => ({'field': e}))
+    const preColumns = Object.keys(filtered_data[0]).map(e => ({'field': e, 'flex': 1}))
 
     const [tableColumns, setTableColumns ] =  useState(preColumns)
     const [data, setData] = useState(filtered_data);

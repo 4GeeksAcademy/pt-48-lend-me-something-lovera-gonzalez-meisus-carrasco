@@ -454,12 +454,12 @@ export const Table = (props) => {
 
 
     const [colStockDef, setColStockDef] = useState([
-        { field: 'Date' },
-        { field: 'Symbol' },
-        { field: 'Open' },
-        { field: 'Close' },
-        { field: 'Exchange' },
-        { field: 'Volume' },
+        { field: 'Date', flex: 1 },
+        { field: 'Symbol', flex: 1 },
+        { field: 'Open', flex: 1 },
+        { field: 'Close', flex: 1 },
+        { field: 'Exchange', flex: 1 },
+        { field: 'Volume', flex: 1 },
     ]);
 
     const defaultColDef = useMemo(() => ({
