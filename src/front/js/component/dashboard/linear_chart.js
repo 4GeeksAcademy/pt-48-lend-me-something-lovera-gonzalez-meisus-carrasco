@@ -1735,7 +1735,7 @@ export const Linear = (props) => {
 
         const width = svgDiv.current.width.baseVal.value;
         const height = svgDiv.current.height.baseVal.value;
-        console.log(height)
+        // console.log(height)
         const margin = { top: 40, right: 40, bottom: 40, left: 40 };
 
         const svg = d3.select(svgDiv.current)

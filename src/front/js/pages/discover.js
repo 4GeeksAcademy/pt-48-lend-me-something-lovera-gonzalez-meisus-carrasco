@@ -95,7 +95,7 @@ export const Discover = () => {
     return (<>
         <TopBarTitle topTitle='Discover ' />
         <animated.div style={{ ...springs }} className="navbar-margin d-flex flex-column justify-content-center align-items-center">
-            <GreenContainer style={{ width: '80%', position: 'relative' }}>
+            <GreenContainer style={{ width: '80%', position: 'relative', padding: '2em' }}>
                 <h4>Search new horizons:</h4>
                 <div className="discover-header--containers">
                     <div className="discover-input--container">

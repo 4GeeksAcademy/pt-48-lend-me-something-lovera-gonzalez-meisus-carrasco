@@ -18,6 +18,7 @@ import { TopBar } from "./component/top_searchbar";
 import { Subscription } from '../js/pages/subscription-settings'
 import { Notifications } from '../js/pages/notifications'
 import { Discover } from "./pages/discover";
+import Spinner from "./component/spinner";
 
 //create your first component
 const Layout = () => {
@@ -27,6 +28,9 @@ const Layout = () => {
 
     if (!process.env.BACKEND_URL || process.env.BACKEND_URL == "") return <BackendURL />;
 
+    const { isAuthenticated, isLoading } = useAuth0();
+    
+    // if (isLoading) return (<><Spinner/></>)
     return (
         <div className="body">
             <BrowserRouter basename={basename}>
@@ -44,7 +48,7 @@ const Layout = () => {
                             <Route element={<Notifications />} path="/notifications" />
                             <Route element={<Demo />} path="/demo" />
                             <Route element={<Single />} path="/single/:symbol" />
-                            <Route element={<h1>Not found!</h1>} />
+                            <Route element={<Home />} path='*' />
                         </Routes>
                         <Footer />
                     </ScrollToTop>

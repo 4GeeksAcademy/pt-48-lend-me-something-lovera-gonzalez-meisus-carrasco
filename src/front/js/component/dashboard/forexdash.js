@@ -71,7 +71,7 @@ export const ForexDash = () => {
             className="d-flex flex-column gap-5 navbar-margin"
         >
             <div className="d-flex flex-column justify-content-center align-items-center flex-wrapp-4 pt-0 gap-5" style={{ width: '100%' }}>
-                <BlueContainer style={{  alignItems: 'center', justifyItems: 'center', height: '25vh' }}>
+                <BlueContainer style={{  alignItems: 'center', justifyItems: 'center' }}>
                     <Doughnut data={filtered_data.splice(0,10)} colors={['#DCF2F1','#7FC7D9','#365486']} title='Top 10 Currencies'/>
                 </BlueContainer>
                     {data.length > 1 && <Table data={data} columns={tableColumns}/>}
