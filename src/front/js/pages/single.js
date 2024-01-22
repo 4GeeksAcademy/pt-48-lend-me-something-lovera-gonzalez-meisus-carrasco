@@ -33,7 +33,6 @@ export const Single = props => {
 	const loadTableData = async (symbol) => {
 		const data = await get_eod_data(symbol)
 		const ticker_info = await get_search_results(symbol, '', '')
-		console.log(await data)
 		setGraphData(data)
 		setTableData(data.map(
 			element =>
@@ -48,7 +47,6 @@ export const Single = props => {
 		));
 		setTicker(ticker_info.data[0]);
 		[last_value, yesterday_value] = data.map(e => e.close);
-		console.log(last_value, yesterday_value);
 		columns = (Object.keys(data[0]).map(e => ({ 'field': e, 'flex': 1 })))
 		if (yesterday_value > last_value) setTableColor('red');
 		setTimeout(() => {

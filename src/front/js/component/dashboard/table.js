@@ -483,7 +483,7 @@ export const Table = (props) => {
         // const columns = Object.keys(stockData[0]);
         // const data = stockData.map(element => ([element.symbol, element.open, element.close, element.date, element.exchange, element.adj_volume]));
         const data = props.data ? props.data.map((value, index)=> (Object.keys(props.data[index]).map(element => props.data[index][`${element}`]) )) 
-        : stockData.map((value, index) => (Object.keys(stockData.map(element => ({ 'symbol': element.symbol, 'open': element.open, 'close': element.close, 'date': element.date, 'exchange': element.exchange }))[index]).map(element => stockData[index][`${element}`])));
+        : stockData.map((value, index) => (Object.keys(stockData.map(element => ({ 'Symbol': element.Symbol, 'Open': element.Open, 'Close': element.Close, 'Date': element.Date, 'Exchange': element.Exchange }))[index]).map(element => stockData[index][`${element}`])));
         // console.log(stockData.map(element => ({'symbol':element.symbol,'open':element.open,'close':element.close,'date':element.date,'exchange':element.exchange})))
         doc.autoTable({
             startY: 25,
