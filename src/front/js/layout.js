@@ -43,6 +43,10 @@ const Layout = () => {
 
                 actions.switchSearchState();
             };
+            if (event.metaKey && event.key === ' ') {
+
+                actions.switchSearchState();
+            };
             if(event.key === 'Escape' && store.searchState) {
                 actions.switchSearchState();
             }
