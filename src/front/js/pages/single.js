@@ -76,7 +76,7 @@ export const Single = props => {
 					</div>
 					<h5>{ticker.stock_exchange.country} market</h5>
 					<h6>{ticker.stock_exchange.name}</h6>
-				<div className="d-flex flex-column gap-5 justify-content-between align-items-center p-4 " style={{ height: 700, width: '100%' }}>
+				<div className="d-flex flex-column gap-5 justify-content-between align-items-center p-4 " style={{ width: '100%' }}>
 					{tableColor === 'green' && <GreenContainer>
 						<Linear color={'#0d715d'} data={tableData} title={ticker.symbol} />
 					</GreenContainer>}
