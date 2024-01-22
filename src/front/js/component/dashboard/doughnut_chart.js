@@ -108,7 +108,7 @@ export const Doughnut = (props) => {
             .attr('width', width + margin.right + margin.left)
             .attr('height', height + margin.top + margin.bottom)
         const g = svg.select('g')
-            .attr("transform", `translate(${innerWidth > 900 ? 0: 50},${50})`);
+            .attr("transform", `translate(${innerWidth > 900 ? -25: 25},${50})`);
 
         const data_ready = pie(data)
         // console.table(data_ready)
@@ -209,7 +209,7 @@ export const Doughnut = (props) => {
                 alignItems: 'center'
             }}
         >
-            <svg ref={svgDiv} height="30vh" width="35vw" viewBox="0 0 100 100" preserveAspectRatio="xMaxYMax meet">
+            <svg ref={svgDiv} height="30vh" width="50vh" viewBox="0 0 100 100" preserveAspectRatio="xMaxYMax meet">
                 <text x={innerWidth > 900 ? -40 : 0} fill="white" fontSize="0.4em" y="5" strokeWidth="0.1px" stroke="white">{title}</text>
                 <g >
                     <path></path>

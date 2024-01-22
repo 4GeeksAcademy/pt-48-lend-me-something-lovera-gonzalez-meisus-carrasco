@@ -37,7 +37,7 @@ export const Stockdash = () => {
             className="d-flex flex-column gap-5 navbar-margin"
         >
             <div className="d-flex flex-row justify-content-around flex-wrap gap-5 p-4 pt-0" style={{ width: '100%' }}>
-                <BlueContainer style={{ alignItems: 'center', justifyItems: 'center', height: '35vh' }}>
+                <BlueContainer style={{ alignItems: 'center', justifyItems: 'center'}}>
                     <Doughnut title='Top 10 Stocks' />
                 </BlueContainer>
                 {/* <YellowContainer>
