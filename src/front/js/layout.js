@@ -38,17 +38,17 @@ const Layout = () => {
     useEffect(() => {
 
         document.addEventListener('keydown', (event) => {
-            event.preventDefault();
             if (event.ctrlKey && event.key === ' ') {
-
+                event.preventDefault();
                 actions.switchSearchState();
             };
             if (event.metaKey && event.key === ' ') {
-
+                event.preventDefault();
                 actions.switchSearchState();
             };
-            if(event.key === 'Escape' && store.searchState) {
+            if (event.key === 'Escape' && store.searchState) {
                 actions.switchSearchState();
+                event.preventDefault();
             }
 
         });
