@@ -1,0 +1,40 @@
+@use '../styles/shared'
+
+.collapsable
+    position: absolute
+    top: 4.5em
+    right: 1.5em
+    width: 8em
+    height: 0
+    visibility: hidden
+    overflow: hidden
+    border: transparent
+    border-radius: 1em
+    background-color: #343a40
+    padding: 1em
+    transition: 500ms linear
+    &--hr
+        height: 1px
+        width: 100%
+        background-color: shared.$light-gray-base-color
+    &--list
+        margin-top: 1em
+        display: flex
+        flex-direction: column
+        align-items: center
+        justify-content: flex-start
+        gap: 0.3em
+        & a
+            color: white
+            text-decoration: none
+            &:hover
+                color: shared.$purple-base-color
+
+.active
+    position: absolute
+    top: 4.5em
+    right: 1.5em
+    height: 15em
+    width: 8em
+    visibility: visible
+    z-index: 2

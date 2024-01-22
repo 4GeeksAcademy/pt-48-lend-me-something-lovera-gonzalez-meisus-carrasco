@@ -12,8 +12,8 @@ $layer2: linear-gradient(0deg, shared.$dark-gray-base-color 0%, shared.$blue-bas
         justify-content: flex-end
         align-items: center
         height: 3.5rem
-        z-index: 2
         margin-bottom: 2rem
+        z-index: 0
     &--bar
         display: flex
         flex-direction: row
@@ -35,7 +35,7 @@ $layer2: linear-gradient(0deg, shared.$dark-gray-base-color 0%, shared.$blue-bas
         border-right: 1px solid shared.$blue-base-color
         transition: 300ms linear
         &--active 
-            z-index: 2
+            z-index: 1
         &:hover
             background: $layer2
             transition: 300ms linear
@@ -47,4 +47,3 @@ $layer2: linear-gradient(0deg, shared.$dark-gray-base-color 0%, shared.$blue-bas
         background: $layer1
         width: 100%
         height: 1px
-        z-index: 0

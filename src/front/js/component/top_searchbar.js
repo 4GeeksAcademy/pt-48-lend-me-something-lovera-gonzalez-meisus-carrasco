@@ -8,6 +8,7 @@ import { LogginButton } from '../component/Auth0/loggin_button.js'
 import { useAuth0 } from "@auth0/auth0-react";
 import { UserWidget } from './user_widget.js'
 import { Link } from 'react-router-dom'
+import { UserSpinner } from './user_collapsable_dropdown.js'
 
 export const TopBar = () => {
 
@@ -20,7 +21,7 @@ export const TopBar = () => {
 
     const handleClick = () => {
 
-        actions.switchSearchState(); 
+        actions.switchSearchState();
         // console.log(searchState)
     }
 
@@ -45,11 +46,9 @@ export const TopBar = () => {
                 }
                 {user && <UserWidget />}
                 {user &&
-				<Link to="login">
-					<img className="navbar-profilepicture" src={user.picture} />
-				</Link>
-			}
-                
+                    <UserSpinner />
+                }
+
             </div>
         </div>
     </>)
