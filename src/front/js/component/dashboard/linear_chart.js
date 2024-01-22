@@ -1746,22 +1746,24 @@ export const Linear = (props) => {
 
         const xScale = d3.scaleTime()
             .domain(d3.extent(data, d => d.date))
-            .range([0, width - margin.left]);
+            .range([0, width]);
 
         const yScale = d3.scaleLinear()
             .domain([d3.min(data, d => d.close), d3.max(data, d => d.close)])
             .range([height - margin.top, 0]);
 
         const xAxis = (g) =>
-            g.attr("transform", `translate(${margin.left},${height + margin.top})`).call(
+            g.attr("transform", `translate(${margin.left},${height + margin.top-10})`).call(
                 d3
                     .axisBottom(xScale)
-                    .ticks(width / 80)
+                    .ticks(10)
+                    .tickFormat(d3.utcFormat("%b-%y"))
                     .tickSizeOuter(0)
             )
                 // .select(".domain").remove()
                 .selectAll(".tick line")
-                .attr("stroke", "white");;
+                .attr("stroke", "white")
+
 
         const yAxis = g => g
             .attr("transform", `translate(${margin.left},${margin.top + 25})`)
@@ -1831,10 +1833,13 @@ export const Linear = (props) => {
             .datum(data)
             .style("fill", "url(#mygrad)")
             .style("stroke", "none")
-            .attr("d", area);
+            .attr("d", area)
 
 
-        svg.append('g').call(xAxis);
+
+        svg.append('g').call(xAxis)
+            .selectAll('.tick text')
+            .attr('style', 'transform: rotate(-60deg) translate(-25px, -10px);');;
         svg.append('g').call(yAxis);
 
         function transition(path) {
@@ -1878,7 +1883,7 @@ export const Linear = (props) => {
             }}
         >
 
-            <svg ref={svgDiv} height="20vh" width="25vw" preserveAspectRatio="xMaxYMax meet">
+            <svg ref={svgDiv} height="30vh" width="40vw" preserveAspectRatio="xMaxYMax meet">
                 <text x='20' fill="white" fontSize="1em" y="40" strokeWidth="0.1px" stroke="white">{title}</text>
             </svg>
         </animated.div>
