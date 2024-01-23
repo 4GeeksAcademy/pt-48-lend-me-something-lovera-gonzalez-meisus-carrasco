@@ -25,7 +25,7 @@ export const UserSpinner = () => {
 
 
     return (<>
-        <div className={visible ? "collapsable active" : "collapsable"}>
+        <div className={visible ? "collapsable collapsable--active" : "collapsable"}>
             <div className='collapsable--list'  onMouseLeave={hideCollapsable}>
                 <div className="collapsable--hr" />
                 <Link className="collapsable--list-link" to="/subscription">Subscription</Link>

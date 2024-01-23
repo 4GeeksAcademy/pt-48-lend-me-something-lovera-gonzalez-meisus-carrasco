@@ -21,12 +21,13 @@ $layer2: linear-gradient(0deg, shared.$dark-gray-base-color 0%, shared.$blue-bas
         gap: 2rem
         width: 100%
     &--tab
-        color: white
+        color: #777
         font-size: 1.5rem
         display: flex
-        flex-direction: column
+        flex-direction: row
         justify-content: center
         align-items: center
+        gap: 0.5em
         padding: 0 1rem 0 1rem
         border-radius: 0.5rem 0.5rem 0 0
         border-top: 1px solid shared.$blue-base-color
@@ -36,11 +37,13 @@ $layer2: linear-gradient(0deg, shared.$dark-gray-base-color 0%, shared.$blue-bas
         transition: 300ms linear
         &--active 
             z-index: 1
+            color: white
         &:hover
             background: $layer2
             transition: 300ms linear
             cursor: pointer
-
+        & i
+            margin-top: 0.4em
     &--hr
         position: relative
         top: -1px

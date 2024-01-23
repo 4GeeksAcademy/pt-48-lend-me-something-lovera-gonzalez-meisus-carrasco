@@ -1787,7 +1787,7 @@ export const Linear = (props) => {
         lg.append("stop")
             .attr("offset", "0%")
             .style("stop-color", color)
-            .style("stop-opacity", 0.15);
+            .style("stop-opacity", 0.40);
         lg.append("stop")
             .attr("offset", "100%")
             .style("stop-color", color)

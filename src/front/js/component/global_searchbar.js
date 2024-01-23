@@ -55,7 +55,7 @@ export const GlobalSearchBar = ({ style, handleClick }) => {
 
     const getStockData = async (string) => {
         // console.log(string)
-        const data = await get_search_results(string,'',0);
+        const data = await get_search_results(string, '', 0);
         const data_with_links = data.data.map(element =>
             element.symbol ? ({ ...element, link: `/single/${element.symbol}` }) : { ...element, link: `/single/non-traceable` }
         )
@@ -82,19 +82,23 @@ export const GlobalSearchBar = ({ style, handleClick }) => {
             if (e.key === "ArrowUp" && selectedItem > 0) {
                 setSelectedItem(prev => prev - 1)
             }
-            else if (e.key === "ArrowDown" && selectedItem < searchData.length - 1) {
+            if (e.key === "ArrowDown" && selectedItem < searchData.length - 1) {
                 setSelectedItem(prev => prev + 1)
             }
-            else if (e.key === "Enter" && selectedItem >= 0) {
+            if (e.key === "Enter" && selectedItem >= 0) {
                 cerrarBarra();
                 navigate(`${searchData[selectedItem].link}`)
+            }
+            if (e.key === "Enter" && selectedItem == -1 && searchData[0]) {
+                cerrarBarra();
+                navigate(`${searchData[0].link}`)
             }
         }
         else {
             setSelectedItem(-1)
         }
     };
-    
+
     const cerrarBarra = () => {
         setSearch('');
         setSearchData([])
@@ -105,7 +109,7 @@ export const GlobalSearchBar = ({ style, handleClick }) => {
 
     return (<>
         <animated.div className="navbar-margin globalsearch flex-column justify-content-start" style={{ ...style, ...springs }}>
-
+            <span style={{ marginTop: '1em', color: '#888' }}>You can launch this searchbar with Ctrl+Space shortcut!</span>
             <div className="d-flex flex-row justify-content-center align-items-center" style={{ marginTop: "10em" }}>
 
                 <i className="fa-solid fa-magnifying-glass magnifying" style={{ "color": "#ffffff" }}></i>
@@ -128,26 +132,25 @@ export const GlobalSearchBar = ({ style, handleClick }) => {
                         <Link to={`${element.link}`}
                             key={index}
                             onClick={cerrarBarra}
-                            className={
-                                selectedItem === index
-                                    ? "search-suggestion-line active"
-                                    : "search-suggestion-line"
-                            }>
-                            {element.title ? element.title : (
-							<div className="d-flex justify-content-between" style={{ width: '20em' }}>
-								<span>
-									{element.name}
-								</span>
-								<span>
-									{element.symbol}
-								</span>
-							</div>
-						)}
+                            className={`${selectedItem === index ? "search-suggestion-line active" : "search-suggestion-line"} ${element.title ? "app-link" : ""}`}
+                        >
+                    {
+                        element.title ? element.title : (
+                            <div className="d-flex justify-content-between" style={{ width: '20em' }}>
+                                <span>
+                                    {element.name}
+                                </span>
+                                <span>
+                                    {element.symbol}
+                                </span>
+                            </div>
+                        )
+                    }
                         </Link>
-                    );
+            );
                 })
                 }
-            </div>
-        </animated.div>
+        </div>
+    </animated.div >
     </>)
 }
