@@ -100,7 +100,7 @@ export const Login = () => {
                        
                     </PurpleContainer> */}
                 </div>
-                <BlueContainer style={{ width: '750px' }}>
+                <BlueContainer style={{ width: '700px' }}>
                     <div className="profile-text" style={{ width: 'cover' }} >
 
                         <p style={{ fontSize: ' 1.1em', fontWeight: '600' }}>Recuerda nunca compartas tus claves, ni informacion acerca de tu cuenta</p>
