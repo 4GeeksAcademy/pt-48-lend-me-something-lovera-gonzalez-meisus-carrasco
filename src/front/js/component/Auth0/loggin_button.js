@@ -9,7 +9,7 @@ export const LogginButton = (props) => {
     const { store, actions } = useContext(Context)
 
     const { loginWithRedirect } = useAuth0();
-    const { user } =  useAuth0();
+    const { user } = useAuth0();
 
     const loginClick = async () => {
         await loginWithRedirect({
@@ -20,10 +20,10 @@ export const LogginButton = (props) => {
         console.log('loggin clicked');
     }
     return (
-        <button 
-        onClick={loginClick} 
-        className='purple--button'
-        style={{...props.style}}
+        <button
+            onClick={loginClick}
+            className="purple--button"
+            style={{ ...props.style }}
         >Log In</button>
     )
 } 

@@ -30,7 +30,7 @@ export const Home = () => {
 
 	return (<>
 		<TopBarTitle topTitle='Welcome' />
-		<div className={isAuthenticated ? "text-center navbar-margin" : 'text-center'}>
+		<div className="text-center navbar-margin">
 			<animated.div
 				style={{
 					...springs,

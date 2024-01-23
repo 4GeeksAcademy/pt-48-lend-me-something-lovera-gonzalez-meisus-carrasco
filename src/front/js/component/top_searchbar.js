@@ -28,7 +28,7 @@ export const TopBar = () => {
     return (<>
         <GlobalSearchBar style={store.searchState ? { display: "flex" } : { display: "none" }} handleClick={handleClick} />
 
-        <div className={isAuthenticated ? "dashboard-bar p-3 navbar-margin" : "dashboard-bar p-3"}>
+        <div className= "dashboard-bar p-3 navbar-margin">
             <h3>{store.title}</h3>
             <div className="d-flex flex-row gap-3 align-items-center">
                 {/*<i className="fa-solid fa-magnifying-glass magnifying" style={{ "color": "#ffffff" }}></i>

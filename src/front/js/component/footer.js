@@ -27,7 +27,7 @@ export const Footer = () => (
 			<div className="col-12">
 				<p className="text-light">
 					Made with <i className="fa fa-heart text-danger" /> by{" "}
-					<a href="https://github.com/orgs/4GeeksAcademy/projects/152/views/1">LendMeSomething Team</a>
+					<Link to="/aboutus">LendMeSomething Team</Link>
 				</p>
 			</div>
 		</div>

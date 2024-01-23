@@ -74,7 +74,7 @@ export const Single = props => {
 				{ticker.name && tableData && <>
 					<div className='d-flex flex-row gap-2'>
 						{isAuthenticated && <button className="blue--button single-portfolio--button" >Add to Portfolio</button>}
-						{!isAuthenticated && <LogginButton style={{ height: '3rem', width: '15rem !important', position: 'absolute', bottom: '2rem', right: '2rem', backgroundColor: '#0d715d' }} />}
+						{!isAuthenticated && <LogginButton  style={{ height: '3rem', width: '15rem !important', position: 'absolute', top: '2rem', right: '2rem', backgroundColor: '#0d715d' }} />}
 					</div>
 					<h3>Symbol/Ticker: {ticker.symbol} </h3>
 					<div className="d-flex flex-row gap-2">
