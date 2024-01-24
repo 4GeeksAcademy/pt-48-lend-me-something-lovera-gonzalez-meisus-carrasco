@@ -6,6 +6,9 @@ class PortfolioList(db.Model):
     id = db.Column(db.Integer, nullable =False, primary_key = True)
     portfolio_id = db.Column(db.Integer, db.ForeignKey('portfolio.id'))
 
+    portfolio = db.relationship('Portfolio', back_populates='portfolio_list')
+
+
     def __repr__ (self):
         return f'<Portfolio: {self.id}>'  
 
