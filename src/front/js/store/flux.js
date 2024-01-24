@@ -86,6 +86,10 @@ const getState = ({ getStore, getActions, setStore }) => {
 				const store = getStore();
 				setStore({...store, collapsableState: !store.collapsableState});
 				console.log(store.collapsableState)
+			},
+			storePriceId: (priceId) => {
+				const store = getStore();
+				setStore({...store, priceId: priceId })
 			}
 		}
 	};
