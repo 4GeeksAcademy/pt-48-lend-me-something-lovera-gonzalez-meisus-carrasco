@@ -79,7 +79,7 @@ export const Single = props => {
 					<h3>Symbol/Ticker: {ticker.symbol} </h3>
 					<div className="d-flex flex-row gap-2">
 						<div className="d-flex flex-row  justify-content-start align-items-center gap-2">
-							<span style={{ fontSize: '1.7em' }}>Last Value: </span><span style={tableColor === 'green' ? { fontSize: '1.7em', color: '#0d715d' } : { fontSize: '1.7em', color: '#992828' }}>{tableData[0].close}</span>
+							<span style={{ fontSize: '1.7em' }}>Last Value: </span><span style={tableColor === 'green' ? { fontSize: '1.7em', color: '#0d715d' } : { fontSize: '1.7em', color: '#992828' }}>{tableData[0].Close}</span>
 							{tableColor === 'green' && <i className="fa-solid fa-angles-up" style={{ color: '#0d715d', fontSize: '1.5em', marginTop: '0.2em' }}></i>}
 							{tableColor === 'red' && <i className="fa-solid fa-angles-down" style={{ color: '#992828', fontSize: '1.5em', marginTop: '0.2em' }}></i>}
 						</div>

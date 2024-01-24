@@ -10,24 +10,24 @@ import { useSpring, animated } from '@react-spring/web'
 import '../../styles/subscription.sass'
 
 export const Subscription = () => {
-    
-    const {store, actions} = useContext(Context)
+
+    const { store, actions } = useContext(Context)
     const subscriptionPlans = [
-         {
+        {
             'level': 'Free',
             'price': 0
         },
-         {
+        {
             'level': 'Essential',
             'price': 5.99,
-            'product_id' : 'price_1Oc1qHEUv4sos4iTVEhLbR2u'
+            'product_id': 'price_1Oc1qHEUv4sos4iTVEhLbR2u'
         },
         {
             'level': 'Bussines',
             'price': 9.99,
-            'product_id' : 'price_1Oc1qlEUv4sos4iTDmypeTRP'
+            'product_id': 'price_1Oc1qlEUv4sos4iTDmypeTRP'
         }]
-    
+
 
     const navigate = useNavigate()
 
@@ -43,8 +43,9 @@ export const Subscription = () => {
 
     const handleClick = (string) => {
         const [subscriptionToSetTo] = subscriptionPlans.filter(level => level.level == string);
-        actions.setSubscription(subscriptionToSetTo)
-        navigate('/checkout')
+        actions.setSubscription(subscriptionToSetTo);
+        localStorage.setItem('subscription', JSON.stringify(subscriptionToSetTo))
+        navigate('/checkout');
     }
 
     return (<>
@@ -89,7 +90,7 @@ export const Subscription = () => {
                         <span>Start your journey for...</span>
                         <h2>$ 5.99 / month</h2>
                     </div>
-                    <button className="subscription-button-essential subscription-button" onClick={ () => handleClick('Essential')}>Upgrade</button>
+                    <button className="subscription-button-essential subscription-button" onClick={() => handleClick('Essential')}>Upgrade</button>
                 </div>
             </BlueContainer>
             <PurpleContainer style={{ width: '60%' }}>

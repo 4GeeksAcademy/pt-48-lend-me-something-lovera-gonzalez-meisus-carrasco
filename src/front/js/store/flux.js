@@ -10,6 +10,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			user: {
 				subscription_level: 'Free'
 			},
+			subscription_level: 'Free',
 			searchState: false,
 			subscription: {},
 			demo: [
@@ -90,6 +91,13 @@ const getState = ({ getStore, getActions, setStore }) => {
 			storePriceId: (priceId) => {
 				const store = getStore();
 				setStore({...store, priceId: priceId })
+			},
+			setUserSubscriptionLevel: () => {
+				const store = getStore();
+				console.log('Seteando subscription')
+				const new_level = JSON.parse(localStorage.getItem('subscription')).level
+				console.log(JSON.parse(localStorage.getItem('subscription')).level)
+				setStore({...store, subscription_level: new_level })
 			}
 		}
 	};

@@ -61,17 +61,20 @@ export const Return = () => {
     
     const {store, actions} = useContext(Context)
 
+    
+
     useEffect(() => {
 
         const sessionId = session_id
-        console.log('fetching')
 
         fetch(`${process.env.BACKEND_URL}/session-status/${sessionId}`)
             .then((res) => res.json())
             .then((data) => {
                 setStatus(data.status);
                 setCustomerEmail(data.customer_email);
+                
             });
+        actions.setUserSubscriptionLevel();
             
         const timer = setInterval(()=> {
             setTimeRedirection(prev => prev -1)
@@ -83,7 +86,8 @@ export const Return = () => {
         }, 30000);
 
         return (() => {
-            clearInterval(timer)
+            clearInterval(timer);
+            
         })
     }, []);
 
@@ -92,8 +96,11 @@ export const Return = () => {
             <Navigate to={`/checkout-form/${store.priceId}`} />
         )
     }
+   
 
     if (status === 'complete') {
+
+        
         return (
 
             <section id="success" className="navbar-margin d-flex flex-row justify-content-center align-items-center">
