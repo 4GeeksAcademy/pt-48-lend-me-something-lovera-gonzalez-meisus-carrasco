@@ -6,6 +6,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			message: null,
 			title: null,
 			stocks: null,
+			collapsableState: false,
 			user: {
 				subscription_level: 'Free'
 			},
@@ -80,6 +81,11 @@ const getState = ({ getStore, getActions, setStore }) => {
 			setSubscription: (subscription) => {
 				const store = getStore();
 				setStore({...store, subscription: subscription})
+			},
+			switchVisible: () => {
+				const store = getStore();
+				setStore({...store, collapsableState: !store.collapsableState});
+				console.log(store.collapsableState)
 			}
 		}
 	};

@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import { useAuth0 } from "@auth0/auth0-react";
 import { Context } from '../store/appContext.js'
 import { Link } from 'react-router-dom';
@@ -13,19 +13,23 @@ export const UserSpinner = () => {
     const { store, actions } = useContext(Context)
     const [ searchState, setSearchState ] = useState(false)
     const { isAuthenticated, user } = useAuth0();
-    const [visible, setVisible] = useState(false);
+    const [visible, setVisible] = useState();
 
-    const showCollapsable = () => {
-        setVisible(true);
+    const showCollapsable = (event) => {
+        event.stopPropagation()
+        actions.switchVisible();
     };
 
     const hideCollapsable  = () => {
-        setVisible(false);
+        actions.switchVisible();
     };
 
+    useEffect(()=>{
+        setVisible(store.collapsableState)
+    }, [])
 
     return (<>
-        <div className={visible ? "collapsable collapsable--active" : "collapsable"}>
+        <div className={store.collapsableState ? "collapsable collapsable--active" : "collapsable"} id='collapsable'>
             <div className='collapsable--list'  onMouseLeave={hideCollapsable}>
                 <div className="collapsable--hr" />
                 <Link className="collapsable--list-link" to="/subscription">Subscription</Link>

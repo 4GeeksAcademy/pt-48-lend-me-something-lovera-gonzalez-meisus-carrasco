@@ -56,6 +56,13 @@ const Layout = () => {
 
         });
 
+        document.addEventListener('click', (event) => {
+            if (event.target.id != 'collapsable' && store.collapsableState === true ) {
+                actions.switchVisible();
+                event.preventDefault();
+            }
+        });
+
     }, [])
 
     return (
