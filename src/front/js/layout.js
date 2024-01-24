@@ -21,6 +21,8 @@ import { Notifications } from '../js/pages/notifications'
 import { Discover } from "./pages/discover";
 import Spinner from "./component/spinner";
 import { Checkout } from "./component/dashboard/checkout";
+import { CheckoutForm } from "./pages/stripe";
+import { Return } from "./pages/stripe";
 
 
 //create your first component
@@ -72,6 +74,8 @@ const Layout = () => {
                             <Route element={<Subscription />} path="/subscription" />
                             <Route element={<Notifications />} path="/notifications" />
                             <Route element={<Checkout />} path="/checkout" />
+                            <Route element={<CheckoutForm />} path="/checkout-form/:product_id" />
+                            <Route element={<Return />} path="/return/:session_id" />
                             <Route element={<Single />} path="/single/:symbol" />
                             <Route element={<Home />} path='*' />
                         </Routes>

@@ -23,6 +23,10 @@ export const Checkout = () => {
         },
     })
 
+    const handlePay = () => {
+        navigate(`/checkout-form/${store.subscription.product_id}`)
+    }
+
 
     return (<>
 
@@ -56,7 +60,7 @@ export const Checkout = () => {
                     <span>Total</span>
                     <p>{+store?.subscription?.price} €</p>
                 </div>}
-                <button className="purple--button checkout--button">Pay</button>
+                <button className="purple--button checkout--button" onClick={handlePay}>Pay</button>
             </PurpleContainer>
         </animated.div>
 

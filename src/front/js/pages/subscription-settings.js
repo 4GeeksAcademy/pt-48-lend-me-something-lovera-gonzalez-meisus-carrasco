@@ -19,11 +19,13 @@ export const Subscription = () => {
         },
          {
             'level': 'Essential',
-            'price': 5.99
+            'price': 5.99,
+            'product_id' : 'price_1Oc1qHEUv4sos4iTVEhLbR2u'
         },
         {
             'level': 'Bussines',
-            'price': 9.99
+            'price': 9.99,
+            'product_id' : 'price_1Oc1qlEUv4sos4iTDmypeTRP'
         }]
     
 
