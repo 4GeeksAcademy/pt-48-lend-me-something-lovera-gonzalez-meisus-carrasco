@@ -105,7 +105,7 @@ def create_checkout_session():
                 },
             ],
             mode='subscription',
-            return_url=YOUR_DOMAIN + '/return/{CHECKOUT_SESSION_ID}',
+            return_url=YOUR_DOMAIN + 'return/{CHECKOUT_SESSION_ID}',
         )
     except Exception as e:
         return str(e)
