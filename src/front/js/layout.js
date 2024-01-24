@@ -20,6 +20,7 @@ import { Subscription } from '../js/pages/subscription-settings'
 import { Notifications } from '../js/pages/notifications'
 import { Discover } from "./pages/discover";
 import Spinner from "./component/spinner";
+import { Checkout } from "./component/dashboard/checkout";
 
 
 //create your first component
@@ -70,7 +71,7 @@ const Layout = () => {
                             <Route element={<Discover />} path="/discover" />
                             <Route element={<Subscription />} path="/subscription" />
                             <Route element={<Notifications />} path="/notifications" />
-                            <Route element={<Demo />} path="/demo" />
+                            <Route element={<Checkout />} path="/checkout" />
                             <Route element={<Single />} path="/single/:symbol" />
                             <Route element={<Home />} path='*' />
                         </Routes>

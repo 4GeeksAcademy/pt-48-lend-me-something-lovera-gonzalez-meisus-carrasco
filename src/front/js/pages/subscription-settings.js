@@ -1,13 +1,33 @@
 import React, { useState, useEffect, useContext } from 'react'
+import { Context } from '../store/appContext';
 import { PurpleContainer } from '../component/color_containers/purple_container'
 import { BlueContainer } from '../component/color_containers/blue_container'
 import { YellowContainer } from '../component/color_containers/yellow_container'
 import { TopBarTitle } from '../component/topBarTitle'
+import { useNavigate } from "react-router-dom";
 
 import { useSpring, animated } from '@react-spring/web'
 import '../../styles/subscription.sass'
 
 export const Subscription = () => {
+    
+    const {store, actions} = useContext(Context)
+    const subscriptionPlans = [
+         {
+            'level': 'Free',
+            'price': 0
+        },
+         {
+            'level': 'Essential',
+            'price': 5.99
+        },
+        {
+            'level': 'Bussines',
+            'price': 9.99
+        }]
+    
+
+    const navigate = useNavigate()
 
     const springs = useSpring({
         from: { opacity: 0, y: -5 },
@@ -19,6 +39,11 @@ export const Subscription = () => {
         },
     })
 
+    const handleClick = (string) => {
+        const [subscriptionToSetTo] = subscriptionPlans.filter(level => level.level == string);
+        actions.setSubscription(subscriptionToSetTo)
+        navigate('/checkout')
+    }
 
     return (<>
 
@@ -62,7 +87,7 @@ export const Subscription = () => {
                         <span>Start your journey for...</span>
                         <h2>$ 5.99 / month</h2>
                     </div>
-                    <button className="subscription-button-essential subscription-button">Upgrade</button>
+                    <button className="subscription-button-essential subscription-button" onClick={ () => handleClick('Essential')}>Upgrade</button>
                 </div>
             </BlueContainer>
             <PurpleContainer style={{ width: '60%' }}>
@@ -84,7 +109,7 @@ export const Subscription = () => {
                         <span>Be your better version for...</span>
                         <h2>$ 9.99 / month</h2>
                     </div>
-                    <button className="subscription-button-business subscription-button">Upgrade</button>
+                    <button className="subscription-button-business subscription-button" onClick={() => handleClick('Bussines')}>Upgrade</button>
                 </div>
             </PurpleContainer>
         </animated.div>

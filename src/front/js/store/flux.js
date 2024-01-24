@@ -8,6 +8,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			stocks: null,
 			user: null,
 			searchState: false,
+			subscription: {},
 			demo: [
 				{
 					title: "FIRST",
@@ -73,6 +74,10 @@ const getState = ({ getStore, getActions, setStore }) => {
 				const store = getStore();
 				setStore({ ...store, user: user })
 				
+			},
+			setSubscription: (subscription) => {
+				const store = getStore();
+				setStore({...store, subscription: subscription})
 			}
 		}
 	};

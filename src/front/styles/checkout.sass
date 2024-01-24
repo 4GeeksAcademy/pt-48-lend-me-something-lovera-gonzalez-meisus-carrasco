@@ -1,0 +1,44 @@
+@use './shared'
+
+.checkout
+    &--container
+        margin-top: 1rem
+        margin-bottom: 2rem
+        display: flex
+        flex-direction: row
+        justify-content: center
+        align-items: center
+        gap: 3rem
+    &-plan--container
+        position: relative
+        display: flex
+        flex-direction: column
+        justify-content: space-between
+        align-items: center
+    &-item--container
+        width: 95%
+        display: flex
+        flex-direction: row
+        justify-content: space-between
+        border-bottom: 1px dotted white
+    &--check
+        display: flex
+        flex-direction: column
+        gap: 0.5em
+        justify-content: flex-start
+        align-content: center
+        margin-bottom: 3em
+        & p
+            align-self: flex-end
+        & span
+            align-self: flex-end
+    &--button
+        position: absolute
+        bottom: 1em
+        right: 1em
+    &-back--button
+        position: absolute
+        bottom: 1em
+        left: 1em
+
+    
