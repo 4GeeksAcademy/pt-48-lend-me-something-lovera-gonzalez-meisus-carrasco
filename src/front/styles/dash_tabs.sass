@@ -5,7 +5,7 @@ $layer2: linear-gradient(0deg, shared.$dark-gray-base-color 0%, shared.$blue-bas
 .dashboard-tabs
     &--container
         position: sticky
-        top:0
+        top: 4em
         background: shared.$dark-gray-base-color
         display: flex
         flex-direction: column
@@ -46,7 +46,16 @@ $layer2: linear-gradient(0deg, shared.$dark-gray-base-color 0%, shared.$blue-bas
             margin-top: 0.4em
     &--hr
         position: relative
-        top: -1px
+        top: 0px
         background: $layer1
         width: 100%
-        height: 1px
+        height: 2px
+        z-index: 1
+
+@media screen and   (max-width: 900px)
+    .dashboard-tabs--bar
+        font-size: 16px
+    .dashboard-tabs--tab
+        font-size: 16px
+    .dashboard-tabs--tab--active
+        font-size: 16px

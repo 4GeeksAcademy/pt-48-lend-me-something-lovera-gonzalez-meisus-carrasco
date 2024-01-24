@@ -22,7 +22,7 @@ export const Navbar = () => {
 		<animated.div className="d-flex flex-column align-items-center justify-content-between pb-5  bg-dark vh-100  fixed-top rounded-2" style={{ ...springs, "width": "6em" }}>
 
 
-			<div className=" d-flex flex-column align-items-center justify-content-between gap-5">
+			<div className=" d-flex flex-column align-items-center gap-5 navbar-collapsed">
 
 				<button
 					className="mt-3 btn btn-dark"

@@ -7,8 +7,13 @@ $layer2: linear-gradient(60deg, shared.$dark-gray-base-color 0%, shared.$dark-gr
     display: flex
     flex-direction: row
     justify-content: space-between
+    width: 95%
+    background: shared.$dark-gray-base-color
     align-items: center
-    position: sticky
+    position: fixed
+    top:0
+    margin-left: 6em
+    height: 4em
     z-index: 2
 
 .search-input
@@ -32,13 +37,11 @@ $layer2: linear-gradient(60deg, shared.$dark-gray-base-color 0%, shared.$dark-gr
     left: 3rem
 
 .button-bar
-     background-color: #444444
-     border: 1px solid transparent
-     border-radius: 1rem
-     
+    background-color: #444444
+    border: 1px solid transparent
+    border-radius: 1rem
 
 .noti-bell:hover
     scale: 1.2
     box-shadow: 0 0 10px 2px shared.$blue-base-color
     transition: 200ms
-
