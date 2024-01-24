@@ -3,7 +3,7 @@ from api.Services.HTTP_Status import HTTP_Status
 import re
 
 
-class UserService:
+class SubscriptionService:
     @staticmethod
     def get_list():
         raw_data = SubscriptionRepository.get_list()

@@ -2,7 +2,7 @@
 This module takes care of starting the API Server, Loading the DB and Adding the endpoints
 """
 import os
-from flask import Flask, request, jsonify, url_for, send_from_directory,redirect
+from flask import Flask, request, jsonify, url_for, send_from_directory, redirect
 from flask_migrate import Migrate
 from flask_swagger import swagger
 from api.utils import APIException, generate_sitemap
@@ -14,11 +14,13 @@ from api.Controllers.market_controller import market_api
 from api.Controllers.api_proxy import api_proxy
 from api.Controllers.index_controller import index_api
 from api.Controllers.portfolio_controller import portfolio_api
+from api.Controllers.subscription_controller import subscription_api
 from api.admin import setup_admin
 from api.commands import setup_commands
 from flask_cors import CORS
 import stripe
-stripe.api_key = 'sk_test_51Oc1gPEUv4sos4iTbeF2C85cfQDBpGzWiVMnE3GcpSUhOqXJHY7VKGc24fNquJulJTOZoH3kYLUc8vPqBfYpt8dH00XtPRGLgJ'
+
+stripe.api_key = "sk_test_51Oc1gPEUv4sos4iTbeF2C85cfQDBpGzWiVMnE3GcpSUhOqXJHY7VKGc24fNquJulJTOZoH3kYLUc8vPqBfYpt8dH00XtPRGLgJ"
 
 YOUR_DOMAIN = os.getenv("REACT_APP_AUTH0_CALLBACK_URL")
 # from models import Person
@@ -57,8 +59,11 @@ app.register_blueprint(api_proxy, name="api_proxy", url_prefix="/api_proxy")
 app.register_blueprint(user_api, name="user_api", url_prefix="/user")
 app.register_blueprint(value_api, name="value_api", url_prefix="/value")
 app.register_blueprint(market_api, name="market_api", url_prefix="/market")
-app.register_blueprint(index_api, name= 'index_api', url_prefix='/index')
-app.register_blueprint(portfolio_api, name= 'portfolio_api', url_prefix='/portfolio')
+app.register_blueprint(index_api, name="index_api", url_prefix="/index")
+app.register_blueprint(portfolio_api, name="portfolio_api", url_prefix="/portfolio")
+app.register_blueprint(
+    subscription_api, name="subscription_api", url_prefix="/subscription"
+)
 
 # Handle/serialize errors like a JSON object
 
@@ -92,34 +97,34 @@ def sitemap():
 # Stripe implementation
 
 
-@app.route('/create-checkout-session', methods=['POST'])
+@app.route("/create-checkout-session", methods=["POST"])
 def create_checkout_session():
     try:
         request_data = request.json
         print(request_data)
         session = stripe.checkout.Session.create(
-            ui_mode = 'embedded',
+            ui_mode="embedded",
             line_items=[
                 {
                     # Provide the exact Price ID (for example, pr_1234) of the product you want to sell
-                    'price': request_data["product_id"],
-                    'quantity': 1,
+                    "price": request_data["product_id"],
+                    "quantity": 1,
                 },
             ],
-            mode='subscription',
-            return_url=YOUR_DOMAIN + 'return/{CHECKOUT_SESSION_ID}',
+            mode="subscription",
+            return_url=YOUR_DOMAIN + "return/{CHECKOUT_SESSION_ID}",
         )
     except Exception as e:
         return str(e)
 
     return jsonify(clientSecret=session.client_secret)
 
-@app.route('/session-status/<string:session_id>', methods=['GET'])
+
+@app.route("/session-status/<string:session_id>", methods=["GET"])
 def session_status(session_id):
-  session = stripe.checkout.Session.retrieve(session_id)
+    session = stripe.checkout.Session.retrieve(session_id)
 
-  return jsonify(status=session.status, customer_email=session.customer_details.email)
-
+    return jsonify(status=session.status, customer_email=session.customer_details.email)
 
 
 # this only runs if `$ python src/main.py` is executed
