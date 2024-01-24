@@ -108,7 +108,7 @@ export const GlobalSearchBar = ({ style, handleClick }) => {
 
 
     return (<>
-        <animated.div className="navbar-margin globalsearch flex-column justify-content-start" style={{ ...style, ...springs }}>
+        <animated.div className="navbar-margin-top-searchbar globalsearch flex-column justify-content-start" style={{ ...style, ...springs }}>
             <span style={{ marginTop: '1em', color: '#888' }}>You can launch this searchbar with Ctrl+Space shortcut!</span>
             <div className="d-flex flex-row justify-content-center align-items-center" style={{ marginTop: "10em" }}>
 

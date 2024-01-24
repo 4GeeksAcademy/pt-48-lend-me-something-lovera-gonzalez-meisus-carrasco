@@ -37,7 +37,7 @@ export const CheckoutForm = () => {
     }, []);
 
     return (
-        <div id="checkout">
+        <div id="checkout" className="navbar-margin">
             {clientSecret && (
                 <EmbeddedCheckoutProvider
                     stripe={stripePromise}
@@ -55,6 +55,7 @@ export const Return = () => {
     const [status, setStatus] = useState(null);
     const [customerEmail, setCustomerEmail] = useState('');
     const navigate = useNavigate()
+    const [timeRedirection, setTimeRedirection] =useState(30)
 
     useEffect(() => {
 
@@ -67,6 +68,19 @@ export const Return = () => {
                 setStatus(data.status);
                 setCustomerEmail(data.customer_email);
             });
+            
+        const timer = setInterval(()=> {
+            setTimeRedirection(prev => prev -1)
+        }, 30000)
+
+        setTimeout(()=> {
+            navigate('/dashboard')
+            clearInterval(timer)
+        }, 5000);
+
+        return (() => {
+            clearInterval(timer)
+        })
     }, []);
 
     if (status === 'open') {
@@ -78,14 +92,15 @@ export const Return = () => {
     if (status === 'complete') {
         return (
 
-            <section id="success" className="navbar-margin">
-                <BlueContainer>
+            <section id="success" className="navbar-margin d-flex flex-row justify-content-center align-items-center">
+                <BlueContainer style={{display: 'flex', justifyContent: 'center', flexDirection: 'column', alignItems: 'center'}}>
                 <p>
                    Thanks for your subscription! A confirmation email will be sent to {customerEmail}.
 
                     If you have any questions, please email <a href="mailto:flowfinance.dev@gmail.com">flowfinance.dev@gmail.com</a>.
                 </p>
                 <button className="blue--button" onClick={() => navigate('/dashboard')}>Go to Dashboard</button>
+                <small>You'll be redirected to Dashboard in {timeRedirection} seconds</small>
                 </BlueContainer>
             </section>
         )
