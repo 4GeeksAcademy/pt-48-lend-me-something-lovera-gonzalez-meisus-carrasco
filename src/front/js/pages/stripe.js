@@ -21,7 +21,7 @@ const stripePromise = loadStripe("pk_test_51Oc1gPEUv4sos4iTc5GYI5HJUEnlAYMHj9GSh
 
 export const CheckoutForm = () => {
     const { product_id } = useParams()
-    const {store, actions} = useContext(Context)
+    const { store, actions } = useContext(Context)
     const [clientSecret, setClientSecret] = useState('');
 
     useEffect(() => {
@@ -57,11 +57,11 @@ export const Return = () => {
     const [status, setStatus] = useState(null);
     const [customerEmail, setCustomerEmail] = useState('');
     const navigate = useNavigate()
-    const [timeRedirection, setTimeRedirection] =useState(30)
-    
-    const {store, actions} = useContext(Context)
+    const [timeRedirection, setTimeRedirection] = useState(30)
 
-    
+    const { store, actions } = useContext(Context)
+
+
 
     useEffect(() => {
 
@@ -72,22 +72,24 @@ export const Return = () => {
             .then((data) => {
                 setStatus(data.status);
                 setCustomerEmail(data.customer_email);
-                
+
             });
         actions.setUserSubscriptionLevel();
-            
-        const timer = setInterval(()=> {
-            setTimeRedirection(prev => prev -1)
+
+        const timer = setInterval(() => {
+            setTimeRedirection(prev => prev - 1);
+            console.log(timeRedirection)
         }, 1000)
 
-        setTimeout(()=> {
+        const timeout = setTimeout(() => {
             navigate('/dashboard')
             clearInterval(timer)
         }, 30000);
 
         return (() => {
             clearInterval(timer);
-            
+            clearTimeout(timeout);
+
         })
     }, []);
 
@@ -96,22 +98,22 @@ export const Return = () => {
             <Navigate to={`/checkout-form/${store.priceId}`} />
         )
     }
-   
+
 
     if (status === 'complete') {
 
-        
+
         return (
 
             <section id="success" className="navbar-margin d-flex flex-row justify-content-center align-items-center">
-                <GreenContainer style={{display: 'flex', justifyContent: 'center', flexDirection: 'column', alignItems: 'center', padding: '2em'}}>
-                <p>
-                   Thanks for your subscription! A confirmation email will be sent to {customerEmail}.
+                <GreenContainer style={{ display: 'flex', justifyContent: 'center', flexDirection: 'column', alignItems: 'center', padding: '2em' }}>
+                    <p>
+                        Thanks for your subscription! A confirmation email will be sent to {customerEmail}.
 
-                    If you have any questions, please email <a style={{color: '#15bd9b'}} href="mailto:flowfinance.dev@gmail.com">flowfinance.dev@gmail.com</a>.
-                </p>
-                <button className="green--button" onClick={() => navigate('/dashboard')}>Go to Dashboard</button>
-                <small style={{marginTop: '1em'}}>You'll be redirected to Dashboard in {timeRedirection} seconds</small>
+                        If you have any questions, please email <a style={{ color: '#15bd9b' }} href="mailto:flowfinance.dev@gmail.com">flowfinance.dev@gmail.com</a>.
+                    </p>
+                    <button className="green--button" onClick={() => navigate('/dashboard')}>Go to Dashboard</button>
+                    <small style={{ marginTop: '1em' }}>You'll be redirected to Dashboard in {timeRedirection} seconds</small>
                 </GreenContainer>
             </section>
         )
