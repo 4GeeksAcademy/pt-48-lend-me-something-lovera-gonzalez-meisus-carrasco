@@ -11,6 +11,7 @@ export const get_eod_data = async (symbol) => {
     const data = await request.json();
     // console.log(request)
     const EndOfDay_data = await data.data;
+    console.log(EndOfDay_data)
     return EndOfDay_data
 };
 

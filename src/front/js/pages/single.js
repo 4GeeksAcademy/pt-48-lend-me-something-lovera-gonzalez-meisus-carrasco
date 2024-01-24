@@ -33,8 +33,12 @@ export const Single = props => {
 	const loadTableData = async (symbol) => {
 		const data = await get_eod_data(symbol)
 		const ticker_info = await get_search_results(symbol, '', '')
-		setGraphData(data)
-		setTableData(data.map(
+		const data_for_tendency = data;
+		const data_for_table = data;
+		const data_for_graph = data;
+		setGraphData(data_for_graph);
+		[last_value, yesterday_value] = data_for_tendency.map(e => e.close);
+		setTableData(data_for_table.map(
 			element =>
 			({
 				Date: new Date(element.date).toLocaleDateString("es-es"),
@@ -46,7 +50,6 @@ export const Single = props => {
 			})
 		));
 		setTicker(ticker_info.data[0]);
-		[last_value, yesterday_value] = data.map(e => e.close);
 		columns = (Object.keys(data[0]).map(e => ({ 'field': e, 'flex': 1 })))
 		if (yesterday_value > last_value) setTableColor('red');
 		setTimeout(() => {
@@ -91,7 +94,7 @@ export const Single = props => {
 							<Linear color={'#0d715d'} data={graphData} title={ticker.symbol} />
 						</GreenContainer>}
 						{tableColor === 'red' && <PinkContainer>
-							<Linear color={'#992828'} data={tableData} title={ticker.symbol} />
+							<Linear color={'#992828'} data={graphData} title={ticker.symbol} />
 						</PinkContainer>}
 
 						{tableData.length > 1 && <Table data={tableData} columns={columns} />}
