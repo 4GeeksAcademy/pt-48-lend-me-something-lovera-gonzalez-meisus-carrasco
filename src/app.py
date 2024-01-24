@@ -14,6 +14,7 @@ from api.Controllers.market_controller import market_api
 from api.Controllers.api_proxy import api_proxy
 from api.Controllers.index_controller import index_api
 from api.Controllers.portfolio_controller import portfolio_api
+from api.Controllers.portfolio_list_controller import portfolio_list_api
 from api.Controllers.subscription_controller import subscription_api
 from api.admin import setup_admin
 from api.commands import setup_commands
@@ -62,8 +63,12 @@ app.register_blueprint(market_api, name="market_api", url_prefix="/market")
 app.register_blueprint(index_api, name="index_api", url_prefix="/index")
 app.register_blueprint(portfolio_api, name="portfolio_api", url_prefix="/portfolio")
 app.register_blueprint(
+    portfolio_list_api, name="portfolio_list_api", url_prefix="/portfolio_list"
+)
+app.register_blueprint(
     subscription_api, name="subscription_api", url_prefix="/subscription"
 )
+
 
 # Handle/serialize errors like a JSON object
 
@@ -81,6 +86,13 @@ def sitemap():
     if ENV == "development":
         return generate_sitemap(app)
     return send_from_directory(static_file_dir, "index.html")
+
+
+@app.route("/redirect")
+def redireccion():
+    return redirect(
+        "https://studious-space-sniffle-jjpp6wvv5wfj7q6-3000.app.github.dev/", code=302
+    )
 
 
 # any other endpoint will try to serve it like a static file

@@ -1,4 +1,5 @@
 from api.Repositories.user_repository import UserRepository
+from api.Repositories.subscription_repository import SubscriptionRepository
 from api.Services.HTTP_Status import HTTP_Status
 import re
 class UserService:
@@ -25,9 +26,10 @@ class UserService:
         return serialized_data, HTTP_Status.OK
     
     @staticmethod
-    def add(user_data):
-        result = UserRepository.add(user_data)
-        return result, HTTP_Status.OK
+    def add(new_user_data):
+        subscription_result = SubscriptionRepository.add(new_user_data)
+        user_result = UserRepository.add(new_user_data)
+        return user_result, HTTP_Status.OK
     
     @staticmethod
     def update(user_data):
