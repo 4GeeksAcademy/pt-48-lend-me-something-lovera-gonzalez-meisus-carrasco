@@ -6,7 +6,9 @@ const getState = ({ getStore, getActions, setStore }) => {
 			message: null,
 			title: null,
 			stocks: null,
-			user: null,
+			user: {
+				subscription_level: 'Free'
+			},
 			searchState: false,
 			subscription: {},
 			demo: [
