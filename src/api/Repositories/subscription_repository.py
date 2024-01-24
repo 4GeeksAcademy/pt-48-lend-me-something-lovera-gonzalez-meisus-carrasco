@@ -2,7 +2,7 @@ from api.Models.subscription_model import Subscription
 from api.engine import session
 
 
-class UserRepository:
+class SubscriptionRepository:
     @staticmethod
     def get_list():
         query = session.query(Subscription).all()
@@ -58,4 +58,3 @@ class UserRepository:
             )
         session.commit()
         return True
-
