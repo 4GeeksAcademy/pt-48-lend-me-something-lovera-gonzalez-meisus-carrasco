@@ -78,7 +78,6 @@ export const Return = () => {
 
         const timer = setInterval(() => {
             setTimeRedirection(prev => prev - 1);
-            console.log(timeRedirection)
         }, 1000)
 
         const timeout = setTimeout(() => {

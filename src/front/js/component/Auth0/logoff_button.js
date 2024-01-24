@@ -13,7 +13,7 @@ export const LogoffButton = (props) => {
                 returnTo: process.env.REACT_APP_LOGOFF_URL,
             },
         })
-        console.log('logoff clicked')
+        // console.log('logoff clicked')
     }
     return (<>
         <button style={{...props.style}} onClick={logoffClick} className='light-gray--button'><i className="fa-solid fa-right-from-bracket" style={{color: 'white'}}></i></button>

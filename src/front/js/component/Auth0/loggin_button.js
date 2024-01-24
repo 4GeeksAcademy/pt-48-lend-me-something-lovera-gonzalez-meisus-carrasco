@@ -17,7 +17,7 @@ export const LogginButton = (props) => {
                 returnTo: '/dashboard'
             },
         });
-        console.log('loggin clicked');
+        // console.log('loggin clicked');
     }
     return (
         <button

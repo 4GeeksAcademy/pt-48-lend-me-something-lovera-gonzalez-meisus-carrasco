@@ -11,7 +11,7 @@ export const get_eod_data = async (symbol) => {
     const data = await request.json();
     // console.log(request)
     const EndOfDay_data = await data.data;
-    console.log(EndOfDay_data)
+    // console.log(EndOfDay_data)
     return EndOfDay_data
 };
 
@@ -20,7 +20,7 @@ export const get_search_results = async (symbol,exchange,offset) => {
     const request = await fetch(`${FF_API}/api_proxy/searchbar?url=${stock_url}&symbols=${symbol}&exchange=${exchange}&offset=${offset}`);
     const data = await request.json();
     const search_results = await data;
-    console.log(await search_results)
+    // console.log(await search_results)
     return search_results
 }
 

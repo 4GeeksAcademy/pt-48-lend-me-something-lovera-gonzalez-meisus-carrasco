@@ -86,7 +86,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			switchVisible: () => {
 				const store = getStore();
 				setStore({...store, collapsableState: !store.collapsableState});
-				console.log(store.collapsableState)
+				// console.log(store.collapsableState)
 			},
 			storePriceId: (priceId) => {
 				const store = getStore();
@@ -94,9 +94,9 @@ const getState = ({ getStore, getActions, setStore }) => {
 			},
 			setUserSubscriptionLevel: () => {
 				const store = getStore();
-				console.log('Seteando subscription')
+				// console.log('Seteando subscription')
 				const new_level = JSON.parse(localStorage.getItem('subscription')).level
-				console.log(JSON.parse(localStorage.getItem('subscription')).level)
+				// console.log(JSON.parse(localStorage.getItem('subscription')).level)
 				setStore({...store, subscription_level: new_level })
 			}
 		}
