@@ -10,6 +10,7 @@ from api.Models.value_model import Value
 from api.Models.index_model import Index
 from api.Models.market_model import Market
 from api.Models.portfolio_model import Portfolio
+from api.Models.portfolio_list_model import PortfolioList
 from flask_admin.contrib.sqla import ModelView
 from api.Models.user_model import User
 
@@ -28,6 +29,7 @@ def setup_admin(app):
     admin.add_view(ModelView(Market, db.session))
     admin.add_view(ModelView(Subscription, db.session))
     admin.add_view(ModelView(Portfolio, db.session))
+    admin.add_view(ModelView(PortfolioList, db.session))
 
 
     # You can duplicate that line to add mew models

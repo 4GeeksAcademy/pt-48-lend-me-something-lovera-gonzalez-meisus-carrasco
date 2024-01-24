@@ -11,9 +11,7 @@ class User(db.Model):
     country = db.Column(db.String, nullable=True)
     city = db.Column(db.String, nullable=True)
     street = db.Column(db.String, nullable=True)
-    subscription_id = db.Column(
-        db.Integer, db.ForeignKey("subscriptions.id"), unique=True, nullable=False
-    )
+   
 
     subscription = db.relationship("Subscription", back_populates="user")
     portfolio = db.relationship("Portfolio", back_populates="user")
