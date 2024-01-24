@@ -3,7 +3,7 @@ from api.Services.HTTP_Status import HTTP_Status
 import re
 
 
-class PortfolioService:
+class PortfolioListService:
     @staticmethod
     def get_list():
         raw_data = PortfolioListRepository.get_list()
