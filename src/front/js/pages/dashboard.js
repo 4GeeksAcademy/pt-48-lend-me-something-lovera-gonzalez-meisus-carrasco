@@ -17,16 +17,10 @@ import { ForexDash } from "../component/dashboard/forexdash.js";
 import { CommoditiesDash } from "../component/dashboard/commoditiesdash.js";
 
 export const Dashboard = () => {
-    const { user, isLoading } = useAuth0();
-    const [searchState, setSearchState] = useState(false);
+    const { user, isLoading, isAuthenticated } = useAuth0();
     const { store, actions } = useContext(Context);
     const [activeTab, setActiveTab] = useState(1)
 
-    const handleClick = () => {
-
-        setSearchState(!searchState);
-        // console.log(searchState)
-    }
 
     const checkForUserInDB = () => {
         actions.setUser(user)
@@ -34,6 +28,7 @@ export const Dashboard = () => {
     }
 
     useEffect(() => {
+        if (!isLoading && isAuthenticated) console.log('is authenticated')
         if (user) {
             checkForUserInDB()
         }

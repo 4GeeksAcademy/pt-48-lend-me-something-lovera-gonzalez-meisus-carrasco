@@ -33,13 +33,14 @@ const Layout = () => {
 
     if (!process.env.BACKEND_URL || process.env.BACKEND_URL == "") return <BackendURL />;
 
-    const { isAuthenticated, isLoading } = useAuth0();
+    const { isAuthenticated, isLoading, user } = useAuth0();
     const { store, actions } = useContext(Context);
 
     // if (isLoading) return (<><Spinner/></>)
 
     useEffect(() => {
 
+        
         document.addEventListener('keydown', (event) => {
             if (event.ctrlKey && event.key === ' ') {
                 event.preventDefault();
@@ -64,6 +65,9 @@ const Layout = () => {
         });
 
     }, [])
+
+    
+
 
     return (
         <div className="body">

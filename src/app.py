@@ -16,6 +16,7 @@ from api.Controllers.index_controller import index_api
 from api.Controllers.portfolio_controller import portfolio_api
 from api.Controllers.portfolio_list_controller import portfolio_list_api
 from api.Controllers.subscription_controller import subscription_api
+from api.Controllers.authentication import authentication_api
 from api.admin import setup_admin
 from api.commands import setup_commands
 from flask_cors import CORS
@@ -67,6 +68,9 @@ app.register_blueprint(
 )
 app.register_blueprint(
     subscription_api, name="subscription_api", url_prefix="/subscription"
+)
+app.register_blueprint(
+    authentication_api, name="authentication_api", url_prefix="/authentication"
 )
 
 
