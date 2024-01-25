@@ -115,7 +115,7 @@ export const Subscription = () => {
                         <span>Start your journey for...</span>
                         <h2>$ 5.99 / month</h2>
                     </div>
-                    <button className="subscription-button-essential subscription-button" onClick={() => handleClick('Essential')}>{store.user.subscription_level === 'Essential' ? 'Current' : store.user.subscription_level === 'Business' ? 'Downgrade' : 'Upgrade'}</button>
+                    <button disabled={store.user.subscription_level === 'Essential' || 'Business' ? true : false} className="subscription-button-essential subscription-button" onClick={() => handleClick('Essential')}>{store.user.subscription_level === 'Essential' ? 'Current' : store.user.subscription_level === 'Business' ? 'Included' : 'Upgrade'}</button>
                 </div>
             </BlueContainer>
             <PurpleContainer style={{ width: '60%' }}>
@@ -137,7 +137,7 @@ export const Subscription = () => {
                         <span>Be your better version for...</span>
                         <h2>$ 9.99 / month</h2>
                     </div>
-                    <button className="subscription-button-business subscription-button" onClick={() => handleClick('Bussines')}>{store.user.subscription_level === 'Business' ? 'Current' : 'Upgrade'}</button>
+                    <button disabled={store.user.subscription_level === 'Essential' || 'Business' ? true : false} className="subscription-button-business subscription-button" onClick={() => handleClick('Bussines')}>{store.user.subscription_level === 'Business' ? 'Current' : 'Upgrade'}</button>
                 </div>
             </PurpleContainer>
             <GrayContainer style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', width: '60%', marginTop: '15em' }}>
