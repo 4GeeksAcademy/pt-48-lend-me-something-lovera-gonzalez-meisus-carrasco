@@ -5,17 +5,23 @@ export const getUser = async (email) => {
     const data = await fetch(`${FF_API}/user/${email}`)
         .then(res => res.json())
         .then(data => data)
-    console.log(await data)
+    // console.log(await data)
     return await data
 }
 
 
 
 export const addUser = async (userData) => {
-    const data = await fetch(`${FF_API}/user/`, { method: "POST", body: JSON.parse(userData) })
+    const data = await fetch(`${FF_API}/user/`, {
+        method: "POST",
+        body: JSON.stringify(userData),
+        headers: {
+            'Content-Type': 'application/json',
+        }
+    })
         .then(res => res.json())
         .then(data => data)
-    console.log(await data)
+    // console.log(await data)
     return await data
 };
 export const edditUser = () => { };

@@ -1,10 +1,10 @@
 import React, { useContext, useState } from "react";
+import { Context } from "../store/appContext.js";
 import { YellowContainer } from "../component/color_containers/yellow_container";
 import { PurpleContainer } from "../component/color_containers/purple_container";
 import { GreenContainer } from "../component/color_containers/green_container";
 import { BlueContainer } from "../component/color_containers/blue_container";
 import '../../styles/login.sass';
-import foto from "../../img/foto.jpg"
 import { useAuth0 } from "@auth0/auth0-react";
 import { Spinner } from '../component/spinner.js'
 
@@ -14,6 +14,7 @@ import { useSpring, animated } from '@react-spring/web'
 export const Login = () => {
 
     const { isAuthenticated, user, isLoading } = useAuth0()
+    const { store, actions } = useContext(Context)
 
     const springs = useSpring({
         from:
@@ -27,8 +28,9 @@ export const Login = () => {
 
 
     const [estadoEdicion, setEstadoEdicion] = useState(false);
-    const [ubicacion, setUbicacion] = useState('Vigo');
-    const [direccion, setDireccion] = useState('Anduriña Street');
+    const [street, setStreet] = useState(store.user?.street);
+    const [city, setCity] = useState(store.user?.city);
+    const [country, setCountry] = useState(store.user?.country);
 
 
 
@@ -49,51 +51,47 @@ export const Login = () => {
                         <div className="profile-picture-container">
                             <h3>Account details</h3>
                             <div className="">
-                                <img style={{ width: '80px', height: '80px', objectFit: 'cover', borderRadius: '50%',marginBottom:'20px'}} src={user.picture} />
+                                <img style={{ width: '80px', height: '80px', objectFit: 'cover', borderRadius: '50%', marginBottom: '20px' }} src={user.picture} />
                             </div>
-                        <div className="profile-account-details"><span>Name :
-                        </span>
-                            <p style={{ fontSize: ' 1.1em', fontWeight: '600' }}> {user.given_name} </p>
-                        </div>
-                        <div><span>Lastname :
-                        </span>
-                            <p style={{ fontSize: ' 1.1em', fontWeight: '600' }}> {user.family_name} </p>
-                        </div>
-                        <div><span>Nickname :
-                        </span>
-                            <p style={{ fontSize: ' 1.1em', fontWeight: '600' }}> {user.nickname} </p>
-                        </div>
+                            <div className="profile-account-details"><span>Name :
+                            </span>
+                                <p style={{ fontSize: ' 1.1em', fontWeight: '600' }}> {user.given_name} </p>
+                            </div>
+                            <div><span>Lastname :
+                            </span>
+                                <p style={{ fontSize: ' 1.1em', fontWeight: '600' }}> {user.family_name} </p>
+                            </div>
+                            <div><span>Nickname :
+                            </span>
+                                <p style={{ fontSize: ' 1.1em', fontWeight: '600' }}> {user.nickname} </p>
+                            </div>
 
                         </div>
                         <div className="profile-info ">
                             <h3>Contact information</h3>
-                            <span >Addres
-                            </span >
-                            {!estadoEdicion && <p> {direccion}</p>}
+                            <span>Address</span>
+                            {!estadoEdicion && <p> {street}</p>}
                             {estadoEdicion && (
-                                <input className="profile-input" onChange={(e) => setDireccion(e.target.value)} value={direccion} type="text"></input>
+                                <input className="profile-input" onChange={(e) => setStreet(e.target.value)} value={street} type="text"></input>
                             )}
-                            <span>Location
-                            </span>
-                            {!estadoEdicion && <p> {ubicacion}</p>}
+                            <span>Location</span>
+                            {!estadoEdicion && <p> {city}</p>}
                             {estadoEdicion && (
-                                <input className="profile-input" onChange={(e) => setUbicacion(e.target.value)} value={ubicacion} type="text"></input>
+                                <input className="profile-input" onChange={(e) => setCity(e.target.value)} value={city} type="text"></input>
                             )}
-                            <span >Account creation
-                            </span>
-                            <p> 2024</p>
-                            <span >Time zone
-
-                            </span >
-                            <p> GMT+1</p>
-                            <span >Country of residence
-                            </span >
-                            <p> Spain</p>
+                            <span>Country of residence</span>
+                            {!estadoEdicion && <p> {country}</p>}
+                            {estadoEdicion && (
+                                <input className="profile-input" onChange={(e) => setCountry(e.target.value)} value={country} type="text"></input>
+                            )}
+                            <span>Account creation</span>
+                            <p>{store.user?.created_at}</p>
+                            <span>Time zone</span>
+                            <p>{Intl.DateTimeFormat().resolvedOptions().timeZone}</p>
                             <div className="profile-button">
                                 <button className="green--button " onClick={() => setEstadoEdicion(!estadoEdicion)}>
                                     {estadoEdicion ? 'Guardar' : 'Editar'}</button>
                             </div>
-
                         </div>
                     </GreenContainer>
                     {/* <PurpleContainer style={{ height: '500px', width: '300px' }}>

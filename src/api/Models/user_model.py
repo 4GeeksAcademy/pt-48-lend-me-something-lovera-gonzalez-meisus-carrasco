@@ -28,8 +28,11 @@ class User(db.Model):
             "country": self.country,
             "city": self.city,
             "street": self.street,
-            "subscription_id": self.subscription.user_id,
-            "subscription_level": self.subscription.level.value,
+            "subscription_id": self.subscription.id if self.subscription else '',
+            "subscription_level": self.subscription.level.value  if self.subscription else '',
+            "subscription_start_date": self.subscription.start_date if self.subscription else '',
+            "subscription_end_date": self.subscription.end_date  if self.subscription else '',
+            "subscription_renew_date": self.subscription.renew_date if self.subscription else '',
             "portfolio_id": self.portfolio.id if self.portfolio else ''
             
         }
