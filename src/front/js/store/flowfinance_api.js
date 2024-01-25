@@ -24,7 +24,19 @@ export const addUser = async (userData) => {
     // console.log(await data)
     return await data
 };
-export const edditUser = () => { };
+export const editUser = async (userData) => {
+    const data = await fetch(`${FF_API}/user/`, {
+        method: "PUT",
+        body: JSON.stringify(userData),
+        headers: {
+            'Content-Type': 'application/json',
+        }
+    })
+        .then(res => res.json())
+        .then(data => data)
+    // console.log(await data)
+    return await data
+};
 export const deleteUser = () => { };
 
 

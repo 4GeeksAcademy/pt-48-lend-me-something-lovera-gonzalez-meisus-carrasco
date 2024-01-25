@@ -1,5 +1,5 @@
-import{get_eod_data} from './API'
-import{getUser, addUser} from './flowfinance_api'
+import { get_eod_data } from './API'
+import { getUser, addUser, editUser } from './flowfinance_api'
 
 
 const getState = ({ getStore, getActions, setStore }) => {
@@ -31,8 +31,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 		actions: {
 			// Use getActions to call a function within a fuction
 			switchSearchState: () => {
-			const store = getStore();
-				setStore({...store, searchState: !store.searchState});
+				const store = getStore();
+				setStore({ ...store, searchState: !store.searchState });
 			},
 			exampleFunction: () => {
 				getActions().changeColor(0, "green");
@@ -75,16 +75,16 @@ const getState = ({ getStore, getActions, setStore }) => {
 			// 	const data = await get_eod_data(symbol);
 			// 	setStore({ ...store, stocks: data });
 			// },
-			setUser: async (user) => { 
+			setUser: async (user) => {
 				// console.log(user);
 				const store = getStore();
 				setStore({ ...store, user: user })
 				const userDB = await getUser(store.user.email)
-				if (userDB.message){
+				if (userDB.message) {
 					const today = new Date()
 					const nextMonth = new Date()
 					const month = today.getMonth()
-					nextMonth.setMonth(month < 11 ? month+1 : 0)
+					nextMonth.setMonth(month < 11 ? month + 1 : 0)
 					const newUserData = {
 						"email": store.user.email,
 						"created_at": today.toLocaleDateString(),
@@ -93,34 +93,51 @@ const getState = ({ getStore, getActions, setStore }) => {
 						"end_date": nextMonth.toLocaleDateString(),
 						"renew_date": nextMonth.toLocaleDateString(),
 					}
-					const newUser = await addUser(newUserData)	
+					const newUser = await addUser(newUserData)
 					setStore({ ...store, user: newUser })
 					console.log(store.user)
 				}
 				if (!userDB.message) {
-					setStore({...store, user: userDB})
+					setStore({ ...store, user: userDB })
 					console.log(store.user)
 				}
 			},
+			setStreet: (street) => {
+				const store = getStore();
+				setStore({...store, user: {...store.user, street: street }})
+			},
+			setCity: (city) => {
+				const store = getStore();
+				setStore({...store, user: {...store.user, city: city }})
+			},
+			setCountry: (country) => {
+				const store = getStore();
+				setStore({...store, user: {...store.user, country: country }})
+			},
+			editUser: () => {
+				const store = getStore();
+				const updatedUser = editUser(store.user)
+
+			},
 			setSubscription: (subscription) => {
 				const store = getStore();
-				setStore({...store, subscription: subscription})
+				setStore({ ...store, subscription: subscription })
 			},
 			switchVisible: () => {
 				const store = getStore();
-				setStore({...store, collapsableState: !store.collapsableState});
+				setStore({ ...store, collapsableState: !store.collapsableState });
 				// console.log(store.collapsableState)
 			},
 			storePriceId: (priceId) => {
 				const store = getStore();
-				setStore({...store, priceId: priceId })
+				setStore({ ...store, priceId: priceId })
 			},
 			setUserSubscriptionLevel: () => {
 				const store = getStore();
 				// console.log('Seteando subscription')
 				const new_level = JSON.parse(localStorage.getItem('subscription')).level
 				// console.log(JSON.parse(localStorage.getItem('subscription')).level)
-				setStore({...store, subscription_level: new_level })
+				setStore({ ...store, subscription_level: new_level })
 			}
 		}
 	};

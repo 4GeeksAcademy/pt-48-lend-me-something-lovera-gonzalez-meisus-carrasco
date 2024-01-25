@@ -51,7 +51,8 @@ class UserRepository:
                 {User.street: user_data["street"]}, synchronize_session=False
             )
         session.commit()
-        return True
+        query = session.query(User).filter(User.id == user_data["id"]).first()
+        return query
 
     @staticmethod
     def delete(user_data):

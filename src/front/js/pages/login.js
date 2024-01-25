@@ -25,15 +25,14 @@ export const Login = () => {
         },
     })
 
-
-
     const [estadoEdicion, setEstadoEdicion] = useState(false);
-    const [street, setStreet] = useState(store.user?.street);
-    const [city, setCity] = useState(store.user?.city);
-    const [country, setCountry] = useState(store.user?.country);
 
-
-
+    const handleEditSave = () => {
+        if (estadoEdicion) {
+            actions.editUser()
+        }
+        setEstadoEdicion(!estadoEdicion);
+    };
     if (isLoading) return (<>
         <Spinner />
     </>)
@@ -70,26 +69,26 @@ export const Login = () => {
                         <div className="profile-info ">
                             <h3>Contact information</h3>
                             <span>Address</span>
-                            {!estadoEdicion && <p> {street}</p>}
+                            {!estadoEdicion && <p> {store.user?.street}</p>}
                             {estadoEdicion && (
-                                <input className="profile-input" onChange={(e) => setStreet(e.target.value)} value={street} type="text"></input>
+                                <input className="profile-input" onChange={(e) => actions.setStreet(e.target.value)} value={store.user?.street} type="text"></input>
                             )}
                             <span>Location</span>
-                            {!estadoEdicion && <p> {city}</p>}
+                            {!estadoEdicion && <p> {store.user?.city}</p>}
                             {estadoEdicion && (
-                                <input className="profile-input" onChange={(e) => setCity(e.target.value)} value={city} type="text"></input>
+                                <input className="profile-input" onChange={(e) => actions.setCity(e.target.value)} value={store.user?.city} type="text"></input>
                             )}
                             <span>Country of residence</span>
-                            {!estadoEdicion && <p> {country}</p>}
+                            {!estadoEdicion && <p> {store.user?.country}</p>}
                             {estadoEdicion && (
-                                <input className="profile-input" onChange={(e) => setCountry(e.target.value)} value={country} type="text"></input>
+                                <input className="profile-input" onChange={(e) => actions.setCountry(e.target.value)} value={store.user?.country} type="text"></input>
                             )}
                             <span>Account creation</span>
                             <p>{store.user?.created_at}</p>
                             <span>Time zone</span>
                             <p>{Intl.DateTimeFormat().resolvedOptions().timeZone}</p>
                             <div className="profile-button">
-                                <button className="green--button " onClick={() => setEstadoEdicion(!estadoEdicion)}>
+                                <button className="green--button " onClick={handleEditSave}>
                                     {estadoEdicion ? 'Guardar' : 'Editar'}</button>
                             </div>
                         </div>

@@ -43,7 +43,9 @@ class UserService:
     @staticmethod
     def update(user_data):
         result = UserRepository.update(user_data)
-        return result, HTTP_Status.OK
+        if result == None : return {'message': 'No user found'}, HTTP_Status.OK
+        else:  serialized_data = result.serialize()
+        return serialized_data, HTTP_Status.OK
     
     @staticmethod
     def delete(user_data):
