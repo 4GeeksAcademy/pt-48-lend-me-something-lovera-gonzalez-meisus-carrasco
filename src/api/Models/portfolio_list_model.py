@@ -25,7 +25,7 @@ class PortfolioList(db.Model):
     def serialize(self):
         return {
             "id": self.id,
-            "item_type": self.item_type,
+            "item_type": self.item_type.value,
             "item_symbol": self.item_symbol,
             "portfolio_id": self.portfolio.id
         }
