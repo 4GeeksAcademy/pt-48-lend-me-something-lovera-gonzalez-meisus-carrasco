@@ -81,7 +81,20 @@ const getState = ({ getStore, getActions, setStore }) => {
 				setStore({ ...store, user: user })
 				const userDB = await getUser(store.user.email)
 				if (userDB.message){
-					const userDB = await addUser(store.userData)	
+					const today = new Date()
+					const nextMonth = new Date()
+					nextMonth.setMonth(month < 11 ? month+1 : 0)
+					const month = today.getMonth()
+					const newUserData = {
+						"email": store.user.email,
+						"created_at": today.toLocaleDateString(),
+						"level": "Free",
+						"start_date": today.toLocaleDateString(),
+						"end_date": nextMonth.toLocaleDateString(),
+						"renew_date": nextMonth.toLocaleDateString(),
+					}
+					const newUser = await addUser(newUserData)	
+					setStore({ ...store, user: newUser })
 				}
 			},
 			setSubscription: (subscription) => {

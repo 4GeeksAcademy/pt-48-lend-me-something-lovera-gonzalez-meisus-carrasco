@@ -15,7 +15,7 @@ class UserRepository:
     
     @staticmethod
     def get_by_email(email):
-        query = session.query(User).filter(User.email == email)
+        query = session.query(User).filter(User.email == email).first()
         return query
 
     @staticmethod
@@ -23,9 +23,9 @@ class UserRepository:
         user_to_be_added = User(
             email=user_data["email"],
             created_at=user_data["created_at"],
-            country= user_data["country"] if user_data['country'] else None,
-            city= user_data["city"] if user_data['city'] else None,
-            street= user_data["street"] if user_data['street'] else None,
+            country= user_data["country"] if "country" in user_data else None,
+            city= user_data["city"] if "city" in user_data else None,
+            street= user_data["street"] if "street" in user_data else None,
         )
         session.add(user_to_be_added)
         session.commit()

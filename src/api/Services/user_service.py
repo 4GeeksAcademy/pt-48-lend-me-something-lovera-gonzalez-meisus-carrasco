@@ -21,18 +21,20 @@ class UserService:
         email_valid = re.match(r'\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,7}\b', email)
         if not email_valid : return {'message': 'Invalid email format'}, HTTP_Status.OK
         raw_data = UserRepository.get_by_email(email)
-        serialized_data = list(map(lambda element: element.serialize(), raw_data))
+        serialized_data = raw_data.serialize()
         if serialized_data == [] : return {'message': 'No user found'}, HTTP_Status.OK
         return serialized_data, HTTP_Status.OK
     
     @staticmethod
-    def add(new_user_data,self):
+    def add(new_user_data):
         user_result = UserRepository.add(new_user_data)
-        [new_user] = self.get_by_email(new_user_data['email'])
-        new_user_id = new_user['id']
+        new_user = UserService.get_by_email(new_user_data['email'])
+        print(new_user)
+        new_user_id = new_user[0]['id']
         subscription_data = {**new_user_data, 'user_id': new_user_id}
+        print(subscription_data)
         subscription_result = SubscriptionRepository.add(subscription_data)
-        return new_user,subscription_result, HTTP_Status.OK
+        return {"new_user": new_user[0],"subscription_result": subscription_result}, HTTP_Status.OK
     
     @staticmethod
     def update(user_data):

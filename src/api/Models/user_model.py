@@ -27,7 +27,7 @@ class User(db.Model):
             "country": self.country,
             "city": self.city,
             "street": self.street,
-            "subscription_id": self.subscription_id,
-            "subscription_level": self.subscription.level.value,
-            "portfolio_id" : self.portfolio.id
+            # "subscription_id": self.subscription.id,
+            # "subscription_level": self.subscription.level.value,
+            # "portfolio_id" : self.portfolio.id
         }
