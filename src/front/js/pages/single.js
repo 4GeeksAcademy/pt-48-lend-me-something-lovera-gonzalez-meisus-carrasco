@@ -38,6 +38,7 @@ export const Single = props => {
 		const data_for_graph = data;
 		setGraphData(data_for_graph);
 		[last_value, yesterday_value] = data_for_tendency.map(e => e.close);
+		
 		setTableData(data_for_table.map(
 			element =>
 			({
@@ -52,6 +53,7 @@ export const Single = props => {
 		setTicker(ticker_info.data[0]);
 		columns = (Object.keys(data[0]).map(e => ({ 'field': e, 'flex': 1 })))
 		if (yesterday_value > last_value) setTableColor('red');
+		if (yesterday_value < last_value) setTableColor('green');
 		setTimeout(() => {
 			setLoading(false)
 		}, 1000)
@@ -64,7 +66,8 @@ export const Single = props => {
 
 		return () => {
 			setTableData([]);
-			setLoading(true)
+			setLoading(true);
+			
 		}
 	}, [params.symbol])
 
