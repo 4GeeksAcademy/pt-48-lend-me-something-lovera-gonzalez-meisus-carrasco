@@ -14,7 +14,7 @@ export const UserWidget = () => {
       <div className="d-flex flex-column align-items-center justify-content-center">
         <h5 className="m-0">{user.name}</h5>
         <Link style={{textDecoration: 'none'}} to="/subscription">
-        <h6 className="m-0 text-secondary">{store.subscription_level} Account</h6>
+        {store.user?.subscription_level && <h6 className="m-0 text-secondary">{store.user?.subscription_level} Account</h6>}
         </Link>
       </div>
     </>

@@ -45,7 +45,7 @@ export const Navbar = () => {
 					<Link to={"/aboutus"}><i className="fa-solid fa-users" ></i></Link>
 				</div>
 			</div>
-			{isAuthenticated && <LogoffButton style={{ height: '3em', width: '3em', borderRadius: '50%', padding: 0 }} />}
+			{isAuthenticated && <LogoffButton style={{ height: '50px', width: '50px', borderRadius: '25px', padding: 0 }} />}
 
 
 		</animated.div >

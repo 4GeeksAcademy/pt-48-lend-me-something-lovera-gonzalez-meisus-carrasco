@@ -104,15 +104,15 @@ const getState = ({ getStore, getActions, setStore }) => {
 			},
 			setStreet: (street) => {
 				const store = getStore();
-				setStore({...store, user: {...store.user, street: street }})
+				setStore({ ...store, user: { ...store.user, street: street } })
 			},
 			setCity: (city) => {
 				const store = getStore();
-				setStore({...store, user: {...store.user, city: city }})
+				setStore({ ...store, user: { ...store.user, city: city } })
 			},
 			setCountry: (country) => {
 				const store = getStore();
-				setStore({...store, user: {...store.user, country: country }})
+				setStore({ ...store, user: { ...store.user, country: country } })
 			},
 			editUser: () => {
 				const store = getStore();
@@ -138,6 +138,10 @@ const getState = ({ getStore, getActions, setStore }) => {
 				const new_level = JSON.parse(localStorage.getItem('subscription')).level
 				// console.log(JSON.parse(localStorage.getItem('subscription')).level)
 				setStore({ ...store, subscription_level: new_level })
+			},
+			clearUser: () => {
+				const store = getStore();
+				setStore({ ...store, user: {} })
 			}
 		}
 	};
