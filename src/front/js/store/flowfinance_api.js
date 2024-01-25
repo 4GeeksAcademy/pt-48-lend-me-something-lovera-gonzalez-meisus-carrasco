@@ -53,6 +53,19 @@ export const updateSubscription = async (userData) => {
     // console.log(await data)
     return await data
  };
+export const cancelSubscription = async (subscription_stripe) => {
+    const data = await fetch(`${FF_API}/subscription`, {
+        method: "DELETE",
+        body: JSON.stringify(subscription_stripe),
+        headers: {
+            'Content-Type': 'application/json',
+        }
+    })
+        .then(res => res.json())
+        .then(data => data)
+        return await data
+    // console.log(await data)
+ };
 
 
 export const getPortfolio = async (portfolio_id) => {

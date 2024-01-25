@@ -98,10 +98,12 @@ export const Return = () => {
             const sessionId = session_id
 
             if (user) {
+                actions.setUser(user);
+                console.log(store.user.subscription_id)
                 console.log('SETEANDO SUSCRIPCION')
                 fetch(`${process.env.BACKEND_URL}/session-status/${sessionId}`)
                     .then((res) => res.json())
-                    .then((data) => { actions.setUserSubscriptionLevel(data.amount,user) });
+                    .then((data) => { actions.setUserSubscriptionLevel(data.amount,user, data.subscription_stripe) });
             }
     }, [user]);
 

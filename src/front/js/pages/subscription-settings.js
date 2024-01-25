@@ -9,6 +9,7 @@ import { useNavigate } from "react-router-dom";
 import { useSpring, animated } from '@react-spring/web'
 import '../../styles/subscription.sass'
 import { useAuth0, PopupTimeoutError } from '@auth0/auth0-react';
+import { GrayContainer } from '../component/color_containers/gray_container';
 
 export const Subscription = () => {
 
@@ -42,11 +43,19 @@ export const Subscription = () => {
             friction: 35,
             tension: 120,
         },
-    })
+    });
+    const cancelUserSubscription = async () => {
+        const response = await actions.cancelSubscription();
+        // console.log(await response)
+        if (response.cancel_at_period_end === true) {
+            navigate('/cancel')
+        }
+
+    }
 
     const handleClick = async (string) => {
 
-        if (isAuthenticated)  {
+        if (isAuthenticated) {
             const [subscriptionToSetTo] = subscriptionPlans.filter(level => level.level == string);
             actions.setSubscription(subscriptionToSetTo);
             navigate('/checkout');
@@ -55,11 +64,11 @@ export const Subscription = () => {
         if (!isAuthenticated) {
             try {
                 await loginWithPopup();
-              } catch {error}
-              if (error instanceof PopupTimeoutError) {
+            } catch { error }
+            if (error instanceof PopupTimeoutError) {
                 // custom logic to inform user to retry
                 error.popup.close();
-              }
+            }
 
         }
     }
@@ -131,7 +140,30 @@ export const Subscription = () => {
                     <button className="subscription-button-business subscription-button" onClick={() => handleClick('Bussines')}>{store.user.subscription_level === 'Business' ? 'Current' : 'Upgrade'}</button>
                 </div>
             </PurpleContainer>
+            <GrayContainer style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', width: '60%', marginTop: '15em' }}>
+                <p>Did you change your mind? You can cancel your subscription anytime...</p>
+                <button className="light-gray--button" onClick={cancelUserSubscription}>Unsubscribe</button>
+            </GrayContainer>
         </animated.div>
 
     </>)
+}
+
+
+export const CancelSubscription = () => {
+    const navigate = useNavigate()
+
+
+    return (
+        <section id="success" className="navbar-margin d-flex flex-row justify-content-center align-items-center">
+            <GrayContainer style={{ display: 'flex', justifyContent: 'center', flexDirection: 'column', alignItems: 'center', padding: '2em' }}>
+                <p>
+                    Thanks for your subscription! Sorry to see you leaving.
+                    Your subscription will not be renewed at the end of this current month.
+                    If you have any questions, please email <a style={{ color: '#15bd9b' }} href="mailto:flowfinance.dev@gmail.com">flowfinance.dev@gmail.com</a>.
+                </p>
+                <button className="green--button" onClick={() => navigate('/dashboard')}>Go to Dashboard</button>
+            </GrayContainer>
+        </section>
+    )
 }

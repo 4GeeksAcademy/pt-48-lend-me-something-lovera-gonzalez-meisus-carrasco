@@ -14,6 +14,7 @@ class Subscription(db.Model):
     start_date = db.Column(db.String, nullable = True)
     end_date = db.Column(db.String, nullable = True)
     renew_date = db.Column(db.String, nullable = True)
+    subscription_stripe = db.Column(db.String, nullable=True)
     user_id = db.Column(db.ForeignKey('users.id'), nullable=False)
 
     user = db.relationship('User', back_populates='subscription')
@@ -29,5 +30,6 @@ class Subscription(db.Model):
             'level' : self.level.value, 
             'start_date' : self.start_date, 
             'end_date' : self.end_date, 
-            'renew_date' : self.renew_date
+            'renew_date' : self.renew_date,
+            'stripe_sub': self.subscription_stripe
         }

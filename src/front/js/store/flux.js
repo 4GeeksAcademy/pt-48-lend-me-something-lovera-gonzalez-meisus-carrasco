@@ -1,5 +1,5 @@
 import { get_eod_data } from './API'
-import { getUser, addUser, editUser, updateSubscription,getPortfolio,addToPortfolio } from './flowfinance_api'
+import { getUser, addUser, editUser, updateSubscription, getPortfolio, addToPortfolio, cancelSubscription } from './flowfinance_api'
 
 
 const getState = ({ getStore, getActions, setStore }) => {
@@ -30,7 +30,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				setStore({ ...store, title: title })
 			},
 			setUser: async (user) => {
-				const actions =  getActions();
+				const actions = getActions();
 				const store = getStore();
 				setStore({ ...store, user: user })
 				const userDB = await getUser(store.user.email)
@@ -87,7 +87,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				const store = getStore();
 				setStore({ ...store, priceId: priceId })
 			},
-			setUserSubscriptionLevel: async (amount, user) => {
+			setUserSubscriptionLevel: async (amount, user, subscription_stripe) => {
 				const store = getStore();
 				const actions = getActions();
 				console.log('Seteando subscription');
@@ -104,6 +104,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 						start_date: today.toLocaleDateString(),
 						end_date: nextMonth.toLocaleDateString(),
 						renew_date: nextMonth.toLocaleDateString(),
+						subscription_stripe: subscription_stripe
 					}
 				)
 				actions.setUser(user)
@@ -116,23 +117,27 @@ const getState = ({ getStore, getActions, setStore }) => {
 			getUserPortfolio: async () => {
 				const store = getStore();
 				const data = await getPortfolio(store.user.portfolio_id);
-				setStore({...store, userPortfolio: await data});
-				console.log( await store.userPortfolio);
+				setStore({ ...store, userPortfolio: await data });
+				console.log(await store.userPortfolio);
 			},
 			addToUserPortfolio: async (item_symbol, item_type) => {
 				const store = getStore();
 				const actions = getActions();
 				const portfolio_id = store.user.portfolio_id;
-				const data =  await addToPortfolio({
+				const data = await addToPortfolio({
 					'portfolio_id': portfolio_id,
 					'item_type': item_type.toUpperCase(),
 					'item_symbol': item_symbol
 				});
 				actions.getUserPortfolio();
+			},
+			cancelSubscription: async () => {
+				const store = getStore();
+				const subscription_stripe = store.user.subscription_stripe
+				const resp = await cancelSubscription({subscription_stripe: subscription_stripe})
+				return await resp
 				
-
-
-			}
+			},
 		}
 	};
 };

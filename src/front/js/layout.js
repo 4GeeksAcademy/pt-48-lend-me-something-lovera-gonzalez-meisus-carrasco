@@ -16,7 +16,7 @@ import { Navbar } from "./component/navbar";
 import { Footer } from "./component/footer";
 import '../styles/layout.sass'
 import { TopBar } from "./component/top_searchbar";
-import { Subscription } from '../js/pages/subscription-settings'
+import { CancelSubscription, Subscription } from '../js/pages/subscription-settings'
 import { Notifications } from '../js/pages/notifications'
 import { Discover } from "./pages/discover";
 import Spinner from "./component/spinner";
@@ -92,6 +92,7 @@ const Layout = () => {
                             <Route element={<Return />} path="/return/:session_id" />
                             <Route element={<Single />} path="/single/:symbol" />
                             <Route element={<Portfolio />} path="/portfolio" />
+                            <Route element={<CancelSubscription />} path="/cancel" />
                             <Route element={<Home />} path='*' />
                         </Routes>
                         <Footer />

@@ -6,6 +6,7 @@ import os
 from flask import Flask, request, jsonify, url_for, send_from_directory, redirect
 from flask_migrate import Migrate
 from flask_swagger import swagger
+import requests
 from api.utils import APIException, generate_sitemap
 from api.models import db
 from api.routes import api
@@ -96,7 +97,7 @@ def sitemap():
 @app.route("/redirect")
 def redireccion():
     return redirect(
-        "https://studious-space-sniffle-jjpp6wvv5wfj7q6-3000.app.github.dev/", code=302
+        "https://studious-space-sniffle-jjpp6wvv5wfj7q6-3000.app.github.dev/aboutus", code=302
     )
 
 
@@ -141,8 +142,8 @@ def create_checkout_session():
 def session_status(session_id):
     session = stripe.checkout.Session.retrieve(session_id)
     print(session)
-
-    return jsonify(status=session.status, customer_email=session.customer_details.email, amount=session.amount_total)
+    
+    return jsonify(status=session.status, customer_email=session.customer_details.email, amount=session.amount_total, subscription_stripe=session.subscription)
 
 @app.route('/stripe_webhook', methods=['POST'])
 def stripe_webhook():

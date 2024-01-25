@@ -56,6 +56,11 @@ class SubscriptionRepository:
                 {Subscription.renew_date: subscription_data["renew_date"]},
                 synchronize_session=False,
             )
+        if "subscription_stripe" in subscription_data:
+            user_to_be_updated.update(
+                {Subscription.subscription_stripe: subscription_data["subscription_stripe"]},
+                synchronize_session=False,
+            )
         session.commit()
         query = session.query(Subscription).filter(Subscription.id == subscription_data["subscription_id"]).first()
         return query
