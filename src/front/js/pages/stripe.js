@@ -74,7 +74,7 @@ export const Return = () => {
             .then((data) => {
                 setStatus(data.status);
                 setCustomerEmail(data.customer_email);
-                console.log(data)
+                // console.log(data)
 
             });
 
@@ -99,8 +99,8 @@ export const Return = () => {
 
             if (user) {
                 actions.setUser(user);
-                console.log(store.user.subscription_id)
-                console.log('SETEANDO SUSCRIPCION')
+                // console.log(store.user.subscription_id)
+                // console.log('SETEANDO SUSCRIPCION')
                 fetch(`${process.env.BACKEND_URL}/session-status/${sessionId}`)
                     .then((res) => res.json())
                     .then((data) => { actions.setUserSubscriptionLevel(data.amount,user, data.subscription_stripe) });

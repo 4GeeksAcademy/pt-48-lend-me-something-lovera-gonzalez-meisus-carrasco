@@ -38,7 +38,7 @@ export const Demo = () => {
 
 
 	const getStockData = async (string) => {
-		console.log(string)
+		// console.log(string)
 		const data = await get_search_results(string);
 		const data_with_links = data.map(element => ({...element, link: `/single/${element.symbol}`}))
 		const newFilterData = listas.filter(elemento => {
@@ -49,7 +49,7 @@ export const Demo = () => {
 	const buscando = async (e) => {
 		setValorStock(e.target.value)
 		await getStockData(e.target.value)
-		console.log(valorStock)
+		// console.log(valorStock)
 	}
 
 	useEffect(() => { }, [])

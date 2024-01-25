@@ -49,11 +49,11 @@ const getState = ({ getStore, getActions, setStore }) => {
 					}
 					const newUser = await addUser(newUserData)
 					setStore({ ...store, user: newUser })
-					console.log(store.user)
+					// console.log(store.user)
 				}
 				if (!userDB.message) {
 					await setStore({ ...store, user: userDB });
-					console.log(store.user);
+					// console.log(store.user);
 					actions.getUserPortfolio();
 				}
 			},
@@ -108,7 +108,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					}
 				)
 				actions.setUser(user)
-				console.log(response)
+				// console.log(response)
 			},
 			clearUser: () => {
 				const store = getStore();
@@ -118,7 +118,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				const store = getStore();
 				const data = await getPortfolio(store.user.portfolio_id);
 				setStore({ ...store, userPortfolio: await data });
-				console.log(await store.userPortfolio);
+				// console.log(await store.userPortfolio);
 			},
 			addToUserPortfolio: async (item_symbol, item_type) => {
 				const store = getStore();
