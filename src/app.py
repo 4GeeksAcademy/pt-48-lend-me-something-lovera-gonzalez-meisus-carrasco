@@ -38,12 +38,8 @@ CORS(app)
 
 # database condiguration
 db_url = os.getenv("DATABASE_URL")
-if db_url is not None:
-    app.config["SQLALCHEMY_DATABASE_URI"] = db_url.replace(
-        "postgres://", "postgresql://"
-    )
-else:
-    app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:////tmp/test.db"
+
+app.config["SQLALCHEMY_DATABASE_URI"] = "postgresql://postgresql_trapezoidal_42170_p82p_user:ByYWc0FUl2jjWvdXoux4zPTf4j4k3CTf@dpg-cmpd19nqd2ns738qr950-a/postgresql_trapezoidal_42170_p82p"
 
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 MIGRATE = Migrate(app, db, compare_type=True)
