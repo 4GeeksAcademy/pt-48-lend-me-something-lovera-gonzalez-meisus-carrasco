@@ -40,8 +40,19 @@ export const editUser = async (userData) => {
 export const deleteUser = () => { };
 
 
-export const getSubscription = () => { };
-export const updateSubscription = () => { };
+export const updateSubscription = async (userData) => {
+    const data = await fetch(`${FF_API}/subscription/`, {
+        method: "PUT",
+        body: JSON.stringify(userData),
+        headers: {
+            'Content-Type': 'application/json',
+        }
+    })
+        .then(res => res.json())
+        .then(data => data)
+    // console.log(await data)
+    return await data
+ };
 
 
 export const getPortfolio = () => { };

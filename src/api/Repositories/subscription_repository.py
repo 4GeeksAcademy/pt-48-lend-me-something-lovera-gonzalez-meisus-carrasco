@@ -34,11 +34,11 @@ class SubscriptionRepository:
     @staticmethod
     def update(subscription_data):
         user_to_be_updated = session.query(Subscription).filter(
-            Subscription.id == subscription_data["id"]
+            Subscription.id == subscription_data["subscription_id"]
         )
-        if "level" in subscription_data:
+        if "subscription_level" in subscription_data:
             user_to_be_updated.update(
-                {Subscription.level: subscription_data["level"]},
+                {Subscription.level: subscription_data["subscription_level"]},
                 synchronize_session=False,
             )
         if "start_date" in subscription_data:
@@ -57,4 +57,5 @@ class SubscriptionRepository:
                 synchronize_session=False,
             )
         session.commit()
-        return True
+        query = session.query(Subscription).filter(Subscription.id == subscription_data["subscription_id"]).first()
+        return query

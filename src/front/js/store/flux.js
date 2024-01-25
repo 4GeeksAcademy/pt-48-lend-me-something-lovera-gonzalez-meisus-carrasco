@@ -1,5 +1,5 @@
 import { get_eod_data } from './API'
-import { getUser, addUser, editUser } from './flowfinance_api'
+import { getUser, addUser, editUser, updateSubscription } from './flowfinance_api'
 
 
 const getState = ({ getStore, getActions, setStore }) => {
@@ -10,7 +10,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			stocks: null,
 			collapsableState: false,
 			user: {
-				subscription_level: 'Free'
+				subscription_level: ''
 			},
 			subscription_level: 'Free',
 			searchState: false,
@@ -132,12 +132,27 @@ const getState = ({ getStore, getActions, setStore }) => {
 				const store = getStore();
 				setStore({ ...store, priceId: priceId })
 			},
-			setUserSubscriptionLevel: () => {
+			setUserSubscriptionLevel: async (amount, user) => {
 				const store = getStore();
-				// console.log('Seteando subscription')
-				const new_level = JSON.parse(localStorage.getItem('subscription')).level
+				const actions = getActions();
+				console.log('Seteando subscription');
 				// console.log(JSON.parse(localStorage.getItem('subscription')).level)
-				setStore({ ...store, subscription_level: new_level })
+				const today = new Date();
+				const nextMonth = new Date();
+				const month = today.getMonth();
+				nextMonth.setMonth(month < 11 ? month + 1 : 0);
+				await actions.setUser(user)
+				const response = await updateSubscription(
+					{
+						...store.user,
+						subscription_level: amount === 999 ? "BUSINESS" : "ESSENTIAL",
+						start_date: today.toLocaleDateString(),
+						end_date: nextMonth.toLocaleDateString(),
+						renew_date: nextMonth.toLocaleDateString(),
+					}
+				)
+				actions.setUser(user)
+				console.log(response)
 			},
 			clearUser: () => {
 				const store = getStore();

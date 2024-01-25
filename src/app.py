@@ -1,6 +1,7 @@
 """
 This module takes care of starting the API Server, Loading the DB and Adding the endpoints
 """
+import json
 import os
 from flask import Flask, request, jsonify, url_for, send_from_directory, redirect
 from flask_migrate import Migrate
@@ -139,9 +140,23 @@ def create_checkout_session():
 @app.route("/session-status/<string:session_id>", methods=["GET"])
 def session_status(session_id):
     session = stripe.checkout.Session.retrieve(session_id)
+    print(session)
 
-    return jsonify(status=session.status, customer_email=session.customer_details.email)
+    return jsonify(status=session.status, customer_email=session.customer_details.email, amount=session.amount_total)
 
+@app.route('/stripe_webhook', methods=['POST'])
+def stripe_webhook():
+    event = None
+    payload = request.data
+
+    try:
+        event = json.loads(payload)
+       
+    except json.decoder.JSONDecodeError as e:
+        print('⚠️  Webhook error while parsing basic request.' + str(e))
+        return jsonify(success=False)
+    
+    return jsonify(success=True)
 
 # this only runs if `$ python src/main.py` is executed
 if __name__ == "__main__":

@@ -1,7 +1,13 @@
 from flask import Flask, request, jsonify, url_for, Blueprint
 from api.Services.subscription_service import SubscriptionService
 
+from flask_cors import CORS
+
+import stripe
+stripe.api_key = "sk_test_51Oc1gPEUv4sos4iTbeF2C85cfQDBpGzWiVMnE3GcpSUhOqXJHY7VKGc24fNquJulJTOZoH3kYLUc8vPqBfYpt8dH00XtPRGLgJ"
+
 subscription_api = Blueprint("subscription", __name__)
+CORS(subscription_api)
 
 
 @subscription_api.route("/", methods=["GET"])

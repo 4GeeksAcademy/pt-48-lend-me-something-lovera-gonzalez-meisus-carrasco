@@ -12,6 +12,7 @@ import {
 } from "react-router-dom";
 import { GreenContainer } from "../component/color_containers/green_container";
 import '../../styles/shared.sass'
+import { useAuth0 } from "@auth0/auth0-react";
 
 
 // Make sure to call `loadStripe` outside of a component’s render to avoid
@@ -57,7 +58,8 @@ export const Return = () => {
     const [status, setStatus] = useState(null);
     const [customerEmail, setCustomerEmail] = useState('');
     const navigate = useNavigate()
-    const [timeRedirection, setTimeRedirection] = useState(30)
+    const [timeRedirection, setTimeRedirection] = useState(30);
+    const { user } = useAuth0()
 
     const { store, actions } = useContext(Context)
 
@@ -72,9 +74,9 @@ export const Return = () => {
             .then((data) => {
                 setStatus(data.status);
                 setCustomerEmail(data.customer_email);
+                console.log(data)
 
             });
-        actions.setUserSubscriptionLevel();
 
         const timer = setInterval(() => {
             setTimeRedirection(prev => prev - 1);
@@ -91,6 +93,17 @@ export const Return = () => {
 
         })
     }, []);
+
+        useEffect(() => {
+            const sessionId = session_id
+
+            if (user) {
+                console.log('SETEANDO SUSCRIPCION')
+                fetch(`${process.env.BACKEND_URL}/session-status/${sessionId}`)
+                    .then((res) => res.json())
+                    .then((data) => { actions.setUserSubscriptionLevel(data.amount,user) });
+            }
+    }, [user]);
 
     if (status === 'open') {
         return (

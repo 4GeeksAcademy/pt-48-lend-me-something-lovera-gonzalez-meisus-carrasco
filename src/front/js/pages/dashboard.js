@@ -24,12 +24,12 @@ export const Dashboard = () => {
 
     const checkForUserInDB = () => {
         actions.setUser(user)
-        console.log("buscando user")
+        // console.log("buscando user")
 
     }
 
     useEffect(() => {
-        if (!isLoading && isAuthenticated) console.log('is authenticated')
+        // if (!isLoading && isAuthenticated) console.log('is authenticated')
         if (user) {
             checkForUserInDB()
         }

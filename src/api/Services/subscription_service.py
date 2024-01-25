@@ -34,4 +34,6 @@ class SubscriptionService:
     @staticmethod
     def update(subscription_data):
         result = SubscriptionRepository.update(subscription_data)
-        return result, HTTP_Status.OK
+        if result == None : return {'message': 'No subscription updated'}, HTTP_Status.OK
+        else:  serialized_data = result.serialize()
+        return serialized_data, HTTP_Status.OK
