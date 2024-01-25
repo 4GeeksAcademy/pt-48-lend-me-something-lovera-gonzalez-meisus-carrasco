@@ -24,7 +24,8 @@ export const Single = props => {
 	const [graphData, setGraphData] = useState()
 	const { store, actions } = useContext(Context);
 	const [tableData, setTableData] = useState([]);
-	const [ticker, setTicker] = useState({})
+	const [ticker, setTicker] = useState({});
+	const [isOnUserPortfolio, setIsOnUserPortfolio] = useState()
 	const params = useParams();
 	let last_value, yesterday_value;
 	let columns;
@@ -38,7 +39,7 @@ export const Single = props => {
 		const data_for_graph = data;
 		setGraphData(data_for_graph);
 		[last_value, yesterday_value] = data_for_tendency.map(e => e.close);
-		
+
 		setTableData(data_for_table.map(
 			element =>
 			({
@@ -54,20 +55,33 @@ export const Single = props => {
 		columns = (Object.keys(data[0]).map(e => ({ 'field': e, 'flex': 1 })))
 		if (yesterday_value > last_value) setTableColor('red');
 		if (yesterday_value < last_value) setTableColor('green');
+		store.userPortfolio?.filter(element => element.item_symbol === ticker_info.data[0].symbol).length > 0 ? setIsOnUserPortfolio(true) : setIsOnUserPortfolio(false)
 		setTimeout(() => {
 			setLoading(false)
 		}, 1000)
+	};
+
+	const addToPortfolio = (e) => {
+		actions.addToUserPortfolio(e.target.value, 'Stock')
+	};
+
+	const deleteFromPortfolio = (e) => {
+		console.log('Intended to be deleted in the future');
+		setIsOnUserPortfolio(false)
 	}
+
+
 
 	useEffect(() => {
 		if (params.symbol) {
 			loadTableData(params.symbol);
+
 		}
 
 		return () => {
 			setTableData([]);
 			setLoading(true);
-			
+
 		}
 	}, [params.symbol])
 
@@ -79,13 +93,19 @@ export const Single = props => {
 			<BlueContainer style={{ position: 'relative', width: '70%' }}>
 				{ticker.name && tableData && <>
 					<div className='d-flex flex-row gap-2'>
-						{isAuthenticated && <button className="blue--button single-portfolio--button" >Add to Portfolio</button>}
-						{!isAuthenticated && <LogginButton  style={{ height: '3rem', width: '15rem !important', position: 'absolute', top: '2rem', right: '2rem', backgroundColor: '#0d715d' }} />}
+						{isAuthenticated && !isOnUserPortfolio &&
+							<button className="blue--button single-portfolio--button" value={ticker.symbol} onClick={(e) => addToPortfolio(e)} >Add to Portfolio</button>}
+						{isAuthenticated && isOnUserPortfolio &&
+							<button className="green--button single-portfolio--button-added" value={ticker.symbol} onClick={(e) => deleteFromPortfolio(e)} >
+								<i style={{ fontSize: '2em' }} className="fa-regular fa-circle-check"></i>
+							</button>}
+						{!isAuthenticated && <LogginButton style={{ height: '3rem', width: '15rem !important', position: 'absolute', top: '2rem', right: '2rem', backgroundColor: '#0d715d' }} />}
 					</div>
 					<h3>Symbol/Ticker: {ticker.symbol} </h3>
 					<div className="d-flex flex-row gap-2">
 						<div className="d-flex flex-row  justify-content-start align-items-center gap-2">
-							<span style={{ fontSize: '1.7em' }}>Last Value: </span><span style={tableColor === 'green' ? { fontSize: '1.7em', color: '#0d715d' } : { fontSize: '1.7em', color: '#992828' }}>{tableData[0].Close}</span>
+							<span style={{ fontSize: '1.7em' }}>Last Value: </span>
+							<span style={tableColor === 'green' ? { fontSize: '1.7em', color: '#0d715d' } : { fontSize: '1.7em', color: '#992828' }}>{tableData[0].Close}</span>
 							{tableColor === 'green' && <i className="fa-solid fa-angles-up" style={{ color: '#0d715d', fontSize: '1.5em', marginTop: '0.2em' }}></i>}
 							{tableColor === 'red' && <i className="fa-solid fa-angles-down" style={{ color: '#992828', fontSize: '1.5em', marginTop: '0.2em' }}></i>}
 						</div>

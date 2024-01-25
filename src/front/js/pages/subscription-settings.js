@@ -8,8 +8,11 @@ import { useNavigate } from "react-router-dom";
 
 import { useSpring, animated } from '@react-spring/web'
 import '../../styles/subscription.sass'
+import { useAuth0, PopupTimeoutError } from '@auth0/auth0-react';
 
 export const Subscription = () => {
+
+    const { isAuthenticated, loginWithPopup, error } = useAuth0()
 
     const { store, actions } = useContext(Context)
     const subscriptionPlans = [
@@ -41,10 +44,24 @@ export const Subscription = () => {
         },
     })
 
-    const handleClick = (string) => {
-        const [subscriptionToSetTo] = subscriptionPlans.filter(level => level.level == string);
-        actions.setSubscription(subscriptionToSetTo);
-        navigate('/checkout');
+    const handleClick = async (string) => {
+
+        if (isAuthenticated)  {
+            const [subscriptionToSetTo] = subscriptionPlans.filter(level => level.level == string);
+            actions.setSubscription(subscriptionToSetTo);
+            navigate('/checkout');
+        }
+
+        if (!isAuthenticated) {
+            try {
+                await loginWithPopup();
+              } catch {error}
+              if (error instanceof PopupTimeoutError) {
+                // custom logic to inform user to retry
+                error.popup.close();
+              }
+
+        }
     }
 
     return (<>
@@ -89,7 +106,7 @@ export const Subscription = () => {
                         <span>Start your journey for...</span>
                         <h2>$ 5.99 / month</h2>
                     </div>
-                    <button className="subscription-button-essential subscription-button" onClick={() => handleClick('Essential')}>Upgrade</button>
+                    <button className="subscription-button-essential subscription-button" onClick={() => handleClick('Essential')}>{store.user.subscription_level === 'Essential' ? 'Current' : store.user.subscription_level === 'Business' ? 'Downgrade' : 'Upgrade'}</button>
                 </div>
             </BlueContainer>
             <PurpleContainer style={{ width: '60%' }}>
@@ -111,7 +128,7 @@ export const Subscription = () => {
                         <span>Be your better version for...</span>
                         <h2>$ 9.99 / month</h2>
                     </div>
-                    <button className="subscription-button-business subscription-button" onClick={() => handleClick('Bussines')}>Upgrade</button>
+                    <button className="subscription-button-business subscription-button" onClick={() => handleClick('Bussines')}>{store.user.subscription_level === 'Business' ? 'Current' : 'Upgrade'}</button>
                 </div>
             </PurpleContainer>
         </animated.div>

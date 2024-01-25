@@ -1,5 +1,5 @@
 import { get_eod_data } from './API'
-import { getUser, addUser, editUser, updateSubscription,getPortfolio } from './flowfinance_api'
+import { getUser, addUser, editUser, updateSubscription,getPortfolio,addToPortfolio } from './flowfinance_api'
 
 
 const getState = ({ getStore, getActions, setStore }) => {
@@ -30,7 +30,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				setStore({ ...store, title: title })
 			},
 			setUser: async (user) => {
-				// console.log(user);
+				const actions =  getActions();
 				const store = getStore();
 				setStore({ ...store, user: user })
 				const userDB = await getUser(store.user.email)
@@ -52,8 +52,9 @@ const getState = ({ getStore, getActions, setStore }) => {
 					console.log(store.user)
 				}
 				if (!userDB.message) {
-					setStore({ ...store, user: userDB })
-					console.log(store.user)
+					await setStore({ ...store, user: userDB });
+					console.log(store.user);
+					actions.getUserPortfolio();
 				}
 			},
 			setStreet: (street) => {
@@ -117,6 +118,20 @@ const getState = ({ getStore, getActions, setStore }) => {
 				const data = await getPortfolio(store.user.portfolio_id);
 				setStore({...store, userPortfolio: await data});
 				console.log( await store.userPortfolio);
+			},
+			addToUserPortfolio: async (item_symbol, item_type) => {
+				const store = getStore();
+				const actions = getActions();
+				const portfolio_id = store.user.portfolio_id;
+				const data =  await addToPortfolio({
+					'portfolio_id': portfolio_id,
+					'item_type': item_type.toUpperCase(),
+					'item_symbol': item_symbol
+				});
+				actions.getUserPortfolio();
+				
+
+
 			}
 		}
 	};

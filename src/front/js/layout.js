@@ -31,17 +31,18 @@ const Layout = () => {
     //the basename is used when your project is published in a subdirectory and not in the root of the domain
     // you can set the basename on the .env file located at the root of this project, E.g: BASENAME=/react-hello-webapp/
     const basename = process.env.BASENAME || "";
+    const { store, actions } = useContext(Context);
+
 
     if (!process.env.BACKEND_URL || process.env.BACKEND_URL == "") return <BackendURL />;
 
-    const { isAuthenticated, isLoading, user } = useAuth0();
-    const { store, actions } = useContext(Context);
+
 
     // if (isLoading) return (<><Spinner/></>)
 
     useEffect(() => {
 
-        
+
         document.addEventListener('keydown', (event) => {
             if (event.ctrlKey && event.key === ' ') {
                 event.preventDefault();
@@ -59,7 +60,7 @@ const Layout = () => {
         });
 
         document.addEventListener('click', (event) => {
-            if (event.target.id != 'collapsable' && store.collapsableState === true ) {
+            if (event.target.id != 'collapsable' && store.collapsableState === true) {
                 actions.switchVisible();
                 event.preventDefault();
             }
@@ -67,7 +68,8 @@ const Layout = () => {
 
     }, [])
 
-    
+
+
 
 
     return (

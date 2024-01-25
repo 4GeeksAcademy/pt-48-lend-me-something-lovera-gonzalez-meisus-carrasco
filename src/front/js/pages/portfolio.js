@@ -15,7 +15,6 @@ export const Portfolio = () => {
 
     const { store, actions } = useContext(Context);
     const [loading, setLoading] = useState(true);
-    const [userPortfolio, setUserPortfolio] = useState(null)
 
     const springs = useSpring({
         from: { opacity: 0 },
@@ -26,12 +25,10 @@ export const Portfolio = () => {
     })
 
     useEffect(() => {
-        const data = actions.getUserPortfolio();
-        setTimeout(()=>{
-
+        setTimeout(() => {
             setLoading(false);
-        },500)
-      
+        }, 500)
+
     }, []);
 
     if (loading) return (<>
@@ -59,13 +56,13 @@ export const Portfolio = () => {
                         <div className="portfolio-table-header-title">Symbol</div>
                     </div>
                     <div className="portfolio-table-list">
-                            {store.userPortfolio != [] && store.userPortfolio?.filter(element => element.item_type === 'Stock').map((e, i) => (
-                        <div className="portfolio-table-list-item" key={i}>
+                        {store.userPortfolio != [] && store.userPortfolio?.filter(element => element.item_type === 'Stock').map((e, i) => (
+                            <div className="portfolio-table-list-item" key={i}>
                                 <div className="portfolio-table-list-item-name">Name</div>
                                 <div className="portfolio-table-list-item-symbol">{e.item_symbol}</div>
-                        </div>
-                            ))
-                            }
+                            </div>
+                        ))
+                        }
                     </div>
                 </div>
             </BlueContainer>

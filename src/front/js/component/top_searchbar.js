@@ -1,10 +1,9 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext, useState, useEffect } from 'react'
 import '../../styles/top_searchbar.sass'
 import '../../styles/shared.sass'
 import { Context } from '../store/appContext.js'
 import { GlobalSearchBar } from "../component/global_searchbar.js"
 import { LogginButton } from '../component/Auth0/loggin_button.js'
-
 import { useAuth0 } from "@auth0/auth0-react";
 import { UserWidget } from './user_widget.js'
 import { Link } from 'react-router-dom'
@@ -12,12 +11,8 @@ import { UserSpinner } from './user_collapsable_dropdown.js'
 
 export const TopBar = () => {
 
-
-
-    const { store, actions } = useContext(Context)
-    const [searchState, setSearchState] = useState(false)
-    const { isAuthenticated } = useAuth0();
-    const { user } = useAuth0();
+    const { isAuthenticated, isLoading, user } = useAuth0();
+    const { store, actions } = useContext(Context);
 
     const handleClick = () => {
 
@@ -25,10 +20,14 @@ export const TopBar = () => {
         // console.log(searchState)
     }
 
+    useEffect(() => {
+        if (user) actions.setUser(user)
+    }, [user])
+
     return (<>
         <GlobalSearchBar style={store.searchState ? { display: "flex" } : { display: "none" }} handleClick={handleClick} />
 
-        <div className= "dashboard-bar p-3">
+        <div className="dashboard-bar p-3">
             <h3>{store.title}</h3>
             <div className="d-flex flex-row gap-3 align-items-center">
                 {/*<i className="fa-solid fa-magnifying-glass magnifying" style={{ "color": "#ffffff" }}></i>

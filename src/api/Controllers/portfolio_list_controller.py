@@ -27,6 +27,7 @@ def get_by_portfolio(id):
 )  # requieres a body with user_data dictionary
 def add():
     request_data = request.json
+    print(request_data)
     [response, HTTPStatus] = PortfolioListService.add(request_data)
     return jsonify(response), HTTPStatus.value
 

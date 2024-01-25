@@ -28,12 +28,12 @@ export const Dashboard = () => {
 
     }
 
-    useEffect(() => {
-        // if (!isLoading && isAuthenticated) console.log('is authenticated')
-        if (user) {
-            checkForUserInDB()
-        }
-    }, [user])
+    // useEffect(() => {
+    //     // if (!isLoading && isAuthenticated) console.log('is authenticated')
+    //     if (user) {
+    //         checkForUserInDB()
+    //     }
+    // }, [user])
 
     const springs = useSpring({
         from: { opacity: 0, y: -5 },

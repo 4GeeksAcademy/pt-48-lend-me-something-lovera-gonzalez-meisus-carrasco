@@ -67,10 +67,11 @@ export const getPortfolio = async (portfolio_id) => {
     // console.log(await data)
     return await data
  };
-export const addToPortfolio = async () => {
-    const data = await fetch(`${FF_API}/subscription/`, {
-        method: "PUT",
-        body: JSON.stringify(userData),
+export const addToPortfolio = async (itemData) => {
+    console.log(itemData)
+    const data = await fetch(`${FF_API}/portfolio_list/`, {
+        method: "POST",
+        body: JSON.stringify(itemData),
         headers: {
             'Content-Type': 'application/json',
         }
