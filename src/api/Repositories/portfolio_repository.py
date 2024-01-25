@@ -1,16 +1,16 @@
 from api.Models.portfolio_model import Portfolio
-from api.engine import session
+from api.models import db
 
 
 class PortfolioRepository:
     @staticmethod
     def get_list():
-        query = session.query(Portfolio).all()
+        query = db.session.query(Portfolio).all()
         return query
 
     @staticmethod
     def get_by_id(id):
-        query = session.query(Portfolio).filter(Portfolio.id == id)
+        query = db.session.query(Portfolio).filter(Portfolio.id == id)
         return query
 
     @staticmethod
@@ -18,15 +18,15 @@ class PortfolioRepository:
         portfolio_to_be_added = Portfolio(
             user_id=id,
         )
-        session.add(portfolio_to_be_added)
-        session.commit()
+        db.session.add(portfolio_to_be_added)
+        db.session.commit()
         return True
 
     @staticmethod
     def delete(item_data):
         portfolio_to_be_deleted = (
-            session.query(Portfolio).filter(Portfolio.id == item_data["id"]).first()
+            db.session.query(Portfolio).filter(Portfolio.id == item_data["id"]).first()
         )
-        session.delete(portfolio_to_be_deleted)
-        session.commit()
+        db.session.delete(portfolio_to_be_deleted)
+        db.session.commit()
         return True
