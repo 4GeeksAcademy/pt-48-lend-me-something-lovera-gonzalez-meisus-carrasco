@@ -23,6 +23,7 @@ import Spinner from "./component/spinner";
 import { Checkout } from "./component/dashboard/checkout";
 import { CheckoutForm } from "./pages/stripe";
 import { Return } from "./pages/stripe";
+import { Portfolio } from "./pages/portfolio";
 
 
 //create your first component
@@ -88,6 +89,7 @@ const Layout = () => {
                             <Route element={<CheckoutForm />} path="/checkout-form/:product_id" />
                             <Route element={<Return />} path="/return/:session_id" />
                             <Route element={<Single />} path="/single/:symbol" />
+                            <Route element={<Portfolio />} path="/portfolio" />
                             <Route element={<Home />} path='*' />
                         </Routes>
                         <Footer />

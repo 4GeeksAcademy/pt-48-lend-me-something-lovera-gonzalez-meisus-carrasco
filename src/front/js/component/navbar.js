@@ -36,8 +36,9 @@ export const Navbar = () => {
 				<div className="navbar-icons">
 
 					<Link to={"/"}><i className="fa-solid fa-house-laptop" ></i></Link>
-					{isAuthenticated &&
-						<Link to={"/dashboard"}><i className="fa-solid fa-swatchbook" ></i></Link>}
+					{isAuthenticated && <>
+						<Link to={"/dashboard"}><i className="fa-solid fa-swatchbook" ></i></Link>
+						<Link to={"/portfolio"}><i className="fa-solid fa-briefcase" ></i></Link></>}
 					<Link to={"/discover"}><i className="fa-solid fa-book-open" ></i></Link>
 					{isAuthenticated && <Link to={"/login"}><i className="fa-solid fa-user" ></i></Link>}
 					<Link to={"/subscription"}><i className="fa-solid fa-gear" ></i></Link>
@@ -61,8 +62,10 @@ export const Navbar = () => {
 				<div className="navbar-offcanvas-icons">
 
 					<Link className="navbar-link" to={"/"}><i className="fa-solid fa-house-laptop" ></i>Home</Link>
-					{isAuthenticated &&
-						<Link className="navbar-link" to={"/dashboard"}><i className="fa-solid fa-swatchbook" ></i>Dashboard</Link>}
+					{isAuthenticated && <>
+						<Link className="navbar-link" to={"/dashboard"}><i className="fa-solid fa-swatchbook" ></i>Dashboard</Link>
+					    <Link className="navbar-link" to={"/portfolio"}><i className="fa-solid fa-briefcase" ></i>Portfolio</Link></>}
+
 					<Link className="navbar-link" to={"/discover"}><i className="fa-solid fa-book-open"></i>Discover</Link>
 					{isAuthenticated && <Link className="navbar-link" to={"/login"}><i className="fa-solid fa-user" ></i>Profile</Link>}
 					<Link className="navbar-link" to={"/subscription"}><i className="fa-solid fa-gear" ></i>Settings</Link>
