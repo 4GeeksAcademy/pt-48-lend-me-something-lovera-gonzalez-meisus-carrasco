@@ -1,5 +1,5 @@
 import { get_eod_data } from './API'
-import { getUser, addUser, editUser, updateSubscription } from './flowfinance_api'
+import { getUser, addUser, editUser, updateSubscription,getPortfolio } from './flowfinance_api'
 
 
 const getState = ({ getStore, getActions, setStore }) => {
@@ -111,6 +111,12 @@ const getState = ({ getStore, getActions, setStore }) => {
 			clearUser: () => {
 				const store = getStore();
 				setStore({ ...store, user: {} })
+			},
+			getUserPortfolio: async () => {
+				const store = getStore();
+				const data = await getPortfolio(store.user.portfolio_id);
+				setStore({...store, userPortfolio: await data});
+				console.log( await store.userPortfolio);
 			}
 		}
 	};

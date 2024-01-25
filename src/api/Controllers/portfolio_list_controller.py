@@ -10,10 +10,10 @@ def get_list():
     return jsonify(data), HTTPStatus.value
 
 
-@portfolio_list_api.route("/<int:id>", methods=["GET"])
-def get(id):
-    [data, HTTPStatus] = PortfolioListService.get_by_id(id)
-    return jsonify(data), HTTPStatus.value
+# @portfolio_list_api.route("/<int:id>", methods=["GET"])
+# def get(id):
+#     [data, HTTPStatus] = PortfolioListService.get_by_id(id)
+#     return jsonify(data), HTTPStatus.value
 
 
 @portfolio_list_api.route("/<int:id>", methods=["GET"])

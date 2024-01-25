@@ -13,6 +13,10 @@ import { TopBarTitle } from "../component/topBarTitle.js";
 
 export const Portfolio = () => {
 
+    const { store, actions } = useContext(Context);
+    const [loading, setLoading] = useState(true);
+    const [userPortfolio, setUserPortfolio] = useState(null)
+
     const springs = useSpring({
         from: { opacity: 0 },
         to: [{ opacity: 1 }],
@@ -20,6 +24,19 @@ export const Portfolio = () => {
             duration: 1500
         },
     })
+
+    useEffect(() => {
+        const data = actions.getUserPortfolio();
+        setTimeout(()=>{
+
+            setLoading(false);
+        },500)
+      
+    }, []);
+
+    if (loading) return (<>
+        <Spinner />
+    </>)
     return (<>
         <TopBarTitle topTitle="Portfolio" />
         <animated.div
@@ -42,15 +59,18 @@ export const Portfolio = () => {
                         <div className="portfolio-table-header-title">Symbol</div>
                     </div>
                     <div className="portfolio-table-list">
-                        <div className="portfolio-table-list-item">
-                            <div className="portfolio-table-list-item-name">aplle inc</div>
-                            <div className="portfolio-table-list-item-symbol">APPL</div>
+                            {store.userPortfolio != [] && store.userPortfolio?.filter(element => element.item_type === 'Stock').map((e, i) => (
+                        <div className="portfolio-table-list-item" key={i}>
+                                <div className="portfolio-table-list-item-name">Name</div>
+                                <div className="portfolio-table-list-item-symbol">{e.item_symbol}</div>
                         </div>
+                            ))
+                            }
                     </div>
                 </div>
             </BlueContainer>
             <GreenContainer>
-            <div className="portfolio-header--container">
+                <div className="portfolio-header--container">
                     <h4>Crypto</h4>
                     <div>
                         <input className="portfolio-input-green" type="text" name="" id="" />
@@ -71,7 +91,7 @@ export const Portfolio = () => {
 
             </GreenContainer>
             <YellowContainer>
-            <div className="portfolio-header--container">
+                <div className="portfolio-header--container">
                     <h4>Forex</h4>
                     <div>
                         <input className="portfolio-input-yellow" type="text" name="" id="" />
@@ -92,7 +112,7 @@ export const Portfolio = () => {
 
             </YellowContainer>
             <PurpleContainer>
-            <div className="portfolio-header--container">
+                <div className="portfolio-header--container">
                     <h4>Commodities</h4>
                     <div>
                         <input className="portfolio-input-purple" type="text" name="" id="" />

@@ -55,9 +55,44 @@ export const updateSubscription = async (userData) => {
  };
 
 
-export const getPortfolio = () => { };
-export const addToPortfolio = () => { };
-export const deleteFromPortfolio = () => { };
+export const getPortfolio = async (portfolio_id) => {
+    const data = await fetch(`${FF_API}/portfolio_list/${portfolio_id}`, {
+        method: "GET",
+        headers: {
+            'Content-Type': 'application/json',
+        }
+    })
+        .then(res => res.json())
+        .then(data => data)
+    // console.log(await data)
+    return await data
+ };
+export const addToPortfolio = async () => {
+    const data = await fetch(`${FF_API}/subscription/`, {
+        method: "PUT",
+        body: JSON.stringify(userData),
+        headers: {
+            'Content-Type': 'application/json',
+        }
+    })
+        .then(res => res.json())
+        .then(data => data)
+    // console.log(await data)
+    return await data
+ };
+export const deleteFromPortfolio = async () => {
+    const data = await fetch(`${FF_API}/subscription/`, {
+        method: "PUT",
+        body: JSON.stringify(userData),
+        headers: {
+            'Content-Type': 'application/json',
+        }
+    })
+        .then(res => res.json())
+        .then(data => data)
+    // console.log(await data)
+    return await data
+ };
 
 
 
