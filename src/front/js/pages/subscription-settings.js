@@ -44,7 +44,6 @@ export const Subscription = () => {
     const handleClick = (string) => {
         const [subscriptionToSetTo] = subscriptionPlans.filter(level => level.level == string);
         actions.setSubscription(subscriptionToSetTo);
-        localStorage.setItem('subscription', JSON.stringify(subscriptionToSetTo))
         navigate('/checkout');
     }
 
