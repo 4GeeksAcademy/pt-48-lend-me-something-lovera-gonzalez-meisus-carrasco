@@ -13,7 +13,7 @@ class SubscriptionService:
     @staticmethod
     def get_by_id(id):
         raw_data = SubscriptionRepository.get_by_id(id)
-        serialized_data = list(map(lambda element: element.serialize(), raw_data))
+        serialized_data = raw_data.serialize()
         if serialized_data == []:
             return {"message": "No user found"}, HTTP_Status.BAD_REQUEST
         return serialized_data, HTTP_Status.OK
@@ -21,7 +21,7 @@ class SubscriptionService:
     @staticmethod
     def get_by_user_id(id):
         raw_data = SubscriptionRepository.get_by_user_id(id)
-        serialized_data = list(map(lambda element: element.serialize(), raw_data))
+        serialized_data = raw_data.serialize()
         if serialized_data == []:
             return {"message": "No subscription found"}, HTTP_Status.BAD_REQUEST
         return serialized_data, HTTP_Status.OK

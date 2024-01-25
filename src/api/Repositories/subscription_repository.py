@@ -15,7 +15,7 @@ class SubscriptionRepository:
 
     @staticmethod
     def get_by_user_id(id):
-        query = session.query(Subscription).filter(Subscription.user_id == id)
+        query = session.query(Subscription).filter(Subscription.user_id == id).first()
         return query
 
     @staticmethod

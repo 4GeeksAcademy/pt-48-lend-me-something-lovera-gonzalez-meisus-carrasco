@@ -88,7 +88,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					const newUserData = {
 						"email": store.user.email,
 						"created_at": today.toLocaleDateString(),
-						"level": "Free",
+						"level": "FREE",
 						"start_date": today.toLocaleDateString(),
 						"end_date": nextMonth.toLocaleDateString(),
 						"renew_date": nextMonth.toLocaleDateString(),

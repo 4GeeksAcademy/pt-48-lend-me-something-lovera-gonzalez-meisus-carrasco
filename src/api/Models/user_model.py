@@ -13,8 +13,9 @@ class User(db.Model):
     street = db.Column(db.String, nullable=True)
    
 
-    subscription = db.relationship("Subscription", back_populates="user")
-    portfolio = db.relationship("Portfolio", back_populates="user")
+    subscription = db.relationship("Subscription", back_populates="user", uselist=False)
+    portfolio = db.relationship("Portfolio", back_populates="user", uselist=False)
+
 
     def __repr__(self):
         return f"<User: {self.email}>"
@@ -27,7 +28,8 @@ class User(db.Model):
             "country": self.country,
             "city": self.city,
             "street": self.street,
-            # "subscription_id": self.subscription.id,
-            # "subscription_level": self.subscription.level.value,
-            # "portfolio_id" : self.portfolio.id
+            "subscription_id": self.subscription.user_id,
+            "subscription_level": self.subscription.level.value,
+            "portfolio_id": self.portfolio.id if self.portfolio else ''
+            
         }

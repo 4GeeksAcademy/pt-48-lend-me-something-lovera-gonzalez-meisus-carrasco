@@ -1,5 +1,6 @@
 from api.Repositories.user_repository import UserRepository
 from api.Repositories.subscription_repository import SubscriptionRepository
+from api.Services.subscription_service import SubscriptionService
 from api.Services.HTTP_Status import HTTP_Status
 import re
 class UserService:
@@ -34,7 +35,8 @@ class UserService:
         subscription_data = {**new_user_data, 'user_id': new_user_id}
         print(subscription_data)
         subscription_result = SubscriptionRepository.add(subscription_data)
-        return {"new_user": new_user[0],"subscription_result": subscription_result}, HTTP_Status.OK
+        new_subscription = SubscriptionService.get_by_user_id(new_user_id)
+        return {"new_user": new_user[0],"subscription_result": new_subscription[0]}, HTTP_Status.OK
     
     @staticmethod
     def update(user_data):

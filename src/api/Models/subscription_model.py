@@ -24,8 +24,10 @@ class Subscription(db.Model):
     def serialize(self):
         return {
             'id' : self.id, 
-            'level' : self.level, 
+            'user_id': self.user_id,
+            'user_email': self.user.email, 
+            'level' : self.level.value, 
             'start_date' : self.start_date, 
             'end_date' : self.end_date, 
-            'renew_date' : self.renew_date 
+            'renew_date' : self.renew_date
         }
