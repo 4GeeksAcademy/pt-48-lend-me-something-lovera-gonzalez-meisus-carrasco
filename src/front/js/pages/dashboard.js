@@ -24,6 +24,7 @@ export const Dashboard = () => {
 
     const checkForUserInDB = () => {
         actions.setUser(user)
+        console.log("buscando user")
 
     }
 
@@ -32,7 +33,7 @@ export const Dashboard = () => {
         if (user) {
             checkForUserInDB()
         }
-    }, [])
+    }, [user])
 
     const springs = useSpring({
         from: { opacity: 0, y: -5 },

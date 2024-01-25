@@ -1,4 +1,6 @@
 import{get_eod_data} from './API'
+import{getUser, addUser} from './flowfinance_api'
+
 
 const getState = ({ getStore, getActions, setStore }) => {
 	return {
@@ -73,11 +75,14 @@ const getState = ({ getStore, getActions, setStore }) => {
 			// 	const data = await get_eod_data(symbol);
 			// 	setStore({ ...store, stocks: data });
 			// },
-			setUser: (user) => {
+			setUser: async (user) => { 
 				// console.log(user);
 				const store = getStore();
 				setStore({ ...store, user: user })
-				
+				const userDB = await getUser(store.user.email)
+				if (userDB.message){
+					const userDB = await addUser(store.userData)	
+				}
 			},
 			setSubscription: (subscription) => {
 				const store = getStore();

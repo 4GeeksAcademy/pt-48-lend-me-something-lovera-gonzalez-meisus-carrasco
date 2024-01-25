@@ -19,10 +19,10 @@ class UserService:
     @staticmethod
     def get_by_email(email):
         email_valid = re.match(r'\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,7}\b', email)
-        if not email_valid : return {'message': 'Invalid email format'}, HTTP_Status.BAD_REQUEST
+        if not email_valid : return {'message': 'Invalid email format'}, HTTP_Status.OK
         raw_data = UserRepository.get_by_email(email)
         serialized_data = list(map(lambda element: element.serialize(), raw_data))
-        if serialized_data == [] : return {'message': 'No user found'}, HTTP_Status.BAD_REQUEST
+        if serialized_data == [] : return {'message': 'No user found'}, HTTP_Status.OK
         return serialized_data, HTTP_Status.OK
     
     @staticmethod

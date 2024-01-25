@@ -1,7 +1,23 @@
+
 const FF_API = process.env.BACKEND_URL
 
+export const getUser = async (email) => {
+    const data = await fetch(`${FF_API}/user/${email}`)
+        .then(res => res.json())
+        .then(data => data)
+    console.log(await data)
+    return await data
+}
 
-export const getUser = () => { };
+
+
+export const addUser = async (userData) => {
+    const data = await fetch(`${FF_API}/user/`, { method: "POST", body: JSON.parse(userData) })
+        .then(res => res.json())
+        .then(data => data)
+    console.log(await data)
+    return await data
+};
 export const edditUser = () => { };
 export const deleteUser = () => { };
 
@@ -13,4 +29,6 @@ export const updateSubscription = () => { };
 export const getPortfolio = () => { };
 export const addToPortfolio = () => { };
 export const deleteFromPortfolio = () => { };
+
+
 
