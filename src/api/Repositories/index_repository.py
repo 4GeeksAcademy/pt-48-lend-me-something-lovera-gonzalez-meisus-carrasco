@@ -1,15 +1,15 @@
 from api.Models.index_model import Index
-from api.engine import session
+from api.models import db
 
 class IndexRepository:
     @staticmethod
     def get_list():
-        query = session.query(Index).all()
+        query = db.session.query(Index).all()
         return query
 
     @staticmethod
     def get_by_id(id):
-        query = session.query(Index).filter(Index.id == id).first()
+        query = db.session.query(Index).filter(Index.id == id).first()
         return query
 
     @staticmethod
@@ -21,21 +21,21 @@ class IndexRepository:
             create_at=index_data["create_at"],
 
         )
-        session.add(index_to_be_added)
-        session.commit()
+        db.session.add(index_to_be_added)
+        db.session.commit()
         return True
 
 
     @staticmethod
     def delete(index_data):
-        index_to_be_deleted = session.query(Index).filter(Index.name == index_data["name"])
-        session.delete(index_to_be_deleted)
-        session.commit()
+        index_to_be_deleted = db.session.query(Index).filter(Index.name == index_data["name"])
+        db.session.delete(index_to_be_deleted)
+        db.session.commit()
         return True
 
     @staticmethod
     def update(index_data):
-        index_to_be_updated = session.query(Index).filter(Index.name == index_data["name"])
+        index_to_be_updated = db.session.query(Index).filter(Index.name == index_data["name"])
 
         if "name" in index_data:
             index_to_be_updated.update(
@@ -54,5 +54,5 @@ class IndexRepository:
                 {Index.create_at: index_data["create_at"]}, synchronize_session=False
             )
 
-        session.commit()
+        db.session.commit()
         return True

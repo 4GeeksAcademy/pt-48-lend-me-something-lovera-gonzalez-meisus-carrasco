@@ -1,17 +1,17 @@
 from api.Models.market_model import Market
-from api.engine import session
+from api.models import db
 
 
 class MarketRepository:
     @staticmethod
     def get_market_list():
-        query = session.query(Market).all()
+        query = db.session.query(Market).all()
         return query
         
     
     @staticmethod
     def get_market_by_id():
-        query = session.query(Market).filter(Market.id == id)
+        query = db.session.query(Market).filter(Market.id == id)
         return query
     
     @staticmethod
@@ -24,13 +24,13 @@ class MarketRepository:
             opentime=market_data["opentime"],
             closetime=market_data["closetime"],
         )
-        session.add(market_to_be_added)
-        session.commit()
+        db.session.add(market_to_be_added)
+        db.session.commit()
         return True
     
     @staticmethod
     def update_market(market_data):
-        market_to_be_updated = session.query(Market).filter(Market.id == market_data["id"])
+        market_to_be_updated = db.session.query(Market).filter(Market.id == market_data["id"])
 
         if "name" in market_data:
             market_to_be_updated.update(
@@ -57,14 +57,14 @@ class MarketRepository:
                 {Market.closetime: market_data["closetime"]}, synchronize_session=False
             )
 
-        session.commit()
+        db.session.commit()
         return True
 
     
     @staticmethod
     def delete_market(market_data):
-        market_to_be_deleted = session.query(Market).filter(Market.id == market_data['id']).first()
-        session.delete(market_to_be_deleted)
-        session.commit()
+        market_to_be_deleted = db.session.query(Market).filter(Market.id == market_data['id']).first()
+        db.session.delete(market_to_be_deleted)
+        db.session.commit()
         return True
         

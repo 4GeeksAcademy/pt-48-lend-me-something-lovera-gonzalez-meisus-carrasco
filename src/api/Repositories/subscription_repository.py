@@ -1,21 +1,21 @@
 from api.Models.subscription_model import Subscription
-from api.engine import session
+from api.models import db
 
 
 class SubscriptionRepository:
     @staticmethod
     def get_list():
-        query = session.query(Subscription).all()
+        query = db.session.query(Subscription).all()
         return query
 
     @staticmethod
     def get_by_id(id):
-        query = session.query(Subscription).filter(Subscription.id == id)
+        query = db.session.query(Subscription).filter(Subscription.id == id)
         return query
 
     @staticmethod
     def get_by_user_id(id):
-        query = session.query(Subscription).filter(Subscription.user_id == id).first()
+        query = db.session.query(Subscription).filter(Subscription.user_id == id).first()
         return query
 
     @staticmethod
@@ -27,13 +27,13 @@ class SubscriptionRepository:
             renew_date=subscription_data["renew_date"],
             user_id=subscription_data["user_id"],
         )
-        session.add(subscription_to_be_added)
-        session.commit()
+        db.session.add(subscription_to_be_added)
+        db.session.commit()
         return True
 
     @staticmethod
     def update(subscription_data):
-        user_to_be_updated = session.query(Subscription).filter(
+        user_to_be_updated = db.session.query(Subscription).filter(
             Subscription.id == subscription_data["subscription_id"]
         )
         if "subscription_level" in subscription_data:
@@ -56,6 +56,6 @@ class SubscriptionRepository:
                 {Subscription.renew_date: subscription_data["renew_date"]},
                 synchronize_session=False,
             )
-        session.commit()
-        query = session.query(Subscription).filter(Subscription.id == subscription_data["subscription_id"]).first()
+        db.session.commit()
+        query = db.session.query(Subscription).filter(Subscription.id == subscription_data["subscription_id"]).first()
         return query
