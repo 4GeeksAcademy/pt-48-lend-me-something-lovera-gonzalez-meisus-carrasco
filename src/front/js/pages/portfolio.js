@@ -15,6 +15,10 @@ export const Portfolio = () => {
 
     const { store, actions } = useContext(Context);
     const [loading, setLoading] = useState(true);
+    const [stockFilter, setStockFilter] = useState('')
+    const [cryptoFilter, setCryptoFilter] = useState('')
+    const [forexFilter, setForexFilter] = useState('')
+    const [commoditiesFilter, setCommoditiesFilter] = useState('')
 
     const springs = useSpring({
         from: { opacity: 0 },
@@ -40,94 +44,115 @@ export const Portfolio = () => {
             style={{
                 ...springs,
             }}
-            className="d-flex flex-column justify-content-center align-items-center gap-5 navbar-margin"
+            className="d-flex flex-row flex-wrap justify-content-center align-items-center gap-5 navbar-margin mb-5"
         >
-            <BlueContainer>
+            <BlueContainer style={{ flexBasis: '35%', height: '35vh', display: 'flex', alignItems: 'center', flexDirection: 'column', position: 'relative' }}>
+                <i className="fa-solid fa-money-bill-trend-up portfolio--icon"></i>
                 <div className="portfolio-header--container">
                     <h4>Stocks</h4>
                     <div>
-                        <input className="portfolio-input-blue" type="text" placeholder="Filter..." name="" id="" />
+                        <input className="portfolio-input-blue" type="text" placeholder="Filter..." name="" id="" value={stockFilter} onChange={(e) => setStockFilter(e.target.value)} />
                     </div>
                     <div className="portfolio-hr"></div>
                 </div>
                 <div className="portfolio-table--container">
                     <div className="portfolio-table-header">
-                        <div className="portfolio-table-header-title">Name</div>
-                        <div className="portfolio-table-header-title">Symbol</div>
+                        <div className="portfolio-table-header-name">Name</div>
+                        <div className="portfolio-table-header-symbol">Symbol</div>
                     </div>
-                    <div className="portfolio-table-list">
-                        {store.userPortfolio != [] && store.userPortfolio?.filter(element => element.item_type === 'Stock').map((e, i) => (
+                    <div className="portfolio-hr"></div>
+                    <div className="portfolio-table-list portfolio-table-list-blue">
+                        {store.userPortfolio != [] && store.userPortfolio?.filter(element => (element.item_type === 'Stock' && element.item_symbol.includes(stockFilter))).map((e, i) => (<>
                             <div className="portfolio-table-list-item" key={i}>
                                 <div className="portfolio-table-list-item-name">Name</div>
                                 <div className="portfolio-table-list-item-symbol">{e.item_symbol}</div>
                             </div>
-                        ))
+                            <div className="portfolio-hr"></div>
+                        </>))
                         }
                     </div>
                 </div>
             </BlueContainer>
-            <GreenContainer>
+            <GreenContainer style={{ flexBasis: '35%', height: '35vh', display: 'flex', alignItems: 'center', flexDirection: 'column', position: 'relative' }}>
+                <i className="fa-brands fa-bitcoin portfolio--icon"></i>
                 <div className="portfolio-header--container">
                     <h4>Crypto</h4>
                     <div>
-                        <input className="portfolio-input-green" type="text" name="" id="" />
+                        <input className="portfolio-input-green" type="text" placeholder="Filter..." name="" id="" value={cryptoFilter} onChange={(e) => setCryptoFilter(e.target.value)} />
                     </div>
+                    <div className="portfolio-hr"></div>
                 </div>
                 <div className="portfolio-table--container">
                     <div className="portfolio-table-header">
-                        <div className="portfolio-table-header-title">Name</div>
-                        <div className="portfolio-table-header-title">Symbol</div>
+                        <div className="portfolio-table-header-name">Name</div>
+                        <div className="portfolio-table-header-symbol">Symbol</div>
                     </div>
-                    <div className="portfolio-table-list">
-                        <div className="portfolio-table-list-item">
-                            <div className="portfolio-table-list-item-name">aplle inc</div>
-                            <div className="portfolio-table-list-item-symbol">APPL</div>
-                        </div>
+                    <div className="portfolio-hr"></div>
+                    <div className="portfolio-table-list portfolio-table-list-green">
+                        {store.userPortfolio != [] && store.userPortfolio?.filter(element => (element.item_type === 'Stock' && element.item_symbol.includes(cryptoFilter))).map((e, i) => (<>
+                            <div className="portfolio-table-list-item" key={i}>
+                                <div className="portfolio-table-list-item-name">Name</div>
+                                <div className="portfolio-table-list-item-symbol">{e.item_symbol}</div>
+                            </div>
+                            <div className="portfolio-hr"></div>
+                        </>))
+                        }
                     </div>
                 </div>
-
             </GreenContainer>
-            <YellowContainer>
+            <YellowContainer style={{ flexBasis: '35%', height: '35vh', display: 'flex', alignItems: 'center', flexDirection: 'column', position: 'relative' }}>
+                <i className="fa-solid fa-money-bill-1-wave portfolio--icon"></i>
                 <div className="portfolio-header--container">
                     <h4>Forex</h4>
                     <div>
-                        <input className="portfolio-input-yellow" type="text" name="" id="" />
+                        <input className="portfolio-input-yellow" type="text" placeholder="Filter..." name="" id="" value={forexFilter} onChange={(e) => setForexFilter(e.target.value)} />
                     </div>
+                    <div className="portfolio-hr"></div>
                 </div>
                 <div className="portfolio-table--container">
                     <div className="portfolio-table-header">
-                        <div className="portfolio-table-header-title">Name</div>
-                        <div className="portfolio-table-header-title">Symbol</div>
+                        <div className="portfolio-table-header-name">Name</div>
+                        <div className="portfolio-table-header-symbol">Symbol</div>
                     </div>
-                    <div className="portfolio-table-list">
-                        <div className="portfolio-table-list-item">
-                            <div className="portfolio-table-list-item-name">aplle inc</div>
-                            <div className="portfolio-table-list-item-symbol">APPL</div>
-                        </div>
+                    <div className="portfolio-hr"></div>
+                    <div className="portfolio-table-list portfolio-table-list-yellow">
+                        {store.userPortfolio != [] && store.userPortfolio?.filter(element => (element.item_type === 'Stock' && element.item_symbol.includes(forexFilter))).map((e, i) => (<>
+                            <div className="portfolio-table-list-item" key={i}>
+                                <div className="portfolio-table-list-item-name">Name</div>
+                                <div className="portfolio-table-list-item-symbol">{e.item_symbol}</div>
+                            </div>
+                            <div className="portfolio-hr"></div>
+                        </>))
+                        }
                     </div>
                 </div>
-
             </YellowContainer>
-            <PurpleContainer>
+            <PurpleContainer style={{ flexBasis: '35%', height: '35vh', display: 'flex', alignItems: 'center', flexDirection: 'column', position: 'relative' }}>
+                <i className="fa-solid fa-oil-well portfolio--icon"></i>
                 <div className="portfolio-header--container">
                     <h4>Commodities</h4>
                     <div>
-                        <input className="portfolio-input-purple" type="text" name="" id="" />
+                        <input className="portfolio-input-purple" type="text" placeholder="Filter..." name="" id="" value={commoditiesFilter} onChange={(e) => setCommoditiesFilter(e.target.value)} />
                     </div>
+                    <div className="portfolio-hr"></div>
                 </div>
                 <div className="portfolio-table--container">
                     <div className="portfolio-table-header">
-                        <div className="portfolio-table-header-title">Name</div>
-                        <div className="portfolio-table-header-title">Symbol</div>
+                        <div className="portfolio-table-header-name">Name</div>
+                        <div className="portfolio-table-header-symbol">Symbol</div>
                     </div>
-                    <div className="portfolio-table-list">
-                        <div className="portfolio-table-list-item">
-                            <div className="portfolio-table-list-item-name">aplle inc</div>
-                            <div className="portfolio-table-list-item-symbol">APPL</div>
-                        </div>
+                    <div className="portfolio-hr"></div>
+                    <div className="portfolio-table-list portfolio-table-list-purple">
+                        {store.userPortfolio != [] && store.userPortfolio?.filter(element => (element.item_type === 'Stock' && element.item_symbol.includes(commoditiesFilter))).map((e, i) => (<>
+                            <div className="portfolio-table-list-item" key={i}>
+                                <div className="portfolio-table-list-item-name">Name</div>
+                                <div className="portfolio-table-list-item-symbol">{e.item_symbol}</div>
+                            </div>
+                            <div className="portfolio-hr"></div>
+                        </>))
+                        }
                     </div>
                 </div>
-
             </PurpleContainer>
         </animated.div>
 
