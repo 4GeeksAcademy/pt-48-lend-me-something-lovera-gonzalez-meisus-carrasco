@@ -1,20 +1,16 @@
 const FF_API = process.env.BACKEND_URL
 
-export class FF_APi {
-    static {
-        const getUser = () => { };
-        const edditUser = () => { };
-        const deleteUser = () => { };
+
+export const getUser = () => { };
+export const edditUser = () => { };
+export const deleteUser = () => { };
 
 
-        const getSubscription = () => { };
-        const updateSubscription = () => { };
+export const getSubscription = () => { };
+export const updateSubscription = () => { };
 
 
-        const getPortfolio = () => { };
-        const addToPortfolio = () => { };
-        const deleteFromPortfolio = () => { };
-
-    };
-};
+export const getPortfolio = () => { };
+export const addToPortfolio = () => { };
+export const deleteFromPortfolio = () => { };
 

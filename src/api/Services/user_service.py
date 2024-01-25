@@ -26,10 +26,13 @@ class UserService:
         return serialized_data, HTTP_Status.OK
     
     @staticmethod
-    def add(new_user_data):
-        subscription_result = SubscriptionRepository.add(new_user_data)
+    def add(new_user_data,self):
         user_result = UserRepository.add(new_user_data)
-        return user_result, HTTP_Status.OK
+        [new_user] = self.get_by_email(new_user_data['email'])
+        new_user_id = new_user['id']
+        subscription_data = {**new_user_data, 'user_id': new_user_id}
+        subscription_result = SubscriptionRepository.add(subscription_data)
+        return new_user,subscription_result, HTTP_Status.OK
     
     @staticmethod
     def update(user_data):
