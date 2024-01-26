@@ -11,14 +11,14 @@ class ItemType(Enum):
 
 
 class PortfolioList(db.Model):
-    __tablename__ = "portfolio_list"
+    __tablename__ = "portfoliolist"
     id = db.Column(db.Integer, nullable=False, primary_key=True)
     item_type = db.Column(db.Enum(ItemType), nullable=False)
     item_symbol = db.Column(db.String, nullable=False)
     item_name = db.Column(db.String, nullable=False)
     portfolio_id = db.Column(db.Integer, db.ForeignKey("portfolios.id"))
 
-    portfolio = db.relationship("Portfolio", back_populates="portfolio_list")
+    portfolio = db.relationship("Portfolio", back_populates="portfoliolist")
 
     def __repr__(self):
         return f"<PortfolioList: {self.id}>"
