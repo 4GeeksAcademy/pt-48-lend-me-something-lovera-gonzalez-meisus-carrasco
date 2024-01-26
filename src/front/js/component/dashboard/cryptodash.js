@@ -36,7 +36,11 @@ export const CrryptoDash = () => {
 		"data_end": "2024-01-17"
 	}
 
-    const filtered_data = Data.filter(e => e.type_is_crypto === 1).map(element => ({ 'name': element.name, 'id': element.asset_id, 'price': +(element.price_usd), 'date': element.data_end })).sort((a, b) => b.price- a.price).splice(4, 30)
+    const filtered_data = Data.filter(e => e.type_is_crypto === 1).map(element => ({
+         'name': element.name, 
+         'id': element.asset_id, 
+         'price': +(element.price_usd), 
+         'date': element.data_end })).sort((a, b) => b.price- a.price).splice(4, 30)
 
 
     const preColumns = Object.keys(filtered_data[0]).map(e => ({'field': e, 'flex': 1}))
