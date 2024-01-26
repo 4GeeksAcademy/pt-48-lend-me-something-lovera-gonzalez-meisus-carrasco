@@ -140,10 +140,10 @@ export const Subscription = () => {
                     <button className="subscription-button-business subscription-button" onClick={() => handleClick('Business')}>{store.user.subscription_level === 'Business' ? 'Current' : 'Upgrade'}</button>
                 </div>
             </PurpleContainer>
-            <GrayContainer style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', width: '60%', marginTop: '15em' }}>
+            {isAuthenticated && <GrayContainer style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', width: '60%', marginTop: '15em' }}>
                 <p>Did you change your mind? You can cancel your subscription anytime...</p>
                 <button className="light-gray--button" onClick={cancelUserSubscription}>Unsubscribe</button>
-            </GrayContainer>
+            </GrayContainer>}
         </animated.div>
 
     </>)
