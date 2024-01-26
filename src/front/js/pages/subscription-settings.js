@@ -27,7 +27,7 @@ export const Subscription = () => {
             'product_id': 'price_1Oc1qHEUv4sos4iTVEhLbR2u'
         },
         {
-            'level': 'Bussines',
+            'level': 'Business',
             'price': 9.99,
             'product_id': 'price_1Oc1qlEUv4sos4iTDmypeTRP'
         }]
@@ -55,7 +55,7 @@ export const Subscription = () => {
 
     const handleClick = async (string) => {
 
-        if (isAuthenticated) {
+        if (isAuthenticated && store.user.subscription_level != string) {
             const [subscriptionToSetTo] = subscriptionPlans.filter(level => level.level == string);
             actions.setSubscription(subscriptionToSetTo);
             navigate('/checkout');
@@ -137,7 +137,7 @@ export const Subscription = () => {
                         <span>Be your better version for...</span>
                         <h2>$ 9.99 / month</h2>
                     </div>
-                    <button className="subscription-button-business subscription-button" onClick={() => handleClick('Bussines')}>{store.user.subscription_level === 'Business' ? 'Current' : 'Upgrade'}</button>
+                    <button className="subscription-button-business subscription-button" onClick={() => handleClick('Business')}>{store.user.subscription_level === 'Business' ? 'Current' : 'Upgrade'}</button>
                 </div>
             </PurpleContainer>
             <GrayContainer style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', width: '60%', marginTop: '15em' }}>

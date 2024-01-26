@@ -1,4 +1,5 @@
 import React, { useContext, useState } from "react";
+import { Context } from "../store/appContext.js";
 import { YellowContainer } from "../component/color_containers/yellow_container";
 import { PurpleContainer } from "../component/color_containers/purple_container";
 import { GreenContainer } from "../component/color_containers/green_container";
@@ -13,7 +14,8 @@ import { useSpring, animated } from '@react-spring/web'
 
 export const Notifications = () => {
 
-    const { isAuthenticated, user, isLoading } = useAuth0()
+    const { isAuthenticated, user, isLoading } = useAuth0();
+    const {store, actions} = useContext(Context)
 
     const springs = useSpring({
         from:
@@ -54,11 +56,7 @@ export const Notifications = () => {
                 <PurpleContainer style={{ width: '60%', position: 'relative' }}>
                     <h4> <i className="fa-solid fa-triangle-exclamation" ></i> {' '}Your alerts below: </h4>
                     <div className="mt-4 alert">
-                        <p> <i className="fa-solid fa-xmark"></i> Alert</p>
-                        <p> <i className="fa-solid fa-xmark"></i> Alert</p>
-                        <p> <i className="fa-solid fa-xmark"></i> Alert</p>
-                        <p> <i className="fa-solid fa-xmark"></i> Alert</p>
-                        <p> <i className="fa-solid fa-xmark"></i> Alert</p>
+                        {store.user.street == null && <p> <i className="fa-solid fa-xmark"></i> Recuerda completar tu perfil!</p>}
                     </div>
                     <button className="purple--button notifications-clear-button">Clear All</button>
                 </PurpleContainer>
