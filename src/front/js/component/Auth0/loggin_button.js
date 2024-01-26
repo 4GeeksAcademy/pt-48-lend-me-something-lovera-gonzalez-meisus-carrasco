@@ -14,7 +14,7 @@ export const LogginButton = (props) => {
     const loginClick = async () => {
         await loginWithRedirect({
             appState: {
-                returnTo: '/dashboard'
+                returnTo: '/login'
             },
         });
         // console.log('loggin clicked');
