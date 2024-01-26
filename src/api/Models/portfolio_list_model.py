@@ -11,7 +11,7 @@ class ItemType(Enum):
 
 
 class PortfolioList(db.Model):
-    __tablename__ = "portfoliolist"
+    __tablename__ = "portfolio_list"
     id = db.Column(db.Integer, nullable=False, primary_key=True)
     item_type = db.Column(db.Enum(ItemType), nullable=False)
     item_symbol = db.Column(db.String, nullable=False)
