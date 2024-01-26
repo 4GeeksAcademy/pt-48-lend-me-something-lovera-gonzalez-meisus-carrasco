@@ -474,7 +474,7 @@ export const Table = (props) => {
         const wb = utils.book_new();
         utils.book_append_sheet(wb, ws, "Data");
         /* export to XLSX */
-        writeFile(wb, "prueba1.xlsx");
+        writeFile(wb, "FlowFinanceXLSXReport.xlsx");
     };
     const generatePdf = () => {
         const doc = new jsPDF('l');
@@ -498,7 +498,7 @@ export const Table = (props) => {
         },
         )
 
-        doc.save('stocks.pdf');
+        doc.save('FlowFinancePDFReport.pdf');
     }
 
     useEffect(() => {
