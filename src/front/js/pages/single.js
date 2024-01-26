@@ -62,7 +62,9 @@ export const Single = props => {
 	};
 
 	const addToPortfolio = (e) => {
-		actions.addToUserPortfolio(e.target.value, 'Stock')
+		const ticker_data = JSON.parse(e.target.value)
+		console.log(ticker_data)
+		actions.addToUserPortfolio(ticker_data.symbol, 'Stock', ticker_data.name);
 	};
 
 	const deleteFromPortfolio = (e) => {
@@ -94,7 +96,7 @@ export const Single = props => {
 				{ticker.name && tableData && <>
 					<div className='d-flex flex-row gap-2'>
 						{isAuthenticated && !isOnUserPortfolio &&
-							<button className="blue--button single-portfolio--button" value={ticker.symbol} onClick={(e) => addToPortfolio(e)} >Add to Portfolio</button>}
+							<button className="blue--button single-portfolio--button" value={JSON.stringify(ticker)} onClick={(e) => {addToPortfolio(e); setIsOnUserPortfolio(true)}} >Add to Portfolio</button>}
 						{isAuthenticated && isOnUserPortfolio &&
 							<button className="green--button single-portfolio--button-added" value={ticker.symbol} onClick={(e) => deleteFromPortfolio(e)} >
 								<i style={{ fontSize: '2em' }} className="fa-regular fa-circle-check"></i>

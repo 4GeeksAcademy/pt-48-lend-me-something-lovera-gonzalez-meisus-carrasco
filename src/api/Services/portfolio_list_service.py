@@ -15,7 +15,7 @@ class PortfolioListService:
         raw_data = PortfolioListRepository.get_by_id(id)
         serialized_data = list(map(lambda element: element.serialize(), raw_data))
         if serialized_data == []:
-            return {"message": "No user found"}, HTTP_Status.BAD_REQUEST
+            return {"message": "No user found"}, HTTP_Status.OK
         return serialized_data, HTTP_Status.OK
 
     @staticmethod
@@ -23,7 +23,7 @@ class PortfolioListService:
         raw_data = PortfolioListRepository.get_by_portfolio_id(id)
         serialized_data = list(map(lambda element: element.serialize(), raw_data))
         if serialized_data == []:
-            return {"message": "No entry found"}, HTTP_Status.BAD_REQUEST
+            return [], HTTP_Status.OK
         return serialized_data, HTTP_Status.OK
 
     @staticmethod

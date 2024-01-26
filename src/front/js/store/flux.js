@@ -120,14 +120,15 @@ const getState = ({ getStore, getActions, setStore }) => {
 				setStore({ ...store, userPortfolio: await data });
 				// console.log(await store.userPortfolio);
 			},
-			addToUserPortfolio: async (item_symbol, item_type) => {
+			addToUserPortfolio: async (item_symbol, item_type, item_name) => {
 				const store = getStore();
 				const actions = getActions();
 				const portfolio_id = store.user.portfolio_id;
 				const data = await addToPortfolio({
 					'portfolio_id': portfolio_id,
 					'item_type': item_type.toUpperCase(),
-					'item_symbol': item_symbol
+					'item_symbol': item_symbol,
+					'item_name' : item_name
 				});
 				actions.getUserPortfolio();
 			},

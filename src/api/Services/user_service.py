@@ -14,7 +14,7 @@ class UserService:
     def get_by_id(id):
         raw_data = UserRepository.get_by_id(id)
         serialized_data = list(map(lambda element: element.serialize(), raw_data))
-        if serialized_data == [] : return {'message': 'No user found'}, HTTP_Status.BAD_REQUEST
+        if serialized_data == [] : return {'message': 'No user found'}, HTTP_Status.OK
         return serialized_data, HTTP_Status.OK
     
     @staticmethod

@@ -12,7 +12,7 @@ export const Doughnut = (props) => {
     )
 
     const [data, setData] = useState(
-        (props.data) ? props.data :
+        (props.data) ? props.data:
             [
                 {
                     name: 'Santander',

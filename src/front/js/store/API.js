@@ -14,6 +14,17 @@ export const get_eod_data = async (symbol) => {
     // console.log(EndOfDay_data)
     return EndOfDay_data
 };
+export const get_last_eod_data = async (symbol) => {
+    // console.log(symbol)
+    // const params = { access_key: API_KEY, symbols: symbol }
+    // console.log(process.env.BACKEND_URL)
+    const request = await fetch(`${FF_API}/api_proxy?url=${API_URL}/eod/latest?access_key=${API_KEY}&symbols=${symbol}`);
+    const data = await request.json();
+    // console.log(request)
+    const EndOfDay_data = await data.data;
+    // console.log(EndOfDay_data)
+    return EndOfDay_data
+};
 
 export const get_search_results = async (symbol,exchange,offset) => {
     // print(`${FF_API}/api_proxy?url=${stock_url}&symbols=${symbol}`)

@@ -15,7 +15,7 @@ class SubscriptionService:
         raw_data = SubscriptionRepository.get_by_id(id)
         serialized_data = raw_data.serialize()
         if serialized_data == []:
-            return {"message": "No user found"}, HTTP_Status.BAD_REQUEST
+            return {"message": "No user found"}, HTTP_Status.OK
         return serialized_data, HTTP_Status.OK
 
     @staticmethod
@@ -23,7 +23,7 @@ class SubscriptionService:
         raw_data = SubscriptionRepository.get_by_user_id(id)
         serialized_data = raw_data.serialize()
         if serialized_data == []:
-            return {"message": "No subscription found"}, HTTP_Status.BAD_REQUEST
+            return {"message": "No subscription found"}, HTTP_Status.OK
         return serialized_data, HTTP_Status.OK
 
     @staticmethod

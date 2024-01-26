@@ -9,6 +9,7 @@ import "../../styles/portfolio.sass"
 import { useSpring, animated } from '@react-spring/web'
 import { Spinner } from "../component/spinner"
 import { TopBarTitle } from "../component/topBarTitle.js";
+import { Link } from "react-router-dom";
 
 
 export const Portfolio = () => {
@@ -53,7 +54,6 @@ export const Portfolio = () => {
                     <div>
                         <input className="portfolio-input-blue" type="text" placeholder="Filter..." name="" id="" value={stockFilter} onChange={(e) => setStockFilter(e.target.value)} />
                     </div>
-                    <div className="portfolio-hr"></div>
                 </div>
                 <div className="portfolio-table--container">
                     <div className="portfolio-table-header">
@@ -62,12 +62,13 @@ export const Portfolio = () => {
                     </div>
                     <div className="portfolio-hr"></div>
                     <div className="portfolio-table-list portfolio-table-list-blue">
-                        {store.userPortfolio != [] && store.userPortfolio?.filter(element => (element.item_type === 'Stock' && element.item_symbol.includes(stockFilter))).map((e, i) => (<>
-                            <div className="portfolio-table-list-item" key={i}>
-                                <div className="portfolio-table-list-item-name">Name</div>
-                                <div className="portfolio-table-list-item-symbol">{e.item_symbol}</div>
-                            </div>
-                            <div className="portfolio-hr"></div>
+                        {store.userPortfolio != [] && store.userPortfolio?.filter(element => (element.item_type === 'Stock' && (element.item_symbol.toLowerCase().includes(stockFilter.toLowerCase()) || element.item_name.toLowerCase().includes(stockFilter.toLowerCase())  ))).map((e, i) => (<>
+                            <Link to={`/single/${e.item_symbol}`}>
+                                <div className="portfolio-table-list-item" key={i}>
+                                    <div className="portfolio-table-list-item-name">{e.item_name}</div>
+                                    <div className="portfolio-table-list-item-symbol">{e.item_symbol}</div>
+                                </div>
+                            </Link>
                         </>))
                         }
                     </div>
@@ -80,7 +81,6 @@ export const Portfolio = () => {
                     <div>
                         <input className="portfolio-input-green" type="text" placeholder="Filter..." name="" id="" value={cryptoFilter} onChange={(e) => setCryptoFilter(e.target.value)} />
                     </div>
-                    <div className="portfolio-hr"></div>
                 </div>
                 <div className="portfolio-table--container">
                     <div className="portfolio-table-header">
@@ -89,12 +89,13 @@ export const Portfolio = () => {
                     </div>
                     <div className="portfolio-hr"></div>
                     <div className="portfolio-table-list portfolio-table-list-green">
-                        {store.userPortfolio != [] && store.userPortfolio?.filter(element => (element.item_type === 'Stock' && element.item_symbol.includes(cryptoFilter))).map((e, i) => (<>
-                            <div className="portfolio-table-list-item" key={i}>
-                                <div className="portfolio-table-list-item-name">Name</div>
-                                <div className="portfolio-table-list-item-symbol">{e.item_symbol}</div>
-                            </div>
-                            <div className="portfolio-hr"></div>
+                        {store.userPortfolio != [] && store.userPortfolio?.filter(element => (element.item_type === 'Crypto' && element.item_symbol.includes(cryptoFilter))).map((e, i) => (<>
+                            <Link to={`/single/${e.item_symbol}`}>
+                                <div className="portfolio-table-list-item" key={i}>
+                                    <div className="portfolio-table-list-item-name">{e.item_name}</div>
+                                    <div className="portfolio-table-list-item-symbol">{e.item_symbol}</div>
+                                </div>
+                            </Link>
                         </>))
                         }
                     </div>
@@ -107,7 +108,6 @@ export const Portfolio = () => {
                     <div>
                         <input className="portfolio-input-yellow" type="text" placeholder="Filter..." name="" id="" value={forexFilter} onChange={(e) => setForexFilter(e.target.value)} />
                     </div>
-                    <div className="portfolio-hr"></div>
                 </div>
                 <div className="portfolio-table--container">
                     <div className="portfolio-table-header">
@@ -116,12 +116,13 @@ export const Portfolio = () => {
                     </div>
                     <div className="portfolio-hr"></div>
                     <div className="portfolio-table-list portfolio-table-list-yellow">
-                        {store.userPortfolio != [] && store.userPortfolio?.filter(element => (element.item_type === 'Stock' && element.item_symbol.includes(forexFilter))).map((e, i) => (<>
-                            <div className="portfolio-table-list-item" key={i}>
-                                <div className="portfolio-table-list-item-name">Name</div>
-                                <div className="portfolio-table-list-item-symbol">{e.item_symbol}</div>
-                            </div>
-                            <div className="portfolio-hr"></div>
+                        {store.userPortfolio != [] && store.userPortfolio?.filter(element => (element.item_type === 'Forex' && element.item_symbol.includes(forexFilter))).map((e, i) => (<>
+                            <Link to={`/single/${e.item_symbol}`}>
+                                <div className="portfolio-table-list-item" key={i}>
+                                    <div className="portfolio-table-list-item-name">{e.item_name}</div>
+                                    <div className="portfolio-table-list-item-symbol">{e.item_symbol}</div>
+                                </div>
+                            </Link>
                         </>))
                         }
                     </div>
@@ -134,7 +135,6 @@ export const Portfolio = () => {
                     <div>
                         <input className="portfolio-input-purple" type="text" placeholder="Filter..." name="" id="" value={commoditiesFilter} onChange={(e) => setCommoditiesFilter(e.target.value)} />
                     </div>
-                    <div className="portfolio-hr"></div>
                 </div>
                 <div className="portfolio-table--container">
                     <div className="portfolio-table-header">
@@ -143,12 +143,13 @@ export const Portfolio = () => {
                     </div>
                     <div className="portfolio-hr"></div>
                     <div className="portfolio-table-list portfolio-table-list-purple">
-                        {store.userPortfolio != [] && store.userPortfolio?.filter(element => (element.item_type === 'Stock' && element.item_symbol.includes(commoditiesFilter))).map((e, i) => (<>
-                            <div className="portfolio-table-list-item" key={i}>
-                                <div className="portfolio-table-list-item-name">Name</div>
-                                <div className="portfolio-table-list-item-symbol">{e.item_symbol}</div>
-                            </div>
-                            <div className="portfolio-hr"></div>
+                        {store.userPortfolio != [] && store.userPortfolio?.filter(element => (element.item_type === 'Commodity' && element.item_symbol.includes(commoditiesFilter))).map((e, i) => (<>
+                            <Link to={`/single/${e.item_symbol}`}>
+                                <div className="portfolio-table-list-item" key={i}>
+                                    <div className="portfolio-table-list-item-name">{e.item_name}</div>
+                                    <div className="portfolio-table-list-item-symbol">{e.item_symbol}</div>
+                                </div>
+                            </Link>
                         </>))
                         }
                     </div>

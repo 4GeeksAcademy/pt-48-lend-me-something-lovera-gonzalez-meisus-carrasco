@@ -15,7 +15,7 @@ class PortfolioService:
         raw_data = PortfolioRepository.get_by_id(id)
         serialized_data = list(map(lambda element: element.serialize(), raw_data))
         if serialized_data == []:
-            return {"message": "No user found"}, HTTP_Status.BAD_REQUEST
+            return {"message": "No user found"}, HTTP_Status.OK
         return serialized_data, HTTP_Status.OK
 
     @staticmethod

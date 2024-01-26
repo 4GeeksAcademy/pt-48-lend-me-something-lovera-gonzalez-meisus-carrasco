@@ -24,6 +24,7 @@ class PortfolioListRepository:
             portfolio_id=item_data["portfolio_id"],
             item_type=item_data["item_type"],
             item_symbol=item_data["item_symbol"],
+            item_name=item_data["item_name"],
         )
         session.add(item_to_be_added)
         session.commit()
