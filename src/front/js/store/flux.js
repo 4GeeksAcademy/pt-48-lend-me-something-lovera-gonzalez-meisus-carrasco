@@ -47,8 +47,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 						"end_date": nextMonth.toLocaleDateString(),
 						"renew_date": nextMonth.toLocaleDateString(),
 					}
-					const newUser = await addUser(newUserData)
-					setStore({ ...store, user: newUser })
+					const newUser = await addUser(newUserData);
+					actions.setUser(user)
 					// console.log(store.user)
 				}
 				if (!userDB.message) {
