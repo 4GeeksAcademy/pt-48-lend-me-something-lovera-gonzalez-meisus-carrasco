@@ -5,7 +5,6 @@ import { PurpleContainer } from "../component/color_containers/purple_container"
 import { GreenContainer } from "../component/color_containers/green_container";
 import { BlueContainer } from "../component/color_containers/blue_container";
 import '../../styles/notifications.sass';
-import foto from "../../img/foto.jpg"
 import { useAuth0 } from "@auth0/auth0-react";
 import { Spinner } from '../component/spinner.js'
 
