@@ -35,15 +35,15 @@ export const Navbar = () => {
 				</button>
 				<div className="navbar-icons">
 
-					<Link to={"/"}><i className="fa-solid fa-house-laptop" ></i></Link>
+					<Link to={"/"}><i className="fa-solid fa-house-laptop" title="Home"></i></Link>
 					{isAuthenticated && <>
-						<Link to={"/dashboard"}><i className="fa-solid fa-swatchbook" ></i></Link>
-						<Link to={"/portfolio"}><i className="fa-solid fa-briefcase" ></i></Link></>}
-					<Link to={"/discover"}><i className="fa-solid fa-book-open" ></i></Link>
-					{isAuthenticated && <Link to={"/login"}><i className="fa-solid fa-user" ></i></Link>}
-					<Link to={"/subscription"}><i className="fa-solid fa-gear" ></i></Link>
-					{isAuthenticated && <Link to={"/notifications"}><i className="fa-solid fa-bell" ></i></Link>}
-					<Link to={"/aboutus"}><i className="fa-solid fa-users" ></i></Link>
+						<Link to={"/dashboard"}><i className="fa-solid fa-swatchbook" title="Dashboard"></i></Link>
+						<Link to={"/portfolio"}><i className="fa-solid fa-briefcase" title="Portfolio"></i></Link></>}
+					<Link to={"/discover"}><i className="fa-solid fa-book-open" title="Discover"></i></Link>
+					{isAuthenticated && <Link to={"/login"}><i className="fa-solid fa-user" title="Profile" ></i></Link>}
+					<Link to={"/subscription"}><i className="fa-solid fa-gear" title="Subscription" ></i></Link>
+					{isAuthenticated && <Link to={"/notifications"}><i className="fa-solid fa-bell" title="Notifications" ></i></Link>}
+					<Link to={"/aboutus"}><i className="fa-solid fa-users" title="About Us" ></i></Link>
 				</div>
 			</div>
 			{isAuthenticated && <LogoffButton style={{ height: '50px', width: '50px', borderRadius: '25px', padding: 0 }} />}
