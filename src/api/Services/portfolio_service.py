@@ -19,8 +19,8 @@ class PortfolioService:
         return serialized_data, HTTP_Status.OK
 
     @staticmethod
-    def add(item_data):
-        result = PortfolioRepository.add(item_data)
+    def add(id):
+        result = PortfolioRepository.add(id)
         return result, HTTP_Status.OK
 
     @staticmethod

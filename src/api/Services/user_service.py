@@ -1,6 +1,7 @@
 from api.Repositories.user_repository import UserRepository
 from api.Repositories.subscription_repository import SubscriptionRepository
 from api.Services.subscription_service import SubscriptionService
+from api.Repositories.portfolio_repository import PortfolioRepository
 from api.Services.HTTP_Status import HTTP_Status
 import re
 class UserService:
@@ -36,7 +37,8 @@ class UserService:
         subscription_data = {**new_user_data, 'user_id': new_user_id}
         print('La data para la nueva suscripcion es esta: ',subscription_data)
         subscription_result = SubscriptionRepository.add(subscription_data)
-        new_subscription = SubscriptionService.get_by_user_id(new_user_id)
+        new_subscription = SubscriptionService.get_by_user_id(new_user_id);
+        new_portfolio = PortfolioRepository.add(new_user_id)
         print('La nueva suscripcion es esta: ', new_subscription[0])
         return {"new_user": new_user[0],"subscription_result": new_subscription[0]}, HTTP_Status.OK
     

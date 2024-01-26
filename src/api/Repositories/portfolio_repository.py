@@ -14,9 +14,9 @@ class PortfolioRepository:
         return query
 
     @staticmethod
-    def add(item_data):
+    def add(id):
         portfolio_to_be_added = Portfolio(
-            user_id=item_data["user_id"],
+            user_id=id,
         )
         session.add(portfolio_to_be_added)
         session.commit()
