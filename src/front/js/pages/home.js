@@ -72,25 +72,15 @@ export const Home = () => {
 				<div className="d-flex flex-row justify-content-between align-items-center p-4">
 					<PinkContainer>
 						<div style={{ width: '90%' }}>
-							<h4>Prueba de texto componente largo</h4>
-							<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur nunc lectus,
-								elementum sed magna et, malesuada condimentum quam. Nam posuere dolor et enim
-								blandit lobortis. Donec cursus felis ac lectus hendrerit malesuada et imperdiet
-								mi. Aenean fringilla suscipit nisl et ultricies. Nam quis nisi sollicitudin,
-								imperdiet ante vel, elementum elit. Donec aliquam quam nec aliquam pellentesque.
-								Nunc ac ligula semper felis mollis vestibulum et at sapien.
+							<h4>Trust</h4>
+							<p>FlowFinance team provides you with total trust to manage your assets. We invite you to try it out and we asure you'd not be disappointed.
 							</p>
 						</div>
 					</PinkContainer>
 					<YellowContainer>
 						<div style={{ width: '90%' }}>
-							<h4>Prueba de texto componente largo</h4>
-							<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur nunc lectus,
-								elementum sed magna et, malesuada condimentum quam. Nam posuere dolor et enim
-								blandit lobortis. Donec cursus felis ac lectus hendrerit malesuada et imperdiet
-								mi. Aenean fringilla suscipit nisl et ultricies. Nam quis nisi sollicitudin,
-								imperdiet ante vel, elementum elit. Donec aliquam quam nec aliquam
-								pellentesque. Nunc ac ligula semper felis mollis vestibulum et at sapien.
+							<h4>Dynamism</h4>
+							<p>Find new ways to checkout information, in a single place.
 							</p>
 						</div>
 					</YellowContainer>
