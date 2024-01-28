@@ -31,14 +31,13 @@ export const UserSpinner = () => {
     return (<>
         <div className={store.collapsableState ? "collapsable collapsable--active" : "collapsable"} id='collapsable'>
             <div className='collapsable--list'  onMouseLeave={hideCollapsable}>
-                <div className="collapsable--hr" />
-                <Link className="collapsable--list-link" to="/subscription">Subscription</Link>
+                
                 <div className="collapsable--hr"  />
                 <Link className="collapsable--list-link"  to="/login">Profile</Link>
                 <div className="collapsable--hr"  />
                 <Link className="collapsable--list-link"  to="/notifications">Notifications</Link>
                 <div className="collapsable--hr"  />
-                <Link className="collapsable--list-link"  to="/">Settings</Link>
+                <Link className="collapsable--list-link"  to="/subscription">Settings</Link>
                 <div className="collapsable--hr"  />
                 <LogoffButton style={{height: '3em', width: '3em', borderRadius: '50%', padding: 0}} />            </div>
         </div>
