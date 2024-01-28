@@ -13,16 +13,14 @@ class CryptoRepository:
         query = db.session.query(Crypto).filter(Crypto.asset_id == asset_id)
         return query
 
-
-
     @staticmethod
     def add_list(Crypto_data):
         for ticker in Crypto_data:
             Crypto_to_be_added = Crypto(
                 asset_id=ticker["asset_id"],
                 name=ticker["name"],
-                price_usd=ticker["price_usd"],
-                data_end=ticker["data_end"],
+                price_usd=ticker["price_usd"] if "price_usd" in ticker else None,
+                data_end=ticker["data_end"] if "data_end" in ticker else None,
             )
             db.session.add(Crypto_to_be_added)
             db.session.commit()

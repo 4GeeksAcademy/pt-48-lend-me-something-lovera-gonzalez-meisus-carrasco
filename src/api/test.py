@@ -38,7 +38,6 @@ headers = {
 
 cryptoResponse = requests.request("GET", url, headers=headers, data=payload)
 
-print(cryptoResponse.text)
 
 delete = requests.delete(
     "https://studious-space-sniffle-jjpp6wvv5wfj7q6-3001.app.github.dev/crypto"
@@ -47,7 +46,7 @@ delete = requests.delete(
 add = requests.post(
     "https://studious-space-sniffle-jjpp6wvv5wfj7q6-3001.app.github.dev/crypto",
     data=cryptoResponse,
-    headers=headers,
+    headers={"Content-Type": 'application/json'},
 )
 
 
@@ -59,7 +58,7 @@ url = " https://api.iex.cloud/v1/data/core/energy/GASDESW,GASREGCOVW,GASMIDCOVW,
 payload = {}
 headers = {"Accept": "application/json"}
 
-commoditiesResponse = requests.request("GET", url, headers=headers)
+commoditiesResponse = requests.request("GET", url)
 
 print(commoditiesResponse.text)
 
@@ -70,5 +69,5 @@ delete = requests.delete(
 add = requests.post(
     "https://studious-space-sniffle-jjpp6wvv5wfj7q6-3001.app.github.dev/commodity",
     data=commoditiesResponse,
-    headers=headers,
+    headers={"Content-Type": 'application/json'},
 )
