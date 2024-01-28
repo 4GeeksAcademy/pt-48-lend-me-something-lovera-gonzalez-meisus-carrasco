@@ -14,7 +14,7 @@ export const CommoditiesDash = () => {
 
     const { store, actions } = useContext(Context)
 
-    const filtered_data = store?.commoditiesDB?.map(element => ({ 'name': element.dataId, 'date': new Date(element.date).toLocaleDateString("es-es"), 'price': element.value, 'updated': new Date(element.updated).toLocaleDateString("es-es") })).sort((a, b) => a.price - b.price).splice(0, 30)
+    const filtered_data = store?.commoditiesDB?.map(element => ({ 'name': element.key, 'date': new Date(element.date).toLocaleDateString("es-es"), 'price': element.value, 'updated': new Date(element.updated).toLocaleDateString("es-es") })).sort((a, b) => a.price - b.price).splice(0, 30)
 
 
     const preColumns = Object.keys(filtered_data[0]).map(e => ({ 'field': e, 'flex': 1 }))

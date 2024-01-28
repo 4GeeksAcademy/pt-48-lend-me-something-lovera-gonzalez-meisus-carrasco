@@ -2,7 +2,7 @@ import { get_eod_data } from './API'
 import { getUser, addUser, editUser, updateSubscription, getPortfolio, addToPortfolio, cancelSubscription } from './flowfinance_api'
 import { get_all_data_commodities } from './commodities_api';
 import { get_all_data_crypto } from './crypto_api';
-import {get_all_data_forex} from './forex_api'
+import { get_all_data_forex } from './forex_api'
 
 const getState = ({ getStore, getActions, setStore }) => {
 	return {
@@ -130,33 +130,33 @@ const getState = ({ getStore, getActions, setStore }) => {
 					'portfolio_id': portfolio_id,
 					'item_type': item_type.toUpperCase(),
 					'item_symbol': item_symbol,
-					'item_name' : item_name
+					'item_name': item_name
 				});
 				actions.getUserPortfolio();
 			},
 			cancelSubscription: async () => {
 				const store = getStore();
 				const subscription_stripe = store.user.subscription_stripe
-				const resp = await cancelSubscription({subscription_stripe: subscription_stripe})
+				const resp = await cancelSubscription({ subscription_stripe: subscription_stripe })
 				return await resp
-				
+
 			},
 			setForexDB: async () => {
 				const store = getStore();
 				const result = await get_all_data_forex();
-				setStore({...store, forexDB: result});
+				setStore({ ...store, forexDB: result });
 				console.log(store.forexDB)
 			},
 			setCryptoDB: async () => {
 				const store = getStore();
 				const result = await get_all_data_crypto();
-				setStore({...store, CryptoDB: result});
+				setStore({ ...store, cryptoDB: result });
 				console.log(store.cryptoDB)
 			},
 			setCommoditiesDB: async () => {
 				const store = getStore();
 				const result = await get_all_data_commodities();
-				setStore({...store, CommoditiesDB: result});
+				setStore({ ...store, commoditiesDB: result });
 				console.log(store.commoditiesDB)
 			},
 		}

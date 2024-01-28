@@ -7,6 +7,8 @@ import { Doughnut } from "./doughnut_chart";
 import { useSpring, animated } from '@react-spring/web'
 import { Spinner } from "../spinner"
 import { Table } from "./table.js";
+import { GreenContainer } from "../color_containers/green_container.js";
+import { SmallTable } from "./search_table.js";
 
 
 export const ForexDash = () => {
@@ -50,6 +52,9 @@ export const ForexDash = () => {
             <div className="d-flex flex-column justify-content-center align-items-center flex-wrapp-4 pt-0 gap-5" style={{ width: '100%' }}>
                 <BlueContainer style={{ alignItems: 'center', justifyItems: 'center' }}>
                     <Doughnut data={filtered_data.sort((a, b) => b.price - a.price).splice(0, 10)} colors={['#5BF428', '#328a32', '#4e874e']} title='Top 10 Currencies' />
+                </BlueContainer>
+                <BlueContainer>
+                    <SmallTable title='Forex' data={store?.forexDB.map(e=> ({'name': e.ticker.toUpperCase(), 'symbol': e.ticker}))}/>
                 </BlueContainer>
                 {data.length > 1 && <Table data={data} columns={tableColumns} />}
             </div>
