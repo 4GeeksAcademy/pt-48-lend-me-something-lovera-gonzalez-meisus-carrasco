@@ -44,4 +44,3 @@ export const get_ticker_info = async (symbol) => {
     return ticker_info
 }
 
-

@@ -1,5 +1,6 @@
 import random
 from datetime import date
+import requests
 
 now = date.today()
 with open(
@@ -7,3 +8,6 @@ with open(
     "a",
 ) as f:
     f.write("The date is {}\n".format(now))
+
+
+
