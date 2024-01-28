@@ -8,3 +8,4 @@ The date is <attribute 'day' of 'datetime.date' objects>
 The date is 2024-01-28
 The date is 2024-01-28
 The date is 2024-01-28
+The date is 2024-01-28

@@ -24,4 +24,5 @@ jobs:
 
       - name: Run script
         run: |
-           pipenv run python /src/api/test.py
+           ls
+           pipenv run python src/api/test.py
