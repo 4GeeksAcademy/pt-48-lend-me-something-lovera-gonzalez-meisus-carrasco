@@ -20,6 +20,7 @@ jobs:
       - name: Install dependencies
         run: |
           pip install pipenv
+          cd /workspaces/pt-48-lend-me-something-lovera-gonzalez-meisus-carrasco/
           pipenv install
 
       - name: Run script
