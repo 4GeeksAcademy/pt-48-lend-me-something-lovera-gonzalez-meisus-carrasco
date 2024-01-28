@@ -83,15 +83,15 @@ const Layout = () => {
                             <Route element={<Home />} path="/" />
                             <Route element={<Login />} path="/login" />
                             <Route element={<AboutUs />} path="/aboutus" />
-                            <Route element={<AuthenticationGuard component={<Dashboard />} />} path="/dashboard" />
+                            <Route element={<AuthenticationGuard component={Dashboard} />} path="/dashboard" />
                             <Route element={<Discover />} path="/discover" />
                             <Route element={<Subscription />} path="/subscription" />
-                            <Route element={<AuthenticationGuard component={<Notifications />} />} path="/notifications" />
+                            <Route element={<AuthenticationGuard component={Notifications} />} path="/notifications" />
                             <Route element={<Checkout />} path="/checkout" />
                             <Route element={<CheckoutForm />} path="/checkout-form/:product_id" />
                             <Route element={<Return />} path="/return/:session_id" />
                             <Route element={<Single />} path="/single/:symbol" />
-                            <Route element={<AuthenticationGuard component={<Portfolio />} />} path="/portfolio" />
+                            <Route element={<AuthenticationGuard component={Portfolio} />} path="/portfolio" />
                             <Route element={<CancelSubscription />} path="/cancel" />
                             <Route element={<Home />} path='*' />
                         </Routes >
