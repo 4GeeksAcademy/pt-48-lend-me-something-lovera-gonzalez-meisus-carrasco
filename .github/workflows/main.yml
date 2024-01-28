@@ -20,9 +20,8 @@ jobs:
       - name: Install dependencies
         run: |
           pip install pipenv
-          cd /workspaces/pt-48-lend-me-something-lovera-gonzalez-meisus-carrasco/
           pipenv install
 
       - name: Run script
         run: |
-          cd /workspaces/pt-48-lend-me-something-lovera-gonzalez-meisus-carrasco/src/api/ && pipenv shell && pipenv run python /workspaces/pt-48-lend-me-something-lovera-gonzalez-meisus-carrasco/src/api/test.py
+           pipenv run python /src/api/test.py
