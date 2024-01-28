@@ -1,15 +1,13 @@
-import React from 'react';
-import { Route } from 'react-router-dom';
-import { withAuthenticationRequired } from '@auth0/auth0-react';
-import { Spinner } from '../spinner';
+import { withAuthenticationRequired } from "@auth0/auth0-react";
+import React from "react";
+import {Spinner} from "../spinner"
 
-const ProtectedRoute = ({ component, ...args }) => (
-  <Route
-    component={withAuthenticationRequired(component, {
-      onRedirecting: () => <Spinner />,
-    })}
-    {...args}
-  />
-);
+export const AuthenticationGuard = ({ component }) => {
+  const Component = withAuthenticationRequired(component, {
+    onRedirecting: () => (
+      <Spinner/>
+    ),
+  });
 
-export default ProtectedRoute;
+  return <Component />;
+};

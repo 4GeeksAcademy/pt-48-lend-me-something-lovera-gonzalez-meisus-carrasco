@@ -24,7 +24,7 @@ import { Checkout } from "./component/dashboard/checkout";
 import { CheckoutForm } from "./pages/stripe";
 import { Return } from "./pages/stripe";
 import { Portfolio } from "./pages/portfolio";
-import ProtectedRoute from "./component/Auth0/protected-route";
+import { AuthenticationGuard } from "./component/Auth0/protected-route";
 
 //create your first component
 const Layout = () => {
@@ -79,22 +79,22 @@ const Layout = () => {
                     <ScrollToTop>
                         <TopBar />
                         <Navbar />
-                        <Routes>
+                        <Routes >
                             <Route element={<Home />} path="/" />
                             <Route element={<Login />} path="/login" />
                             <Route element={<AboutUs />} path="/aboutus" />
-                            <ProtectedRoute element={<Dashboard />} path="/dashboard" />
+                            <Route element={<AuthenticationGuard component={<Dashboard />} />} path="/dashboard" />
                             <Route element={<Discover />} path="/discover" />
                             <Route element={<Subscription />} path="/subscription" />
-                            <ProtectedRoute element={<Notifications />} path="/notifications" />
+                            <Route element={<AuthenticationGuard component={<Notifications />} />} path="/notifications" />
                             <Route element={<Checkout />} path="/checkout" />
                             <Route element={<CheckoutForm />} path="/checkout-form/:product_id" />
                             <Route element={<Return />} path="/return/:session_id" />
                             <Route element={<Single />} path="/single/:symbol" />
-                            <ProtectedRoute element={<Portfolio />} path="/portfolio" />
+                            <Route element={<AuthenticationGuard component={<Portfolio />} />} path="/portfolio" />
                             <Route element={<CancelSubscription />} path="/cancel" />
                             <Route element={<Home />} path='*' />
-                        </Routes>
+                        </Routes >
                         <Footer />
                     </ScrollToTop>
                 </Auth0ProviderWithNavigate>
