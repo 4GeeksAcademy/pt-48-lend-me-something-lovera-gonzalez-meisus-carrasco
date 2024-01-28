@@ -64,7 +64,7 @@ export const Navbar = () => {
 					<Link className="navbar-link" to={"/"}><i className="fa-solid fa-house-laptop" ></i>Home</Link>
 					{isAuthenticated && <>
 						<Link className="navbar-link" to={"/dashboard"}><i className="fa-solid fa-swatchbook" ></i>Dashboard</Link>
-					    <Link className="navbar-link" to={"/portfolio"}><i className="fa-solid fa-briefcase" ></i>Portfolio</Link></>}
+						<Link className="navbar-link" to={"/portfolio"}><i className="fa-solid fa-briefcase" ></i>Portfolio</Link></>}
 
 					<Link className="navbar-link" to={"/discover"}><i className="fa-solid fa-book-open"></i>Discover</Link>
 					{isAuthenticated && <Link className="navbar-link" to={"/login"}><i className="fa-solid fa-user" ></i>Profile</Link>}
@@ -74,13 +74,9 @@ export const Navbar = () => {
 					<Link className="navbar-link" to={"/aboutus"}><i className="fa-solid fa-users" ></i>About Us</Link>
 
 				</div>
-
-				<form className="d-flex mt-3" role="search">
-					<input className=" me-2 offcanvas-input" type="search" placeholder="Search " aria-label="Search" />
-					<button className="offcanvas-button" type="submit">
-						<i className="fa-solid fa-magnifying-glass " style={{ "color": "#ffffff" }}></i>
-					</button>
-				</form>
+				<div className="d-flex mb-4 justify-content-center">
+					{isAuthenticated && <LogoffButton style={{ height: '50px', width: '50px', borderRadius: '25px', padding: 0 }} />}
+				</div>
 			</div>
 		</div>
 
