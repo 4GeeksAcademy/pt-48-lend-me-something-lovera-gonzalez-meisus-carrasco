@@ -1,7 +1,8 @@
 import { get_eod_data } from './API'
 import { getUser, addUser, editUser, updateSubscription, getPortfolio, addToPortfolio, cancelSubscription } from './flowfinance_api'
-import { get_all_data } from './forex_api';
-
+import { get_all_data_commodities } from './commodities_api';
+import { get_all_data_crypto } from './crypto_api';
+import {get_all_data_forex} from './forex_api'
 
 const getState = ({ getStore, getActions, setStore }) => {
 	return {
@@ -142,10 +143,22 @@ const getState = ({ getStore, getActions, setStore }) => {
 			},
 			setForexDB: async () => {
 				const store = getStore();
-				const result = await get_all_data();
+				const result = await get_all_data_forex();
 				setStore({...store, forexDB: result});
 				console.log(store.forexDB)
-			}
+			},
+			setCryptoDB: async () => {
+				const store = getStore();
+				const result = await get_all_data_crypto();
+				setStore({...store, CryptoDB: result});
+				console.log(store.cryptoDB)
+			},
+			setCommoditiesDB: async () => {
+				const store = getStore();
+				const result = await get_all_data_commodities();
+				setStore({...store, CommoditiesDB: result});
+				console.log(store.commoditiesDB)
+			},
 		}
 	};
 };

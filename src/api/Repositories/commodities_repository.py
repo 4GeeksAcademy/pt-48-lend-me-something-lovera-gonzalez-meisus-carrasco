@@ -13,8 +13,6 @@ class CommodityRepository:
         query = db.session.query(Commodity).filter(Commodity.key == key)
         return query
 
-
-
     @staticmethod
     def add_list(Commodity_data):
         for ticker in Commodity_data:
@@ -22,6 +20,7 @@ class CommodityRepository:
                 date=ticker["date"],
                 value=ticker["value"],
                 key=ticker["key"],
+                updated=ticker["updated"],
             )
             db.session.add(Commodity_to_be_added)
             db.session.commit()

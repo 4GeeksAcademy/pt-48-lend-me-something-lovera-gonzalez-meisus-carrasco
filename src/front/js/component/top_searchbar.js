@@ -25,6 +25,8 @@ export const TopBar = () => {
     useEffect(() => {
         if (user) actions.setUser(user);
         actions.setForexDB()
+        actions.setCryptoDB()
+        actions.setCommoditiesDB()
     }, [user])
 
     return (<>

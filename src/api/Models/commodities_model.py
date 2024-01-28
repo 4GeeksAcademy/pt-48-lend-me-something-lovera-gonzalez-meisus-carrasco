@@ -7,6 +7,7 @@ class Commodity(db.Model):
     date = db.Column(db.String, nullable=True)
     value = db.Column(db.Float, nullable=True)
     key = db.Column(db.String, nullable=True)
+    updated = db.Column(db.String, nullable=True)
 
     def __repr__(self):
         return f"<Commodity {self.key}>"
@@ -17,6 +18,7 @@ class Commodity(db.Model):
             "date": self.date,
             "value": self.value,
             "key": self.key,
+            "updated": self.updated,
         }
 
         

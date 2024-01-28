@@ -2,46 +2,23 @@ import React from "react";
 import { useState, useEffect, useContext } from "react";
 import { Context } from '../../store/appContext.js'
 import { BlueContainer } from "../color_containers/blue_container";
-import { GreenContainer } from "../color_containers/green_container";
-import { PinkContainer } from "../color_containers/pink_container";
-import { YellowContainer } from "../color_containers/yellow_container";
-import { PurpleContainer } from "../color_containers/purple_container";
 import "../../../styles/dashboard.sass"
 import { Doughnut } from "./doughnut_chart";
 import { useSpring, animated } from '@react-spring/web'
 import { Spinner } from "../spinner"
-import { TopBarTitle } from "../topBarTitle.js";
 import { Table } from "./table.js";
-import { forexData as Data } from '../../store/forexTop.js'
 
-import { useAuth0 } from "@auth0/auth0-react";
 
 export const ForexDash = () => {
-    const data_example = 	{
-		"asset_id": "USD",
-		"name": "US Dollar",
-		"type_is_crypto": 0,
-		"data_quote_start": "2014-02-24T00:00:00.0000000Z",
-		"data_quote_end": "2024-01-17T00:00:00.0000000Z",
-		"data_orderbook_start": "2014-02-24T17:43:05.0000000Z",
-		"data_orderbook_end": "2023-07-07T00:00:00.0000000Z",
-		"data_trade_start": "2010-07-17T00:00:00.0000000Z",
-		"data_trade_end": "2024-01-17T00:00:00.0000000Z",
-		"data_symbols_count": 231281,
-		"volume_1hrs_usd": 157643040537.56,
-		"volume_1day_usd": 14574712395640.85,
-		"volume_1mth_usd": 753537917787802.72,
-		"id_icon": "0a4185f2-1a03-4a7c-b866-ba7076d8c73b",
-		"data_start": "2010-07-17",
-		"data_end": "2024-01-17"
-	}
 
-    const filtered_data = Data.map(element => ({ 'name': element.ticker.toUpperCase(), 'price': element.midPrice, 'bidPrice': element.bidPrice, 'askPrice': element.askPrice})).sort((a, b) => a.price_usd - b.price_usd).splice(0, 30)
+    const { store, actions } = useContext(Context)
+
+    const filtered_data = store?.forexDB.map(element => ({ 'name': element.ticker.toUpperCase(), 'price': element.midPrice, 'bidPrice': element.bidPrice, 'askPrice': element.askPrice })).sort((a, b) => a.price - b.price).splice(0, 30)
 
 
-    const preColumns = Object.keys(filtered_data[0]).map(e => ({'field': e, 'flex': 1}))
+    const preColumns = Object.keys(filtered_data[0]).map(e => ({ 'field': e, 'flex': 1 }))
 
-    const [tableColumns, setTableColumns ] =  useState(preColumns)
+    const [tableColumns, setTableColumns] = useState(preColumns)
     const [data, setData] = useState(filtered_data);
     const [loading, setLoading] = useState(true)
 
@@ -71,10 +48,10 @@ export const ForexDash = () => {
             className="d-flex flex-column gap-5 navbar-margin"
         >
             <div className="d-flex flex-column justify-content-center align-items-center flex-wrapp-4 pt-0 gap-5" style={{ width: '100%' }}>
-                <BlueContainer style={{  alignItems: 'center', justifyItems: 'center' }}>
-                    <Doughnut data={filtered_data.sort((a,b) => b.price -a.price).splice(0,10)} colors={[ '#5BF428', '#328a32','#4e874e' ]} title='Top 10 Currencies'/>
+                <BlueContainer style={{ alignItems: 'center', justifyItems: 'center' }}>
+                    <Doughnut data={filtered_data.sort((a, b) => b.price - a.price).splice(0, 10)} colors={['#5BF428', '#328a32', '#4e874e']} title='Top 10 Currencies' />
                 </BlueContainer>
-                    {data.length > 1 && <Table data={data} columns={tableColumns}/>}
+                {data.length > 1 && <Table data={data} columns={tableColumns} />}
             </div>
         </animated.div>}
 
