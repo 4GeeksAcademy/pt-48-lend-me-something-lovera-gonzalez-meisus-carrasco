@@ -1,1 +1,8 @@
 Sat Jan 27 12:03:00 UTC 2024
+The date is <module 'datetime' from '/usr/local/lib/python3.10/datetime.py'>
+The date is <class 'datetime.date'>
+The date is <module 'datetime' from '/usr/local/lib/python3.10/datetime.py'>
+The date is <method 'ctime' of 'datetime.date' objects>
+The date is <class 'datetime.date'>
+The date is <attribute 'day' of 'datetime.date' objects>
+The date is 2024-01-28
