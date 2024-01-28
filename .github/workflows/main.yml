@@ -1,0 +1,15 @@
+name: Scheduled Task
+
+on:
+  schedule:
+    - cron: '* * * * *'
+
+jobs:
+  run_script:
+    runs-on: ubuntu-latest
+
+    steps:
+
+    - name: Run script
+      run: |
+        pipenv run python /workspaces/pt-48-lend-me-something-lovera-gonzalez-meisus-carrasco/src/api/test.py
