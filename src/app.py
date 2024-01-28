@@ -22,6 +22,7 @@ from api.Controllers.authentication import authentication_api
 from api.Controllers.forex_controller import forex_api
 from api.Controllers.crypto_controller import crypto_api
 from api.Controllers.commodities_controller import commodity_api
+from api.Controllers.DB_update_log import log_api
 from api.admin import setup_admin
 from api.commands import setup_commands
 from flask_cors import CORS
@@ -80,6 +81,7 @@ app.register_blueprint(
 app.register_blueprint(forex_api, name="forex_api", url_prefix="/forex")
 app.register_blueprint(crypto_api, name="crypto_api", url_prefix="/crypto")
 app.register_blueprint(commodity_api, name="commodity_api", url_prefix="/commodity")
+app.register_blueprint(log_api, name="log_api", url_prefix="/log")
 
 
 # Handle/serialize errors like a JSON object

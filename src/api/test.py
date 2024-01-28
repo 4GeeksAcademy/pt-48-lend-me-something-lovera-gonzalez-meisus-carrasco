@@ -1,13 +1,6 @@
-import random
-from datetime import date
 import requests
+from datetime import datetime
 
-now = date.today()
-with open(
-    "src/api/test.txt",
-    "a",
-) as f:
-    f.write("The date is {}\n".format(now))
 
 symbols = "eurusd,gbpusd,usdjpy,audusd,gbpjpy,usdcad,eurjpy,usdchf,eurgbp,gbpaud,nzdusd,euraud,audjpy,cadjpy,gbpcad,eurcad,audcad,chfjpy,eurnzd,gbpnzd,eurchf,audchf,gbpchf,audnzd,cadchf,nzdjpy,nzdcad,nzdchf,usdzar,usdmxn,usdcnh,usdtry,usdsek,eursek,usdhkd,usdnok,eurnok,eurtry,mxnjpy,eurhuf,zarjpy,usdhuf,tryjpy"
 
@@ -38,6 +31,7 @@ headers = {
 
 cryptoResponse = requests.request("GET", url, headers=headers, data=payload)
 
+filtered = list(filter(lambda e: e["type_is_crypto"] != 0, cryptoResponse.json()))
 
 delete = requests.delete(
     "https://studious-space-sniffle-jjpp6wvv5wfj7q6-3001.app.github.dev/crypto"
@@ -45,8 +39,7 @@ delete = requests.delete(
 
 add = requests.post(
     "https://studious-space-sniffle-jjpp6wvv5wfj7q6-3001.app.github.dev/crypto",
-    data=cryptoResponse,
-    headers={"Content-Type": 'application/json'},
+    json=filtered,
 )
 
 
@@ -60,8 +53,6 @@ headers = {"Accept": "application/json"}
 
 commoditiesResponse = requests.request("GET", url)
 
-print(commoditiesResponse.text)
-
 delete = requests.delete(
     "https://studious-space-sniffle-jjpp6wvv5wfj7q6-3001.app.github.dev/commodity"
 )
@@ -69,5 +60,16 @@ delete = requests.delete(
 add = requests.post(
     "https://studious-space-sniffle-jjpp6wvv5wfj7q6-3001.app.github.dev/commodity",
     data=commoditiesResponse,
-    headers={"Content-Type": 'application/json'},
+    headers={"Content-Type": "application/json"},
 )
+
+
+# --------------------------------------------------------------------------------------
+
+log_url = "https://studious-space-sniffle-jjpp6wvv5wfj7q6-3001.app.github.dev/log"
+date = datetime.utcnow()
+
+result = requests.post(
+    log_url, json={"date": str(date)}, headers={"Content-Type": "application/json"}
+)
+print(result.json())
