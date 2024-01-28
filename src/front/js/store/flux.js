@@ -1,5 +1,6 @@
 import { get_eod_data } from './API'
 import { getUser, addUser, editUser, updateSubscription, getPortfolio, addToPortfolio, cancelSubscription } from './flowfinance_api'
+import { get_all_data } from './forex_api';
 
 
 const getState = ({ getStore, getActions, setStore }) => {
@@ -139,6 +140,12 @@ const getState = ({ getStore, getActions, setStore }) => {
 				return await resp
 				
 			},
+			setForexDB: async () => {
+				const store = getStore();
+				const result = await get_all_data();
+				setStore({...store, forexDB: result});
+				console.log(store.forexDB)
+			}
 		}
 	};
 };

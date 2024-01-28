@@ -20,6 +20,8 @@ from api.Controllers.portfolio_list_controller import portfolio_list_api
 from api.Controllers.subscription_controller import subscription_api
 from api.Controllers.authentication import authentication_api
 from api.Controllers.forex_controller import forex_api
+from api.Controllers.crypto_controller import crypto_api
+from api.Controllers.commodities_controller import commodity_api
 from api.admin import setup_admin
 from api.commands import setup_commands
 from flask_cors import CORS
@@ -75,9 +77,9 @@ app.register_blueprint(
 app.register_blueprint(
     authentication_api, name="authentication_api", url_prefix="/authentication"
 )
-app.register_blueprint(
-    forex_api, name="forex_api", url_prefix="/forex"
-)
+app.register_blueprint(forex_api, name="forex_api", url_prefix="/forex")
+app.register_blueprint(crypto_api, name="crypto_api", url_prefix="/crypto")
+app.register_blueprint(commodity_api, name="commodity_api", url_prefix="/commodity")
 
 
 # Handle/serialize errors like a JSON object
@@ -101,7 +103,8 @@ def sitemap():
 @app.route("/redirect")
 def redireccion():
     return redirect(
-        "https://studious-space-sniffle-jjpp6wvv5wfj7q6-3000.app.github.dev/aboutus", code=302
+        "https://studious-space-sniffle-jjpp6wvv5wfj7q6-3000.app.github.dev/aboutus",
+        code=302,
     )
 
 
@@ -146,22 +149,29 @@ def create_checkout_session():
 def session_status(session_id):
     session = stripe.checkout.Session.retrieve(session_id)
     print(session)
-    
-    return jsonify(status=session.status, customer_email=session.customer_details.email, amount=session.amount_total, subscription_stripe=session.subscription)
 
-@app.route('/stripe_webhook', methods=['POST'])
+    return jsonify(
+        status=session.status,
+        customer_email=session.customer_details.email,
+        amount=session.amount_total,
+        subscription_stripe=session.subscription,
+    )
+
+
+@app.route("/stripe_webhook", methods=["POST"])
 def stripe_webhook():
     event = None
     payload = request.data
 
     try:
         event = json.loads(payload)
-       
+
     except json.decoder.JSONDecodeError as e:
-        print('⚠️  Webhook error while parsing basic request.' + str(e))
+        print("⚠️  Webhook error while parsing basic request." + str(e))
         return jsonify(success=False)
-    
+
     return jsonify(success=True)
+
 
 # this only runs if `$ python src/main.py` is executed
 if __name__ == "__main__":

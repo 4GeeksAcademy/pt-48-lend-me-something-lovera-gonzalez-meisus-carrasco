@@ -1,9 +1,9 @@
-const API_KEY = 'd29461d6a952547a6a6c50e5253276f740fe2fd8'
-const API_URL = 'https://api.tiingo.com/tiingo/fx/top?tickers='
+const FF_API = process.env.BACKEND_URL
 
+export const get_all_data = async () => {
 
-export const get_single_data = async (ticker) => {
-
-    const request =  a
+    const request = await fetch(`${FF_API}/forex`, { method: 'GET' })
+    const data = await request.json()
+    return await data
 
 }

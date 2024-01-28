@@ -8,6 +8,7 @@ import { useAuth0 } from "@auth0/auth0-react";
 import { UserWidget } from './user_widget.js'
 import { Link } from 'react-router-dom'
 import { UserSpinner } from './user_collapsable_dropdown.js'
+import { get_all_data } from '../store/forex_api.js'
 
 export const TopBar = () => {
 
@@ -20,8 +21,10 @@ export const TopBar = () => {
         // console.log(searchState)
     }
 
+   
     useEffect(() => {
-        if (user) actions.setUser(user)
+        if (user) actions.setUser(user);
+        actions.setForexDB()
     }, [user])
 
     return (<>
