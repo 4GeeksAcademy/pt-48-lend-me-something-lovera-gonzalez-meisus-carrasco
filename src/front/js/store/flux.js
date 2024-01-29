@@ -9,7 +9,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 		store: {
 			message: null,
 			title: null,
-			stocks: null,
 			collapsableState: false,
 			user: {
 				subscription_level: ''
@@ -23,6 +22,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			switchSearchState: () => {
 				const store = getStore();
 				setStore({ ...store, searchState: !store.searchState });
+				
 			},
 			exampleFunction: () => {
 				getActions().changeColor(0, "green");
@@ -30,8 +30,10 @@ const getState = ({ getStore, getActions, setStore }) => {
 			setTitle: (title) => {
 				const store = getStore();
 				setStore({ ...store, title: title })
+				
 			},
 			setUser: async (user) => {
+				
 				const actions = getActions();
 				const store = getStore();
 				setStore({ ...store, user: user })

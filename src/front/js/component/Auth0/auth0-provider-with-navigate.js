@@ -5,8 +5,7 @@ import { useNavigate } from "react-router-dom";
 
 export const Auth0ProviderWithNavigate = ({ children }) => {
     const navigate = useNavigate();
-    const { user } = useAuth0();
-    const { store, actions } = useContext(Context)
+
 
     const domain = process.env.REACT_APP_AUTH0_DOMAIN;
     const clientId = process.env.REACT_APP_AUTH0_CLIENT_ID;
@@ -19,10 +18,6 @@ export const Auth0ProviderWithNavigate = ({ children }) => {
     if (!(domain && clientId && redirectUri)) {
         return null;
     }
-
-    useEffect(() => {
-        if (user) actions.setUser(user)
-    }, [user])
 
     return (
         <Auth0Provider

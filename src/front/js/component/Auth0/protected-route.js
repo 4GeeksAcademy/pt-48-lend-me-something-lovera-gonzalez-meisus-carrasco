@@ -7,7 +7,7 @@ export const AuthenticationGuard = ({ component }) => {
 
   const { isLoading, isAuthenticated, loginWithRedirect, error } = useAuth0()
 
-
+  
   const Component = component
 
   if (isLoading) return (<>

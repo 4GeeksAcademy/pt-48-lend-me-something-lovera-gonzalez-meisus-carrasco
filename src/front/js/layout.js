@@ -37,7 +37,6 @@ const Layout = () => {
     if (!process.env.BACKEND_URL || process.env.BACKEND_URL == "") return <BackendURL />;
 
 
-
     // if (isLoading) return (<><Spinner/></>)
 
     useEffect(() => {

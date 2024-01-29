@@ -32,7 +32,6 @@ export const Subscription = () => {
             'product_id': 'price_1Oc1qlEUv4sos4iTDmypeTRP'
         }]
 
-
     const navigate = useNavigate()
 
     const springs = useSpring({

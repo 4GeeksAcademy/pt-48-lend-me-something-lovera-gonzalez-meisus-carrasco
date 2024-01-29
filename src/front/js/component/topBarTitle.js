@@ -5,11 +5,15 @@ export const TopBarTitle = ({ topTitle }) => {
 
     const { actions } = useContext(Context)
 
-    setTimeout(() => {
-        const title = topTitle ? topTitle : "";
-        actions.setTitle(title)
 
-    }, 500)
+    useEffect(() => {
+
+        setTimeout(() => {
+            const title = topTitle ? topTitle : "";
+            actions.setTitle(title)
+
+        }, 500)
+    }, [])
 
 
     return (<>

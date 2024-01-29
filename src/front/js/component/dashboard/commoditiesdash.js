@@ -7,6 +7,7 @@ import { Doughnut } from "./doughnut_chart";
 import { useSpring, animated } from '@react-spring/web'
 import { Spinner } from "../spinner"
 import { Table } from "./table.js";
+import { SmallTable } from "./search_table.js";
 
 import { useAuth0 } from "@auth0/auth0-react";
 
@@ -55,6 +56,8 @@ export const CommoditiesDash = () => {
                     </BlueContainer>
 
                     <BlueContainer>
+                    <SmallTable data={store.commoditiesDB.splice(0,500).map(e=> ({...e, name: e.key, symbol: e.key}))} title='Cryptocurrencies'/>
+
                     </BlueContainer>
                 </div>
                 {data.length > 1 && <Table data={data.map(element => ({

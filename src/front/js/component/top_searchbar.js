@@ -28,6 +28,8 @@ export const TopBar = () => {
     }, [])
 
     useEffect(() => {
+        
+					
         if (user) actions.setUser(user);
 
     }, [user])

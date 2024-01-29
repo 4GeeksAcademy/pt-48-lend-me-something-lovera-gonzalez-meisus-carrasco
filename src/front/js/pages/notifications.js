@@ -15,7 +15,6 @@ export const Notifications = () => {
 
     const { isAuthenticated, user, isLoading } = useAuth0();
     const {store, actions} = useContext(Context)
-
     const springs = useSpring({
         from:
             { x: -10, opacity: 0 },
