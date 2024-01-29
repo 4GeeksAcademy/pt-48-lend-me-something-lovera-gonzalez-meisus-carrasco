@@ -39,6 +39,12 @@ export const ForexDash = () => {
             setLoading(false)
             // console.log(data);
         }, 1000)
+        return () => {
+            setTableColumns()
+            setData()
+            setLoading(true)
+            actions.setForexDB()
+        }
     }, [])
 
     return (<>

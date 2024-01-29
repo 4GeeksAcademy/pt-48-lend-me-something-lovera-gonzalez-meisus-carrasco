@@ -42,6 +42,12 @@ export const CrryptoDash = () => {
         setTimeout(() => {
             setLoading(false)
         }, 1000)
+        return () => {
+            setTableColumns()
+            setData()
+            setLoading(true)
+            actions.setCryptoDB()
+        }
     }, [])
 
     return (<>
