@@ -93,7 +93,7 @@ export const AboutUs = () => {
                                 <p>There's no ilusion you can't see.</p></div>
                             <div>
                                 <i className="fa-brands fa-linkedin"></i>
-                                <a href="www.linkedin.com/in/augusto-santiago-carrasco-toro">Check me on LinkedIn</a>
+                                <a href="https://www.linkedin.com/in/augusto-santiago-carrasco-toro">Check me on LinkedIn</a>
                             </div>
                             <div>
                                 <i className="fa-brands fa-github"></i>
