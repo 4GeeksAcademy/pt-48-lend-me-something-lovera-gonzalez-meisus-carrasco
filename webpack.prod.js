@@ -12,10 +12,9 @@ module.exports = merge(common, {
         publicPath: '/'
     },
     plugins: [
-        new HtmlWebpackPlugin({
-            favicon: '4geeks.ico',
-            template: 'template.html'
-        }),
-        new Dotenv({ safe: true, systemvars: true })
+        new Dotenv({
+            safe: true,
+            systemvars: true
+        })
     ]
 });
