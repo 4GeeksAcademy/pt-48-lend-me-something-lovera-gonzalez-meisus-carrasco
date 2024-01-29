@@ -101,7 +101,7 @@ export const Single = props => {
 							<button className="green--button single-portfolio--button-added" value={ticker.symbol} onClick={(e) => deleteFromPortfolio(e)} >
 								<i style={{ fontSize: '2em' }} className="fa-regular fa-circle-check"></i>
 							</button>}
-						{!isAuthenticated && <button disabled className="blue--button single-portfolio--button" title='Login to add to porfolio'>Add to Portfolio</button>}
+						{!isAuthenticated && <button disabled className="single-portfolio--button--disabled" title='Login to add to porfolio'>Add to Portfolio</button>}
 					</div>
 					<h3>Symbol/Ticker: {ticker.symbol} </h3>
 					<div className="d-flex flex-row gap-2">
