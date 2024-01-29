@@ -107,7 +107,6 @@ export const Subscription = () => {
                             <li>All Free Features and ....</li>
                             <li>Create your Portfolio</li>
                             <li>Keep Tracks and compare values</li>
-                            <li>Download PDF Reports (up to 10/Week)</li>
                         </ul>
                     </div>
                     <div className='subscription-price'>
@@ -125,9 +124,9 @@ export const Subscription = () => {
                             <li>All Free and Essential Features and ...</li>
                             <li>Our <strong>BEST DEAL</strong>:
                                 <ul>
-                                    <li>Crypto Wallet</li>
-                                    <li>Set up mobile, mail and sms notifications</li>
-                                    <li>Unlimited XLSX, PDF, and other formats reports</li>
+                                    {/* <li>Crypto Wallet</li>
+                                    <li>Set up mobile, mail and sms notifications</li> */}
+                                    <li>Unlimited XLSX & PDF reports</li>
                                 </ul>
                             </li>
                         </ul>

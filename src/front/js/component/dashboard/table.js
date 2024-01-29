@@ -443,12 +443,12 @@ export const Table = (props) => {
 
     ].map(element => (
         {
-            Date: new Date(element.date).toLocaleDateString(), 
-            Symbol: element.symbol, 
-            Open: `$ ${element.open}`, 
-            Close: `$ ${element.close}`, 
-            Exchange: element.exchange, 
-            Volume: new Intl.NumberFormat("en-EN", {style: 'currency', currency: 'USD'}).format(element.adj_volume)
+            Date: new Date(element.date).toLocaleDateString(),
+            Symbol: element.symbol,
+            Open: `$ ${element.open}`,
+            Close: `$ ${element.close}`,
+            Exchange: element.exchange,
+            Volume: new Intl.NumberFormat("en-EN", { style: 'currency', currency: 'USD' }).format(element.adj_volume)
         })));
 
 
@@ -479,11 +479,11 @@ export const Table = (props) => {
     const generatePdf = () => {
         const doc = new jsPDF('l');
         doc.text('Flow Finance Report', 125, 20)
-        const columns = props.columns ? props.columns.map(element => element.field):['Symbol', 'Open', 'Close', 'Date', 'Exchange'];
+        const columns = props.columns ? props.columns.map(element => element.field) : ['Symbol', 'Open', 'Close', 'Date', 'Exchange'];
         // const columns = Object.keys(stockData[0]);
         // const data = stockData.map(element => ([element.symbol, element.open, element.close, element.date, element.exchange, element.adj_volume]));
-        const data = props.data ? props.data.map((value, index)=> (Object.keys(props.data[index]).map(element => props.data[index][`${element}`]) )) 
-        : stockData.map((value, index) => (Object.keys(stockData.map(element => ({ 'Symbol': element.Symbol, 'Open': element.Open, 'Close': element.Close, 'Date': element.Date, 'Exchange': element.Exchange }))[index]).map(element => stockData[index][`${element}`])));
+        const data = props.data ? props.data.map((value, index) => (Object.keys(props.data[index]).map(element => props.data[index][`${element}`])))
+            : stockData.map((value, index) => (Object.keys(stockData.map(element => ({ 'Symbol': element.Symbol, 'Open': element.Open, 'Close': element.Close, 'Date': element.Date, 'Exchange': element.Exchange }))[index]).map(element => stockData[index][`${element}`])));
         // console.log(stockData.map(element => ({'symbol':element.symbol,'open':element.open,'close':element.close,'date':element.date,'exchange':element.exchange})))
         doc.autoTable({
             startY: 25,
@@ -519,10 +519,10 @@ export const Table = (props) => {
                     pagination={true}
                 />
             </div>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '1em' }} className='justify-content-center'>
-                <button className="green--button" onClick={exportFile} style={{ height: '2em', width: '2em', borderRadius: '50%', padding: 0 }}><i className="fa-solid fa-file-excel" style={{color: 'white'}}></i></button>
-                <button className="red--button" onClick={generatePdf} style={{ height: '2em', width: '2em', borderRadius: '50%', padding: 0   }} ><i className="fa-solid fa-file-pdf" style={{color: 'white'}}></i></button>
-            </div>
+            {store.user.subscription_level === 'Business' && <div style={{ display: 'flex', flexDirection: 'column', gap: '1em' }} className='justify-content-center'>
+                <button className="green--button" onClick={exportFile} style={{ height: '2em', width: '2em', borderRadius: '50%', padding: 0 }}><i className="fa-solid fa-file-excel" style={{ color: 'white' }}></i></button>
+                <button className="red--button" onClick={generatePdf} style={{ height: '2em', width: '2em', borderRadius: '50%', padding: 0 }} ><i className="fa-solid fa-file-pdf" style={{ color: 'white' }}></i></button>
+            </div>}
         </BlueContainer>
 
     </>)

@@ -125,6 +125,12 @@ $layer8: linear-gradient(60deg, shared.$dark-gray-base-color 0%, shared.$dark-gr
             & a
                 text-decoration: none
                 color: white
+                display: flex
+                width: 100%
+                flex-direction: row
+                justify-content: space-between
+                align-items: center
+                gap: 0.5em
             &-item
                 display: flex
                 width: 100%
@@ -135,6 +141,18 @@ $layer8: linear-gradient(60deg, shared.$dark-gray-base-color 0%, shared.$dark-gr
                 border-top: 1px solid #333
                 trasition: 250ms
                 padding: 0 0.5em 0 0.5em
+                transition: 250ms
+                &--container
+                    display: flex
+                    width: 100%
+                    flex-direction: row
+                    justify-content: space-between
+                    align-items: center
+                    gap: 0.5em
+                    & i
+                        &:hover
+                            cursor: pointer
+                            scale: 1.01
                 &-symbol
                     flex-basis: 35%
                 &-name
