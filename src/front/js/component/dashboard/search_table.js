@@ -18,7 +18,7 @@ export const SmallTable = (props) => {
 
     const addToPortfolio = (e) => {
         const ticker_data = JSON.parse(e.target.value)
-        console.log(ticker_data)
+        // console.log(ticker_data)
         actions.addToUserPortfolio(ticker_data.symbol, props.type, ticker_data.name);
     };
 
@@ -40,7 +40,7 @@ export const SmallTable = (props) => {
                 <div className="portfolio-table-list portfolio-table-list-blue">
                     {props.data != [] && props.data.map((e, i) => (
                         <div className="portfolio-table-list-item--container">
-                            <button className="blue--button single-portfolio--button" value={JSON.stringify(e)} onClick={(e) => { addToPortfolio(e) }} ><i style={{ color: 'white' }} className="fa-solid fa-plus"></i></button>
+                            <button className='small-table-add-button' value={JSON.stringify(e)} onClick={(e) => { addToPortfolio(e) }} ><i value={JSON.stringify(e)}  style={{ color: 'white' }} className="fa-solid fa-plus"></i></button>
                             <div key={i} className="portfolio-table-list-item">
                                 <div className="portfolio-table-list-item-name">{e.name}</div>
                                 <div className="portfolio-table-list-item-symbol">{e.symbol}</div>

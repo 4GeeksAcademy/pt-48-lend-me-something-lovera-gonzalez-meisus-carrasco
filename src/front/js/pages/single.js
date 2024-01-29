@@ -63,12 +63,12 @@ export const Single = props => {
 
 	const addToPortfolio = (e) => {
 		const ticker_data = JSON.parse(e.target.value)
-		console.log(ticker_data)
+		// console.log(ticker_data)
 		actions.addToUserPortfolio(ticker_data.symbol, 'Stock', ticker_data.name);
 	};
 
 	const deleteFromPortfolio = (e) => {
-		console.log('Intended to be deleted in the future');
+		// console.log('Intended to be deleted in the future');
 		setIsOnUserPortfolio(false)
 	}
 

@@ -36,10 +36,10 @@ export const Stockdash = () => {
 
     const loadData = async () => {
         portfolioSize = store.userPortfolio?.filter(element => element.item_type === 'Stock').length > 0
-        console.log(portfolioSize)
+        // console.log(portfolioSize)
         if (portfolioSize) {
             const symbols = store.userPortfolio?.filter(element => element.item_type === 'Stock').map(e => e.item_symbol).join(',')
-            console.log(symbols)
+            // console.log(symbols)
             const today = (new Date())
             today.setDate(today.getDate() - 1)
             const data = await get_last_eod_data(symbols)

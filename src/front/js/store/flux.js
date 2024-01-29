@@ -94,7 +94,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			setUserSubscriptionLevel: async (amount, user, subscription_stripe) => {
 				const store = getStore();
 				const actions = getActions();
-				console.log('Seteando subscription');
+				// console.log('Seteando subscription');
 				// console.log(JSON.parse(localStorage.getItem('subscription')).level)
 				const today = new Date();
 				const nextMonth = new Date();
@@ -168,7 +168,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				const store = getStore();
 				const result = await get_all_data_commodities();
 				setStore({ ...store, commoditiesDB: await result });
-				console.log(store.commoditiesDB)
+				// console.log(store.commoditiesDB)
 			},
 		}
 	};

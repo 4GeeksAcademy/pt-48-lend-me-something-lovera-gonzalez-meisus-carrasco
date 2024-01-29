@@ -14,11 +14,11 @@ import { useAuth0 } from "@auth0/auth0-react";
 export const CommoditiesDash = () => {
 
     const { store, actions } = useContext(Context)
-    console.log(store.commoditiesDB)
+    // console.log(store.commoditiesDB)
 
     const store_data = store.commoditiesDB
     const filtered_data = store_data.map(element => ({ 'name': element.key, 'date': new Date(element.date).toLocaleDateString("es-es"), 'price': element.value, 'updated': new Date(element.updated).toLocaleDateString("es-es") })).sort((a, b) => a.price - b.price).slice(0, 30)
-    console.log(filtered_data)
+    // console.log(filtered_data)
     const preColumns = filtered_data[0] ? Object.keys(filtered_data[0]).map(e => ({ 'field': e, 'flex': 1 })) : null
 
     const [tableColumns, setTableColumns] = useState(preColumns)
