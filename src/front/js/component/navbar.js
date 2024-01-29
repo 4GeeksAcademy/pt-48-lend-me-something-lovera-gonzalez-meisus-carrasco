@@ -42,7 +42,7 @@ export const Navbar = () => {
 					<Link to={"/discover"}><i className="fa-solid fa-book-open" title="Discover"></i></Link>
 					{isAuthenticated && <Link to={"/login"}><i className="fa-solid fa-user" title="Profile" ></i></Link>}
 					<Link to={"/subscription"}><i className="fa-solid fa-gear" title="Subscription" ></i></Link>
-					{isAuthenticated && <Link to={"/notifications"}><i className="fa-solid fa-bell" title="Notifications" ></i></Link>}
+					{/* {isAuthenticated && <Link to={"/notifications"}><i className="fa-solid fa-bell" title="Notifications" ></i></Link>} */}
 					<Link to={"/aboutus"}><i className="fa-solid fa-users" title="About Us" ></i></Link>
 				</div>
 			</div>
@@ -69,7 +69,7 @@ export const Navbar = () => {
 					<Link className="navbar-link" to={"/discover"}><i className="fa-solid fa-book-open"></i>Discover</Link>
 					{isAuthenticated && <Link className="navbar-link" to={"/login"}><i className="fa-solid fa-user" ></i>Profile</Link>}
 					<Link className="navbar-link" to={"/subscription"}><i className="fa-solid fa-gear" ></i>Settings</Link>
-					{isAuthenticated && <Link className="navbar-link" to={"/notifications"}><i className="fa-solid fa-bell" ></i>Notifications</Link>}
+					{/* {isAuthenticated && <Link className="navbar-link" to={"/notifications"}><i className="fa-solid fa-bell" ></i>Notifications</Link>} */}
 
 					<Link className="navbar-link" to={"/aboutus"}><i className="fa-solid fa-users" ></i>About Us</Link>
 

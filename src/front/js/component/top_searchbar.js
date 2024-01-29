@@ -46,13 +46,13 @@ export const TopBar = () => {
                     <button className='button-bar' onClick={handleClick} style={{ "color": "#ffffff" }}><i className="fa-solid fa-magnifying-glass"></i></button>
                 </div>
                 {!isAuthenticated && <LogginButton />}
-                {isAuthenticated &&
+                {/* {isAuthenticated &&
                     <Link to="/notifications" className="text-decoration-none">
                         <div className="d-flex flex-row gap-3 align-items-center justify-content-center noti-bell" style={{ width: '2em', height: '2em', borderRadius: '50%', backgroundColor: '#444', cursor: 'pointer' }}>
                             <i className="fa-regular fa-bell " style={{ "color": "#ffffff" }}></i>
                         </div>
                     </Link>
-                }
+                } */}
                 {user && <UserWidget />}
                 {user &&
                     <UserSpinner />

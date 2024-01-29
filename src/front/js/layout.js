@@ -85,7 +85,7 @@ const Layout = () => {
                             <Route element={<AuthenticationGuard component={Dashboard} />} path="/dashboard" />
                             <Route element={<Discover />} path="/discover" />
                             <Route element={<Subscription />} path="/subscription" />
-                            <Route element={<AuthenticationGuard component={Notifications} />} path="/notifications" />
+                            {/* <Route element={<AuthenticationGuard component={Notifications} />} path="/notifications" /> */}
                             <Route element={<Checkout />} path="/checkout" />
                             <Route element={<CheckoutForm />} path="/checkout-form/:product_id" />
                             <Route element={<Return />} path="/return/:session_id" />
