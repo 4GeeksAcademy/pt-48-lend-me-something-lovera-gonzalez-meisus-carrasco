@@ -45,14 +45,18 @@ export const Login = () => {
                 }} className='d-flex flex-column justify-content-center align-items-center gap-5'
             >
                 <div className="d-flex flex-row align-items-center justify-content-around gap-5">
-                    <GreenContainer style={{ position: 'relative', width: '500px', height: '500px' }}>
+                    <GreenContainer style={{ position: 'relative', width: '600px', height: '570px' }}>
                         <div className="profile-picture-container">
                             <div className="">
                                 <img style={{ width: '80px', height: '80px', objectFit: 'cover', borderRadius: '50%' }} src={user.picture} />
                             </div>
 
                         </div>
-                        <div className="profile-info ">
+                        <div className=" d-flex flex-row">
+
+                        <div className="profile-info " style ={{marginTop: '3em'}}>
+                            <div style={{width: '200px'}}>
+
                             <h3>Contact information</h3>
                             <span >Addres
                             </span >
@@ -76,29 +80,34 @@ export const Login = () => {
                             <span >Country of residence
                             </span >
                             <p> Spain</p>
-                            <div className="profile-button">
+                            <div className="profile-button" style={{marginTop: '2em'}}>
                                 <button className="green--button " onClick={() => setEstadoEdicion(!estadoEdicion)}>
                                     {estadoEdicion ? 'Guardar' : 'Editar'}</button>
                             </div>
-
+                            </div>
+                            </div>
+                            
+                            <div className="">
+                                <div className="profile-account-details"  style={{marginTop:' 8em'}}>
+                                <h3>Account details</h3>
+                                    <span>Name :
+                                </span>
+                                    <p style={{ fontSize: ' 1.1em', fontWeight: '600' }}> {user.given_name} </p>
+                                </div>
+                                <div><span>Lastname :
+                                </span>
+                                    <p style={{ fontSize: ' 1.1em', fontWeight: '600' }}> {user.family_name} </p>
+                                </div>
+                                <div><span>Nickname :
+                                </span>
+                                    <p style={{ fontSize: ' 1.1em', fontWeight: '600' }}> {user.nickname} </p>
+                                </div>
+                            </div>
                         </div>
+
+                        
                     </GreenContainer>
-                    <PurpleContainer style={{ height: '500px', width: '300px' }}>
-                        <h3>Account details</h3>
-                        <div className="profile-account-details"><span>Name :
-                        </span>
-                            <p style={{ fontSize: ' 1.1em', fontWeight: '600' }}> {user.given_name} </p>
-                        </div>
-                        <div><span>Lastname :
-                        </span>
-                            <p style={{ fontSize: ' 1.1em', fontWeight: '600' }}> {user.family_name} </p>
-                        </div>
-                        <div><span>Nickname :
-                        </span>
-                            <p style={{ fontSize: ' 1.1em', fontWeight: '600' }}> {user.nickname} </p>
-                        </div>
 
-                    </PurpleContainer>
                 </div>
                 <BlueContainer style={{ width: '750px' }}>
                     <div className="profile-text" style={{ width: 'cover' }} >
