@@ -9,8 +9,6 @@ module.exports = merge(common, {
     output: {
 
         filename: 'bundle.js',
-
-        path: path.resolve(__dirname, 'dist'),
         publicPath: '/'
     },
     plugins: [
