@@ -29,16 +29,22 @@ export const Portfolio = () => {
         },
     })
 
+    const deleteFromPortfolio = (e) => {
+        actions.removeFromUserPortfolio(e)
+
+    }
+
     useEffect(() => {
         setTimeout(() => {
             setLoading(false);
         }, 500)
+        console.log(store.userPortfolio)
 
     }, []);
 
-    if (loading) return (<>
-        <Spinner />
-    </>)
+    // if (loading) return (<>
+    //     <Spinner />
+    // </>)
     return (<>
         <TopBarTitle topTitle="Portfolio" />
         <animated.div
@@ -62,11 +68,12 @@ export const Portfolio = () => {
                     </div>
                     <div className="portfolio-hr"></div>
                     <div className="portfolio-table-list portfolio-table-list-blue">
-                        {store.userPortfolio != [] && store.userPortfolio?.filter(element => (element.item_type === 'Stock' && (element.item_symbol.toLowerCase().includes(stockFilter.toLowerCase()) || element.item_name.toLowerCase().includes(stockFilter.toLowerCase())  ))).map((e, i) => (<>
+                        {store.userPortfolio != [] && store.userPortfolio?.filter(element => (element.item_type === 'Stock' && (element.item_symbol.toLowerCase().includes(stockFilter.toLowerCase()) || element.item_name.toLowerCase().includes(stockFilter.toLowerCase())))).map((e, i) => (<>
                             <Link to={`/single/${e.item_symbol}`}>
                                 <div className="portfolio-table-list-item" key={i}>
                                     <div className="portfolio-table-list-item-name">{e.item_name}</div>
                                     <div className="portfolio-table-list-item-symbol">{e.item_symbol}</div>
+                                    <i onClick={deleteFromPortfolio(e)} className="fa-solid fa-trash" style={{color: 'white'}}></i>
                                 </div>
                             </Link>
                         </>))

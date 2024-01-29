@@ -94,10 +94,10 @@ export const addToPortfolio = async (itemData) => {
     // console.log(await data)
     return await data
  };
-export const deleteFromPortfolio = async () => {
-    const data = await fetch(`${FF_API}/potfolio/`, {
+export const deleteFromPortfolio = async (itemData) => {
+    const data = await fetch(`${FF_API}/portfolio_list/`, {
         method: "DELETE",
-        body: JSON.stringify(userData),
+        body: JSON.stringify(itemData),
         headers: {
             'Content-Type': 'application/json',
         }

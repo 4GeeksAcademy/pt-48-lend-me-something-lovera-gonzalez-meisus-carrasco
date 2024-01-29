@@ -1,5 +1,5 @@
 import { get_eod_data } from './API'
-import { getUser, addUser, editUser, updateSubscription, getPortfolio, addToPortfolio, cancelSubscription } from './flowfinance_api'
+import { getUser, addUser, editUser, updateSubscription, getPortfolio, addToPortfolio, cancelSubscription,deleteFromPortfolio } from './flowfinance_api'
 import { get_all_data_commodities } from './commodities_api';
 import { get_all_data_crypto } from './crypto_api';
 import { get_all_data_forex } from './forex_api'
@@ -133,6 +133,15 @@ const getState = ({ getStore, getActions, setStore }) => {
 					'item_type': item_type.toUpperCase(),
 					'item_symbol': item_symbol,
 					'item_name': item_name
+				});
+				actions.getUserPortfolio();
+			},
+			removeFromUserPortfolio: async (item_data) => {
+				const store = getStore();
+				const actions = getActions();
+				const portfolio_id = store.user.portfolio_id;
+				const data = await deleteFromPortfolio({
+					'id':item_data.id
 				});
 				actions.getUserPortfolio();
 			},
