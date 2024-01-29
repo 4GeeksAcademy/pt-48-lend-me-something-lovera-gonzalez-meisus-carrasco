@@ -1,0 +1,16 @@
+@use "../shared"
+
+$layer1: linear-gradient(45deg, shared.$dark-gray-base-color 80%, shared.$light-gray-base-color 130%) padding-box
+$layer2: linear-gradient(60deg, shared.$dark-gray-base-color 0%, shared.$dark-gray-base-color 30%, shared.$light-gray-base-color 120%) border-box
+
+.gray__container
+    /* background-color: shared.$dark-gray-base-color
+    width: fit-content
+    height: fit-content
+    padding: 2vh
+    background: $layer1, $layer2
+    border-radius: 50rem
+    border: 2px solid transparent
+    border-radius: 1rem
+    /*font-weight: bold
+    color: white

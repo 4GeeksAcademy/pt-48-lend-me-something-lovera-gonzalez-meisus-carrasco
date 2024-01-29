@@ -1,0 +1,182 @@
+@use '../styles/shared'
+
+$layer1: linear-gradient(45deg, shared.$dark-gray-base-color 80%, shared.$blue-base-color 130%) padding-box
+$layer2: linear-gradient(60deg, shared.$dark-gray-base-color 0%, shared.$dark-gray-base-color 30%, shared.$blue-base-color 120%) border-box
+$layer3: linear-gradient(45deg, shared.$dark-gray-base-color 80%, shared.$green-base-color 130%) padding-box
+$layer4: linear-gradient(60deg, shared.$dark-gray-base-color 0%, shared.$dark-gray-base-color 30%, shared.$green-base-color 120%) border-box
+$layer5: linear-gradient(45deg, shared.$dark-gray-base-color 80%, shared.$yellow-base-color 130%) padding-box
+$layer6: linear-gradient(60deg, shared.$dark-gray-base-color 0%, shared.$dark-gray-base-color 30%, shared.$yellow-base-color 120%) border-box
+$layer7: linear-gradient(45deg, shared.$dark-gray-base-color 80%, shared.$purple-base-color 130%) padding-box
+$layer8: linear-gradient(60deg, shared.$dark-gray-base-color 0%, shared.$dark-gray-base-color 30%, shared.$purple-base-color 120%) border-box
+
+.portfolio
+    &--icon
+        font-size: 3em
+        color: white
+        position: absolute
+        top: 0.5em
+        right: 0.5em
+        &:hover
+            animation: spinning 1s linear 1
+    &-hr
+        width: 100%
+        height: 1px
+        background-color: #333
+        margin-bottom: 0.5em
+    &-input-blue
+        background-color: shared.$dark-gray-base-color
+        border: 1px solid shared.$blue-base-color
+        border-radius: 1rem
+        padding: 0.5rem
+        width: 16rem
+        max-height: 2.7rem
+        color: white
+        &:focus
+            background: $layer1, $layer2
+            outline: 1px solid transparent
+            caret-color: shared.$blue-base-color
+        &::placeholder
+            color: white
+        &:focus::placeholder
+            color: #555
+    &-input-green
+        background-color: shared.$dark-gray-base-color
+        border: 1px solid shared.$green-base-color
+        border-radius: 1rem
+        padding: 0.5rem
+        width: 16rem
+        max-height: 2.7rem
+        color: white
+        &:focus
+            background: $layer3, $layer4
+            outline: 1px solid transparent
+            caret-color: shared.$green-base-color
+        &::placeholder
+            color: white
+        &:focus::placeholder
+            color: #555
+    &-input-yellow
+        background-color: shared.$dark-gray-base-color
+        border: 1px solid shared.$yellow-base-color
+        border-radius: 1rem
+        padding: 0.5rem
+        width: 16rem
+        max-height: 2.7rem
+        color: white
+        &:focus
+            background: $layer5, $layer6
+            outline: 1px solid transparent
+            caret-color: shared.$yellow-base-color
+        &::placeholder
+            color: white
+        &:focus::placeholder
+            color: #555
+    &-input-purple
+        background-color: shared.$dark-gray-base-color
+        border: 1px solid shared.$purple-base-color
+        border-radius: 1rem
+        padding: 0.5rem
+        width: 16rem
+        max-height: 2.7rem
+        color: white
+        &:focus
+            background: $layer7, $layer8
+            outline: 1px solid transparent
+            caret-color: shared.$purple-base-color
+        &::placeholder
+            color: white
+        &:focus::placeholder
+            color: #555
+    &-header--container
+        display: flex
+        flex-direction: column
+        align-items: flex-start
+        width: 100%
+        gap: 0.5em
+    &-table
+        &--container
+            display: flex
+            flex-direction: column
+            align-items: center
+            width: 100%
+            margin-top: 1em
+        &-header
+            display: flex
+            flex-direction: row
+            justify-content: space-between
+            margin-bottom: 0.5em
+            width: 100%
+            padding: 0 0.5em 0 0.5em
+            &-name
+                font-size: 1.3em
+                flex-basis: 50%
+            &-symbol
+                font-size: 1.3em
+                flex-basis: 35%
+        &-list
+            display: flex
+            flex-direction: column
+
+            gap: 0.25em
+            width: 100%
+            height: 15vh
+            overflow-y: auto
+            overflow-x: hidden
+            & a
+                text-decoration: none
+                color: white
+            &-item
+                display: flex
+                width: 100%
+                justify-content: space-between
+                align-items: center
+                flex-direction: row
+                gap: 1em
+                border-top: 1px solid #333
+                trasition: 250ms
+                padding: 0 0.5em 0 0.5em
+                &-symbol
+                    flex-basis: 35%
+                &-name
+                    flex-basis: 50%
+                &:hover
+                    background-color: shared.$light-gray-base-color
+                    cursor: pointer
+                    scale: 1.01
+                    transition: 250ms
+            &-blue
+                &::-webkit-scrollbar
+                    width: 10px
+                &::-webkit-scrollbar-track
+                    background-color: shared.$dark-gray-base-color
+                    border-radius: 100px
+                &::-webkit-scrollbar-thumb
+                    background-color: shared.$blue-base-color
+                    border-radius: 100px
+            &-green
+                &::-webkit-scrollbar
+                    width: 10px
+                &::-webkit-scrollbar-track
+                    background-color: shared.$dark-gray-base-color
+                    border-radius: 100px
+                &::-webkit-scrollbar-thumb
+                    background-color: shared.$green-base-color
+                    border-radius: 100px
+            &-yellow
+                &::-webkit-scrollbar
+                    width: 10px
+                &::-webkit-scrollbar-track
+                    background-color: shared.$dark-gray-base-color
+                    border-radius: 100px
+                &::-webkit-scrollbar-thumb
+                    background-color: shared.$yellow-base-color
+                    border-radius: 100px
+            &-purple
+                &::-webkit-scrollbar
+                    width: 10px
+                &::-webkit-scrollbar-track
+                    background-color: shared.$dark-gray-base-color
+                    border-radius: 100px
+                &::-webkit-scrollbar-thumb
+                    background-color: shared.$purple-base-color
+                    border-radius: 100px
