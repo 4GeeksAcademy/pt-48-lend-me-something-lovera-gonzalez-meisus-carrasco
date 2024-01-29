@@ -7,6 +7,7 @@ import { useAuth0 } from '@auth0/auth0-react'
 export const SmallTable = (props) => {
 
     const { isLoading } = useAuth0();
+    const { store, actions } = useContext(Context)
 
     const [filter, setFilter] = useState('')
 
@@ -15,7 +16,11 @@ export const SmallTable = (props) => {
         <Spinner />
     </>)
 
-
+    const addToPortfolio = (e) => {
+        const ticker_data = JSON.parse(e.target.value)
+        console.log(ticker_data)
+        actions.addToUserPortfolio(ticker_data.symbol, props.type, ticker_data.name);
+    };
 
     return (<>
 
@@ -34,12 +39,13 @@ export const SmallTable = (props) => {
                 <div className="portfolio-hr"></div>
                 <div className="portfolio-table-list portfolio-table-list-blue">
                     {props.data != [] && props.data.map((e, i) => (
-                        
+                        <div className="portfolio-table-list-item--container">
+                            <button className="blue--button single-portfolio--button" value={JSON.stringify(e)} onClick={(e) => { addToPortfolio(e) }} ><i style={{ color: 'white' }} className="fa-solid fa-plus"></i></button>
                             <div key={i} className="portfolio-table-list-item">
                                 <div className="portfolio-table-list-item-name">{e.name}</div>
                                 <div className="portfolio-table-list-item-symbol">{e.symbol}</div>
                             </div>
-                        
+                        </div>
                     ))
                     }
                 </div>

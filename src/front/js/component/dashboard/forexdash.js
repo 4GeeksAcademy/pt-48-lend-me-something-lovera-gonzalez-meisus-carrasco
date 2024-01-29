@@ -62,7 +62,7 @@ export const ForexDash = () => {
                     <Doughnut data={filtered_data.sort((a, b) => b.price - a.price).splice(0, 10)} colors={['#5BF428', '#328a32', '#4e874e']} title='Top 10 Currencies' />
                 </BlueContainer>
                 <BlueContainer>
-                <SmallTable data={store?.forexDB.splice(0,500).map(e=> ({name: e.ticker, symbol: e.ticker}))} title='Cryptocurrencies'/>
+                <SmallTable data={store?.forexDB.splice(0,500).map(e=> ({name: e.ticker, symbol: e.ticker}))} title='Forex' type='Forex'/>
 
                 </BlueContainer>
                 </div>

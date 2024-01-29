@@ -65,7 +65,7 @@ export const CrryptoDash = () => {
                         <Doughnut data={filtered_data.splice(0, 10)} colors={['#5F8670', '#FF9800', '#B80000', '#820300']} title='Top 10 Cryptos!' />
                     </BlueContainer>
                     <BlueContainer>
-                        <SmallTable data={store?.cryptoDB?.splice(0,500).map(e=> ({name: e.name, symbol: e.asset_id}))} title='Cryptocurrencies'/>
+                        <SmallTable data={store?.cryptoDB?.splice(0,500).map(e=> ({name: e.name, symbol: e.asset_id}))} title='Cryptocurrencies' type='Crypto'/>
                     </BlueContainer>
                 </div>
                 {data.length > 1 && <Table data={data} columns={tableColumns} />}

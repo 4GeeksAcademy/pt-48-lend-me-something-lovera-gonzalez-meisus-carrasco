@@ -62,7 +62,7 @@ export const CommoditiesDash = () => {
                     </BlueContainer>
 
                     <BlueContainer>
-                        <SmallTable data={store.commoditiesDB.splice(0, 500).map(e => ({ ...e, name: e.key, symbol: e.key }))} title='Cryptocurrencies' />
+                        <SmallTable data={store.commoditiesDB.splice(0, 500).map(e => ({ ...e, name: e.key, symbol: e.key }))} title='Commodities' type='Commodity'  />
 
                     </BlueContainer>
                 </div>
