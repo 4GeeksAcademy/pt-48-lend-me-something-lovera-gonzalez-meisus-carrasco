@@ -19,7 +19,7 @@ export const SmallTable = (props) => {
 
     return (<>
 
-        <div style={{ flexBasis: '35%', height: '35vh', display: 'flex', alignItems: 'center', flexDirection: 'column', position: 'relative' }}>
+        <div style={{ height: '35vh', display: 'flex', alignItems: 'center', flexDirection: 'column', position: 'relative', ...props.style }}>
             <div className="portfolio-header--container">
                 <h4>{props.title}</h4>
                 <div>
@@ -33,7 +33,7 @@ export const SmallTable = (props) => {
                 </div>
                 <div className="portfolio-hr"></div>
                 <div className="portfolio-table-list portfolio-table-list-blue">
-                    {props.data != [] && props.data.filter(element =>  (element.name.toLowerCase().includes(filter.toLowerCase()) || element.symbol.toLowerCase().includes(filter.toLowerCase()))).map((e, i) => (
+                    {props.data != [] && props.data.map((e, i) => (
                         
                             <div key={i} className="portfolio-table-list-item">
                                 <div className="portfolio-table-list-item-name">{e.name}</div>

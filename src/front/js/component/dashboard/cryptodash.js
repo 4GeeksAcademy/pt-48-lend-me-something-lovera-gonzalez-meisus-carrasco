@@ -22,8 +22,8 @@ export const CrryptoDash = () => {
         'date': element.data_end
     })).filter(element => element.price < 40000).sort((a, b) => b.price - a.price).splice(4, 30)
 
-
     const preColumns = Object.keys(filtered_data[0]).map(e => ({ 'field': e, 'flex': 1 }))
+    console.log(preColumns)
 
     const [tableColumns, setTableColumns] = useState(preColumns)
     const [data, setData] = useState(filtered_data);
@@ -54,9 +54,14 @@ export const CrryptoDash = () => {
             className="d-flex flex-column gap-5 navbar-margin"
         >
             <div className="d-flex flex-column justify-content-center align-items-center flex-wrapp-4 pt-0 gap-5" style={{ width: '100%' }}>
-                <BlueContainer style={{ alignItems: 'center', justifyItems: 'center', }}>
-                    <Doughnut data={filtered_data.splice(0, 10)} colors={['#5F8670', '#FF9800', '#B80000', '#820300']} title='Top 10 Cryptos!' />
-                </BlueContainer>
+
+                <div className="d-flex flex-row justify-content-between align-items-center gap-4" style={{ width: '80%' }}>
+                    <BlueContainer style={{ alignItems: 'center', justifyItems: 'center', }}>
+                        <Doughnut data={filtered_data.splice(0, 10)} colors={['#5F8670', '#FF9800', '#B80000', '#820300']} title='Top 10 Cryptos!' />
+                    </BlueContainer>
+                    <BlueContainer>
+                    </BlueContainer>
+                </div>
                 {data.length > 1 && <Table data={data} columns={tableColumns} />}
             </div>
         </animated.div>}

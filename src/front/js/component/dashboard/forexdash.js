@@ -8,7 +8,6 @@ import { useSpring, animated } from '@react-spring/web'
 import { Spinner } from "../spinner"
 import { Table } from "./table.js";
 import { GreenContainer } from "../color_containers/green_container.js";
-import { SmallTable } from "./search_table.js";
 
 
 export const ForexDash = () => {
@@ -50,12 +49,14 @@ export const ForexDash = () => {
             className="d-flex flex-column gap-5 navbar-margin"
         >
             <div className="d-flex flex-column justify-content-center align-items-center flex-wrapp-4 pt-0 gap-5" style={{ width: '100%' }}>
+                <div className="d-flex flex-row justify-content-between align-items-center gap-4" style={{width: '80%'}}>
+
                 <BlueContainer style={{ alignItems: 'center', justifyItems: 'center' }}>
                     <Doughnut data={filtered_data.sort((a, b) => b.price - a.price).splice(0, 10)} colors={['#5BF428', '#328a32', '#4e874e']} title='Top 10 Currencies' />
                 </BlueContainer>
                 <BlueContainer>
-                    <SmallTable title='Forex' data={store?.forexDB.map(e=> ({'name': e.ticker.toUpperCase(), 'symbol': e.ticker}))}/>
                 </BlueContainer>
+                </div>
                 {data.length > 1 && <Table data={data} columns={tableColumns} />}
             </div>
         </animated.div>}

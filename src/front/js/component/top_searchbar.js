@@ -21,12 +21,15 @@ export const TopBar = () => {
         // console.log(searchState)
     }
 
-   
+    useEffect(() => {
+        !store.forexDB ? actions.setForexDB() : null
+        !store.cryptoDB ? actions.setCryptoDB() : null
+        !store.commoditiesDB ? actions.setCommoditiesDB() : null
+    }, [])
+
     useEffect(() => {
         if (user) actions.setUser(user);
-        actions.setForexDB()
-        actions.setCryptoDB()
-        actions.setCommoditiesDB()
+
     }, [user])
 
     return (<>

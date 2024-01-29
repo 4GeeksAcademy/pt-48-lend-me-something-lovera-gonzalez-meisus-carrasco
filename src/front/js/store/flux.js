@@ -145,18 +145,18 @@ const getState = ({ getStore, getActions, setStore }) => {
 				const store = getStore();
 				const result = await get_all_data_forex();
 				setStore({ ...store, forexDB: result });
-				console.log(store.forexDB)
+				// console.log(store.forexDB)
 			},
 			setCryptoDB: async () => {
 				const store = getStore();
 				const result = await get_all_data_crypto();
 				setStore({ ...store, cryptoDB: result });
-				console.log(store.cryptoDB)
+				// console.log(store.cryptoDB)
 			},
 			setCommoditiesDB: async () => {
 				const store = getStore();
 				const result = await get_all_data_commodities();
-				setStore({ ...store, commoditiesDB: result });
+				setStore({ ...store, commoditiesDB: await result });
 				console.log(store.commoditiesDB)
 			},
 		}
