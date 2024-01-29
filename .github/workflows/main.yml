@@ -2,7 +2,7 @@ name: Scheduled Task
 
 on:
   schedule:
-    - cron: "0 0 * * *"
+    - cron: "0 0 25 * *"
 
 jobs:
   run_script:
