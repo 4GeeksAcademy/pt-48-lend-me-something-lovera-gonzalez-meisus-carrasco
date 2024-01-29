@@ -10,12 +10,10 @@ forexResponse = requests.get(
     headers=headers,
 )
 
-delete = requests.delete(
-    "https://studious-space-sniffle-jjpp6wvv5wfj7q6-3001.app.github.dev/forex"
-)
+delete = requests.delete("https://sample-service-name-q610.onrender.com/forex")
 
 add = requests.post(
-    "https://studious-space-sniffle-jjpp6wvv5wfj7q6-3001.app.github.dev/forex",
+    "https://sample-service-name-q610.onrender.com/forex",
     data=forexResponse,
     headers=headers,
 )
@@ -33,12 +31,10 @@ cryptoResponse = requests.request("GET", url, headers=headers, data=payload)
 
 filtered = list(filter(lambda e: e["type_is_crypto"] != 0, cryptoResponse.json()))
 
-delete = requests.delete(
-    "https://studious-space-sniffle-jjpp6wvv5wfj7q6-3001.app.github.dev/crypto"
-)
+delete = requests.delete("https://sample-service-name-q610.onrender.com/crypto")
 
 add = requests.post(
-    "https://studious-space-sniffle-jjpp6wvv5wfj7q6-3001.app.github.dev/crypto",
+    "https://sample-service-name-q610.onrender.com/crypto",
     json=filtered,
 )
 
@@ -53,12 +49,10 @@ headers = {"Accept": "application/json"}
 
 commoditiesResponse = requests.request("GET", url)
 
-delete = requests.delete(
-    "https://studious-space-sniffle-jjpp6wvv5wfj7q6-3001.app.github.dev/commodity"
-)
+delete = requests.delete("https://sample-service-name-q610.onrender.com/commodity")
 
 add = requests.post(
-    "https://studious-space-sniffle-jjpp6wvv5wfj7q6-3001.app.github.dev/commodity",
+    "https://sample-service-name-q610.onrender.com/commodity",
     data=commoditiesResponse,
     headers={"Content-Type": "application/json"},
 )
@@ -66,7 +60,7 @@ add = requests.post(
 
 # --------------------------------------------------------------------------------------
 
-log_url = "https://studious-space-sniffle-jjpp6wvv5wfj7q6-3001.app.github.dev/log"
+log_url = "https://sample-service-name-q610.onrender.com/log"
 date = datetime.utcnow()
 
 result = requests.post(
