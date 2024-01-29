@@ -25,6 +25,7 @@ import { CheckoutForm } from "./pages/stripe";
 import { Return } from "./pages/stripe";
 import { Portfolio } from "./pages/portfolio";
 import { AuthenticationGuard } from "./component/Auth0/protected-route";
+import { Background } from "./pages/background";
 
 //create your first component
 const Layout = () => {
@@ -65,6 +66,18 @@ const Layout = () => {
             }
         });
 
+        document.addEventListener('mousemove', (e) => {
+            document.querySelectorAll('.background--icon').forEach(icon => {
+                const speed = icon.getAttribute('data-speed');
+                const x = (window.innerWidth - e.pageX*speed)/100
+                const y = (window.innerHeight - e.pageY*speed)/100
+
+                icon.style.transform = `translateX(${x}px) translateY(${y}px)`
+            } )
+
+
+        })
+
     }, [])
 
 
@@ -76,6 +89,7 @@ const Layout = () => {
             <BrowserRouter basename={basename}>
                 <Auth0ProviderWithNavigate>
                     <ScrollToTop>
+                        <Background/>
                         <TopBar />
                         <Navbar />
                         <Routes >

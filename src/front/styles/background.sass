@@ -1,0 +1,25 @@
+@use '../styles/shared'
+
+
+.background
+    &--container
+        background-color: shared.$dark-gray-base-color
+        position: fixed
+        top: 0
+        left: 0
+        z-index: -1
+        width: 100%
+        height: 100vh
+    &--section
+        position: relative
+        width: 100%
+        height: 100%
+        display: flex
+        justify-content: center
+        align-items: center
+        & i
+            position: absolute
+            top: 0
+            left: 0
+            object-fit: cover
+            transition: top 1500ms, left 1500ms
