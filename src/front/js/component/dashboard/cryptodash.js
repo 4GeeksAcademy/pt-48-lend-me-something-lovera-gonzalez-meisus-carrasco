@@ -22,7 +22,7 @@ export const CrryptoDash = () => {
         'price': +(element.price_usd),
         'date': element.data_end
     })).filter(element => element.price < 40000).sort((a, b) => b.price - a.price).splice(4, 30)
-    const preColumns = Object.keys(filtered_data[0]).map(e => ({ 'field': e, 'flex': 1 }))
+    const preColumns = filtered_data[0] ? Object.keys(filtered_data[0]).map(e => ({ 'field': e, 'flex': 1 })) : null
 
     const [tableColumns, setTableColumns] = useState(preColumns)
     const [data, setData] = useState(filtered_data);

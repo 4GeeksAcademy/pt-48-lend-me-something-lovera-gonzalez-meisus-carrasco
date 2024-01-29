@@ -18,7 +18,7 @@ export const ForexDash = () => {
     const filtered_data = store?.forexDB.map(element => ({ 'name': element.ticker.toUpperCase(), 'price': element.midPrice, 'bidPrice': element.bidPrice, 'askPrice': element.askPrice })).sort((a, b) => a.price - b.price).splice(0, 30)
 
 
-    const preColumns = Object.keys(filtered_data[0]).map(e => ({ 'field': e, 'flex': 1 }))
+    const preColumns = filtered_data[0] ? Object.keys(filtered_data[0]).map(e => ({ 'field': e, 'flex': 1 })) : null
 
     const [tableColumns, setTableColumns] = useState(preColumns)
     const [data, setData] = useState(filtered_data);
