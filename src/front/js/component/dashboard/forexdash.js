@@ -15,7 +15,7 @@ export const ForexDash = () => {
 
     const { store, actions } = useContext(Context)
 
-    const filtered_data = store?.forexDB.map(element => ({ 'name': element.ticker.toUpperCase(), 'price': element.midPrice, 'bidPrice': element.bidPrice, 'askPrice': element.askPrice })).sort((a, b) => a.price - b.price).splice(0, 30)
+    const filtered_data = store?.forexDB.map(element => ({ 'name': element.ticker.toUpperCase(), 'price': element.midPrice, 'bidPrice': element.bidPrice, 'askPrice': element.askPrice })).sort((a, b) => a.price - b.price)
 
 
     const preColumns = filtered_data[0] ? Object.keys(filtered_data[0]).map(e => ({ 'field': e, 'flex': 1 })) : null
@@ -62,7 +62,7 @@ export const ForexDash = () => {
                     <Doughnut data={filtered_data.sort((a, b) => b.price - a.price).splice(0, 10)} colors={['#5BF428', '#328a32', '#4e874e']} title='Top 10 Currencies' />
                 </BlueContainer>
                 <BlueContainer>
-                <SmallTable data={store?.forexDB.splice(0,500).map(e=> ({name: e.ticker, symbol: e.ticker}))} title='Forex' type='Forex'/>
+                <SmallTable data={store?.forexDB.map(e=> ({name: e.ticker, symbol: e.ticker}))} title='Forex' type='Forex'/>
 
                 </BlueContainer>
                 </div>

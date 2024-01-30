@@ -21,7 +21,7 @@ export const CrryptoDash = () => {
         'id': element.asset_id,
         'price': +(element.price_usd),
         'date': element.data_end
-    })).filter(element => element.price < 40000).sort((a, b) => b.price - a.price).splice(4, 30)
+    })).filter(element => element.price < 40000).sort((a, b) => b.price - a.price).slice(4, 34)
     const preColumns = filtered_data[0] ? Object.keys(filtered_data[0]).map(e => ({ 'field': e, 'flex': 1 })) : null
 
     const [tableColumns, setTableColumns] = useState(preColumns)
@@ -65,7 +65,7 @@ export const CrryptoDash = () => {
                         <Doughnut data={filtered_data.splice(0, 10)} colors={['#5F8670', '#FF9800', '#B80000', '#820300']} title='Top 10 Cryptos!' />
                     </BlueContainer>
                     <BlueContainer>
-                        <SmallTable data={store?.cryptoDB?.splice(0,500).map(e=> ({name: e.name, symbol: e.asset_id}))} title='Cryptocurrencies' type='Crypto'/>
+                        <SmallTable data={store?.cryptoDB?.slice(0,500).map(e=> ({name: e.name, symbol: e.asset_id}))} title='Cryptocurrencies' type='Crypto'/>
                     </BlueContainer>
                 </div>
                 {data.length > 1 && <Table data={data} columns={tableColumns} />}
