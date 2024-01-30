@@ -81,7 +81,7 @@ export const getPortfolio = async (portfolio_id) => {
     return await data
  };
 export const addToPortfolio = async (itemData) => {
-    console.log(itemData)
+    // console.log(itemData)
     const data = await fetch(`${FF_API}/portfolio_list/`, {
         method: "POST",
         body: JSON.stringify(itemData),

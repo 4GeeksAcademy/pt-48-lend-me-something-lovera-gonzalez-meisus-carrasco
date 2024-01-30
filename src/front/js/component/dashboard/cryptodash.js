@@ -48,7 +48,7 @@ export const CrryptoDash = () => {
             const symbols = store.userPortfolio?.filter(element => element.item_type === 'Crypto')
             // console.log(symbols)
             const data = symbols.reduce((acc, next) => [...acc, store.cryptoDB.filter(element=> element.asset_id === next.item_symbol)[0]],[])
-            console.log(data)
+            // console.log(data)
             setGraphData(await data.map(e => ({ price: e.price_usd != null ?  e.price_usd : 1, name: e.asset_id })).slice(0, 10))
         }
 

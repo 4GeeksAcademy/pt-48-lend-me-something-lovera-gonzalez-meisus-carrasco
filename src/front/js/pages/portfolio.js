@@ -38,7 +38,7 @@ export const Portfolio = () => {
         setTimeout(() => {
             setLoading(false);
         }, 500)
-        console.log(store.userPortfolio)
+        // console.log(store.userPortfolio)
 
     }, []);
 

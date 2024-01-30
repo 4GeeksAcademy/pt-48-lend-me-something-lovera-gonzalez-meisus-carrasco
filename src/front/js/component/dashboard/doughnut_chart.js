@@ -234,16 +234,7 @@ export const Doughnut = (props) => {
                         <text className="graphic-text" fill="white" x="10" fontSize="0.3em"></text>
                         <text className="graphic-text" fill="white" x="10" fontSize="0.3em"></text>
                         <text className="graphic-text" fill="white" x="10" fontSize="0.3em"></text>
-                        <circle r="2" fill="rgb(238, 130, 238)"></circle>
-                        <circle r="2" fill="rgb(223, 118, 228)"></circle>
-                        <circle r="2" fill="rgb(212, 109, 221)"></circle>
-                        <circle r="2" fill="rgb(199, 99, 212)"></circle>
-                        <circle r="2" fill="rgb(181, 84, 200)"></circle>
-                        <circle r="2" fill="rgb(168, 74, 191)"></circle>
-                        <circle r="2" fill="rgb(77, 78, 190)"></circle>
-                        <circle r="2" fill="rgb(79, 162, 255)"></circle>
-                        <circle r="2" fill="rgb(79, 162, 255)"></circle>
-                        <circle r="2" fill="rgb(79, 162, 255)"></circle>
+                        {data.map((elem, index) => <circle r="2" key={index}></circle>)}
                     </g>}
                 </g>
             </svg>
