@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext } from "react";
 import PropTypes from "prop-types";
-import { Link, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { Context } from "../store/appContext";
 import rigoImageUrl from "../../img/rigo-baby.jpg";
 import { GreenContainer } from '../component/color_containers/green_container'
@@ -30,6 +30,7 @@ export const Single = props => {
 	let last_value, yesterday_value;
 	let columns;
 	const [tableColor, setTableColor] = useState('green');
+	const navigate = useNavigate()
 
 	const loadTableData = async (symbol) => {
 		const data = await get_eod_data(symbol)
@@ -95,9 +96,11 @@ export const Single = props => {
 			<BlueContainer style={{ position: 'relative', width: '70%' }}>
 				{ticker.name && tableData && <>
 					<div className='d-flex flex-row gap-2'>
-						{isAuthenticated && !isOnUserPortfolio &&
+						{isAuthenticated && store.user.subscription_level === 'Free' && 
+						<button className="blue--button single-portfolio--button" onClick={() => navigate('/subscription')} >Subscribe to get a Portfolio</button> }
+						{isAuthenticated && !isOnUserPortfolio && store.user.subscription_level != 'Free' && 
 							<button className="blue--button single-portfolio--button" value={JSON.stringify(ticker)} onClick={(e) => {addToPortfolio(e); setIsOnUserPortfolio(true)}} >Add to Portfolio</button>}
-						{isAuthenticated && isOnUserPortfolio &&
+						{isAuthenticated && isOnUserPortfolio && store.user.subscription_level != 'Free' && 
 							<button className="green--button single-portfolio--button-added" value={ticker.symbol} onClick={(e) => deleteFromPortfolio(e)} >
 								<i style={{ fontSize: '2em' }} className="fa-regular fa-circle-check"></i>
 							</button>}

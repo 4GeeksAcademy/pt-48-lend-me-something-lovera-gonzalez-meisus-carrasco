@@ -50,6 +50,8 @@ export const CrryptoDash = () => {
             const data = symbols.reduce((acc, next) => [...acc, store.cryptoDB.filter(element=> element.asset_id === next.item_symbol)[0]],[])
             // console.log(data)
             setGraphData(await data.map(e => ({ price: e.price_usd != null ?  e.price_usd : 1, name: e.asset_id })).slice(0, 10))
+        } else {
+            setGraphData(filtered_data.slice(0,10))
         }
 
         setTimeout(() => {
@@ -84,7 +86,7 @@ export const CrryptoDash = () => {
                         <Doughnut data={graphData} colors={['#5F8670', '#FF9800', '#B80000', '#820300']} title='Top 10 Cryptos!' />
                     </BlueContainer>
                     <BlueContainer>
-                        <SmallTable data={store?.cryptoDB?.slice(0,500).map(e=> ({name: e.name, symbol: e.asset_id}))} title='Cryptocurrencies' type='Crypto'/>
+                        <SmallTable data={store?.cryptoDB?.map(e=> ({name: e.name, symbol: e.asset_id}))} title='Cryptocurrencies' type='Crypto'/>
                     </BlueContainer>
                 </div>
                 {data.length > 1 && <Table data={data} columns={tableColumns} />}

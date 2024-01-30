@@ -44,15 +44,15 @@ export const AboutUs = () => {
                             </div>
                             <div>
                                 <i className="fa-brands fa-linkedin"></i>
-                                <a href="https://www.linkedin.com/in/loveradrian28/">Check me on LinkedIn</a>
+                                <a href="https://www.linkedin.com/in/loveradrian28/" target="_blank">Check me on LinkedIn</a>
                             </div>
                             <div>
                                 <i className="fa-brands fa-github"></i>
-                                <a href="https://github.com/loveradrian28">Check me on GitHub</a>
+                                <a href="https://github.com/loveradrian28" target="_blank">Check me on GitHub</a>
                             </div>
                             <div>
                                 <i className="fa-solid fa-envelope"></i>
-                                <a href="mailto:adrianelovera@gmail.com">Contact me via e-mail</a>
+                                <a href="mailto:adrianelovera@gmail.com" target="_blank">Contact me via e-mail</a>
                             </div>
                         </div>
                     </div>
@@ -67,15 +67,15 @@ export const AboutUs = () => {
                             </div>
                             <div>
                                 <i className="fa-brands fa-linkedin"></i>
-                                <a href="https://www.linkedin.com/in/anderson-gonzalez-1ba484277/">Check me on LinkedIn</a>
+                                <a href="https://www.linkedin.com/in/anderson-gonzalez-1ba484277/" target="_blank">Check me on LinkedIn</a>
                             </div>
                             <div>
                                 <i className="fa-brands fa-github"></i>
-                                <a href="https://github.com/AndyGH86">Check me on GitHub</a>
+                                <a href="https://github.com/AndyGH86" target="_blank">Check me on GitHub</a>
                             </div>
                             <div>
                                 <i className="fa-solid fa-envelope"></i>
-                                <a href="mailto:andersongh1986@gmail.com">Contact me via e-mail</a>
+                                <a href="mailto:andersongh1986@gmail.com" target="_blank">Contact me via e-mail</a>
                             </div>
                         </div>
                     </div>
@@ -93,15 +93,15 @@ export const AboutUs = () => {
                                 <p>There's no ilusion you can't see.</p></div>
                             <div>
                                 <i className="fa-brands fa-linkedin"></i>
-                                <a href="https://www.linkedin.com/in/augusto-santiago-carrasco-toro">Check me on LinkedIn</a>
+                                <a href="https://www.linkedin.com/in/augusto-santiago-carrasco-toro" target="_blank">Check me on LinkedIn</a>
                             </div>
                             <div>
                                 <i className="fa-brands fa-github"></i>
-                                <a href="https://github.com/AugustoCarrasco">Check me on GitHub</a>
+                                <a href="https://github.com/AugustoCarrasco" target="_blank">Check me on GitHub</a>
                             </div>
                             <div>
                                 <i className="fa-solid fa-envelope"></i>
-                                <a href="mailto:augustocarrascotoro@gmail.com">Contact me via e-mail</a>
+                                <a href="mailto:augustocarrascotoro@gmail.com" target="_blank">Contact me via e-mail</a>
                             </div>
                         </div>
                     </div>
@@ -116,15 +116,15 @@ export const AboutUs = () => {
                             </div>
                             <div>
                                 <i className="fa-brands fa-linkedin"></i>
-                                <a href="https://www.linkedin.com/in/juan-manuel-meisus-alvarez-b7b293280/">Check me on LinkedIn</a>
+                                <a href="https://www.linkedin.com/in/juan-manuel-meisus-alvarez-b7b293280/" target="_blank">Check me on LinkedIn</a>
                             </div>
                             <div>
                                 <i className="fa-brands fa-github"></i>
-                                <a href="https://github.com/juanmeisus">Check me on GitHub</a>
+                                <a href="https://github.com/juanmeisus" target="_blank">Check me on GitHub</a>
                             </div>
                             <div>
                                 <i className="fa-solid fa-envelope"></i>
-                                <a href="mailto:jv-0903@hotmail.com">Contact me via e-mail</a>
+                                <a href="mailto:jv-0903@hotmail.com" target="_blank">Contact me via e-mail</a>
                             </div>
                         </div>
                     </div>

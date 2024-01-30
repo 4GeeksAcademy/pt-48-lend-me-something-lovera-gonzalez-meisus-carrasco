@@ -10,6 +10,7 @@ import { useSpring, animated } from '@react-spring/web'
 import { Spinner } from "../component/spinner"
 import { TopBarTitle } from "../component/topBarTitle.js";
 import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 
 export const Portfolio = () => {
@@ -20,6 +21,7 @@ export const Portfolio = () => {
     const [cryptoFilter, setCryptoFilter] = useState('')
     const [forexFilter, setForexFilter] = useState('')
     const [commoditiesFilter, setCommoditiesFilter] = useState('')
+    const navigate = useNavigate()
 
     const springs = useSpring({
         from: { opacity: 0 },
@@ -45,6 +47,25 @@ export const Portfolio = () => {
     if (loading) return (<>
         <Spinner />
     </>)
+
+    if (store.user.subscription_level === 'Free') return (
+        <animated.div
+            style={{
+                ...springs,
+            }}
+            className="navbar-margin subscription--container" >
+            <PurpleContainer style={{ width: '60%' }}>
+                <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
+
+                    <h3>You'll need a subscription at least Essential level to access to this Portfolio feature</h3>
+
+                    <button className="purple--button" onClick={() => navigate('/subscription')}>Subscribe!</button>
+                </div>
+            </PurpleContainer>
+
+        </animated.div>
+
+    )
     return (<>
         <TopBarTitle topTitle="Portfolio" />
         <animated.div
