@@ -36,7 +36,7 @@ export const UserSpinner = () => {
                 <div className="collapsable--hr"  />
                 <Link className="collapsable--list-link"  to="/login">Profile</Link>
                 <div className="collapsable--hr"  />
-                <Link className="collapsable--list-link"  to="/notifications">Notifications</Link>
+                <Link className="collapsable--list-link"  to="/portfolio">Portfolio</Link>
                 <div className="collapsable--hr"  />
                 <Link className="collapsable--list-link"  to="/subscription">Settings</Link>
                 <div className="collapsable--hr"  />
