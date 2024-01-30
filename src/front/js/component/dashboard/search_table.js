@@ -49,7 +49,7 @@ export const SmallTable = (props) => {
                 <div className="portfolio-hr"></div>
                 <div className="portfolio-table-list portfolio-table-list-blue">
                     {props.data != [] && props.data.map((e, i) => (
-                        <div className="portfolio-table-list-item--container">
+                        <div className="portfolio-table-list-item--container" key={i}>
                             {!isOnUserPortfolio(e) && <button className='small-table-add-button' value={JSON.stringify(e)} onClick={() => { addToPortfolio(JSON.stringify(e)) }} ><i value={JSON.stringify(e)}  style={{ color: 'white' }} className="fa-solid fa-plus"></i></button>}
                             {isOnUserPortfolio(e) && <button className='small-table-add-button'  onClick={() => { removeFromPortfolio(JSON.stringify(e)) }} ><i  style={{ color: 'white' }} className="fa-solid fa-check"></i></button>}
                             <div key={i} className="portfolio-table-list-item">
