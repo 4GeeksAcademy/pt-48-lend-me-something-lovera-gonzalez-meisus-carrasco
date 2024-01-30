@@ -23,7 +23,7 @@ export const Stockdash = () => {
     const [loader, setLoader] = useState(true);
     const { store, actions } = useContext(Context);
     let portfolioSize;
-
+    let columns;
     const springs = useSpring({
         from: { opacity: 0, y: -5 },
         to: [{ opacity: 1, y: 0 }],
@@ -43,7 +43,20 @@ export const Stockdash = () => {
             const today = (new Date())
             today.setDate(today.getDate() - 1)
             const data = await get_last_eod_data(symbols)
-            setGraphData(await data.map(e => ({ price: e.close, name: e.symbol })).slice(0, 10))
+            const graph_data = await data
+            columns = (Object.keys(graph_data[0]).map(e => ({ 'field': e, 'flex': 1 })))
+            setGraphData([...graph_data].map(e => ({ price: e.close, name: e.symbol })).slice(0, 10))
+            setTableData([...graph_data].map(
+                element =>
+                ({
+                    Date: new Date(element.date).toLocaleDateString("es-es"),
+                    Symbol: element.symbol,
+                    Open: `$ ${element.open}`,
+                    Close: `$ ${element.close}`,
+                    Exchange: element.exchange,
+                    Volume: new Intl.NumberFormat("en-EN", { style: 'currency', currency: 'USD' }).format(element.adj_volume)
+                })
+            ));
         }
 
         setTimeout(() => {
@@ -77,7 +90,7 @@ export const Stockdash = () => {
                         <Linear color={'#ffd155'}/>
                     </YellowContainer> */}
                 <div className="d-flex flex-column gap-5 justify-content-between align-items-center p-4 " style={{ height: 700, width: '100%' }}>
-                    <Table />
+                    {tableData.length > 1 && <Table data={tableData} columns={columns} />}
 
                 </div>
 
