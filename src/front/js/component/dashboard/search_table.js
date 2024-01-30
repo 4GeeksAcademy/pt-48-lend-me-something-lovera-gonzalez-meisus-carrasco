@@ -11,16 +11,26 @@ export const SmallTable = (props) => {
 
     const [filter, setFilter] = useState('')
 
+    const isOnUserPortfolio = (e) => {
+        return store.userPortfolio?.filter(element => element.item_symbol === e.symbol).length > 0 ? true : false
+    }
 
     if (isLoading) return (<>
         <Spinner />
     </>)
 
-    const addToPortfolio = (event) => {
-        const ticker_data = JSON.parse(e.target.value)
-        // console.log(ticker_data)
+    const addToPortfolio = (e) => {
+        const ticker_data = JSON.parse(e)
+        console.log(ticker_data)
         actions.addToUserPortfolio(ticker_data.symbol, props.type, ticker_data.name);
     };
+
+    const removeFromPortfolio = (e) => {
+        const ticker_data = JSON.parse(e)
+        const [ticker_to_delete] = store.userPortfolio?.filter(element => element.item_symbol === ticker_data.symbol)
+        console.log(ticker_data)
+        actions.removeFromUserPortfolio(ticker_to_delete)
+    }
 
     return (<>
 
@@ -40,7 +50,8 @@ export const SmallTable = (props) => {
                 <div className="portfolio-table-list portfolio-table-list-blue">
                     {props.data != [] && props.data.map((e, i) => (
                         <div className="portfolio-table-list-item--container">
-                            <button className='small-table-add-button' value={JSON.stringify(e)} onClick={(event) => { addToPortfolio(event) }} ><i value={JSON.stringify(e)}  style={{ color: 'white' }} className="fa-solid fa-plus"></i></button>
+                            {!isOnUserPortfolio(e) && <button className='small-table-add-button' value={JSON.stringify(e)} onClick={() => { addToPortfolio(JSON.stringify(e)) }} ><i value={JSON.stringify(e)}  style={{ color: 'white' }} className="fa-solid fa-plus"></i></button>}
+                            {isOnUserPortfolio(e) && <button className='small-table-add-button'  onClick={() => { removeFromPortfolio(JSON.stringify(e)) }} ><i  style={{ color: 'white' }} className="fa-solid fa-check"></i></button>}
                             <div key={i} className="portfolio-table-list-item">
                                 <div className="portfolio-table-list-item-name">{e.name}</div>
                                 <div className="portfolio-table-list-item-symbol">{e.symbol}</div>
