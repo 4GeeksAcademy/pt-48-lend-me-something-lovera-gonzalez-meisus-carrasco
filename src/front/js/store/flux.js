@@ -13,6 +13,106 @@ const getState = ({ getStore, getActions, setStore }) => {
 			user: {
 				subscription_level: ''
 			},
+			userPortfolio: [
+				{
+					"id": 41,
+					"item_name": "eurusd",
+					"item_symbol": "eurusd",
+					"item_type": "Forex",
+					"portfolio_id": 11
+				},
+				{
+					"id": 44,
+					"item_name": "usdcad",
+					"item_symbol": "usdcad",
+					"item_type": "Forex",
+					"portfolio_id": 11
+				},
+				{
+					"id": 45,
+					"item_name": "GASREGCOVW",
+					"item_symbol": "GASREGCOVW",
+					"item_type": "Commodity",
+					"portfolio_id": 11
+				},
+				{
+					"id": 46,
+					"item_name": "DHOILNYH",
+					"item_symbol": "DHOILNYH",
+					"item_type": "Commodity",
+					"portfolio_id": 11
+				},
+				{
+					"id": 47,
+					"item_name": "gbpjpy",
+					"item_symbol": "gbpjpy",
+					"item_type": "Forex",
+					"portfolio_id": 11
+				},
+				{
+					"id": 48,
+					"item_name": "Microsoft Corporation",
+					"item_symbol": "MSFT",
+					"item_type": "Stock",
+					"portfolio_id": 11
+				},
+				{
+					"id": 49,
+					"item_name": "Apple Inc",
+					"item_symbol": "AAPL",
+					"item_type": "Stock",
+					"portfolio_id": 11
+				},
+				{
+					"id": 50,
+					"item_name": "Alphabet Inc - Class C",
+					"item_symbol": "GOOG",
+					"item_type": "Stock",
+					"portfolio_id": 11
+				},
+				{
+					"id": 51,
+					"item_name": "Walt Disney Co (The)",
+					"item_symbol": "DIS",
+					"item_type": "Stock",
+					"portfolio_id": 11
+				},
+				{
+					"id": 53,
+					"item_name": "NIS",
+					"item_symbol": "NIS",
+					"item_type": "Crypto",
+					"portfolio_id": 11
+				},
+				{
+					"id": 54,
+					"item_name": "Litecoin",
+					"item_symbol": "LTC",
+					"item_type": "Crypto",
+					"portfolio_id": 11
+				},
+				{
+					"id": 55,
+					"item_name": "VeChain (pre-swap)",
+					"item_symbol": "VEN",
+					"item_type": "Crypto",
+					"portfolio_id": 11
+				},
+				{
+					"id": 56,
+					"item_name": "DogeCoin",
+					"item_symbol": "DOGE",
+					"item_type": "Crypto",
+					"portfolio_id": 11
+				},
+				{
+					"id": 57,
+					"item_name": "ORO",
+					"item_symbol": "ORO",
+					"item_type": "Crypto",
+					"portfolio_id": 11
+				}
+			],
 			subscription_level: 'Free',
 			searchState: false,
 			subscription: {},

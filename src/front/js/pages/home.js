@@ -14,6 +14,7 @@ import plus from '../../../../public/plus.svg'
 import { Doughnut } from "../component/dashboard/doughnut_chart.js";
 import { Linear } from "../component/dashboard/linear_chart.js";
 import { useAuth0 } from "@auth0/auth0-react";
+import geeks from '../../../../public/4geeks.ico'
 
 
 export const Home = () => {
@@ -44,7 +45,7 @@ export const Home = () => {
 			</YellowContainer> */}
 				<PurpleContainer className="d-flex flex-row justify-content-around align-items-center flex-wrap gap-5 p-4 pt-0" style={{ width: '50%', flexBasis: '80%' }}>
 					<div className="text-light d-flex flex-row gap-2 justify-content-center align-items-center" >
-						<img src='https://restyler.s3.ap-southeast-2.amazonaws.com/user-data/user-46/artworks/product-79/preview/thumbnails/5MPgTBYjDfQKQP7gMsmbzC8lmELrSQWwHILNnnfr-watermarked-lg-resized.gif' alt="" style={{ height: '150px', filter: 'hue-rotate(100deg)' }} />
+						<img src={geeks} alt="" style={{ height: '150px'}} />
 						<div>
 							<h1>FF. Never Forfait.</h1>
 							<h5>Go to the Moon</h5>

@@ -36,7 +36,7 @@ module.exports = {
         type: 'javascript/auto'
       }, //for images
       {
-        test: /\.(png|jpg|gif|jpeg|webp)$/i,
+        test: /\.(png|jpg|gif|jpeg|webp|ico)$/i,
         loader: 'file-loader',
         options: { name: '[name].[ext]' },
 
@@ -49,7 +49,6 @@ module.exports = {
   },
   plugins: [
     new HtmlWebpackPlugin({
-      favicon: '4geeks.ico',
       template: 'template.html'
     }),
     new Dotenv({ safe: true, systemvars: true })
