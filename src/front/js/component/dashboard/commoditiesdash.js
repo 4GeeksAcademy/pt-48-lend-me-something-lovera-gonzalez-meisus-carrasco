@@ -19,7 +19,7 @@ export const CommoditiesDash = () => {
 
     const store_data = store.commoditiesDB
     const filtered_data = store_data.map(element => ({ 
-        'name': element.key.substring(0,7),
+        'name': element.key,
         'price': element.value, 
         'updated': new Date(element.date).toLocaleDateString("es-es") })).sort((a, b) => a.price - b.price)
     // console.log(filtered_data)
@@ -49,7 +49,7 @@ export const CommoditiesDash = () => {
             // console.log(symbols)
             const data = symbols.reduce((acc, next) => [...acc, store.commoditiesDB.filter(element=> element.key === next.item_symbol)[0]],[])
             // console.log(data)
-            setGraphData(await data.map(e => ({ price: e.value != null ?  e.value : 1, name: e.key })).sort((a,b) => b.price-a.price).slice(0, 10))
+            setGraphData(await data.map(e => ({ price: e.value != null ?  e.value : 1, name: e.key.substring(0,7) })).sort((a,b) => b.price-a.price).slice(0, 10))
         } else {
             setGraphData(filtered_data.slice(0,10))
         }
