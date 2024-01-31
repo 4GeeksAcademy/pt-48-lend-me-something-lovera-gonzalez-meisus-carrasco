@@ -14,8 +14,8 @@ import { SmallTable } from "./search_table.js";
 export const ForexDash = () => {
 
     const { store, actions } = useContext(Context)
-
-    const filtered_data = store?.forexDB.map(element => ({ 'name': element.ticker.toUpperCase(), 'price': element.midPrice, 'bidPrice': element.bidPrice, 'askPrice': element.askPrice })).sort((a, b) => a.price - b.price)
+    const [graphData, setGraphData] = useState();
+    const filtered_data = store?.forexDB.map(element => ({ 'name': element.ticker.toUpperCase(), 'price': element.midPrice, 'bidPrice': element.bidPrice, 'askPrice': element.askPrice, 'date': new Date(element.updated).toLocaleDateString("es-es"), 'price': element.value, 'date': new Date(element.quoteTimestamp).toLocaleDateString("es-es") })).sort((a, b) => a.price - b.price)
 
 
     const preColumns = filtered_data[0] ? Object.keys(filtered_data[0]).map(e => ({ 'field': e, 'flex': 1 })) : null
@@ -32,13 +32,33 @@ export const ForexDash = () => {
             friction: 35,
             tension: 120,
         },
-    })
+    });
 
-    useEffect(() => {
+    let portfolioSize;
+
+
+    const loadData = async () => {
+        portfolioSize = store.userPortfolio?.filter(element => element.item_type === 'Forex').length > 0
+        // console.log(portfolioSize)
+        if (portfolioSize) {
+            const symbols = store.userPortfolio?.filter(element => element.item_type === 'Forex')
+            // console.log(symbols)
+            const data = symbols.reduce((acc, next) => [...acc, store.forexDB.filter(element=> element.ticker === next.item_symbol)[0]],[])
+            // console.log(data)
+            setGraphData(await data.map(e => ({ price: e.midPrice != null ?  e.midPrice : 1, name: e.ticker })).sort((a,b) => b.price-a.price).slice(0, 10))
+        } else {
+            setGraphData(filtered_data.slice(0,10))
+        }
+
         setTimeout(() => {
             setLoading(false)
-            // console.log(data);
+
         }, 1000)
+
+    }
+
+    useEffect(() => {
+        loadData()
         return () => {
             setTableColumns()
             setData()
@@ -59,14 +79,16 @@ export const ForexDash = () => {
                 <div className="d-flex flex-row justify-content-between align-items-center gap-4" style={{width: '80%'}}>
 
                 <BlueContainer style={{ alignItems: 'center', justifyItems: 'center' }}>
-                    <Doughnut data={filtered_data.sort((a, b) => b.price - a.price).splice(0, 10)} colors={['#5BF428', '#328a32', '#4e874e']} title='Top 10 Currencies' />
+                    <Doughnut data={graphData} colors={['#5BF428', '#328a32', '#4e874e']} title='Top 10 Currencies' />
                 </BlueContainer>
                 <BlueContainer>
                 <SmallTable data={store?.forexDB.map(e=> ({name: e.ticker, symbol: e.ticker}))} title='Forex' type='Forex'/>
 
                 </BlueContainer>
                 </div>
-                {data.length > 1 && <Table data={data} columns={tableColumns} />}
+                {data.length > 1 && <Table data={data.map(element=> ({...element,
+                     'price': `$ ${element.midPrice}`, 'bidPrice': `$ ${element.bidPrice}`, 'askPrice': `$ ${element.askPrice}`
+                }))} columns={tableColumns} />}
             </div>
         </animated.div>}
 

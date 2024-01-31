@@ -49,7 +49,7 @@ export const CrryptoDash = () => {
             // console.log(symbols)
             const data = symbols.reduce((acc, next) => [...acc, store.cryptoDB.filter(element=> element.asset_id === next.item_symbol)[0]],[])
             // console.log(data)
-            setGraphData(await data.map(e => ({ price: e.price_usd != null ?  e.price_usd : 1, name: e.asset_id })).slice(0, 10))
+            setGraphData(await data.map(e => ({ price: e.price_usd != null ?  e.price_usd : 1, name: e.asset_id })).sort((a,b) => b.price-a.price).slice(0, 10))
         } else {
             setGraphData(filtered_data.slice(0,10))
         }

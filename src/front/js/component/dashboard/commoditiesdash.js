@@ -15,9 +15,10 @@ export const CommoditiesDash = () => {
 
     const { store, actions } = useContext(Context)
     // console.log(store.commoditiesDB)
+    const [graphData, setGraphData] = useState();
 
     const store_data = store.commoditiesDB
-    const filtered_data = store_data.map(element => ({ 'name': element.key, 'date': new Date(element.date).toLocaleDateString("es-es"), 'price': element.value, 'updated': new Date(element.updated).toLocaleDateString("es-es") })).sort((a, b) => a.price - b.price)
+    const filtered_data = store_data.map(element => ({ 'name': element.key, 'date': new Date(element.updated).toLocaleDateString("es-es"), 'price': element.value, 'updated': new Date(element.updated).toLocaleDateString("es-es") })).sort((a, b) => a.price - b.price)
     // console.log(filtered_data)
     const preColumns = filtered_data[0] ? Object.keys(filtered_data[0]).map(e => ({ 'field': e, 'flex': 1 })) : null
 
@@ -33,12 +34,32 @@ export const CommoditiesDash = () => {
             friction: 35,
             tension: 120,
         },
-    })
+    });
+    let portfolioSize;
 
-    useEffect(() => {
+
+    const loadData = async () => {
+        portfolioSize = store.userPortfolio?.filter(element => element.item_type === 'Commodity').length > 0
+        // console.log(portfolioSize)
+        if (portfolioSize) {
+            const symbols = store.userPortfolio?.filter(element => element.item_type === 'Commodity')
+            // console.log(symbols)
+            const data = symbols.reduce((acc, next) => [...acc, store.commoditiesDB.filter(element=> element.key === next.item_symbol)[0]],[])
+            // console.log(data)
+            setGraphData(await data.map(e => ({ price: e.value != null ?  e.value : 1, name: e.key })).sort((a,b) => b.price-a.price).slice(0, 10))
+        } else {
+            setGraphData(filtered_data.slice(0,10))
+        }
+
         setTimeout(() => {
             setLoading(false)
+
         }, 1000)
+
+    }
+
+    useEffect(() => {
+        loadData()
         return () => {
             setTableColumns()
             setData()
@@ -58,7 +79,7 @@ export const CommoditiesDash = () => {
             <div className="d-flex flex-column justify-content-center align-items-center flex-wrapp-4 pt-0 gap-5" style={{ width: '100%' }}>
                 <div className="d-flex flex-row justify-content-between align-items-center gap-4" style={{ width: '80%' }}>
                     <BlueContainer style={{ alignItems: 'center', justifyItems: 'center' }}>
-                        <Doughnut data={filtered_data.slice(0, 10)} colors={['#555', '#b4b4a6', '#c3c3b7']} title='Top 10 Comodities' />
+                        <Doughnut data={graphData} colors={['#555', '#b4b4a6', '#c3c3b7']} title='Top 10 Comodities' />
                     </BlueContainer>
 
                     <BlueContainer>
