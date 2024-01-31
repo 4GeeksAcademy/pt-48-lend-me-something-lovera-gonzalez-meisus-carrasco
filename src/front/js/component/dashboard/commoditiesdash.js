@@ -51,7 +51,7 @@ export const CommoditiesDash = () => {
             // console.log(data)
             setGraphData(await data.map(e => ({ price: e.value != null ?  e.value : 1, name: e.key.substring(0,7) })).sort((a,b) => b.price-a.price).slice(0, 10))
         } else {
-            setGraphData(filtered_data.slice(0,10))
+            setGraphData(filtered_data.slice(0,10).map(e => ({ ...e, name: e.key.substring(0,7) })))
         }
 
         setTimeout(() => {

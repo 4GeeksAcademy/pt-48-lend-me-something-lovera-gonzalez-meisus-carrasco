@@ -40,12 +40,26 @@ export const Stockdash = () => {
         if (portfolioSize) {
             const symbols = store.userPortfolio?.filter(element => element.item_type === 'Stock').map(e => e.item_symbol).join(',')
             // console.log(symbols)
-            const today = (new Date())
-            today.setDate(today.getDate() - 1)
             const data = await get_last_eod_data(symbols)
             const graph_data = await data
             columns = (Object.keys(graph_data[0]).map(e => ({ 'field': e, 'flex': 1 })))
-            setGraphData([...graph_data].map(e => ({ price: e.close, name: e.symbol })).sort((a,b) => b.price-a.price).slice(0, 10))
+            setGraphData([...graph_data].map(e => ({ price: e.close, name: e.symbol })).sort((a, b) => b.price - a.price).slice(0, 10))
+            setTableData([...graph_data].map(
+                element =>
+                ({
+                    Date: new Date(element.date).toLocaleDateString("es-es"),
+                    Symbol: element.symbol,
+                    Open: `$ ${element.open}`,
+                    Close: `$ ${element.close}`,
+                    Exchange: element.exchange,
+                    Volume: new Intl.NumberFormat("en-EN", { style: 'currency', currency: 'USD' }).format(element.adj_volume)
+                })
+            ));
+        } else {
+            const data = await get_last_eod_data('TSLA,AAPL,FB,WMT.AMZN,NKE,WDP.XFRA,BABA,PYPL,KO');
+            const graph_data = await data
+            columns = (Object.keys(graph_data[0]).map(e => ({ 'field': e, 'flex': 1 })))
+            setGraphData([...graph_data].map(e => ({ price: e.close, name: e.symbol })).sort((a, b) => b.price - a.price).slice(0, 10))
             setTableData([...graph_data].map(
                 element =>
                 ({
