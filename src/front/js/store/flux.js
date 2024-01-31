@@ -104,7 +104,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				const response = await updateSubscription(
 					{
 						...store.user,
-						subscription_level: amount === 999 ? "BUSINESS" : "ESSENTIAL",
+						subscription_level: (amount === 999 || amount === 400) ? "BUSINESS" : "ESSENTIAL",
 						start_date: today.toLocaleDateString(),
 						end_date: nextMonth.toLocaleDateString(),
 						renew_date: nextMonth.toLocaleDateString(),

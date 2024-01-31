@@ -83,7 +83,7 @@ export const CrryptoDash = () => {
 
                 <div className="d-flex flex-row justify-content-between align-items-center gap-4" style={{ width: '80%' }}>
                     <BlueContainer style={{ alignItems: 'center', justifyItems: 'center', }}>
-                        <Doughnut data={graphData} colors={['#5F8670', '#FF9800', '#B80000', '#820300']} title='Top 10 Cryptos!' />
+                        <Doughnut data={graphData} colors={['#5F8670', '#FF9800', '#B80000', '#820300']} title='Your top 10 Cryptos!' />
                     </BlueContainer>
                     <BlueContainer>
                         <SmallTable data={store?.cryptoDB?.map(e=> ({name: e.name, symbol: e.asset_id}))} title='Cryptocurrencies' type='Crypto'/>

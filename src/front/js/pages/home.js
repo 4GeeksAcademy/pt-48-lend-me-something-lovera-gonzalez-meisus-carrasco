@@ -60,11 +60,11 @@ export const Home = () => {
 				<div>
 					<h5>Find a better way to stay informed</h5>
 					<BlueContainer>
-						<Doughnut title={'Top 10 Nasdaq Stocks'} />
+						<Doughnut title={'Our selection...'} />
 					</BlueContainer>
 				</div>
 				<div>
-					<h5>Lines, Candles and much more...</h5>
+					<h5>Lines, Areas and much more...</h5>
 					<GreenContainer>
 						<Linear title={'APPL Last 3 months'} color={'green'} />
 					</GreenContainer>

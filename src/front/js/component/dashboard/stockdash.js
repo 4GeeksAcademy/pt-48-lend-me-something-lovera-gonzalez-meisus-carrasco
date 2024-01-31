@@ -98,7 +98,7 @@ export const Stockdash = () => {
         >
             <div className="d-flex flex-row justify-content-around flex-wrap gap-5 p-4 pt-0" style={{ width: '100%' }}>
                 <BlueContainer style={{ alignItems: 'center', justifyItems: 'center' }}>
-                    <Doughnut title='Top 10 Stocks' data={grapshDara} />
+                    <Doughnut title='Your top 10 Stocks' data={grapshDara} />
                 </BlueContainer>
                 {/* <YellowContainer>
                         <Linear color={'#ffd155'}/>

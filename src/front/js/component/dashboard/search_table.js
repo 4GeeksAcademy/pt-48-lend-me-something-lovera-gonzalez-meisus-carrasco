@@ -34,7 +34,7 @@ export const SmallTable = (props) => {
 
     return (<>
 
-        <div style={{ height: '35vh', display: 'flex', alignItems: 'center', flexDirection: 'column', position: 'relative', ...props.style }}>
+        <div style={{ width: '20vw', height: '35vh', display: 'flex', alignItems: 'center', flexDirection: 'column', position: 'relative', ...props.style }}>
             <div className="portfolio-header--container">
                 <h4>{props.title}</h4>
                 <div>

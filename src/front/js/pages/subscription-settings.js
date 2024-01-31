@@ -15,7 +15,8 @@ export const Subscription = () => {
 
     const { isAuthenticated, loginWithPopup, error } = useAuth0()
 
-    const { store, actions } = useContext(Context)
+    const { store, actions } = useContext(Context);
+    const level = store.user.subscription_level
     const subscriptionPlans = [
         {
             'level': 'Free',
@@ -30,7 +31,13 @@ export const Subscription = () => {
             'level': 'Business',
             'price': 9.99,
             'product_id': 'price_1Oc1qlEUv4sos4iTDmypeTRP'
-        }]
+        },
+        {
+            'level': 'Upgrade',
+            'price': 4.00,
+            'product_id': 'price_1OeT7qEUv4sos4iTQFswah4A'
+        },
+    ]
 
     const navigate = useNavigate()
 
@@ -54,10 +61,17 @@ export const Subscription = () => {
 
     const handleClick = async (string) => {
 
-        if (isAuthenticated && store.user.subscription_level != string) {
-            const [subscriptionToSetTo] = subscriptionPlans.filter(level => level.level == string);
-            actions.setSubscription(subscriptionToSetTo);
-            navigate('/checkout');
+        if (isAuthenticated && store.user.subscription_level != 'Business') {
+            if (store.user.subscription_level === 'Essential' && string === 'Business') {
+                const [subscriptionToSetTo] = subscriptionPlans.filter(level => level.level == 'Upgrade');
+                actions.setSubscription(subscriptionToSetTo);
+                navigate('/checkout');
+            }
+            if (store.user.subscription_level === 'Free') {
+                const [subscriptionToSetTo] = subscriptionPlans.filter(level => level.level == string);
+                actions.setSubscription(subscriptionToSetTo);
+                navigate('/checkout');
+            }
         }
 
         if (!isAuthenticated) {
@@ -113,7 +127,7 @@ export const Subscription = () => {
                         <span>Start your journey for...</span>
                         <h2>$ 5.99 / month</h2>
                     </div>
-                    <button  className="subscription-button-essential subscription-button" onClick={() => handleClick('Essential')}>{store.user.subscription_level === 'Essential' ? 'Current' : store.user.subscription_level === 'Business' ? 'Included' : 'Upgrade'}</button>
+                    <button className="subscription-button-essential subscription-button" onClick={() => handleClick('Essential')}>{store.user.subscription_level === 'Essential' ? 'Current' : store.user.subscription_level === 'Business' ? 'Included' : 'Upgrade'}</button>
                 </div>
             </BlueContainer>
             <PurpleContainer style={{ width: '60%' }}>

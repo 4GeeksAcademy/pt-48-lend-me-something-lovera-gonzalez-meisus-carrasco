@@ -79,7 +79,7 @@ export const ForexDash = () => {
                 <div className="d-flex flex-row justify-content-between align-items-center gap-4" style={{width: '80%'}}>
 
                 <BlueContainer style={{ alignItems: 'center', justifyItems: 'center' }}>
-                    <Doughnut data={graphData} colors={['#5BF428', '#328a32', '#4e874e']} title='Top 10 Currencies' />
+                    <Doughnut data={graphData} colors={['#5BF428', '#328a32', '#4e874e']} title='Your top 10 Currencies' />
                 </BlueContainer>
                 <BlueContainer>
                 <SmallTable data={store?.forexDB.map(e=> ({name: e.ticker, symbol: e.ticker}))} title='Forex' type='Forex'/>

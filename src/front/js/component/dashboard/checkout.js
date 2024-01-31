@@ -46,6 +46,9 @@ export const Checkout = () => {
                     <div className='checkout-item--container'>
                         <span>{store?.subscription?.level} Plan</span>
                     </div>
+                    {store.subscription.level === 'Upgrade' && <div>
+                        This ammount will be charged together with the Essential Subscription (5.99) every month at renewal date. 
+                    </div>}
                 </div>
                 <button className="yellow--button checkout-back--button" onClick={() => navigate('/subscription')}>Back</button>
             </YellowContainer>

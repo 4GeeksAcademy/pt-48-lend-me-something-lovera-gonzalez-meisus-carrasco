@@ -13,58 +13,178 @@ export const Doughnut = (props) => {
 
     const [data, setData] = useState(
         (props.data) ? props.data:
-            [
-                {
-                    name: 'Santander',
-                    price: 3.80,
-                    color: '#4fa2ff'
-                },
-                {
-                    name: 'Dia',
-                    price: 3.10,
-                    color: '#4fa2ff'
-                },
-                {
-                    name: 'Netflix',
-                    price: 50.80,
-                    color: '#4fa2ff'
-                },
-                {
-                    name: 'Apple',
-                    price: 185,
-                    color: '#0d715d'
-                },
-                {
-                    name: 'Iberdrola',
-                    price: 11.95,
-                    color: '#ffd155'
-                },
-                {
-                    name: 'Inditex',
-                    price: 35,
-                    color: '#A200EA'
-                },
-                {
-                    name: 'Aena',
-                    price: 42,
-                    color: '#e216EA'
-                },
-                {
-                    name: 'BVA',
-                    price: 25,
-                    color: '#e216EA'
-                },
-                {
-                    name: 'Unicaja',
-                    price: 18,
-                    color: '#e216EA'
-                },
-                {
-                    name: 'Google',
-                    price: 137,
-                    color: '#e216EA'
-                },
-            ]);
+        [
+            {
+                "adj_price": 159.0,
+                "adj_high": 161.73,
+                "adj_low": 158.49,
+                "adj_open": 160.7,
+                "adj_volume": 42286026.0,
+                "price": 159.0,
+                "date": "2024-01-30T00:00:00+0000",
+                "dividend": 0.0,
+                "exchange": "XNAS",
+                "high": 161.73,
+                "low": 158.49,
+                "open": 160.7,
+                "split_factor": 1.0,
+                "name": "AMZN",
+                "volume": 45160729.0
+            },
+            {
+                "adj_price": 89.94,
+                "adj_high": null,
+                "adj_low": null,
+                "adj_open": null,
+                "adj_volume": null,
+                "price": 89.94,
+                "date": "2024-01-30T00:00:00+0000",
+                "dividend": 0.0,
+                "exchange": "XFRA",
+                "high": 90.0,
+                "low": 89.0,
+                "open": 89.89,
+                "split_factor": 1.0,
+                "name": "WDP.XFRA",
+                "volume": 880.0
+            },
+            {
+                "adj_price": 188.04,
+                "adj_high": 191.8,
+                "adj_low": 187.47,
+                "adj_open": 190.94,
+                "adj_volume": 55270086.0,
+                "price": 188.04,
+                "date": "2024-01-30T00:00:00+0000",
+                "dividend": 0.0,
+                "exchange": "XNAS",
+                "high": 191.8,
+                "low": 187.47,
+                "open": 190.94,
+                "split_factor": 1.0,
+                "name": "AAPL",
+                "volume": 55842593.0
+            },
+            {
+                "adj_price": 169.49,
+                "adj_high": null,
+                "adj_low": null,
+                "adj_open": null,
+                "adj_volume": null,
+                "price": 169.49,
+                "date": "2022-06-27T00:00:00+0000",
+                "dividend": 0.0,
+                "exchange": "XNAS",
+                "high": 171.75,
+                "low": 168.01,
+                "open": 171.32,
+                "split_factor": 1.0,
+                "name": "FB",
+                "volume": 28991704.0
+            },
+            {
+                "adj_price": 165.59,
+                "adj_high": 165.805,
+                "adj_low": 163.62,
+                "adj_open": 164.7,
+                "adj_volume": 4848312.0,
+                "price": 165.59,
+                "date": "2024-01-30T00:00:00+0000",
+                "dividend": 0.0,
+                "exchange": "XNYS",
+                "high": 165.805,
+                "low": 163.62,
+                "open": 164.7,
+                "split_factor": 1.0,
+                "name": "WMT",
+                "volume": 3743315.0
+            },
+            {
+                "adj_price": 191.59,
+                "adj_high": 196.3593,
+                "adj_low": 190.61,
+                "adj_open": 195.33,
+                "adj_volume": 105537551.0,
+                "price": 191.59,
+                "date": "2024-01-30T00:00:00+0000",
+                "dividend": 0.0,
+                "exchange": "XNAS",
+                "high": 196.3593,
+                "low": 190.61,
+                "open": 195.33,
+                "split_factor": 1.0,
+                "name": "TSLA",
+                "volume": 109610268.0
+            },
+            {
+                "adj_price": 72.32,
+                "adj_high": 73.065,
+                "adj_low": 72.085,
+                "adj_open": 72.46,
+                "adj_volume": 16854744.0,
+                "price": 72.32,
+                "date": "2024-01-30T00:00:00+0000",
+                "dividend": 0.0,
+                "exchange": "XNYS",
+                "high": 73.065,
+                "low": 72.085,
+                "open": 72.46,
+                "split_factor": 1.0,
+                "name": "BABA",
+                "volume": 17086117.0
+            },
+            {
+                "adj_price": 63.71,
+                "adj_high": 64.5,
+                "adj_low": 62.07,
+                "adj_open": 62.9,
+                "adj_volume": 18573671.0,
+                "price": 63.71,
+                "date": "2024-01-30T00:00:00+0000",
+                "dividend": 0.0,
+                "exchange": "XNAS",
+                "high": 64.47,
+                "low": 62.08,
+                "open": 63.0,
+                "split_factor": 1.0,
+                "name": "PYPL",
+                "volume": 17430000.0
+            },
+            {
+                "adj_price": 59.9,
+                "adj_high": 60.02,
+                "adj_low": 59.445,
+                "adj_open": 59.85,
+                "adj_volume": 21861363.0,
+                "price": 59.9,
+                "date": "2024-01-30T00:00:00+0000",
+                "dividend": 0.0,
+                "exchange": "XNYS",
+                "high": 60.02,
+                "low": 59.445,
+                "open": 59.85,
+                "split_factor": 1.0,
+                "name": "KO",
+                "volume": 22061536.0
+            },
+            {
+                "adj_price": 104.18,
+                "adj_high": 104.31,
+                "adj_low": 103.13,
+                "adj_open": 103.34,
+                "adj_volume": 7311147.0,
+                "price": 104.18,
+                "date": "2024-01-30T00:00:00+0000",
+                "dividend": 0.0,
+                "exchange": "XNYS",
+                "high": 104.31,
+                "low": 103.13,
+                "open": 103.34,
+                "split_factor": 1.0,
+                "name": "NKE",
+                "volume": 7542204.0
+            }
+        ]);
 
     const [colors, setColors] = useState(
         (props.colors) ? props.colors : ["#ff0000", "#ffa500", "#ffff00", "#008000", "#4fa2ff", "#4b0082", "#ee82ee"]
