@@ -89,7 +89,9 @@ export const CrryptoDash = () => {
                         <SmallTable data={store?.cryptoDB?.map(e=> ({name: e.name, symbol: e.asset_id}))} title='Cryptocurrencies' type='Crypto'/>
                     </BlueContainer>
                 </div>
-                {data.length > 1 && <Table data={data} columns={tableColumns} />}
+                {data.length > 1 && <Table data={data.map(element => ({
+                    ...element, price: `$ ${element.price.toFixed(3)}`
+                }))} columns={tableColumns} />}
             </div>
         </animated.div>}
 

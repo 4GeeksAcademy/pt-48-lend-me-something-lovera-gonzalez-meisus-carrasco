@@ -15,7 +15,7 @@ export const ForexDash = () => {
 
     const { store, actions } = useContext(Context)
     const [graphData, setGraphData] = useState();
-    const filtered_data = store?.forexDB.map(element => ({ 'name': element.ticker.toUpperCase(), 'price': element.midPrice, 'bidPrice': element.bidPrice, 'askPrice': element.askPrice, 'date': new Date(element.updated).toLocaleDateString("es-es"), 'price': element.value, 'date': new Date(element.quoteTimestamp).toLocaleDateString("es-es") })).sort((a, b) => a.price - b.price)
+    const filtered_data = store?.forexDB.map(element => ({ 'name': element.ticker.toUpperCase(), 'price': element.midPrice, 'bidPrice': element.bidPrice, 'askPrice': element.askPrice, 'date': new Date(element.updated).toLocaleDateString("es-es"),  'date': new Date(element.quoteTimestamp).toLocaleDateString("es-es") })).sort((a, b) => a.price - b.price)
 
 
     const preColumns = filtered_data[0] ? Object.keys(filtered_data[0]).map(e => ({ 'field': e, 'flex': 1 })) : null
