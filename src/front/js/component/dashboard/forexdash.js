@@ -87,7 +87,7 @@ export const ForexDash = () => {
                 </BlueContainer>
                 </div>
                 {data.length > 1 && <Table data={data.map(element=> ({...element,
-                     'price': `$ ${element.midPrice}`, 'bidPrice': `$ ${element.bidPrice}`, 'askPrice': `$ ${element.askPrice}`
+                     'price': `$ ${element.price}`, 'bidPrice': `$ ${element.bidPrice}`, 'askPrice': `$ ${element.askPrice}`
                 }))} columns={tableColumns} />}
             </div>
         </animated.div>}
