@@ -100,8 +100,8 @@ export const Login = () => {
                 <BlueContainer style={{ width: '700px' }}>
                     <div className="profile-text" style={{ width: 'cover' }} >
 
-                        <p style={{ fontSize: ' 1.1em', fontWeight: '600' }}>Recuerda nunca compartas tus claves, ni informacion acerca de tu cuenta</p>
-                        <p style={{ fontSize: ' 1.1em', fontWeight: '600' }}>El equipo de FlowFinance nunca solicitara tus password por sms o email</p>
+                        <p style={{ fontSize: ' 1.1em', fontWeight: '600' }}>Remember: do not share your passowrd or account information.</p>
+                        <p style={{ fontSize: ' 1.1em', fontWeight: '600' }}>FlowFinance team will never ask for your credentials via email nor sms</p>
 
                     </div>
                 </BlueContainer>
