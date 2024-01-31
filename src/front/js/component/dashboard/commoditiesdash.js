@@ -19,7 +19,7 @@ export const CommoditiesDash = () => {
 
     const store_data = store.commoditiesDB
     const filtered_data = store_data.map(element => ({ 
-        'name': element.key,
+        'name': element.key.substring(0,7),
         'price': element.value, 
         'updated': new Date(element.date).toLocaleDateString("es-es") })).sort((a, b) => a.price - b.price)
     // console.log(filtered_data)
